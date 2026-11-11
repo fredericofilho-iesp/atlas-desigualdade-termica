@@ -16,8 +16,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   preparar:
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # Versão fixa: os binários de pacotes R (Posit Package Manager) existem
+    # para o Ubuntu 24.04; numa versão nova tudo é compilado e passa de 45 min.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-r@v2
@@ -26,7 +28,9 @@ jobs:
       - name: Dependências do sistema
         run: sudo apt-get update && sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
       - name: Pacotes R
-        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr"), repos="https://cloud.r-project.org")'
+        # Sem `repos=`: usa o repositório de binários configurado por setup-r
+        # (use-public-rspm). Apontar para o CRAN força compilação do código-fonte.
+        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr"))'
       - name: Setores censitários — município do Rio
         if: inputs.escala == 'todas' || inputs.escala == 'rio'
         run: Rscript R/01_importar_ibge.R
