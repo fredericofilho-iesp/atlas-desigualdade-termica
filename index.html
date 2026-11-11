@@ -1,24 +1,42 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Atlas Interativo de Desigualdade Térmica: protótipo cartográfico do Rio de Janeiro."><title>Atlas de Desigualdade Térmica</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><style>
-:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172a35;background:#f5f8fa}*{box-sizing:border-box}body{margin:0}header{background:#123746;color:white;padding:22px clamp(16px,4vw,52px)}header h1{font-size:clamp(1.4rem,3vw,2rem);margin:0 0 8px}header p{margin:0;color:#d6e9eb}.layout{display:grid;grid-template-columns:minmax(240px,300px) 1fr;gap:16px;padding:16px;max-width:1600px;margin:auto}aside,.mapbox{background:white;border:1px solid #dbe4e9;border-radius:12px;overflow:hidden}aside{padding:20px}label{font-weight:650;display:block;margin:18px 0 7px}select{width:100%;padding:11px;border:1px solid #aabec8;border-radius:7px;background:white;font-size:1rem}.notice{background:#fff7e7;border-left:4px solid #b67815;padding:12px;line-height:1.5;margin-top:22px;font-size:.93rem}.status{font-size:.92rem;color:#536773;line-height:1.55}#map{height:min(70vh,700px);min-height:440px}.maphead{padding:14px 18px;border-bottom:1px solid #e0e8ec;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.maphead strong{font-size:1.06rem}.badge{font-size:.85rem;color:#47606b}footer{max-width:1600px;margin:auto;padding:0 18px 24px;color:#536773;font-size:.85rem}a{color:#14638a}@media(max-width:720px){.layout{grid-template-columns:1fr}#map{height:55vh;min-height:360px}}</style></head>
-<body><header><h1>Atlas Interativo de Desigualdade Térmica</h1><p>Exposição ao calor, vulnerabilidade social e justiça climática</p></header>
-<main class="layout"><aside><h2>Explorar o atlas</h2><label for="scale">Escala territorial</label><select id="scale"><option value="rio">Município do Rio de Janeiro</option><option disabled>Estado do Rio de Janeiro — em desenvolvimento</option><option disabled>Brasil — em desenvolvimento</option><option disabled>América Latina — em desenvolvimento</option></select><label for="indicator">Indicador</label><select id="indicator"><option value="base">Mapa-base cartográfico</option><option disabled>Temperatura superficial — dados pendentes</option><option disabled>Renda — dados pendentes</option><option disabled>Cobertura vegetal — dados pendentes</option></select><p class="status">Use o zoom e arraste o mapa para explorar a cidade. A base cartográfica é fornecida pelo OpenStreetMap.</p><p id="layer-status" class="status" role="status">Verificando a disponibilidade da malha censitária...</p><p id="sector-info" class="status" aria-live="polite">Clique em um setor quando a camada estiver disponível para consultar seu código IBGE.</p><div class="notice"><strong>Protótipo v0.2 — geometria censitária em preparação</strong><br>O atlas tentará carregar a malha oficial dos setores censitários quando o processamento for executado. Ainda não há dados de temperatura ou renda. As próximas versões utilizarão fontes oficiais e metodologia documentada.</div><h3>Fontes previstas</h3><p class="status">IBGE (Censo 2022), MapBiomas e dados de observação da Terra. As séries e resoluções serão verificadas antes da publicação dos indicadores.</p></aside><section class="mapbox" aria-label="Mapa interativo do Rio de Janeiro"><div class="maphead"><strong>Município do Rio de Janeiro</strong><span class="badge" id="map-badge">Mapa-base • OpenStreetMap</span></div><div id="map" role="application" aria-label="Mapa navegável centrado no Rio de Janeiro"></div></section></main><footer>Projeto acadêmico em desenvolvimento · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Código e documentação no GitHub</a> · © contribuidores do OpenStreetMap</footer>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>
-(async function(){
- const status=document.getElementById('layer-status');
- if(!window.L){document.getElementById('map').textContent='Não foi possível carregar a biblioteca cartográfica.';status.textContent='Mapa indisponível.';return;}
- const map=L.map('map',{preferCanvas:true}).setView([-22.9068,-43.1729],11);
- L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
- try{
-  const response=await fetch('dados/processados/rio_setores_2022.geojson');
-  if(!response.ok)throw new Error('Camada ainda não publicada');
-  const data=await response.json();
-  if(data.type!=='FeatureCollection'||!Array.isArray(data.features)||!data.features.length)throw new Error('GeoJSON inválido');
-  const layer=L.geoJSON(data,{style:{color:'#14638a',weight:.65,fillColor:'#7fb6c5',fillOpacity:.12},onEachFeature:(feature,polygon)=>{
-   polygon.on('click',()=>{const p=feature.properties||{};document.getElementById('sector-info').textContent='Setor censitário: '+(p.CD_SETOR||'não informado')+'. Limite geográfico do IBGE (2022). Indicadores térmicos e sociais ainda indisponíveis.';polygon.setStyle({color:'#d16b1e',weight:2,fillOpacity:.3});});
-  }}).addTo(map);
-  status.textContent='Malha IBGE 2022 carregada: '+data.features.length.toLocaleString('pt-BR')+' setores censitários. Sem indicadores associados.';
-  document.getElementById('map-badge').textContent='Setores censitários • IBGE 2022';
- }catch(e){status.textContent='Malha censitária ainda não processada/publicada. Exibindo apenas mapa-base.';}
-})();
-</script></body></html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas de Desigualdade Térmica</title>
+<meta name="description" content="Atlas Interativo de Desigualdade Térmica: exposição ao calor e desigualdades socioespaciais no Rio de Janeiro, no Brasil e na América Latina.">
+<link rel="stylesheet" href="css/atlas.css">
+</head>
+<body>
+<header class="topo">
+  <p class="marca"><a href="">Atlas Interativo de Desigualdade Térmica</a></p>
+  <p class="sub">Exposição ao calor, vulnerabilidade social e justiça climática</p>
+  <nav aria-label="Escalas do atlas"><ul class="escalas">
+    <li><a href="" aria-current="page">Início</a></li><li><a href="rio/">Rio de Janeiro (cidade)</a></li><li><a href="estado-rj/">Estado do RJ</a></li><li><a href="brasil/">Brasil<span class="em-breve">em breve</span></a></li><li><a href="america-latina/">América Latina<span class="em-breve">em breve</span></a></li><li><a href="metodologia/">Metodologia</a></li>
+  </ul></nav>
+</header>
+<main class="conteudo">
+  <h1>Quem está mais exposto ao calor?</h1>
+  <p class="lead">Um atlas aberto para investigar como a exposição ao calor extremo se distribui no território e como ela se relaciona com renda, raça, idade e infraestrutura urbana, em quatro escalas.</p>
+  <div class="cartoes">
+<a class="cartao" href="rio/"><span class="etiqueta">Em construção</span><h2>Rio de Janeiro (cidade)</h2><p>Setores censitários 2022</p></a>
+<a class="cartao" href="estado-rj/"><span class="etiqueta">Em construção</span><h2>Estado do Rio de Janeiro</h2><p>92 municípios</p></a>
+<a class="cartao" href="brasil/"><span class="etiqueta planejado">Planejado</span><h2>Brasil</h2><p>5.570 municípios</p></a>
+<a class="cartao" href="america-latina/"><span class="etiqueta planejado">Planejado</span><h2>América Latina</h2><p>Países e unidades subnacionais</p></a>
+  </div>
+  <div class="texto">
+    <h2>Três dimensões, analisadas separadamente</h2>
+    <p><strong>Exposição</strong> (temperatura da superfície, temperatura do ar, dias de calor extremo), <strong>sensibilidade</strong> (idade, renda, raça/cor, condições de moradia) e <strong>capacidade de adaptação</strong> (vegetação, saneamento, acesso à água). Desigualdade térmica não é só diferença de temperatura: uma área quente pode ter recursos para se proteger, e uma área menos quente pode concentrar populações muito vulneráveis.</p>
+    <h2>Princípios</h2>
+    <ul>
+      <li>Temperatura da superfície (satélite) e temperatura do ar (reanálise) são medidas diferentes e nunca são misturadas.</li>
+      <li>Cada indicador publicado traz fonte, período, unidade e método de agregação.</li>
+      <li>Correlações entre áreas não autorizam conclusões causais sobre indivíduos.</li>
+      <li>Scripts e dados processados ficam no repositório para reprodução.</li>
+    </ul>
+    <p>Veja a <a href="metodologia/">metodologia</a>.</p>
+  </div>
+</main>
+<footer class="rodape">Projeto acadêmico em desenvolvimento · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Código, dados e documentação no GitHub</a> · Mapa-base © OpenStreetMap © CARTO</footer>
+</body>
+</html>

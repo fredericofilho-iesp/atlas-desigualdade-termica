@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>América Latina · Atlas de Desigualdade Térmica</title>
+<meta name="description" content="Atlas Interativo de Desigualdade Térmica: América Latina.">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../css/atlas.css">
+</head>
+<body>
+<header class="topo">
+  <p class="marca"><a href="../">Atlas Interativo de Desigualdade Térmica</a></p>
+  <p class="sub">Exposição ao calor, vulnerabilidade social e justiça climática</p>
+  <nav aria-label="Escalas do atlas"><ul class="escalas">
+    <li><a href="../">Início</a></li><li><a href="../rio/">Rio de Janeiro (cidade)</a></li><li><a href="../estado-rj/">Estado do RJ</a></li><li><a href="../brasil/">Brasil<span class="em-breve">em breve</span></a></li><li><a href="../america-latina/" aria-current="page">América Latina<span class="em-breve">em breve</span></a></li><li><a href="../metodologia/">Metodologia</a></li>
+  </ul></nav>
+</header>
+<main class="layout">
+  <aside class="painel">
+    <h1>América Latina</h1>
+    <p class="status">Países e unidades subnacionais.</p>
+    <label for="indicador">Indicador</label>
+    <select id="indicador" disabled><option>Carregando…</option></select>
+    <p id="status-camada" class="status" role="status">Carregando camada territorial…</p>
+    <div id="ficha" class="ficha" aria-live="polite"><p class="status">Clique em uma unidade no mapa para ver seus valores.</p></div>
+    <div class="aviso"><strong>Planejado.</strong> Para garantir comparabilidade entre países, a primeira camada usa só produtos com metodologia comum (ERA5-Land, MODIS, WorldPop, GHSL). Dados nacionais entram como camada complementar, com as diferenças documentadas.</div>
+    <h2>Fontes previstas</h2>
+    <p class="status">ERA5-Land, MODIS, WorldPop, GHSL, ESA WorldCover, CEPALSTAT, Banco Mundial, geoBoundaries, SALURBAL. Detalhes em <a href="../metodologia/">Metodologia</a>.</p>
+  </aside>
+  <section class="caixa-mapa" aria-label="Mapa interativo: América Latina">
+    <div class="cabeca-mapa"><strong>América Latina</strong><span class="badge" id="badge-mapa">Mapa-base</span></div>
+    <div id="mapa" role="region" aria-label="Mapa navegável"></div>
+    <div id="legenda" class="legenda" hidden></div>
+  </section>
+</main>
+<footer class="rodape">Projeto acadêmico em desenvolvimento · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Código, dados e documentação no GitHub</a> · Mapa-base © OpenStreetMap © CARTO</footer>
+<script>window.ATLAS_CONFIG = {
+  "escala": "america-latina",
+  "centro": [
+    -72,
+    -14
+  ],
+  "zoom": 2.4,
+  "zoomMinimo": 1.5,
+  "manifesto": "../dados/processados/america-latina/camada.json",
+  "indicadoresPrevistos": [
+    "Temperatura do ar (ERA5-Land)",
+    "Temperatura da superfície (MODIS)",
+    "População (WorldPop)",
+    "Urbanização (GHSL)",
+    "Cobertura do solo (ESA WorldCover)",
+    "Indicadores sociais (CEPALSTAT)"
+  ],
+  "mensagemSemDados": "Escala planejada. Usará apenas dados harmonizados internacionalmente."
+};</script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="../js/atlas.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Metodologia · Atlas de Desigualdade Térmica</title>
+<link rel="stylesheet" href="../css/atlas.css">
+</head>
+<body>
+<header class="topo">
+  <p class="marca"><a href="../">Atlas Interativo de Desigualdade Térmica</a></p>
+  <p class="sub">Exposição ao calor, vulnerabilidade social e justiça climática</p>
+  <nav aria-label="Escalas do atlas"><ul class="escalas">
+    <li><a href="../">Início</a></li><li><a href="../rio/">Rio de Janeiro (cidade)</a></li><li><a href="../estado-rj/">Estado do RJ</a></li><li><a href="../brasil/">Brasil<span class="em-breve">em breve</span></a></li><li><a href="../america-latina/">América Latina<span class="em-breve">em breve</span></a></li><li><a href="../metodologia/" aria-current="page">Metodologia</a></li>
+  </ul></nav>
+</header>
+<main class="conteudo texto">
+  <h1>Metodologia</h1>
+  <p class="lead">Estado: planejamento. Nenhum indicador térmico ou socioeconômico foi publicado ainda. Esta página será atualizada a cada indicador incluído.</p>
+
+  <h2>Escalas e unidades territoriais</h2>
+  <table>
+    <thead><tr><th>Escala</th><th>Unidade</th><th>Fontes principais</th></tr></thead>
+    <tbody>
+      <tr><td>Município do Rio de Janeiro</td><td>Setores censitários 2022</td><td>IBGE, Data.Rio, Landsat, MapBiomas</td></tr>
+      <tr><td>Estado do Rio de Janeiro</td><td>Municípios (92)</td><td>IBGE, Ipea, MODIS, ERA5-Land, MapBiomas</td></tr>
+      <tr><td>Brasil</td><td>Municípios (5.570)</td><td>IBGE, Ipea, ERA5-Land, MODIS, MapBiomas</td></tr>
+      <tr><td>América Latina</td><td>Países e unidades subnacionais</td><td>ERA5-Land, MODIS, WorldPop, GHSL, CEPALSTAT, SALURBAL</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Dimensões analíticas</h2>
+  <table>
+    <thead><tr><th>Dimensão</th><th>Indicadores candidatos</th></tr></thead>
+    <tbody>
+      <tr><td>Exposição térmica</td><td>Temperatura da superfície, temperatura do ar, frequência de ondas de calor, dias de calor extremo</td></tr>
+      <tr><td>Vulnerabilidade socioeconômica</td><td>Renda, pobreza, escolaridade, raça/cor, densidade domiciliar</td></tr>
+      <tr><td>Vulnerabilidade demográfica</td><td>População idosa, crianças, densidade populacional</td></tr>
+      <tr><td>Capacidade de adaptação</td><td>Cobertura vegetal, arborização, saneamento, acesso à água</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Princípios</h2>
+  <ol>
+    <li>Temperatura da superfície terrestre (LST, por satélite) e temperatura do ar (estações ou reanálise) são conceitos físicos distintos e aparecem como indicadores separados.</li>
+    <li>Para cada indicador registramos unidade, período, resolução original, tratamento de ausências e método de agregação espacial.</li>
+    <li>Nenhum dado simulado é apresentado como observação.</li>
+    <li>Comparações entre países usam apenas produtos harmonizados internacionalmente; dados nacionais aparecem como camada complementar, com diferenças de definição documentadas.</li>
+    <li>Associações entre áreas (falácia ecológica) não são interpretadas como relações individuais ou causais.</li>
+  </ol>
+
+  <h2>Classificação dos mapas</h2>
+  <p>Por padrão, cada indicador é dividido em cinco classes por quantis, calculadas em R no momento da publicação. O método e os limites de cada classe aparecem na legenda do mapa.</p>
+
+  <h2>Reprodutibilidade</h2>
+  <p>Os scripts em R que baixam, processam e publicam cada camada estão na pasta <code>R/</code> do <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">repositório</a>.</p>
+</main>
+<footer class="rodape">Projeto acadêmico em desenvolvimento · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Código, dados e documentação no GitHub</a> · Mapa-base © OpenStreetMap © CARTO</footer>
+</body>
+</html>
