@@ -1,8 +1,19 @@
-name: Preparar malha censitária IBGE 2022
+name: Preparar camadas do atlas
+# Executar manualmente: aba Actions → "Preparar camadas do atlas" → Run workflow.
+# Gera dados/processados/<escala>/{unidades.geojson, camada.json} e faz commit.
 on:
   workflow_dispatch:
+    inputs:
+      escala:
+        description: "Qual camada gerar"
+        type: choice
+        default: todas
+        options: [todas, rio, estado-rj]
 permissions:
   contents: write
+concurrency:
+  group: preparar-camadas
+  cancel-in-progress: false
 jobs:
   preparar:
     runs-on: ubuntu-latest
@@ -15,13 +26,17 @@ jobs:
       - name: Dependências do sistema
         run: sudo apt-get update && sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
       - name: Pacotes R
-        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite"), repos="https://cloud.r-project.org")'
-      - name: Gerar malha GeoJSON
+        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr"), repos="https://cloud.r-project.org")'
+      - name: Setores censitários — município do Rio
+        if: inputs.escala == 'todas' || inputs.escala == 'rio'
         run: Rscript R/01_importar_ibge.R
+      - name: Municípios — estado do RJ
+        if: inputs.escala == 'todas' || inputs.escala == 'estado-rj'
+        run: Rscript R/02_importar_municipios_rj.R
       - name: Registrar dados processados
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dados/processados/rio_setores_2022.geojson dados/processados/metadados_setores.json
-          git commit -m "Add IBGE 2022 Rio census sectors geometry" || echo "Sem mudanças"
+          git add dados/processados
+          git commit -m "Atualiza camadas processadas (${{ inputs.escala }})" || echo "Sem mudanças"
           git push

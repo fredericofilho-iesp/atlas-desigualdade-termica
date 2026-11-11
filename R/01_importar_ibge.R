@@ -1,6 +1,7 @@
 # Atlas de Desigualdade Térmica — malha censitária oficial (IBGE 2022)
 # Executar na raiz do repositório: Rscript R/01_importar_ibge.R
 # Requer: install.packages(c("sf", "dplyr", "jsonlite"))
+# Saída: dados/processados/rio/{unidades.geojson, camada.json}
 # Fonte: IBGE, malha DEFINITIVA dos setores censitários de 2022.
 # Atenção: apenas geometria e identificadores; não há dados de temperatura ou renda.
 suppressPackageStartupMessages({library(sf);library(dplyr);library(jsonlite)})
@@ -34,19 +35,21 @@ rio <- rio %>% select(any_of(c("CD_SETOR","CD_MUN","NM_MUN","AREA_KM2")))
 stopifnot(inherits(rio, "sf"), !is.null(st_geometry(rio)))
 rio <- st_make_valid(rio)
 rio <- st_transform(rio, 4326)
+# Guarda a malha sem simplificação: é ela que deve ser usada para extrair
+# valores de raster (temperatura, vegetação) nos próximos scripts.
+saveRDS(rio, "dados/brutos/rio_setores_2022.rds")
 # Simplificação em projeção métrica, com tolerância moderada para visualização web.
 rio <- st_transform(rio, 31983)
 rio <- st_simplify(rio, dTolerance=8, preserveTopology=TRUE)
 rio <- st_transform(rio, 4326)
-out <- "dados/processados/rio_setores_2022.geojson"
-st_write(rio, out, driver="GeoJSON", delete_dsn=TRUE, quiet=TRUE)
-meta <- list(
-  fonte="IBGE — Malha de Setores Censitários 2022 (definitiva)",
-  url=url, municipio="Rio de Janeiro", codigo_municipio="3304557",
-  quantidade_setores=nrow(rio), crs="EPSG:4326",
-  simplificacao_metros=8,
-  aviso="Somente limites geográficos; sem indicadores térmicos ou socioeconômicos"
+# Publica para o site: dados/processados/rio/unidades.geojson + camada.json.
+# Indicadores (temperatura, renda etc.) serão acrescentados em scripts próprios,
+# que juntam colunas a `rio` e chamam publicar_camada() de novo.
+source("R/00_publicar_camada.R")
+publicar_camada(
+  rio, escala = "rio", id = "CD_SETOR",
+  unidade = "Setor censitário", unidade_plural = "Setores censitários",
+  fonte_geometria = "Malha de setores censitários IBGE 2022 (definitiva)",
+  fonte_curta = "IBGE 2022",
+  indicadores = list()
 )
-write_json(meta, "dados/processados/metadados_setores.json", auto_unbox=TRUE, pretty=TRUE)
-message("Concluído: ", nrow(rio), " setores; arquivo ", out,
-        " (", round(file.size(out)/1024^2,1), " MiB)")
