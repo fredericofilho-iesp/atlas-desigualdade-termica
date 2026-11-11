@@ -24,7 +24,10 @@ stopifnot(all(c("CD_MUN","CD_SETOR") %in% names(malha)))
 # Código IBGE do município do Rio de Janeiro: 3304557.
 rio <- malha %>% filter(as.character(CD_MUN) == "3304557")
 stopifnot(nrow(rio) > 0)
-rio <- rio %>% select(any_of(c("CD_SETOR","CD_MUN","NM_MUN","AREA_KM2")), geometry)
+rio <- rio %>% select(any_of(c("CD_SETOR","CD_MUN","NM_MUN","AREA_KM2")))
+# Em objetos sf, select() preserva a coluna geométrica automaticamente,
+# independentemente do nome da coluna ativa (geom, geometry etc.).
+stopifnot(inherits(rio, "sf"), !is.null(st_geometry(rio)))
 rio <- st_make_valid(rio)
 rio <- st_transform(rio, 4326)
 # Simplificação em projeção métrica, com tolerância moderada para visualização web.
