@@ -19,7 +19,11 @@ if (!file.exists(dest) || file.size(dest) < 1000000) {
 camadas <- st_layers(dest)$name
 message("Camadas: ", paste(camadas, collapse=", "))
 malha <- st_read(dest, layer=camadas[[1]], quiet=TRUE)
-names(malha) <- toupper(names(malha))
+# Preservar o nome da coluna de geometria e o atributo sf_column.
+# Renomear todas as colunas quebra a referência interna da geometria em sf.
+col_geom <- attr(malha, "sf_column")
+col_atributos <- names(malha) != col_geom
+names(malha)[col_atributos] <- toupper(names(malha)[col_atributos])
 stopifnot(all(c("CD_MUN","CD_SETOR") %in% names(malha)))
 # Código IBGE do município do Rio de Janeiro: 3304557.
 rio <- malha %>% filter(as.character(CD_MUN) == "3304557")
