@@ -29,7 +29,23 @@ stopifnot(all(c("CD_MUN","CD_SETOR") %in% names(malha)))
 # Código IBGE do município do Rio de Janeiro: 3304557.
 rio <- malha %>% filter(as.character(CD_MUN) == "3304557")
 stopifnot(nrow(rio) > 0)
-rio <- rio %>% select(any_of(c("CD_SETOR","CD_MUN","NM_MUN","AREA_KM2")))
+rio <- rio %>% select(any_of(c("CD_SETOR","CD_MUN","NM_MUN")))
+rio$CD_SETOR <- as.character(rio$CD_SETOR)
+# A malha do IBGE pode trazer um mesmo setor em mais de uma linha (partes
+# separadas do mesmo polígono). O site exige um identificador único, então
+# as partes são unidas num só multipolígono por setor.
+dup <- unique(rio$CD_SETOR[duplicated(rio$CD_SETOR)])
+message("Linhas: ", nrow(rio), " | setores únicos: ", length(unique(rio$CD_SETOR)),
+        " | setores repetidos: ", length(dup))
+if (length(dup)) {
+  message("Exemplos de setores repetidos: ", paste(head(dup, 5), collapse = ", "))
+  rio <- st_make_valid(rio)
+  rio <- rio %>%
+    group_by(CD_SETOR) %>%
+    summarise(CD_MUN = first(CD_MUN), NM_MUN = first(NM_MUN), do_union = TRUE, .groups = "drop")
+}
+stopifnot(!anyDuplicated(rio$CD_SETOR))
+rio$AREA_KM2 <- round(as.numeric(st_area(st_transform(rio, 31983))) / 1e6, 4)
 # Em objetos sf, select() preserva a coluna geométrica automaticamente,
 # independentemente do nome da coluna ativa (geom, geometry etc.).
 stopifnot(inherits(rio, "sf"), !is.null(st_geometry(rio)))
