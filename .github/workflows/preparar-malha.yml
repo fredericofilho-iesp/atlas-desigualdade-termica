@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, estado-rj-calor-extremo]
 permissions:
   contents: write
 concurrency:
@@ -71,6 +71,31 @@ jobs:
         run: |
           Rscript R/13_censo_estado_rj.R
           Rscript R/14_municipios_rj.R
+      - uses: actions/setup-python@v5
+        if: inputs.escala == 'estado-rj-calor-extremo'
+        with:
+          python-version: "3.12"
+      - uses: actions/cache/restore@v4
+        if: inputs.escala == 'estado-rj-calor-extremo'
+        with:
+          path: dados/brutos/era5land
+          key: era5land-rj-2016-2025
+          restore-keys: era5land-rj-2016-2025-
+      - name: Estado do RJ — calor extremo (ERA5-Land, Copernicus)
+        if: inputs.escala == 'estado-rj-calor-extremo'
+        env:
+          CDSAPI_KEY: ${{ secrets.CDSAPI_KEY }}
+        run: |
+          pip install --quiet cdsapi
+          python3 ferramentas/baixar_era5land.py --saida dados/brutos/era5land/rj --anos 2016-2025 --area -20.6 -45.0 -23.5 -40.8
+          Rscript R/11_setores_estado_rj.R
+          Rscript R/16_calor_extremo_rj.R
+      - uses: actions/cache/save@v4
+        # guarda os downloads do Copernicus mesmo se o R falhar, para não baixar de novo
+        if: always() && inputs.escala == 'estado-rj-calor-extremo' && hashFiles('dados/brutos/era5land/rj/*.nc') != ''
+        with:
+          path: dados/brutos/era5land
+          key: era5land-rj-2016-2025-${{ github.run_id }}
       - name: Registrar dados processados
         if: always()   # guarda o que já foi calculado mesmo se um passo posterior falhar
         run: |
