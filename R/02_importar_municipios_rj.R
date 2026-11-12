@@ -3,7 +3,7 @@
 # Requer: install.packages(c("sf", "jsonlite", "geobr"))
 # Fonte: IBGE, malha municipal 2022, obtida pelo pacote geobr (Ipea).
 # Saída: dados/processados/estado-rj/{unidades.geojson, camada.json}
-# Atenção: apenas limites e nomes; ainda sem indicadores.
+# Indicadores municipais: R/14_municipios_rj.R (publicação em R/15).
 suppressPackageStartupMessages({ library(sf); library(geobr) })
 source("R/00_publicar_camada.R")
 
@@ -12,14 +12,5 @@ stopifnot(nrow(muni) == 92)
 muni$code_muni <- as.character(muni$code_muni)
 saveRDS(st_transform(muni, 4326), "dados/brutos/rj_municipios_2022.rds")
 
-publicar_camada(
-  muni, escala = "estado-rj", id = "code_muni", rotulo = "name_muni",
-  unidade = c(en = "Municipality", pt = "Município", es = "Municipio"),
-  unidade_plural = c(en = "Municipalities", pt = "Municípios", es = "Municipios"),
-  fonte_geometria = c(en = "IBGE 2022 municipal boundaries (via geobr)",
-                      pt = "Malha municipal IBGE 2022 (via geobr)",
-                      es = "Límites municipales IBGE 2022 (vía geobr)"),
-  fonte_curta = "IBGE 2022",
-  simplificar_m = 60,
-  indicadores = list()
-)
+# Publica (com os indicadores já salvos, se houver).
+source("R/15_publicar_estado_rj.R")

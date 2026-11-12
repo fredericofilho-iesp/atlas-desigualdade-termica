@@ -95,10 +95,10 @@
 
       'rj.title': 'Rio de Janeiro State',
       'rj.desc': 'The state’s 92 municipalities.',
-      'rj.notice': '<strong>Under construction.</strong> First step: municipal boundaries (IBGE 2022). Indicators will be added after validation in the city of Rio.',
-      'rj.sources': 'IBGE (2022 municipal boundaries, 2022 Census), Ipea, MODIS, ERA5-Land, MapBiomas.',
+      'rj.notice': '<strong>How to read:</strong> municipal values are built from all census tracts in the state and weighted by people, so temperature is measured <em>where people live</em>, not averaged over forests and farmland. The two “heat gap” indicators show inequality <em>inside</em> each municipality. Panels below summarise all tracts in the state.',
+      'rj.sources': 'Landsat 8–9 (USGS, via Microsoft Planetary Computer); IBGE, 2022 Census (tract boundaries, income, color or race, age, street trees); municipal boundaries via geobr (Ipea).',
       'rj.noLayer': 'Municipal layer not processed yet. Run the “Prepare atlas layers” workflow on GitHub Actions.',
-      'rj.planned': ['Land surface temperature (MODIS)', 'Extreme heat days (ERA5-Land)', 'Income per capita', 'Vegetation cover', 'Population aged 65+'],
+      'rj.planned': ['Extreme heat days (ERA5-Land)'],
 
       'br.title': 'Brazil',
       'br.desc': 'Brazilian municipalities.',
@@ -116,7 +116,7 @@
 
       'home.title': 'Who is most exposed to heat?',
       'home.lead': 'An open atlas to examine how exposure to extreme heat is distributed across space and how it relates to income, race, age and urban infrastructure, at four scales.',
-      'home.rio.d': '2022 census tracts', 'home.rj.d': '92 municipalities',
+      'home.rio.d': '2022 census tracts', 'home.rj.d': '92 municipalities, built from all census tracts',
       'home.br.d': '5,570 municipalities', 'home.la.d': 'Countries and subnational units',
       'status.building': 'In progress', 'status.planned': 'Planned',
       'home.body': '<h2>Three dimensions, analysed separately</h2><p><strong>Exposure</strong> (land surface temperature, air temperature, extreme heat days), <strong>sensitivity</strong> (age, income, race, housing conditions) and <strong>adaptive capacity</strong> (vegetation, sanitation, access to water). Heat inequality is not only a difference in temperature: a hot area may have the resources to protect itself, while a cooler area may concentrate highly vulnerable people.</p><h2>Principles</h2><ul><li>Land surface temperature (satellite) and air temperature (reanalysis) are different measures and are never mixed.</li><li>Every published indicator states its source, period, unit and aggregation method.</li><li>Area-level correlations do not support causal conclusions about individuals.</li><li>Scripts and processed data are kept in the repository for reproducibility.</li></ul><p>See the <a href="metodologia/">methodology</a>.</p>',
@@ -201,10 +201,10 @@
 
       'rj.title': 'Estado do Rio de Janeiro',
       'rj.desc': 'Os 92 municípios fluminenses.',
-      'rj.notice': '<strong>Em construção.</strong> Primeiro passo: limites municipais (IBGE 2022). Indicadores entram depois da validação no município do Rio.',
-      'rj.sources': 'IBGE (malha municipal 2022, Censo 2022), Ipea, MODIS, ERA5-Land, MapBiomas.',
+      'rj.notice': '<strong>Como ler:</strong> os valores municipais são calculados a partir de todos os setores censitários do estado e ponderados pelas pessoas; assim, a temperatura é medida <em>onde as pessoas moram</em>, não na média de florestas e áreas rurais. Os dois indicadores de “desigualdade térmica” mostram a desigualdade <em>dentro</em> de cada município. Os painéis abaixo resumem todos os setores do estado.',
+      'rj.sources': 'Landsat 8–9 (USGS, via Microsoft Planetary Computer); IBGE, Censo 2022 (malha de setores, renda, cor ou raça, idade, arborização do entorno); malha municipal via geobr (Ipea).',
       'rj.noLayer': 'Malha municipal ainda não processada. Rode o workflow “Preparar camadas do atlas” no GitHub Actions.',
-      'rj.planned': ['Temperatura da superfície (MODIS)', 'Dias de calor extremo (ERA5-Land)', 'Renda per capita', 'Cobertura vegetal', 'População com 65 anos ou mais'],
+      'rj.planned': ['Dias de calor extremo (ERA5-Land)'],
 
       'br.title': 'Brasil',
       'br.desc': 'Municípios brasileiros.',
@@ -222,7 +222,7 @@
 
       'home.title': 'Quem está mais exposto ao calor?',
       'home.lead': 'Um atlas aberto para investigar como a exposição ao calor extremo se distribui no território e como ela se relaciona com renda, raça, idade e infraestrutura urbana, em quatro escalas.',
-      'home.rio.d': 'Setores censitários 2022', 'home.rj.d': '92 municípios',
+      'home.rio.d': 'Setores censitários 2022', 'home.rj.d': '92 municípios, a partir de todos os setores',
       'home.br.d': '5.570 municípios', 'home.la.d': 'Países e unidades subnacionais',
       'status.building': 'Em construção', 'status.planned': 'Planejado',
       'home.body': '<h2>Três dimensões, analisadas separadamente</h2><p><strong>Exposição</strong> (temperatura da superfície, temperatura do ar, dias de calor extremo), <strong>sensibilidade</strong> (idade, renda, raça/cor, condições de moradia) e <strong>capacidade de adaptação</strong> (vegetação, saneamento, acesso à água). Desigualdade térmica não é só diferença de temperatura: uma área quente pode ter recursos para se proteger, e uma área menos quente pode concentrar populações muito vulneráveis.</p><h2>Princípios</h2><ul><li>Temperatura da superfície (satélite) e temperatura do ar (reanálise) são medidas diferentes e nunca são misturadas.</li><li>Cada indicador publicado traz fonte, período, unidade e método de agregação.</li><li>Correlações entre áreas não autorizam conclusões causais sobre indivíduos.</li><li>Scripts e dados processados ficam no repositório para reprodução.</li></ul><p>Veja a <a href="metodologia/">metodologia</a>.</p>',
@@ -307,10 +307,10 @@
 
       'rj.title': 'Estado de Río de Janeiro',
       'rj.desc': 'Los 92 municipios del estado.',
-      'rj.notice': '<strong>En construcción.</strong> Primer paso: límites municipales (IBGE 2022). Los indicadores se incorporarán tras la validación en la ciudad de Río.',
-      'rj.sources': 'IBGE (límites municipales 2022, Censo 2022), Ipea, MODIS, ERA5-Land, MapBiomas.',
+      'rj.notice': '<strong>Cómo leer:</strong> los valores municipales se calculan a partir de todos los sectores censales del estado y se ponderan por personas; así, la temperatura se mide <em>donde vive la gente</em>, no como promedio de bosques y zonas rurales. Los dos indicadores de “brecha térmica” muestran la desigualdad <em>dentro</em> de cada municipio. Los paneles de abajo resumen todos los sectores del estado.',
+      'rj.sources': 'Landsat 8–9 (USGS, vía Microsoft Planetary Computer); IBGE, Censo 2022 (sectores censales, ingreso, color o raza, edad, arbolado del entorno); límites municipales vía geobr (Ipea).',
       'rj.noLayer': 'Capa municipal aún no procesada. Ejecute el workflow “Preparar capas del atlas” en GitHub Actions.',
-      'rj.planned': ['Temperatura de superficie (MODIS)', 'Días de calor extremo (ERA5-Land)', 'Ingreso per cápita', 'Cobertura vegetal', 'Población de 65 años o más'],
+      'rj.planned': ['Días de calor extremo (ERA5-Land)'],
 
       'br.title': 'Brasil',
       'br.desc': 'Municipios brasileños.',
@@ -328,7 +328,7 @@
 
       'home.title': '¿Quién está más expuesto al calor?',
       'home.lead': 'Un atlas abierto para analizar cómo se distribuye en el territorio la exposición al calor extremo y cómo se relaciona con el ingreso, la raza, la edad y la infraestructura urbana, en cuatro escalas.',
-      'home.rio.d': 'Sectores censales 2022', 'home.rj.d': '92 municipios',
+      'home.rio.d': 'Sectores censales 2022', 'home.rj.d': '92 municipios, a partir de todos los sectores',
       'home.br.d': '5.570 municipios', 'home.la.d': 'Países y unidades subnacionales',
       'status.building': 'En construcción', 'status.planned': 'Planificado',
       'home.body': '<h2>Tres dimensiones, analizadas por separado</h2><p><strong>Exposición</strong> (temperatura de superficie, temperatura del aire, días de calor extremo), <strong>sensibilidad</strong> (edad, ingreso, raza, condiciones de vivienda) y <strong>capacidad de adaptación</strong> (vegetación, saneamiento, acceso al agua). La desigualdad térmica no es solo una diferencia de temperatura: un área calurosa puede contar con recursos para protegerse, y un área menos calurosa puede concentrar poblaciones muy vulnerables.</p><h2>Principios</h2><ul><li>La temperatura de superficie (satélite) y la temperatura del aire (reanálisis) son medidas distintas y nunca se mezclan.</li><li>Cada indicador publicado indica fuente, período, unidad y método de agregación.</li><li>Las correlaciones entre áreas no permiten conclusiones causales sobre individuos.</li><li>Los scripts y datos procesados se conservan en el repositorio para su reproducción.</li></ul><p>Vea la <a href="metodologia/">metodología</a>.</p>',

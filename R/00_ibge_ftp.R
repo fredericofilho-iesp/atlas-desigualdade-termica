@@ -32,11 +32,13 @@ baixar_ibge <- function(url, pasta) {
   dest
 }
 
-# Lê um CSV de agregados do IBGE (";", aspas, latin1) e devolve só as linhas
+# Lê um CSV de agregados do IBGE (";" ou ",", aspas, latin1) e devolve só as linhas
 # cujo código (1ª coluna) começa com `prefixo` (ex.: código do município).
 # A 1ª coluna é renomeada para CD_SETOR; demais colunas ficam como texto.
 ler_csv_ibge <- function(arquivo, prefixo = NULL) {
-  tab <- utils::read.table(arquivo, sep = ";", quote = '"', header = TRUE, colClasses = "character",
+  l1 <- readLines(arquivo, n = 1, warn = FALSE)
+  sep <- if (lengths(gregexpr(";", l1)) >= lengths(gregexpr(",", l1))) ";" else ","
+  tab <- utils::read.table(arquivo, sep = sep, quote = '"', header = TRUE, colClasses = "character",
                            fileEncoding = "latin1", check.names = FALSE, comment.char = "")
   names(tab) <- toupper(trimws(names(tab)))
   names(tab)[1] <- "CD_SETOR"

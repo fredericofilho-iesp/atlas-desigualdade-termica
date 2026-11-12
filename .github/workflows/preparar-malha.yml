@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios]
 permissions:
   contents: write
 concurrency:
@@ -64,8 +64,13 @@ jobs:
         run: |
           Rscript R/11_setores_estado_rj.R
           Rscript R/12_lst_estado_rj.R
-          if [ -f R/13_censo_estado_rj.R ]; then Rscript R/13_censo_estado_rj.R; fi
-          if [ -f R/14_municipios_rj.R ]; then Rscript R/14_municipios_rj.R; fi
+          Rscript R/13_censo_estado_rj.R
+          Rscript R/14_municipios_rj.R
+      - name: Estado do RJ — só Censo e municípios (usa a temperatura já salva)
+        if: inputs.escala == 'estado-rj-municipios'
+        run: |
+          Rscript R/13_censo_estado_rj.R
+          Rscript R/14_municipios_rj.R
       - name: Registrar dados processados
         run: |
           git config user.name "github-actions[bot]"

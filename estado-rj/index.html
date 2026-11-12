@@ -39,9 +39,9 @@
     <section id="painel-desigualdade" class="desigualdade" aria-live="polite" hidden></section>
     <section id="painel-arvores" class="desigualdade" aria-live="polite" hidden></section>
     <section id="painel-grupos" class="desigualdade" aria-live="polite" hidden></section>
-    <div data-i18n="rj.notice" class="aviso"><strong>Under construction.</strong> First step: municipal boundaries (IBGE 2022). Indicators will be added after validation in the city of Rio.</div>
+    <div data-i18n="rj.notice" class="aviso"><strong>How to read:</strong> municipal values are built from all census tracts in the state and weighted by people, so temperature is measured <em>where people live</em>, not averaged over forests and farmland. The two “heat gap” indicators show inequality <em>inside</em> each municipality. Panels below summarise all tracts in the state.</div>
     <h2 data-i18n="map.sourcesTitle">Planned sources</h2>
-    <p class="status"><span data-i18n="rj.sources">IBGE (2022 municipal boundaries, 2022 Census), Ipea, MODIS, ERA5-Land, MapBiomas.</span> <span data-i18n="map.detailsIn">Details in <a href="../metodologia/">Methodology</a>.</span></p>
+    <p class="status"><span data-i18n="rj.sources">Landsat 8–9 (USGS, via Microsoft Planetary Computer); IBGE, 2022 Census (tract boundaries, income, color or race, age, street trees); municipal boundaries via geobr (Ipea).</span> <span data-i18n="map.detailsIn">Details in <a href="../metodologia/">Methodology</a>.</span></p>
   </aside>
   <section class="caixa-mapa" data-i18n-attr="aria-label:map.ariaInteractive" aria-label="Interactive map">
     <div class="cabeca-mapa"><strong data-i18n="rj.title">Rio de Janeiro State</strong><span class="badge" id="badge-mapa" data-i18n="map.badgeBasemap">Basemap</span></div>
@@ -50,7 +50,7 @@
   </section>
 </main>
 <footer class="rodape" data-i18n="footer">Academic project under development · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Code, data and documentation on GitHub</a> · Basemap © OpenStreetMap · OpenFreeMap</footer>
-<script>window.ATLAS_CONFIG = {"chave": "rj", "centro": [-42.65, -22.25], "zoom": 7.2, "zoomMinimo": 5, "espessuraContorno": 2.2, "escala": "estado-rj", "manifesto": "../dados/processados/estado-rj/camada.json"};</script>
+<script>window.ATLAS_CONFIG = {"chave": "rj", "centro": [-42.65, -22.25], "zoom": 7.2, "zoomMinimo": 5, "espessuraContorno": 2.2, "painelCalorRenda": "../dados/processados/estado-rj/calor_renda.json", "painelArvores": "../dados/processados/estado-rj/arborizacao_resumo.json", "painelGrupos": "../dados/processados/estado-rj/exposicao_grupos.json", "escala": "estado-rj", "manifesto": "../dados/processados/estado-rj/camada.json"};</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="../js/atlas.js"></script>
 </body>
