@@ -31,8 +31,10 @@ dir.create("dados/brutos/renda", recursive = TRUE, showWarnings = FALSE)
 
 # ---- localizar arquivos na pasta do IBGE (nomes trazem a data da versão) ----
 listar <- function(url) {
-  h <- paste(readLines(url, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
-  l <- regmatches(h, gregexpr('href="[^"?][^"]*"', h))[[1]]
+  # As listagens do FTP do IBGE vêm em latin1; ler como bytes evita erro de codificação.
+  h <- paste(readLines(url, warn = FALSE), collapse = "\n")
+  h <- iconv(h, from = "latin1", to = "UTF-8", sub = "")
+  l <- regmatches(h, gregexpr('href="[^"?][^"]*"', h, useBytes = TRUE))[[1]]
   l <- gsub('^href="|"$', "", l)
   l <- l[!grepl("^/|^\\.\\./?$|^https?:", l)]
   unique(paste0(url, l))
@@ -57,6 +59,7 @@ zip_url <- achar(BASE, "renda.*responsavel.*csv.*\\.zip$|renda.*csv.*\\.zip$")
 if (!length(zip_url)) zip_url <- achar(BASE, "\\.zip$")
 dic_url <- achar(BASE, "dicionario.*\\.xlsx$")
 message("Arquivos encontrados:\n  ", paste(c(zip_url, dic_url), collapse = "\n  "))
+if (!length(zip_url)) message("Conteúdo da pasta:\n  ", paste(listar(BASE), collapse = "\n  "))
 stopifnot(length(zip_url) >= 1)
 zip_url <- sort(zip_url, decreasing = TRUE)[1]   # versão mais recente
 
