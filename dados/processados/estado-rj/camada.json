@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "estado-rj",
-  "gerado_em": "2026-11-12T09:24:30+0000",
+  "gerado_em": "2026-11-12T12:28:43+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -25,5 +25,244 @@
     "id": "code_muni",
     "rotulo": "name_muni"
   },
-  "indicadores": []
+  "indicadores": [
+    {
+      "id": "lst_pop",
+      "rotulo": {
+        "en": "Summer surface temperature where people live",
+        "pt": "Temperatura da superfície no verão onde as pessoas moram",
+        "es": "Temperatura de superficie en verano donde vive la gente"
+      },
+      "unidade": "°C",
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "Dec–Mar, summers 2022/23 to 2024/25",
+        "pt": "dez.–mar., verões 2022/23 a 2024/25",
+        "es": "dic.–mar., veranos 2022/23 a 2024/25"
+      },
+      "metodo": {
+        "en": "Mean of census-tract values weighted by residents",
+        "pt": "Média dos setores censitários ponderada pelos moradores",
+        "es": "Media de los sectores censales ponderada por residentes"
+      },
+      "casas_decimais": 1,
+      "classificacao": "quantis",
+      "ordem": 10,
+      "quebras": [30.54, 32.36, 32.76, 34.03],
+      "n_validos": 10
+    },
+    {
+      "id": "lst_dif_estado",
+      "rotulo": {
+        "en": "Surface temperature: difference from state",
+        "pt": "Temperatura da superfície: diferença para o estado",
+        "es": "Temperatura de superficie: diferencia respecto al estado"
+      },
+      "unidade": "°C",
+      "paleta": "divergente",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "Dec–Mar, summers 2022/23 to 2024/25",
+        "pt": "dez.–mar., verões 2022/23 a 2024/25",
+        "es": "dic.–mar., veranos 2022/23 a 2024/25"
+      },
+      "metodo": {
+        "en": "Municipal value minus the state value (33 °C)",
+        "pt": "Valor do município menos o do estado (33 °C)",
+        "es": "Valor del municipio menos el del estado (33 °C)"
+      },
+      "casas_decimais": 1,
+      "classificacao": "manual",
+      "ordem": 11,
+      "quebras": [-3, -1, 1, 3],
+      "n_validos": 10
+    },
+    {
+      "id": "gap_renda",
+      "rotulo": {
+        "en": "Heat gap: poorest − richest fifth (within municipality)",
+        "pt": "Desigualdade térmica: 20% mais pobres − 20% mais ricos (no município)",
+        "es": "Brecha térmica: 20% más pobre − 20% más rico (en el municipio)"
+      },
+      "unidade": "°C",
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "Dec–Mar, summers 2022/23 to 2024/25",
+        "pt": "dez.–mar., verões 2022/23 a 2024/25",
+        "es": "dic.–mar., veranos 2022/23 a 2024/25"
+      },
+      "metodo": {
+        "en": "Household-weighted surface temperature of the poorest minus the richest income fifth of the municipality's tracts; only municipalities with at least 30 tracts with data",
+        "pt": "Temperatura da superfície, ponderada por domicílios, do quinto mais pobre menos a do quinto mais rico dos setores do município; só municípios com ao menos 30 setores com dado",
+        "es": "Temperatura de superficie, ponderada por hogares, del quintil más pobre menos la del más rico de los sectores del municipio; solo municipios con al menos 30 sectores con dato"
+      },
+      "casas_decimais": 1,
+      "classificacao": "manual",
+      "ordem": 12,
+      "quebras": [0, 0.5, 1, 2],
+      "n_validos": 3
+    },
+    {
+      "id": "gap_cor",
+      "rotulo": {
+        "en": "Heat gap: Black and brown − white residents (within municipality)",
+        "pt": "Desigualdade térmica: pretos e pardos − brancos (no município)",
+        "es": "Brecha térmica: negros y pardos − blancos (en el municipio)"
+      },
+      "unidade": "°C",
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "Dec–Mar, summers 2022/23 to 2024/25",
+        "pt": "dez.–mar., verões 2022/23 a 2024/25",
+        "es": "dic.–mar., veranos 2022/23 a 2024/25"
+      },
+      "metodo": {
+        "en": "Surface temperature where the average Black and brown resident lives minus where the average white resident lives",
+        "pt": "Temperatura da superfície onde vive o morador preto ou pardo médio menos onde vive o morador branco médio",
+        "es": "Temperatura de superficie donde vive el residente negro o pardo promedio menos donde vive el residente blanco promedio"
+      },
+      "casas_decimais": 2,
+      "classificacao": "manual",
+      "ordem": 13,
+      "quebras": [0, 0.25, 0.5, 1],
+      "n_validos": 5
+    },
+    {
+      "id": "renda_media_resp",
+      "rotulo": {
+        "en": "Average income of household heads",
+        "pt": "Renda média do responsável pelo domicílio",
+        "es": "Ingreso medio del responsable del hogar"
+      },
+      "unidade": "R$",
+      "paleta": "renda",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE, 2022 Census (tract aggregates)",
+        "pt": "IBGE, Censo 2022 (agregados por setor)",
+        "es": "IBGE, Censo 2022 (agregados por sector)"
+      },
+      "periodo": {
+        "en": "July 2022 (nominal R$)",
+        "pt": "julho de 2022 (R$ nominais)",
+        "es": "julio de 2022 (R$ nominales)"
+      },
+      "metodo": {
+        "en": "Tract means of household heads with income, weighted by household heads. Not per capita income.",
+        "pt": "Médias dos setores (responsáveis com rendimentos) ponderadas pelos responsáveis. Não é renda per capita.",
+        "es": "Medias de los sectores (responsables con ingresos) ponderadas por responsables. No es ingreso per cápita."
+      },
+      "casas_decimais": 0,
+      "classificacao": "quantis",
+      "ordem": 20,
+      "quebras": [1941.1, 2187.3, 2416, 2810],
+      "n_validos": 92
+    },
+    {
+      "id": "arv_com_arvores",
+      "rotulo": {
+        "en": "Residents on blocks with street trees",
+        "pt": "Moradores em faces de quadra com árvores",
+        "es": "Residentes en frentes de manzana con árboles"
+      },
+      "unidade": "%",
+      "paleta": "verde",
+      "dimensao": "adaptacao",
+      "fonte": {
+        "en": "IBGE, 2022 Census (tract aggregates)",
+        "pt": "IBGE, Censo 2022 (agregados por setor)",
+        "es": "IBGE, Censo 2022 (agregados por sector)"
+      },
+      "periodo": {
+        "en": "2022",
+        "pt": "2022",
+        "es": "2022"
+      },
+      "metodo": {
+        "en": "Residents on block faces with at least one tree / residents observed in the surroundings survey",
+        "pt": "Moradores em faces com ao menos uma árvore / moradores observados na pesquisa do entorno",
+        "es": "Residentes en frentes con al menos un árbol / residentes observados en la encuesta del entorno"
+      },
+      "casas_decimais": 0,
+      "classificacao": "manual",
+      "ordem": 40,
+      "quebras": [20, 40, 60, 80],
+      "n_validos": 92
+    },
+    {
+      "id": "pop_60mais",
+      "rotulo": {
+        "en": "Population aged 60+",
+        "pt": "População com 60 anos ou mais",
+        "es": "Población de 60 años o más"
+      },
+      "unidade": "%",
+      "paleta": "pessoas",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE, 2022 Census (tract aggregates)",
+        "pt": "IBGE, Censo 2022 (agregados por setor)",
+        "es": "IBGE, Censo 2022 (agregados por sector)"
+      },
+      "periodo": {
+        "en": "2022",
+        "pt": "2022",
+        "es": "2022"
+      },
+      "casas_decimais": 0,
+      "classificacao": "quantis",
+      "ordem": 50,
+      "quebras": [16.5, 18.5, 19.9, 21.2],
+      "n_validos": 92
+    },
+    {
+      "id": "pop_preta_parda",
+      "rotulo": {
+        "en": "Black population (preta and parda)",
+        "pt": "População preta e parda",
+        "es": "Población negra (preta y parda)"
+      },
+      "unidade": "%",
+      "paleta": "pessoas",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE, 2022 Census (tract aggregates)",
+        "pt": "IBGE, Censo 2022 (agregados por setor)",
+        "es": "IBGE, Censo 2022 (agregados por sector)"
+      },
+      "periodo": {
+        "en": "2022",
+        "pt": "2022",
+        "es": "2022"
+      },
+      "casas_decimais": 0,
+      "classificacao": "manual",
+      "ordem": 52,
+      "quebras": [40, 50, 60, 70],
+      "n_validos": 92
+    }
+  ]
 }

@@ -1,0 +1,31 @@
+{
+  "id": "gap_renda",
+  "rotulo": {
+    "en": "Heat gap: poorest − richest fifth (within municipality)",
+    "pt": "Desigualdade térmica: 20% mais pobres − 20% mais ricos (no município)",
+    "es": "Brecha térmica: 20% más pobre − 20% más rico (en el municipio)"
+  },
+  "unidade": "°C",
+  "paleta": "calor",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+    "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+    "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+  },
+  "periodo": {
+    "en": "Dec–Mar, summers 2022/23 to 2024/25",
+    "pt": "dez.–mar., verões 2022/23 a 2024/25",
+    "es": "dic.–mar., veranos 2022/23 a 2024/25"
+  },
+  "metodo": {
+    "en": "Household-weighted surface temperature of the poorest minus the richest income fifth of the municipality's tracts; only municipalities with at least 30 tracts with data",
+    "pt": "Temperatura da superfície, ponderada por domicílios, do quinto mais pobre menos a do quinto mais rico dos setores do município; só municípios com ao menos 30 setores com dado",
+    "es": "Temperatura de superficie, ponderada por hogares, del quintil más pobre menos la del más rico de los sectores del municipio; solo municipios con al menos 30 sectores con dato"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 12,
+  "quebras_fixas": [0, 0.5, 1, 2]
+}
