@@ -39,18 +39,22 @@ txt <- function(x) {
 #' paleta: "calor", "renda", "verde", "pessoas" ou "divergente".
 #' quebras: limites fixos das classes (opcional). Sem eles, usa `classificacao`.
 #' ordem: posição no seletor do site (menor aparece primeiro).
+#' tipo/eixos: para indicadores especiais, como o bivariado (ver R/05_calor_renda_rio.R).
 indicador <- function(id, rotulo, unidade = NULL, paleta = "calor",
                       dimensao = c("exposicao", "sensibilidade", "adaptacao", "contexto"),
                       fonte = NULL, periodo = NULL, metodo = NULL,
                       casas_decimais = 1, n_classes = 5,
                       classificacao = c("quantis", "intervalos_iguais"),
-                      quebras = NULL, ordem = 50) {
+                      quebras = NULL, ordem = 50, tipo = NULL, eixos = NULL) {
   ind <- list(id = id, rotulo = txt(rotulo), unidade = txt(unidade), paleta = paleta,
               dimensao = match.arg(dimensao), fonte = txt(fonte), periodo = txt(periodo),
               metodo = txt(metodo), casas_decimais = casas_decimais,
               n_classes = n_classes, classificacao = match.arg(classificacao),
               ordem = ordem)
   if (!is.null(quebras)) { ind$quebras_fixas <- sort(quebras); ind$classificacao <- "manual" }
+  # tipo = "bivariado": valores 1–9 (tercil do eixo y − 1) × 3 + tercil do eixo x;
+  # `eixos` descreve os dois indicadores e os limites dos tercis para a legenda.
+  if (!is.null(tipo)) { ind$tipo <- tipo; ind$eixos <- eixos; ind$classificacao <- NULL; ind$n_classes <- NULL }
   Filter(Negate(is.null), ind)
 }
 
@@ -141,9 +145,10 @@ publicar_camada <- function(x, escala, id, indicadores = list(),
     ind <- indicadores[[i]]
     v <- as.numeric(x[[ind$id]])
     x[[ind$id]] <- round(v, ind$casas_decimais + 2)
+    if (!is.null(ind$tipo)) { indicadores[[i]]$n_validos <- sum(is.finite(v)); next }
     q <- if (!is.null(ind$quebras_fixas)) ind$quebras_fixas else
       round(calcular_quebras(v, ind$n_classes, ind$classificacao), ind$casas_decimais + 1)
-    indicadores[[i]]$quebras <- q
+    indicadores[[i]]$quebras <- I(q)  # I(): sempre lista JSON, mesmo com 1 valor
     indicadores[[i]]$quebras_fixas <- NULL
     # "quantis" ou "intervalos_iguais"; o site traduz e conta as classes.
     indicadores[[i]]$classificacao <- ind$classificacao

@@ -1,0 +1,54 @@
+{
+  "gerado_em": "2026-11-12T09:57:26+0000",
+  "indicador_temperatura": "lst_verao",
+  "indicador_renda": "renda_media_resp",
+  "peso": "domicílios (responsáveis em DPPO, Censo 2022)",
+  "setores_usados": 13362,
+  "domicilios_usados": 2435510,
+  "quintos": [
+    {
+      "quinto": 1,
+      "setores": 2734,
+      "domicilios": 486953,
+      "renda_min": 671,
+      "renda_max": 1636,
+      "lst_media": 41.55
+    },
+    {
+      "quinto": 2,
+      "setores": 2577,
+      "domicilios": 487323,
+      "renda_min": 1636,
+      "renda_max": 2237,
+      "lst_media": 41.93
+    },
+    {
+      "quinto": 3,
+      "setores": 2623,
+      "domicilios": 487099,
+      "renda_min": 2237,
+      "renda_max": 3281,
+      "lst_media": 42.74
+    },
+    {
+      "quinto": 4,
+      "setores": 2669,
+      "domicilios": 486883,
+      "renda_min": 3281,
+      "renda_max": 6607,
+      "lst_media": 42.16
+    },
+    {
+      "quinto": 5,
+      "setores": 2759,
+      "domicilios": 487252,
+      "renda_min": 6607,
+      "renda_max": 54926,
+      "lst_media": 38.52
+    }
+  ],
+  "diferenca_q1_q5": 3.03,
+  "ic95": [2.86, 3.19],
+  "bootstrap": 2000,
+  "spearman_setores": -0.279
+}

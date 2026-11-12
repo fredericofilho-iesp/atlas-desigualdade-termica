@@ -1,0 +1,30 @@
+{
+  "id": "renda_mediana_resp",
+  "rotulo": {
+    "en": "Median income of household heads",
+    "pt": "Renda mediana do responsável pelo domicílio",
+    "es": "Ingreso mediano del responsable del hogar"
+  },
+  "unidade": "R$",
+  "paleta": "renda",
+  "dimensao": "sensibilidade",
+  "fonte": {
+    "en": "IBGE, 2022 Census (universe), income of the household head",
+    "pt": "IBGE, Censo 2022 (universo), rendimento do responsável",
+    "es": "IBGE, Censo 2022 (universo), ingreso del responsable del hogar"
+  },
+  "periodo": {
+    "en": "July 2022 (nominal R$)",
+    "pt": "julho de 2022 (R$ nominais)",
+    "es": "julio de 2022 (R$ nominales)"
+  },
+  "metodo": {
+    "en": "Median monthly nominal income of household heads with income. Not per capita income.",
+    "pt": "Rendimento nominal mensal mediano das pessoas responsáveis com rendimentos. Não é renda per capita.",
+    "es": "Ingreso nominal mensual mediano de los responsables con ingresos. No es ingreso per cápita."
+  },
+  "casas_decimais": 0,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 21
+}

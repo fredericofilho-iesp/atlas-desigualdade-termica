@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "rio",
-  "gerado_em": "2026-11-12T09:27:06+0000",
+  "gerado_em": "2026-11-12T09:57:32+0000",
   "unidade": {
     "en": "Census tract",
     "pt": "Setor censitário",
@@ -79,6 +79,114 @@
       "ordem": 11,
       "quebras": [-4, -1.5, 1.5, 4],
       "n_validos": 13774
+    },
+    {
+      "id": "renda_media_resp",
+      "rotulo": {
+        "en": "Average income of household heads",
+        "pt": "Renda média do responsável pelo domicílio",
+        "es": "Ingreso medio del responsable del hogar"
+      },
+      "unidade": "R$",
+      "paleta": "renda",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE, 2022 Census (universe), income of the household head",
+        "pt": "IBGE, Censo 2022 (universo), rendimento do responsável",
+        "es": "IBGE, Censo 2022 (universo), ingreso del responsable del hogar"
+      },
+      "periodo": {
+        "en": "July 2022 (nominal R$)",
+        "pt": "julho de 2022 (R$ nominais)",
+        "es": "julio de 2022 (R$ nominales)"
+      },
+      "metodo": {
+        "en": "Mean monthly nominal income of household heads with income, in occupied private households (1 minimum wage = R$ 1212). Heads without income are excluded. Not per capita income.",
+        "pt": "Rendimento nominal mensal médio das pessoas responsáveis com rendimentos, em domicílios particulares ocupados (1 salário mínimo = R$ 1.212). Responsáveis sem rendimento não entram. Não é renda per capita.",
+        "es": "Ingreso nominal mensual medio de los responsables con ingresos, en hogares particulares ocupados (1 salario mínimo = R$ 1.212). Se excluyen los responsables sin ingresos. No es ingreso per cápita."
+      },
+      "casas_decimais": 0,
+      "classificacao": "quantis",
+      "ordem": 20,
+      "quebras": [1625.2, 2245.7, 3325.2, 6818.4],
+      "n_validos": 13368
+    },
+    {
+      "id": "renda_mediana_resp",
+      "rotulo": {
+        "en": "Median income of household heads",
+        "pt": "Renda mediana do responsável pelo domicílio",
+        "es": "Ingreso mediano del responsable del hogar"
+      },
+      "unidade": "R$",
+      "paleta": "renda",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE, 2022 Census (universe), income of the household head",
+        "pt": "IBGE, Censo 2022 (universo), rendimento do responsável",
+        "es": "IBGE, Censo 2022 (universo), ingreso del responsable del hogar"
+      },
+      "periodo": {
+        "en": "July 2022 (nominal R$)",
+        "pt": "julho de 2022 (R$ nominais)",
+        "es": "julio de 2022 (R$ nominales)"
+      },
+      "metodo": {
+        "en": "Median monthly nominal income of household heads with income. Not per capita income.",
+        "pt": "Rendimento nominal mensal mediano das pessoas responsáveis com rendimentos. Não é renda per capita.",
+        "es": "Ingreso nominal mensual mediano de los responsables con ingresos. No es ingreso per cápita."
+      },
+      "casas_decimais": 0,
+      "classificacao": "quantis",
+      "ordem": 21,
+      "quebras": [1212, 1600, 2500, 5000],
+      "n_validos": 13368
+    },
+    {
+      "id": "biv_lst_renda",
+      "rotulo": {
+        "en": "Surface temperature × income (bivariate)",
+        "pt": "Temperatura da superfície × renda (bivariado)",
+        "es": "Temperatura de superficie × ingreso (bivariado)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "metodo": {
+        "en": "Household-weighted terciles of summer surface temperature and of household-head income",
+        "pt": "Tercis, ponderados por domicílios, da temperatura da superfície no verão e da renda do responsável",
+        "es": "Terciles, ponderados por hogares, de la temperatura de superficie en verano y del ingreso del responsable"
+      },
+      "casas_decimais": 0,
+      "ordem": 30,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "lst_verao",
+          "limites": [40.5, 43],
+          "unidade": "°C",
+          "rotulo": {
+            "en": "Surface temperature",
+            "pt": "Temperatura da superfície",
+            "es": "Temperatura de superficie"
+          }
+        },
+        "x": {
+          "indicador": "renda_media_resp",
+          "limites": [2000, 3900],
+          "unidade": "R$",
+          "rotulo": {
+            "en": "Household head income",
+            "pt": "Renda do responsável",
+            "es": "Ingreso del responsable"
+          }
+        }
+      },
+      "n_validos": 13362
     }
   ]
 }

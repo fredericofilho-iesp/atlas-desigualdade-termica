@@ -49,6 +49,8 @@ Escalas: `rio`, `estado-rj`, `brasil`, `america-latina`. Se `camada.json` não e
 - `classificacao`: `"quantis"` ou `"intervalos_iguais"`; o site traduz e conta as classes.
 - **Idiomas (contrato v2):** `rotulo`, `unidade`, `fonte`, `periodo`, `metodo` e, no nível da camada, `unidade`, `unidade_plural`, `fonte_geometria` e `fonte_curta` podem ser texto simples ou um objeto `{"en": "...", "pt": "...", "es": "..."}`. Em R, passe um vetor nomeado: `c(en = "...", pt = "...", es = "...")`. Se faltar o idioma do visitante, o site usa inglês e depois português.
 - Valores ausentes (`null`) aparecem em cinza, como "sem dado".
+- **Bivariado:** `"tipo": "bivariado"`, valores 1–9 = (tercil do eixo y − 1) × 3 + tercil do eixo x, e `"eixos": {"x": {...}, "y": {...}}`, cada um com `indicador`, `rotulo`, `unidade` e `limites` (2 valores). Paleta `bivariada`.
+- **Painel calor × renda:** a página do Rio lê `dados/processados/rio/calor_renda.json` (gerado por `R/05_calor_renda_rio.R`), se existir.
 
 ## Bases grandes (Brasil, América Latina)
 
