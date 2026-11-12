@@ -64,8 +64,11 @@ rio <- st_transform(rio, 4326)
 source("R/00_publicar_camada.R")
 publicar_camada(
   rio, escala = "rio", id = "CD_SETOR",
-  unidade = "Setor censitário", unidade_plural = "Setores censitários",
-  fonte_geometria = "Malha de setores censitários IBGE 2022 (definitiva)",
+  unidade = c(en = "Census tract", pt = "Setor censitário", es = "Sector censal"),
+  unidade_plural = c(en = "Census tracts", pt = "Setores censitários", es = "Sectores censales"),
+  fonte_geometria = c(en = "IBGE 2022 census tract boundaries (final)",
+                      pt = "Malha de setores censitários IBGE 2022 (definitiva)",
+                      es = "Cartografía de sectores censales IBGE 2022 (definitiva)"),
   fonte_curta = "IBGE 2022",
   indicadores = list()
 )

@@ -1,10 +1,22 @@
 {
-  "versao_contrato": 1,
+  "versao_contrato": 2,
   "escala": "rio",
   "gerado_em": "2026-11-11T23:31:44+0000",
-  "unidade": "Setor censitário",
-  "unidade_plural": "Setores censitários",
-  "fonte_geometria": "Malha de setores censitários IBGE 2022 (definitiva)",
+  "unidade": {
+    "en": "Census tract",
+    "pt": "Setor censitário",
+    "es": "Sector censal"
+  },
+  "unidade_plural": {
+    "en": "Census tracts",
+    "pt": "Setores censitários",
+    "es": "Sectores censales"
+  },
+  "fonte_geometria": {
+    "en": "IBGE 2022 census tract boundaries (final)",
+    "pt": "Malha de setores censitários IBGE 2022 (definitiva)",
+    "es": "Cartografía de sectores censales IBGE 2022 (definitiva)"
+  },
   "fonte_curta": "IBGE 2022",
   "quantidade_unidades": 13782,
   "geometria": {

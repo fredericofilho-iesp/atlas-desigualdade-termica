@@ -1,58 +1,53 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Município do Rio de Janeiro · Atlas de Desigualdade Térmica</title>
-<meta name="description" content="Atlas Interativo de Desigualdade Térmica: Município do Rio de Janeiro.">
+<title>City of Rio de Janeiro · Heat Inequality Atlas</title>
+<meta name="description" content="Heat Inequality Atlas: heat exposure, social vulnerability and climate justice.">
+<link rel="alternate" hreflang="en" href="?">
+<link rel="alternate" hreflang="pt" href="?lang=pt">
+<link rel="alternate" hreflang="es" href="?lang=es">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <link rel="stylesheet" href="../css/atlas.css">
+<script src="../js/i18n.js"></script>
 </head>
-<body>
+<body data-i18n-titulo="rio.title">
 <header class="topo">
-  <p class="marca"><a href="../">Atlas Interativo de Desigualdade Térmica</a></p>
-  <p class="sub">Exposição ao calor, vulnerabilidade social e justiça climática</p>
-  <nav aria-label="Escalas do atlas"><ul class="escalas">
-    <li><a href="../">Início</a></li><li><a href="../rio/" aria-current="page">Rio de Janeiro (cidade)</a></li><li><a href="../estado-rj/">Estado do RJ</a></li><li><a href="../brasil/">Brasil<span class="em-breve">em breve</span></a></li><li><a href="../america-latina/">América Latina<span class="em-breve">em breve</span></a></li><li><a href="../metodologia/">Metodologia</a></li>
+  <div class="topo-linha">
+    <div>
+      <p class="marca"><a href="../" data-nav="../" data-i18n="site.title">Heat Inequality Atlas</a></p>
+      <p class="sub" data-i18n="site.subtitle">Heat exposure, social vulnerability and climate justice</p>
+    </div>
+    <div class="idioma">
+      <label for="idioma" data-i18n="lang.label">Language</label>
+      <select id="idioma"><option value="en">English</option><option value="pt">Português</option><option value="es">Español</option></select>
+    </div>
+  </div>
+  <nav data-i18n-attr="aria-label:nav.label" aria-label="Atlas scales"><ul class="escalas">
+    <li><a href="../" data-nav="../"><span data-i18n="nav.home">Home</span></a></li><li><a href="../rio/" data-nav="../rio/" aria-current="page"><span data-i18n="nav.rio">Rio de Janeiro (city)</span></a></li><li><a href="../estado-rj/" data-nav="../estado-rj/"><span data-i18n="nav.rj">Rio de Janeiro State</span></a></li><li><a href="../brasil/" data-nav="../brasil/"><span data-i18n="nav.br">Brazil</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../america-latina/" data-nav="../america-latina/"><span data-i18n="nav.la">Latin America</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../metodologia/" data-nav="../metodologia/"><span data-i18n="nav.method">Methodology</span></a></li>
   </ul></nav>
 </header>
 <main class="layout">
   <aside class="painel">
-    <h1>Município do Rio de Janeiro</h1>
-    <p class="status">Setores censitários do Censo 2022 (IBGE).</p>
-    <label for="indicador">Indicador</label>
-    <select id="indicador" disabled><option>Carregando…</option></select>
-    <p id="status-camada" class="status" role="status">Carregando camada territorial…</p>
-    <div id="ficha" class="ficha" aria-live="polite"><p class="status">Clique em uma unidade no mapa para ver seus valores.</p></div>
-    <div class="aviso"><strong>Em construção.</strong> A malha oficial de setores está pronta para carregar; os indicadores térmicos e socioeconômicos ainda não foram publicados.</div>
-    <h2>Fontes previstas</h2>
-    <p class="status">IBGE (Censo 2022, malha de setores), imagens Landsat (temperatura da superfície), MapBiomas (cobertura vegetal), Data.Rio. Detalhes em <a href="../metodologia/">Metodologia</a>.</p>
+    <h1 data-i18n="rio.title">City of Rio de Janeiro</h1>
+    <p data-i18n="rio.desc" class="status">2022 Census tracts (IBGE).</p>
+    <label for="indicador" data-i18n="map.indicator">Indicator</label>
+    <select id="indicador" disabled><option>Loading…</option></select>
+    <p id="status-camada" class="status" role="status">Loading boundary layer…</p>
+    <div id="ficha" class="ficha" aria-live="polite"><p data-i18n="map.clickHint" class="status">Click an area on the map to see its values.</p></div>
+    <div data-i18n="rio.notice" class="aviso"><strong>Under construction.</strong> The official census tract boundaries are in place; heat and socioeconomic indicators have not been published yet.</div>
+    <h2 data-i18n="map.sourcesTitle">Planned sources</h2>
+    <p class="status"><span data-i18n="rio.sources">IBGE (2022 Census, tract boundaries), Landsat imagery (land surface temperature), MapBiomas (vegetation cover), Data.Rio.</span> <span data-i18n="map.detailsIn">Details in <a href="../metodologia/">Methodology</a>.</span></p>
   </aside>
-  <section class="caixa-mapa" aria-label="Mapa interativo: Município do Rio de Janeiro">
-    <div class="cabeca-mapa"><strong>Município do Rio de Janeiro</strong><span class="badge" id="badge-mapa">Mapa-base</span></div>
-    <div id="mapa" role="region" aria-label="Mapa navegável"></div>
+  <section class="caixa-mapa" data-i18n-attr="aria-label:map.ariaInteractive" aria-label="Interactive map">
+    <div class="cabeca-mapa"><strong data-i18n="rio.title">City of Rio de Janeiro</strong><span class="badge" id="badge-mapa" data-i18n="map.badgeBasemap">Basemap</span></div>
+    <div id="mapa" role="region" data-i18n-attr="aria-label:map.ariaNavigable" aria-label="Navigable map"></div>
     <div id="legenda" class="legenda" hidden></div>
   </section>
 </main>
-<footer class="rodape">Projeto acadêmico em desenvolvimento · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Código, dados e documentação no GitHub</a> · Mapa-base © OpenStreetMap · OpenFreeMap</footer>
-<script>window.ATLAS_CONFIG = {
-  "escala": "rio",
-  "centro": [
-    -43.45,
-    -22.92
-  ],
-  "zoom": 10,
-  "zoomMinimo": 8,
-  "manifesto": "../dados/processados/rio/camada.json",
-  "indicadoresPrevistos": [
-    "Temperatura da superfície (Landsat)",
-    "Renda domiciliar",
-    "Cobertura vegetal",
-    "População com 65 anos ou mais",
-    "População preta e parda"
-  ],
-  "mensagemSemDados": "Malha censitária ainda não processada. Rode o workflow “Preparar camadas” no GitHub Actions."
-};</script>
+<footer class="rodape" data-i18n="footer">Academic project under development · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Code, data and documentation on GitHub</a> · Basemap © OpenStreetMap · OpenFreeMap</footer>
+<script>window.ATLAS_CONFIG = {"chave": "rio", "centro": [-43.45, -22.92], "zoom": 10, "zoomMinimo": 8, "espessuraContorno": 1, "escala": "rio", "manifesto": "../dados/processados/rio/camada.json"};</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="../js/atlas.js"></script>
 </body>

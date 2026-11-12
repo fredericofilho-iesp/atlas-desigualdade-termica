@@ -1,58 +1,53 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Estado do Rio de Janeiro · Atlas de Desigualdade Térmica</title>
-<meta name="description" content="Atlas Interativo de Desigualdade Térmica: Estado do Rio de Janeiro.">
+<title>Rio de Janeiro State · Heat Inequality Atlas</title>
+<meta name="description" content="Heat Inequality Atlas: heat exposure, social vulnerability and climate justice.">
+<link rel="alternate" hreflang="en" href="?">
+<link rel="alternate" hreflang="pt" href="?lang=pt">
+<link rel="alternate" hreflang="es" href="?lang=es">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <link rel="stylesheet" href="../css/atlas.css">
+<script src="../js/i18n.js"></script>
 </head>
-<body>
+<body data-i18n-titulo="rj.title">
 <header class="topo">
-  <p class="marca"><a href="../">Atlas Interativo de Desigualdade Térmica</a></p>
-  <p class="sub">Exposição ao calor, vulnerabilidade social e justiça climática</p>
-  <nav aria-label="Escalas do atlas"><ul class="escalas">
-    <li><a href="../">Início</a></li><li><a href="../rio/">Rio de Janeiro (cidade)</a></li><li><a href="../estado-rj/" aria-current="page">Estado do RJ</a></li><li><a href="../brasil/">Brasil<span class="em-breve">em breve</span></a></li><li><a href="../america-latina/">América Latina<span class="em-breve">em breve</span></a></li><li><a href="../metodologia/">Metodologia</a></li>
+  <div class="topo-linha">
+    <div>
+      <p class="marca"><a href="../" data-nav="../" data-i18n="site.title">Heat Inequality Atlas</a></p>
+      <p class="sub" data-i18n="site.subtitle">Heat exposure, social vulnerability and climate justice</p>
+    </div>
+    <div class="idioma">
+      <label for="idioma" data-i18n="lang.label">Language</label>
+      <select id="idioma"><option value="en">English</option><option value="pt">Português</option><option value="es">Español</option></select>
+    </div>
+  </div>
+  <nav data-i18n-attr="aria-label:nav.label" aria-label="Atlas scales"><ul class="escalas">
+    <li><a href="../" data-nav="../"><span data-i18n="nav.home">Home</span></a></li><li><a href="../rio/" data-nav="../rio/"><span data-i18n="nav.rio">Rio de Janeiro (city)</span></a></li><li><a href="../estado-rj/" data-nav="../estado-rj/" aria-current="page"><span data-i18n="nav.rj">Rio de Janeiro State</span></a></li><li><a href="../brasil/" data-nav="../brasil/"><span data-i18n="nav.br">Brazil</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../america-latina/" data-nav="../america-latina/"><span data-i18n="nav.la">Latin America</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../metodologia/" data-nav="../metodologia/"><span data-i18n="nav.method">Methodology</span></a></li>
   </ul></nav>
 </header>
 <main class="layout">
   <aside class="painel">
-    <h1>Estado do Rio de Janeiro</h1>
-    <p class="status">Os 92 municípios fluminenses.</p>
-    <label for="indicador">Indicador</label>
-    <select id="indicador" disabled><option>Carregando…</option></select>
-    <p id="status-camada" class="status" role="status">Carregando camada territorial…</p>
-    <div id="ficha" class="ficha" aria-live="polite"><p class="status">Clique em uma unidade no mapa para ver seus valores.</p></div>
-    <div class="aviso"><strong>Em construção.</strong> Primeiro passo: limites municipais (IBGE 2022). Indicadores entram depois da validação no município do Rio.</div>
-    <h2>Fontes previstas</h2>
-    <p class="status">IBGE (malha municipal 2022, Censo 2022), Ipea, MODIS, ERA5-Land, MapBiomas. Detalhes em <a href="../metodologia/">Metodologia</a>.</p>
+    <h1 data-i18n="rj.title">Rio de Janeiro State</h1>
+    <p data-i18n="rj.desc" class="status">The state’s 92 municipalities.</p>
+    <label for="indicador" data-i18n="map.indicator">Indicator</label>
+    <select id="indicador" disabled><option>Loading…</option></select>
+    <p id="status-camada" class="status" role="status">Loading boundary layer…</p>
+    <div id="ficha" class="ficha" aria-live="polite"><p data-i18n="map.clickHint" class="status">Click an area on the map to see its values.</p></div>
+    <div data-i18n="rj.notice" class="aviso"><strong>Under construction.</strong> First step: municipal boundaries (IBGE 2022). Indicators will be added after validation in the city of Rio.</div>
+    <h2 data-i18n="map.sourcesTitle">Planned sources</h2>
+    <p class="status"><span data-i18n="rj.sources">IBGE (2022 municipal boundaries, 2022 Census), Ipea, MODIS, ERA5-Land, MapBiomas.</span> <span data-i18n="map.detailsIn">Details in <a href="../metodologia/">Methodology</a>.</span></p>
   </aside>
-  <section class="caixa-mapa" aria-label="Mapa interativo: Estado do Rio de Janeiro">
-    <div class="cabeca-mapa"><strong>Estado do Rio de Janeiro</strong><span class="badge" id="badge-mapa">Mapa-base</span></div>
-    <div id="mapa" role="region" aria-label="Mapa navegável"></div>
+  <section class="caixa-mapa" data-i18n-attr="aria-label:map.ariaInteractive" aria-label="Interactive map">
+    <div class="cabeca-mapa"><strong data-i18n="rj.title">Rio de Janeiro State</strong><span class="badge" id="badge-mapa" data-i18n="map.badgeBasemap">Basemap</span></div>
+    <div id="mapa" role="region" data-i18n-attr="aria-label:map.ariaNavigable" aria-label="Navigable map"></div>
     <div id="legenda" class="legenda" hidden></div>
   </section>
 </main>
-<footer class="rodape">Projeto acadêmico em desenvolvimento · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Código, dados e documentação no GitHub</a> · Mapa-base © OpenStreetMap · OpenFreeMap</footer>
-<script>window.ATLAS_CONFIG = {
-  "escala": "estado-rj",
-  "centro": [
-    -42.65,
-    -22.25
-  ],
-  "zoom": 7.2,
-  "zoomMinimo": 5,
-  "manifesto": "../dados/processados/estado-rj/camada.json",
-  "indicadoresPrevistos": [
-    "Temperatura da superfície (MODIS)",
-    "Dias de calor extremo (ERA5-Land)",
-    "Renda per capita",
-    "Cobertura vegetal",
-    "População com 65 anos ou mais"
-  ],
-  "mensagemSemDados": "Malha municipal ainda não processada. Rode o workflow “Preparar camadas” no GitHub Actions."
-};</script>
+<footer class="rodape" data-i18n="footer">Academic project under development · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Code, data and documentation on GitHub</a> · Basemap © OpenStreetMap · OpenFreeMap</footer>
+<script>window.ATLAS_CONFIG = {"chave": "rj", "centro": [-42.65, -22.25], "zoom": 7.2, "zoomMinimo": 5, "espessuraContorno": 2.2, "escala": "estado-rj", "manifesto": "../dados/processados/estado-rj/camada.json"};</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="../js/atlas.js"></script>
 </body>

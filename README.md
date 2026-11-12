@@ -20,6 +20,8 @@ rio/ estado-rj/ brasil/ america-latina/   uma página de mapa por escala
 metodologia/               página pública de metodologia
 css/atlas.css              estilos compartilhados
 js/atlas.js                motor do mapa (lê o manifesto de cada escala)
+js/i18n.js                 textos do site em inglês, português e espanhol
+ferramentas/gerar_paginas.py  regenera os HTML a partir de js/i18n.js
 R/00_publicar_camada.R     ponte R → site: gera GeoJSON + camada.json
 R/01_importar_ibge.R       setores censitários 2022 do município do Rio
 R/02_importar_municipios_rj.R  municípios do estado do RJ
@@ -27,6 +29,10 @@ dados/processados/<escala>/    saídas publicadas (versionadas)
 dados/brutos/              downloads e intermediários (fora do Git)
 docs/CONTRATO_DE_DADOS.md  formato dos arquivos que o site lê
 ```
+
+## Idiomas
+
+O site está em inglês (padrão), português e espanhol, com seletor no topo. O idioma também pode ser escolhido pelo link: `?lang=pt` ou `?lang=es`. Para mudar um texto, edite `js/i18n.js` nas três línguas e rode `python3 ferramentas/gerar_paginas.py` (precisa de Node.js) para atualizar o texto em inglês gravado nos HTML.
 
 ## Como gerar as camadas
 

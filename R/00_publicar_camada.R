@@ -5,18 +5,35 @@
 # que o site lê para montar o seletor de indicadores, as cores e a legenda.
 # Contrato completo em docs/CONTRATO_DE_DADOS.md.
 #
+# Textos multilíngues: qualquer campo de texto aceita um vetor nomeado
+# c(en = "...", pt = "...", es = "..."). O site mostra o idioma escolhido
+# pelo visitante (com inglês como reserva). Um texto simples também vale.
+#
 # Uso típico:
 #   source("R/00_publicar_camada.R")
 #   publicar_camada(rio, escala = "rio", id = "CD_SETOR",
-#                   unidade = "Setor censitário", unidade_plural = "Setores censitários",
-#                   fonte_geometria = "Malha de setores IBGE 2022", fonte_curta = "IBGE 2022",
-#                   indicadores = list(
-#                     indicador("lst_verao", "Temperatura da superfície no verão",
-#                               unidade = "°C", paleta = "calor", casas_decimais = 1,
-#                               fonte = "Landsat 8/9 (USGS)", periodo = "dez.–mar. 2023–2025",
-#                               metodo = "Mediana dos pixels por setor")))
+#     unidade        = c(en = "Census tract", pt = "Setor censitário", es = "Sector censal"),
+#     unidade_plural = c(en = "Census tracts", pt = "Setores censitários", es = "Sectores censales"),
+#     fonte_geometria = c(en = "IBGE 2022 census tracts", pt = "Malha de setores IBGE 2022",
+#                         es = "Sectores censales IBGE 2022"),
+#     fonte_curta = "IBGE 2022",
+#     indicadores = list(
+#       indicador("lst_verao",
+#         rotulo = c(en = "Summer land surface temperature",
+#                    pt = "Temperatura da superfície no verão",
+#                    es = "Temperatura de superficie en verano"),
+#         unidade = "°C", paleta = "calor", casas_decimais = 1,
+#         fonte = "Landsat 8/9 (USGS)",
+#         periodo = c(en = "Dec–Mar 2023–2025", pt = "dez.–mar. 2023–2025", es = "dic.–mar. 2023–2025"))))
 
 suppressPackageStartupMessages({ library(sf); library(jsonlite) })
+
+# Vetor nomeado c(en=, pt=, es=) -> objeto JSON {"en":..., "pt":..., "es":...}.
+txt <- function(x) {
+  if (is.null(x)) return(NULL)
+  if (!is.null(names(x)) && all(nzchar(names(x)))) return(as.list(x))
+  x
+}
 
 #' Metadados de um indicador. `id` deve ser o nome da coluna no objeto sf.
 #' paleta: "calor", "renda", "verde" ou "pessoas".
@@ -25,9 +42,9 @@ indicador <- function(id, rotulo, unidade = NULL, paleta = "calor",
                       fonte = NULL, periodo = NULL, metodo = NULL,
                       casas_decimais = 1, n_classes = 5,
                       classificacao = c("quantis", "intervalos_iguais")) {
-  list(id = id, rotulo = rotulo, unidade = unidade, paleta = paleta,
-       dimensao = match.arg(dimensao), fonte = fonte, periodo = periodo,
-       metodo = metodo, casas_decimais = casas_decimais,
+  list(id = id, rotulo = txt(rotulo), unidade = txt(unidade), paleta = paleta,
+       dimensao = match.arg(dimensao), fonte = txt(fonte), periodo = txt(periodo),
+       metodo = txt(metodo), casas_decimais = casas_decimais,
        n_classes = n_classes, classificacao = match.arg(classificacao))
 }
 
@@ -72,9 +89,8 @@ publicar_camada <- function(x, escala, id, indicadores = list(),
     x[[ind$id]] <- round(v, ind$casas_decimais + 2)
     q <- calcular_quebras(v, ind$n_classes, ind$classificacao)
     indicadores[[i]]$quebras <- round(q, ind$casas_decimais + 1)
-    indicadores[[i]]$classificacao <- paste0(
-      if (ind$classificacao == "quantis") "quantis" else "intervalos iguais",
-      " (", length(q) + 1, " classes)")
+    # "quantis" ou "intervalos_iguais"; o site traduz e conta as classes.
+    indicadores[[i]]$classificacao <- ind$classificacao
     indicadores[[i]]$n_validos <- sum(is.finite(v))
     indicadores[[i]]$n_classes <- NULL
   }
@@ -86,11 +102,11 @@ publicar_camada <- function(x, escala, id, indicadores = list(),
            layer_options = c(paste0("COORDINATE_PRECISION=", casas_coord), "RFC7946=YES"))
 
   manifesto <- list(
-    versao_contrato = 1,
+    versao_contrato = 2,
     escala = escala,
     gerado_em = format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z"),
-    unidade = unidade, unidade_plural = unidade_plural,
-    fonte_geometria = fonte_geometria, fonte_curta = fonte_curta,
+    unidade = txt(unidade), unidade_plural = txt(unidade_plural),
+    fonte_geometria = txt(fonte_geometria), fonte_curta = txt(fonte_curta),
     quantidade_unidades = nrow(x),
     geometria = list(tipo = "geojson", url = "unidades.geojson",
                      id = id, rotulo = if (is.null(rotulo)) id else rotulo),

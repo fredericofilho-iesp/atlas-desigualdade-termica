@@ -109,3 +109,13 @@ select {
   #mapa { height: 58vh; min-height: 360px; }
   .legenda { bottom: 30px; max-width: 200px; }
 }
+
+/* Seletor de idioma */
+.topo-linha { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.idioma { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.idioma label { margin: 0; font-weight: 500; font-size: .85rem; color: var(--marca-clara); }
+.idioma select {
+  width: auto; padding: 6px 28px 6px 10px; font-size: .9rem;
+  background-color: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.35);
+}
+.idioma select option { color: var(--tinta); background: #fff; }

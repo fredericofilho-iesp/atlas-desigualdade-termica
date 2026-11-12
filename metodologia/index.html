@@ -1,60 +1,36 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Metodologia · Atlas de Desigualdade Térmica</title>
+<title>Methodology · Heat Inequality Atlas</title>
+<meta name="description" content="Heat Inequality Atlas: heat exposure, social vulnerability and climate justice.">
+<link rel="alternate" hreflang="en" href="?">
+<link rel="alternate" hreflang="pt" href="?lang=pt">
+<link rel="alternate" hreflang="es" href="?lang=es">
 <link rel="stylesheet" href="../css/atlas.css">
+<script src="../js/i18n.js"></script>
 </head>
-<body>
+<body data-i18n-titulo="method.title">
 <header class="topo">
-  <p class="marca"><a href="../">Atlas Interativo de Desigualdade Térmica</a></p>
-  <p class="sub">Exposição ao calor, vulnerabilidade social e justiça climática</p>
-  <nav aria-label="Escalas do atlas"><ul class="escalas">
-    <li><a href="../">Início</a></li><li><a href="../rio/">Rio de Janeiro (cidade)</a></li><li><a href="../estado-rj/">Estado do RJ</a></li><li><a href="../brasil/">Brasil<span class="em-breve">em breve</span></a></li><li><a href="../america-latina/">América Latina<span class="em-breve">em breve</span></a></li><li><a href="../metodologia/" aria-current="page">Metodologia</a></li>
+  <div class="topo-linha">
+    <div>
+      <p class="marca"><a href="../" data-nav="../" data-i18n="site.title">Heat Inequality Atlas</a></p>
+      <p class="sub" data-i18n="site.subtitle">Heat exposure, social vulnerability and climate justice</p>
+    </div>
+    <div class="idioma">
+      <label for="idioma" data-i18n="lang.label">Language</label>
+      <select id="idioma"><option value="en">English</option><option value="pt">Português</option><option value="es">Español</option></select>
+    </div>
+  </div>
+  <nav data-i18n-attr="aria-label:nav.label" aria-label="Atlas scales"><ul class="escalas">
+    <li><a href="../" data-nav="../"><span data-i18n="nav.home">Home</span></a></li><li><a href="../rio/" data-nav="../rio/"><span data-i18n="nav.rio">Rio de Janeiro (city)</span></a></li><li><a href="../estado-rj/" data-nav="../estado-rj/"><span data-i18n="nav.rj">Rio de Janeiro State</span></a></li><li><a href="../brasil/" data-nav="../brasil/"><span data-i18n="nav.br">Brazil</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../america-latina/" data-nav="../america-latina/"><span data-i18n="nav.la">Latin America</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../metodologia/" data-nav="../metodologia/" aria-current="page"><span data-i18n="nav.method">Methodology</span></a></li>
   </ul></nav>
 </header>
 <main class="conteudo texto">
-  <h1>Metodologia</h1>
-  <p class="lead">Estado: planejamento. Nenhum indicador térmico ou socioeconômico foi publicado ainda. Esta página será atualizada a cada indicador incluído.</p>
-
-  <h2>Escalas e unidades territoriais</h2>
-  <table>
-    <thead><tr><th>Escala</th><th>Unidade</th><th>Fontes principais</th></tr></thead>
-    <tbody>
-      <tr><td>Município do Rio de Janeiro</td><td>Setores censitários 2022</td><td>IBGE, Data.Rio, Landsat, MapBiomas</td></tr>
-      <tr><td>Estado do Rio de Janeiro</td><td>Municípios (92)</td><td>IBGE, Ipea, MODIS, ERA5-Land, MapBiomas</td></tr>
-      <tr><td>Brasil</td><td>Municípios (5.570)</td><td>IBGE, Ipea, ERA5-Land, MODIS, MapBiomas</td></tr>
-      <tr><td>América Latina</td><td>Países e unidades subnacionais</td><td>ERA5-Land, MODIS, WorldPop, GHSL, CEPALSTAT, SALURBAL</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Dimensões analíticas</h2>
-  <table>
-    <thead><tr><th>Dimensão</th><th>Indicadores candidatos</th></tr></thead>
-    <tbody>
-      <tr><td>Exposição térmica</td><td>Temperatura da superfície, temperatura do ar, frequência de ondas de calor, dias de calor extremo</td></tr>
-      <tr><td>Vulnerabilidade socioeconômica</td><td>Renda, pobreza, escolaridade, raça/cor, densidade domiciliar</td></tr>
-      <tr><td>Vulnerabilidade demográfica</td><td>População idosa, crianças, densidade populacional</td></tr>
-      <tr><td>Capacidade de adaptação</td><td>Cobertura vegetal, arborização, saneamento, acesso à água</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Princípios</h2>
-  <ol>
-    <li>Temperatura da superfície terrestre (LST, por satélite) e temperatura do ar (estações ou reanálise) são conceitos físicos distintos e aparecem como indicadores separados.</li>
-    <li>Para cada indicador registramos unidade, período, resolução original, tratamento de ausências e método de agregação espacial.</li>
-    <li>Nenhum dado simulado é apresentado como observação.</li>
-    <li>Comparações entre países usam apenas produtos harmonizados internacionalmente; dados nacionais aparecem como camada complementar, com diferenças de definição documentadas.</li>
-    <li>Associações entre áreas (falácia ecológica) não são interpretadas como relações individuais ou causais.</li>
-  </ol>
-
-  <h2>Classificação dos mapas</h2>
-  <p>Por padrão, cada indicador é dividido em cinco classes por quantis, calculadas em R no momento da publicação. O método e os limites de cada classe aparecem na legenda do mapa.</p>
-
-  <h2>Reprodutibilidade</h2>
-  <p>Os scripts em R que baixam, processam e publicam cada camada estão na pasta <code>R/</code> do <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">repositório</a>.</p>
+  <h1 data-i18n="method.title">Methodology</h1>
+  <div data-i18n="method.body"><p class="lead">Status: planning. No heat or socioeconomic indicator has been published yet. This page is updated with each new indicator.</p><h2>Scales and spatial units</h2><table><thead><tr><th>Scale</th><th>Unit</th><th>Main sources</th></tr></thead><tbody><tr><td>City of Rio de Janeiro</td><td>2022 census tracts</td><td>IBGE, Data.Rio, Landsat, MapBiomas</td></tr><tr><td>Rio de Janeiro State</td><td>Municipalities (92)</td><td>IBGE, Ipea, MODIS, ERA5-Land, MapBiomas</td></tr><tr><td>Brazil</td><td>Municipalities (5,570)</td><td>IBGE, Ipea, ERA5-Land, MODIS, MapBiomas</td></tr><tr><td>Latin America</td><td>Countries and subnational units</td><td>ERA5-Land, MODIS, WorldPop, GHSL, CEPALSTAT, SALURBAL</td></tr></tbody></table><h2>Analytical dimensions</h2><table><thead><tr><th>Dimension</th><th>Candidate indicators</th></tr></thead><tbody><tr><td>Heat exposure</td><td>Land surface temperature, air temperature, heatwave frequency, extreme heat days</td></tr><tr><td>Socioeconomic vulnerability</td><td>Income, poverty, education, race, household crowding</td></tr><tr><td>Demographic vulnerability</td><td>Older adults, children, population density</td></tr><tr><td>Adaptive capacity</td><td>Vegetation cover, street trees, sanitation, access to water</td></tr></tbody></table><h2>Principles</h2><ol><li>Land surface temperature (LST, from satellites) and air temperature (stations or reanalysis) are distinct physical concepts and appear as separate indicators.</li><li>For each indicator we record unit, period, original resolution, treatment of missing values and spatial aggregation method.</li><li>No simulated data is presented as an observation.</li><li>Cross-country comparisons use only internationally harmonised products; national data appears as a complementary layer, with differences in definitions documented.</li><li>Area-level associations (ecological fallacy) are not interpreted as individual or causal relationships.</li></ol><h2>Map classification</h2><p>By default each indicator is split into five quantile classes, computed in R at publication time. The method and class limits are shown in the map legend.</p><h2>Reproducibility</h2><p>The R scripts that download, process and publish each layer are in the <code>R/</code> folder of the <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">repository</a>.</p></div>
 </main>
-<footer class="rodape">Projeto acadêmico em desenvolvimento · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Código, dados e documentação no GitHub</a> · Mapa-base © OpenStreetMap · OpenFreeMap</footer>
+<footer class="rodape" data-i18n="footer">Academic project under development · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Code, data and documentation on GitHub</a> · Basemap © OpenStreetMap · OpenFreeMap</footer>
 </body>
 </html>
