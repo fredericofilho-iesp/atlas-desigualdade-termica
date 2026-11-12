@@ -97,6 +97,7 @@ processar <- function(doc) {
   e <- exact_extract(c_, alvo, c("mean", "count"), progress = FALSE)
   frac <- e$count / pix_setor[dentro]
   ok <- is.finite(e$mean) & frac >= MIN_FRAC_LIMPA
+  if (!any(ok)) return(data.frame())   # cena sem nenhum setor limpo
   data.frame(i = dentro[ok], data = substr(f$properties$datetime, 1, 10), valor = e$mean[ok])
 }
 

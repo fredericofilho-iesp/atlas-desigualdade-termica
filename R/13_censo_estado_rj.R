@@ -19,8 +19,9 @@ SAIDA <- "dados/indicadores/estado-rj-setores"
 FTP <- "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/"
 
 ler <- function(pasta_url, padrao) {
-  z <- grep(padrao, listar(pasta_url), value = TRUE, ignore.case = TRUE)[1]
-  if (is.na(z)) stop("Arquivo não encontrado: ", padrao, " em ", pasta_url)
+  z <- achar(pasta_url, padrao)[1]   # desce até 2 subpastas
+  if (is.na(z)) stop("Arquivo não encontrado: ", padrao, " em ", pasta_url,
+                     "\nConteúdo: ", paste(listar(pasta_url), collapse = " | "))
   t <- ler_csv_ibge(extrair_csv(baixar_ibge(z, PASTA), PASTA), prefixo = UF)
   message(utils::URLdecode(basename(z)), ": ", nrow(t), " setores do RJ")
   t
