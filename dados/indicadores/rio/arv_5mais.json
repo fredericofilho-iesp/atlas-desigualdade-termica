@@ -1,0 +1,30 @@
+{
+  "id": "arv_5mais",
+  "rotulo": {
+    "en": "Residents on blocks with 5+ street trees",
+    "pt": "Moradores em faces de quadra com 5 ou mais árvores",
+    "es": "Residentes en frentes de manzana con 5 o más árboles"
+  },
+  "unidade": "%",
+  "paleta": "verde",
+  "dimensao": "adaptacao",
+  "fonte": {
+    "en": "IBGE, 2022 Census, urban characteristics of the surroundings",
+    "pt": "IBGE, Censo 2022, características urbanísticas do entorno",
+    "es": "IBGE, Censo 2022, características urbanísticas del entorno"
+  },
+  "periodo": {
+    "en": "2022",
+    "pt": "2022",
+    "es": "2022"
+  },
+  "metodo": {
+    "en": "Share of residents whose block face has 5 or more trees, as observed by census enumerators",
+    "pt": "Proporção de moradores cuja face de quadra tem 5 ou mais árvores, segundo observação do recenseador",
+    "es": "Proporción de residentes cuyo frente de manzana tiene 5 o más árboles, según la observación del censista"
+  },
+  "casas_decimais": 0,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 41
+}

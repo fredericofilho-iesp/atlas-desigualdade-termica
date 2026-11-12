@@ -1,0 +1,89 @@
+{
+  "gerado_em": "2026-11-12T10:19:47+0000",
+  "fonte": "IBGE, Censo 2022, características urbanísticas do entorno (moradores), V05230–V05234",
+  "setores_com_valor": 13235,
+  "cidade_com_arvores": 64.5,
+  "cidade_5mais": 37.9,
+  "faces_saltadas_pct_moradores": 0.9,
+  "por_quinto_de_renda": [
+    {
+      "quinto": 1,
+      "setores": 2701,
+      "domicilios": 482824,
+      "arv_com_arvores": 25.9,
+      "arv_5mais": 8.1
+    },
+    {
+      "quinto": 2,
+      "setores": 2561,
+      "domicilios": 483029,
+      "arv_com_arvores": 50.7,
+      "arv_5mais": 18.8
+    },
+    {
+      "quinto": 3,
+      "setores": 2592,
+      "domicilios": 483050,
+      "arv_com_arvores": 73.6,
+      "arv_5mais": 36.3
+    },
+    {
+      "quinto": 4,
+      "setores": 2640,
+      "domicilios": 482783,
+      "arv_com_arvores": 83.5,
+      "arv_5mais": 54.7
+    },
+    {
+      "quinto": 5,
+      "setores": 2739,
+      "domicilios": 483042,
+      "arv_com_arvores": 95.2,
+      "arv_5mais": 79.2
+    }
+  ],
+  "por_quinto_de_arborizacao": [
+    {
+      "quinto": 1,
+      "setores": 2624,
+      "moradores": 1217322,
+      "arv_5mais_min": 0,
+      "arv_5mais_max": 0,
+      "lst_media": 41.63
+    },
+    {
+      "quinto": 2,
+      "setores": 2646,
+      "moradores": 1217655,
+      "arv_5mais_min": 0,
+      "arv_5mais_max": 7.3,
+      "lst_media": 41.96
+    },
+    {
+      "quinto": 3,
+      "setores": 2395,
+      "moradores": 1217268,
+      "arv_5mais_min": 7.3,
+      "arv_5mais_max": 41.3,
+      "lst_media": 42.25
+    },
+    {
+      "quinto": 4,
+      "setores": 2609,
+      "moradores": 1217480,
+      "arv_5mais_min": 41.3,
+      "arv_5mais_max": 92.7,
+      "lst_media": 41.85
+    },
+    {
+      "quinto": 5,
+      "setores": 2955,
+      "moradores": 1217409,
+      "arv_5mais_min": 92.7,
+      "arv_5mais_max": 100,
+      "lst_media": 39.76
+    }
+  ],
+  "spearman_5mais_lst": -0.216,
+  "spearman_5mais_renda": 0.61
+}
