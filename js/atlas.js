@@ -194,7 +194,8 @@
   // Rótulos dos tercis de um eixo bivariado: "< a", "a – b", "≥ b".
   function rotulosTercis(eixo) {
     var l = eixo.limites || [], u = eixo.unidade || '';
-    var f = function (v) { return formatarValor(v, u === 'R$' ? 'R$' : '', u === 'R$' ? 0 : 1); };
+    // A unidade já aparece no título do eixo; aqui só os números.
+    var f = function (v) { return formatarValor(v, '', u === 'R$' ? 0 : 1); };
     return ['< ' + f(l[0]), f(l[0]) + ' – ' + f(l[1]), '≥ ' + f(l[1])];
   }
 
@@ -400,6 +401,11 @@
     var dif = d.diferenca_q1_q5, ic = d.ic95 || [];
     var f1 = function (v) { return formatarValor(Math.abs(v), '', 1); };
     var frase = I.t(dif >= 0 ? 'ineq.hotter' : 'ineq.cooler', { d: f1(dif), lo: formatarValor(ic[0], '', 1), hi: formatarValor(ic[1], '', 1) });
+    var imax = vals.indexOf(max);
+    if (imax > 0 && imax < vals.length - 1) {
+      var ord = I.t('ineq.ord');
+      frase += ' ' + I.t('ineq.peak', { n: Array.isArray(ord) ? ord[imax] : String(imax + 1) });
+    }
     var html = '<h2>' + I.t('ineq.title') + '</h2><p class="ineq-frase">' + frase + '</p><ul class="barras">';
     qs.forEach(function (q, i) {
       var w = Math.max(2, 100 * (q.lst_media - base) / (topo - base));
