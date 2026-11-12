@@ -519,7 +519,46 @@
     desenharPainel();
     desenharPainelArvores();
     desenharPainelGrupos();
+    desenharPainelPaises();
   });
+
+  // ---------- painel por país (América Latina) ----------
+  async function carregarPainelPaises() {
+    if (!cfg.painelPaises) return;
+    try {
+      var r = await fetch(cfg.painelPaises, { cache: 'no-cache' });
+      if (!r.ok) return;
+      estado.painelPai = await r.json();
+      desenharPainelPaises();
+    } catch (e) { /* painel opcional */ }
+  }
+
+  function nomeMes(m) {
+    if (!Number.isFinite(m)) return '—';
+    try { return new Intl.DateTimeFormat(I.idioma, { month: 'short' }).format(new Date(2023, m - 1, 15)).replace('.', ''); }
+    catch (e) { return String(m); }
+  }
+
+  function desenharPainelPaises() {
+    var el = $('painel-paises'), d = estado.painelPai;
+    if (!el || !d || !d.paises) return;
+    var ps = d.paises.slice().sort(function (a, b) {
+      var ga = Number.isFinite(a.gap_rwi) ? a.gap_rwi : -Infinity, gb = Number.isFinite(b.gap_rwi) ? b.gap_rwi : -Infinity;
+      return gb - ga || (b.pop || 0) - (a.pop || 0);
+    });
+    var html = '<h2>' + I.t('pai.title') + '</h2><p class="ineq-frase">' +
+      I.t('pai.sentence', { n: d.paises_mais_pobres_mais_quentes, m: d.paises_com_rwi }) + '</p>' +
+      '<table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.colTemp') + '</th><th>' + I.t('pai.colMonth') +
+      '</th><th>' + I.t('pai.colGap') + '</th></tr></thead><tbody>';
+    ps.forEach(function (p) {
+      var g = Number.isFinite(p.gap_rwi) ? (p.gap_rwi > 0 ? '+' : '') + formatarValor(p.gap_rwi, '', 1) : '—';
+      html += '<tr><th scope="row">' + escapar(I.tr(p.nome) || p.iso3) + '</th><td>' + formatarValor(p.lst_pop, '°C', 1) +
+        '</td><td>' + nomeMes(p.mes_quente) + '</td><td>' + g + '</td></tr>';
+    });
+    html += '</tbody></table><p class="status">' + I.t('pai.note') + '</p>';
+    el.innerHTML = html;
+    el.hidden = false;
+  }
 
   async function iniciar() {
     if (!window.maplibregl) {
@@ -547,6 +586,7 @@
     carregarPainel();
     carregarPainelArvores();
     carregarPainelGrupos();
+    carregarPainelPaises();
 
     map.on('load', async function () {
       rotulosNoIdioma(map, I.idioma);

@@ -37,7 +37,7 @@ NAV = [
     ("rio/", "nav.rio", False),
     ("estado-rj/", "nav.rj", False),
     ("brasil/", "nav.br", False),
-    ("america-latina/", "nav.la", True),
+    ("america-latina/", "nav.la", False),
     ("metodologia/", "nav.method", False),
 ]
 
@@ -105,7 +105,8 @@ ESCALAS = {
                    painelCalorRenda="../dados/processados/brasil/calor_renda.json",
                    painelArvores="../dados/processados/brasil/arborizacao_resumo.json",
                    painelGrupos="../dados/processados/brasil/exposicao_grupos.json"),
-    "america-latina": dict(chave="la", centro=[-72, -14], zoom=2.4, zoomMinimo=1.5, espessuraContorno=1.6),
+    "america-latina": dict(chave="la", centro=[-72, -12], zoom=2.6, zoomMinimo=1.5, espessuraContorno=0.6,
+                           painelPaises="../dados/processados/america-latina/paises.json"),
 }
 
 
@@ -126,6 +127,7 @@ def pagina_mapa(slug, c):
     <section id="painel-desigualdade" class="desigualdade" aria-live="polite" hidden></section>
     <section id="painel-arvores" class="desigualdade" aria-live="polite" hidden></section>
     <section id="painel-grupos" class="desigualdade" aria-live="polite" hidden></section>
+    <section id="painel-paises" class="desigualdade" aria-live="polite" hidden></section>
     {tx(k + ".notice", "div", ' class="aviso"')}
     {tx("map.sourcesTitle", "h2")}
     <p class="status">{tx(k + ".sources")} {tx("map.detailsIn")}</p>
@@ -149,7 +151,7 @@ CARTOES = [
     ("rio/", "nav.rio", "home.rio.d", "status.building", ""),
     ("estado-rj/", "nav.rj", "home.rj.d", "status.building", ""),
     ("brasil/", "nav.br", "home.br.d", "status.building", ""),
-    ("america-latina/", "nav.la", "home.la.d", "status.planned", " planejado"),
+    ("america-latina/", "nav.la", "home.la.d", "status.building", ""),
 ]
 
 
