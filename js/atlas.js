@@ -472,8 +472,6 @@
     if (!el || !d || !d.grupos) return;
     var por = {}; d.grupos.forEach(function (g) { por[g.grupo] = g; });
     var gs = GRUPOS_PAINEL.filter(function (k) { return por[k]; }).map(function (k) { return por[k]; });
-    var vals = gs.map(function (g) { return g.lst_media; });
-    var base = Math.floor(Math.min.apply(null, vals) - 1), topo = Math.ceil(Math.max.apply(null, vals));
     var ic = d.ic95 || [], pp = por.preta_parda, br = por.branca;
     var frase = I.t('grp.sentence', {
       d: formatarValor(d.diferenca_preta_parda_branca, '', 2),
@@ -483,9 +481,8 @@
     var html = '<h2>' + I.t('grp.title') + '</h2><p class="ineq-frase">' + frase + '</p>' +
       '<table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('grp.colTemp') + '</th><th>' + I.t('grp.colTrees') + '</th></tr></thead><tbody>';
     gs.forEach(function (g) {
-      var w = Math.max(2, 100 * (g.lst_media - base) / (topo - base));
       html += '<tr' + (g.grupo === 'moradores' ? ' class="total"' : '') + '><th scope="row">' + I.t('grp.' + g.grupo) + '</th>' +
-        '<td><span class="mini-barra" style="width:' + (0.48 * w).toFixed(0) + 'px"></span>' + formatarValor(g.lst_media, '°C', 1) + '</td>' +
+        '<td>' + formatarValor(g.lst_media, '°C', 1) + '</td>' +
         '<td>' + formatarValor(g.arv_com_arvores, '%', 0) + '</td></tr>';
     });
     html += '</tbody></table><p class="status">' + I.t('grp.note') + '</p>';
