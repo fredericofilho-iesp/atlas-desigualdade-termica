@@ -6,8 +6,11 @@
 #        Rendimento do Responsável" (resultados do universo).
 #        https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/
 #
-# O que é medido: rendimento nominal mensal da pessoa responsável pelo
-# domicílio particular permanente ocupado (DPPO), em R$ de julho de 2022.
+# O que é medido (dicionário IBGE, V06004 e V06006): valor do rendimento
+# nominal médio e mediano mensal das pessoas responsáveis COM rendimentos por
+# domicílios particulares permanentes ocupados (DPPO), em R$ de julho de 2022.
+# Responsáveis sem rendimento não entram na média: em setores com muitos
+# responsáveis sem renda, o valor superestima o nível do setor.
 # NÃO é renda domiciliar per capita: é um indicador do nível socioeconômico
 # do setor. Também apresentamos o valor em salários mínimos (R$ 1.212,00).
 #
@@ -55,8 +58,8 @@ baixar <- function(url) {
   dest
 }
 
-zip_url <- achar(BASE, "renda.*responsavel.*csv.*\\.zip$|renda.*csv.*\\.zip$")
-if (!length(zip_url)) zip_url <- achar(BASE, "\\.zip$")
+# Há um arquivo por recorte (setores, bairros, distritos...): pegar o de setores.
+zip_url <- achar(BASE, "^Agregados_por_setores_renda.*csv.*\\.zip$")
 dic_url <- achar(BASE, "dicionario.*\\.xlsx$")
 message("Arquivos encontrados:\n  ", paste(c(zip_url, dic_url), collapse = "\n  "))
 if (!length(zip_url)) message("Conteúdo da pasta:\n  ", paste(listar(BASE), collapse = "\n  "))
@@ -141,9 +144,9 @@ inds <- list(
                es = "Ingreso medio del responsable del hogar"),
     unidade = "R$", paleta = "renda", dimensao = "sensibilidade", casas_decimais = 0,
     fonte = fonte, periodo = periodo, ordem = 20,
-    metodo = c(en = paste0("Mean monthly nominal income of the head of each occupied private household (", nota_sm("en"), "). Not per capita income."),
-               pt = paste0("Rendimento nominal mensal médio da pessoa responsável por domicílio particular ocupado (", nota_sm("pt"), "). Não é renda per capita."),
-               es = paste0("Ingreso nominal mensual medio del responsable de cada hogar particular ocupado (", nota_sm("es"), "). No es ingreso per cápita.")))
+    metodo = c(en = paste0("Mean monthly nominal income of household heads with income, in occupied private households (", nota_sm("en"), "). Heads without income are excluded. Not per capita income."),
+               pt = paste0("Rendimento nominal mensal médio das pessoas responsáveis com rendimentos, em domicílios particulares ocupados (", nota_sm("pt"), "). Responsáveis sem rendimento não entram. Não é renda per capita."),
+               es = paste0("Ingreso nominal mensual medio de los responsables con ingresos, en hogares particulares ocupados (", nota_sm("es"), "). Se excluyen los responsables sin ingresos. No es ingreso per cápita.")))
 )
 if (any(is.finite(saida$renda_mediana_resp))) inds[[2]] <- indicador("renda_mediana_resp",
     rotulo = c(en = "Median income of household heads",
@@ -151,8 +154,8 @@ if (any(is.finite(saida$renda_mediana_resp))) inds[[2]] <- indicador("renda_medi
                es = "Ingreso mediano del responsable del hogar"),
     unidade = "R$", paleta = "renda", dimensao = "sensibilidade", casas_decimais = 0,
     fonte = fonte, periodo = periodo, ordem = 21,
-    metodo = c(en = "Median monthly nominal income of household heads. Not per capita income.",
-               pt = "Rendimento nominal mensal mediano das pessoas responsáveis. Não é renda per capita.",
-               es = "Ingreso nominal mensual mediano de los responsables del hogar. No es ingreso per cápita."))
+    metodo = c(en = "Median monthly nominal income of household heads with income. Not per capita income.",
+               pt = "Rendimento nominal mensal mediano das pessoas responsáveis com rendimentos. Não é renda per capita.",
+               es = "Ingreso nominal mensual mediano de los responsables con ingresos. No es ingreso per cápita."))
 
 salvar_indicadores(saida, escala = "rio", id = "CD_SETOR", indicadores = inds)
