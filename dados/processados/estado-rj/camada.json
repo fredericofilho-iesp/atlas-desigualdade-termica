@@ -1,10 +1,22 @@
 {
-  "versao_contrato": 1,
+  "versao_contrato": 2,
   "escala": "estado-rj",
   "gerado_em": "2026-11-11T23:31:54+0000",
-  "unidade": "Município",
-  "unidade_plural": "Municípios",
-  "fonte_geometria": "Malha municipal IBGE 2022 (via geobr)",
+  "unidade": {
+    "en": "Municipality",
+    "pt": "Município",
+    "es": "Municipio"
+  },
+  "unidade_plural": {
+    "en": "Municipalities",
+    "pt": "Municípios",
+    "es": "Municipios"
+  },
+  "fonte_geometria": {
+    "en": "IBGE 2022 municipal boundaries (via geobr)",
+    "pt": "Malha municipal IBGE 2022 (via geobr)",
+    "es": "Límites municipales IBGE 2022 (vía geobr)"
+  },
   "fonte_curta": "IBGE 2022",
   "quantidade_unidades": 92,
   "geometria": {

@@ -14,8 +14,11 @@ saveRDS(st_transform(muni, 4326), "dados/brutos/rj_municipios_2022.rds")
 
 publicar_camada(
   muni, escala = "estado-rj", id = "code_muni", rotulo = "name_muni",
-  unidade = "Município", unidade_plural = "Municípios",
-  fonte_geometria = "Malha municipal IBGE 2022 (via geobr)",
+  unidade = c(en = "Municipality", pt = "Município", es = "Municipio"),
+  unidade_plural = c(en = "Municipalities", pt = "Municípios", es = "Municipios"),
+  fonte_geometria = c(en = "IBGE 2022 municipal boundaries (via geobr)",
+                      pt = "Malha municipal IBGE 2022 (via geobr)",
+                      es = "Límites municipales IBGE 2022 (vía geobr)"),
   fonte_curta = "IBGE 2022",
   simplificar_m = 60,
   indicadores = list()

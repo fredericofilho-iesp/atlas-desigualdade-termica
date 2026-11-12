@@ -55,11 +55,31 @@
     return undefined;
   }
 
+  // Rótulos do mapa-base no idioma escolhido (esquema OpenMapTiles: name:xx).
+  // Só altera camadas cujo texto já vem de um campo de nome.
+  function rotulosNoIdioma(map, idioma) {
+    var campos = idioma === 'en'
+      ? [['get', 'name:en'], ['get', 'name_en'], ['get', 'name']]
+      : [['get', 'name:' + idioma], ['get', 'name']];
+    var expr = ['coalesce'].concat(campos);
+    ((map.getStyle() && map.getStyle().layers) || []).forEach(function (l) {
+      if (l.type !== 'symbol' || !l.layout || !l.layout['text-field']) return;
+      if (JSON.stringify(l.layout['text-field']).indexOf('name') === -1) return;
+      try { map.setLayoutProperty(l.id, 'text-field', expr); } catch (e) { /* ignora */ }
+    });
+  }
+
   // ---------- utilidades puras (exportadas para teste) ----------
 
+  var I = (typeof window !== 'undefined' && window.AtlasI18n) || {
+    t: function (k) { return k === 'map.noData' ? 'no data' : k; },
+    tr: function (v) { return v && typeof v === 'object' ? (v.en || v.pt || '') : (v == null ? '' : String(v)); },
+    locale: 'en-US', idioma: 'en'
+  };
+
   function formatarValor(v, unidade, casas) {
-    if (v === null || v === undefined || v === '' || Number.isNaN(Number(v))) return 'sem dado';
-    var n = Number(v).toLocaleString('pt-BR', {
+    if (v === null || v === undefined || v === '' || Number.isNaN(Number(v))) return I.t('map.noData');
+    var n = Number(v).toLocaleString(I.locale, {
       minimumFractionDigits: casas == null ? 0 : casas,
       maximumFractionDigits: casas == null ? 2 : casas
     });
@@ -95,6 +115,22 @@
     return r;
   }
 
+  // "quantis" / "intervalos_iguais" + número de classes → texto no idioma.
+  // Aceita também o formato antigo (texto livre).
+  function textoClassificacao(ind) {
+    var c = ind.classificacao;
+    if (!c) return '';
+    if (typeof c === 'object') return I.tr(c);
+    var n = (ind.quebras || []).length + 1;
+    if (c === 'quantis') return I.t('map.quantiles') + ' (' + I.t('map.nClasses', { n: n }) + ')';
+    if (c === 'intervalos_iguais') return I.t('map.equalIntervals') + ' (' + I.t('map.nClasses', { n: n }) + ')';
+    return String(c);
+  }
+
+  function escapar(s) {
+    return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+  }
+
   if (typeof window === 'undefined') {
     module.exports = { formatarValor: formatarValor, expressaoCor: expressaoCor,
       rotulosLegenda: rotulosLegenda, coresPara: coresPara };
@@ -105,38 +141,42 @@
 
   var cfg = window.ATLAS_CONFIG || {};
   var $ = function (id) { return document.getElementById(id); };
-  var estado = { manifesto: null, indicador: null, selecionado: null };
+  var estado = { manifesto: null, indicador: null, selecionado: null, status: null, mapa: null };
 
-  function status(msg) { var el = $('status-camada'); if (el) el.textContent = msg; }
+  // O status é guardado como função para ser refeito quando o idioma muda.
+  function status(fn) { estado.status = fn; var el = $('status-camada'); if (el) el.textContent = fn(); }
+  function chave(k) { return (cfg.chave || cfg.escala) + '.' + k; }
 
   function preencherIndicadores(manifesto) {
     var sel = $('indicador');
+    var anterior = sel.value;
     sel.innerHTML = '';
     var base = document.createElement('option');
     base.value = '';
-    base.textContent = manifesto ? 'Apenas limites territoriais' : 'Mapa-base';
+    base.textContent = manifesto ? I.t('map.boundariesOnly') : I.t('map.basemapOnly');
     sel.appendChild(base);
 
     var publicados = (manifesto && manifesto.indicadores) || [];
-    var idsPublicados = {};
+    var ids = {};
     publicados.forEach(function (ind) {
-      idsPublicados[ind.id] = true;
+      ids[ind.id] = true;
       var o = document.createElement('option');
       o.value = ind.id;
-      o.textContent = ind.rotulo + (ind.unidade ? ' (' + ind.unidade + ')' : '');
+      var u = I.tr(ind.unidade);
+      o.textContent = I.tr(ind.rotulo) + (u ? ' (' + u + ')' : '');
       sel.appendChild(o);
     });
     // Indicadores previstos aparecem desabilitados, para deixar claro o que falta.
-    (cfg.indicadoresPrevistos || []).forEach(function (rotulo) {
+    var previstos = I.t(chave('planned'));
+    (Array.isArray(previstos) ? previstos : []).forEach(function (rotulo) {
       var o = document.createElement('option');
       o.disabled = true;
-      o.textContent = rotulo + ' — pendente';
+      o.textContent = rotulo + ' — ' + I.t('map.pending');
       sel.appendChild(o);
     });
     sel.disabled = false;
-    if (publicados.length) {
-      sel.value = publicados[0].id;
-    }
+    if (anterior !== undefined && (anterior === '' || ids[anterior]) && estado.mapa) sel.value = anterior;
+    else if (publicados.length) sel.value = publicados[0].id;
   }
 
   function desenharLegenda(ind) {
@@ -144,15 +184,17 @@
     if (!ind) { el.hidden = true; el.innerHTML = ''; return; }
     var cores = coresPara(ind);
     var rot = rotulosLegenda(ind);
-    var html = '<p class="legenda-titulo">' + ind.rotulo + (ind.unidade ? ' <span>(' + ind.unidade + ')</span>' : '') + '</p><ul>';
+    var u = I.tr(ind.unidade);
+    var html = '<p class="legenda-titulo">' + escapar(I.tr(ind.rotulo)) + (u ? ' <span>(' + escapar(u) + ')</span>' : '') + '</p><ul>';
     for (var i = 0; i < cores.length; i++) {
       html += '<li><i style="background:' + cores[i] + '"></i>' + rot[i] + '</li>';
     }
-    html += '<li><i style="background:' + COR_SEM_DADO + '"></i>sem dado</li></ul>';
+    html += '<li><i style="background:' + COR_SEM_DADO + '"></i>' + I.t('map.noData') + '</li></ul>';
     var meta = [];
-    if (ind.fonte) meta.push('Fonte: ' + ind.fonte);
-    if (ind.periodo) meta.push('Período: ' + ind.periodo);
-    if (ind.classificacao) meta.push('Classes: ' + ind.classificacao);
+    if (ind.fonte) meta.push(I.t('map.source') + ': ' + escapar(I.tr(ind.fonte)));
+    if (ind.periodo) meta.push(I.t('map.period') + ': ' + escapar(I.tr(ind.periodo)));
+    var cl = textoClassificacao(ind);
+    if (cl) meta.push(I.t('map.classes') + ': ' + escapar(cl));
     if (meta.length) html += '<p class="legenda-meta">' + meta.join(' · ') + '</p>';
     el.innerHTML = html;
     el.hidden = false;
@@ -176,7 +218,7 @@
       map.setPaintProperty('unidades-preenchimento', 'fill-color', '#2f7f95');
       map.setPaintProperty('unidades-preenchimento', 'fill-opacity', 0.08);
       map.setPaintProperty('unidades-contorno', 'line-color', corContorno('#1f5f72'));
-      map.setPaintProperty('unidades-contorno', 'line-opacity', 0.85);
+      map.setPaintProperty('unidades-contorno', 'line-opacity', 0.9);
     }
     desenharLegenda(ind);
     if (estado.selecionado) mostrarFicha(estado.selecionado);
@@ -185,22 +227,40 @@
   function mostrarFicha(props) {
     var m = estado.manifesto;
     var g = m.geometria || {};
-    var nome = props[g.rotulo] || props[g.id] || 'unidade';
-    var html = '<h3>' + (m.unidade || 'Unidade') + ': ' + nome + '</h3>';
-    if (g.rotulo && g.rotulo !== g.id && props[g.id]) html += '<p class="codigo">Código: ' + props[g.id] + '</p>';
+    var nome = props[g.rotulo] || props[g.id] || '';
+    var html = '<h3>' + escapar(I.tr(m.unidade) || I.t('map.unit')) + ': ' + escapar(nome) + '</h3>';
+    if (g.rotulo && g.rotulo !== g.id && props[g.id]) html += '<p class="codigo">' + I.t('map.code') + ': ' + escapar(props[g.id]) + '</p>';
     var inds = m.indicadores || [];
     if (!inds.length) {
-      html += '<p>Indicadores térmicos e socioeconômicos ainda não publicados para esta escala.</p>';
+      html += '<p>' + I.t('map.noIndicatorsYet') + '</p>';
     } else {
       html += '<dl>';
       inds.forEach(function (ind) {
         var ativo = estado.indicador && estado.indicador.id === ind.id;
-        html += '<div' + (ativo ? ' class="ativo"' : '') + '><dt>' + ind.rotulo + '</dt><dd>' +
-          formatarValor(props[ind.id], ind.unidade, ind.casas_decimais) + '</dd></div>';
+        html += '<div' + (ativo ? ' class="ativo"' : '') + '><dt>' + escapar(I.tr(ind.rotulo)) + '</dt><dd>' +
+          formatarValor(props[ind.id], I.tr(ind.unidade), ind.casas_decimais) + '</dd></div>';
       });
       html += '</dl>';
     }
     $('ficha').innerHTML = html;
+  }
+
+  function textoCarregado() {
+    var m = estado.manifesto;
+    var n = m.quantidade_unidades;
+    var nInd = (m.indicadores || []).length;
+    var fonte = I.tr(m.fonte_geometria) || '';
+    var plural = (I.tr(m.unidade_plural) || I.t('map.units')).toLowerCase();
+    var s = n ? I.t('map.loaded', { fonte: fonte, n: Number(n).toLocaleString(I.locale), unidades: plural })
+              : I.t('map.loadedNoCount', { fonte: fonte });
+    return s + ' ' + (nInd ? I.t('map.nIndicators', { n: nInd }) : I.t('map.noIndicators'));
+  }
+
+  function atualizarBadge() {
+    var m = estado.manifesto;
+    $('badge-mapa').textContent = m
+      ? (I.tr(m.unidade_plural) || '') + (m.fonte_curta ? ' • ' + I.tr(m.fonte_curta) : '')
+      : I.t('map.badgeBasemap');
   }
 
   function carregarScript(src) {
@@ -237,6 +297,7 @@
     map.addSource('unidades', fonte);
     var antes = primeiraCamadaDeRotulo(map);
     var extra = g.tipo === 'pmtiles' ? { 'source-layer': g.camada_vetorial || 'unidades' } : {};
+    var k = cfg.espessuraContorno || 1;
     map.addLayer(Object.assign({
       id: 'unidades-preenchimento', type: 'fill', source: 'unidades',
       paint: { 'fill-color': '#7fb6c5', 'fill-opacity': 0.12 }
@@ -246,7 +307,7 @@
       paint: {
         'line-color': corContorno('#1f5f72'),
         'line-width': ['case', ['boolean', ['feature-state', 'selecionado'], false], 2.4,
-          ['interpolate', ['linear'], ['zoom'], 6, 0.4, 10, 0.5, 14, 1.2]]
+          ['interpolate', ['linear'], ['zoom'], 6, 0.4 * k, 10, 0.5 * k, 14, 1.2 * k]]
       }
     }, extra), antes);
 
@@ -266,10 +327,23 @@
     map.on('mouseleave', 'unidades-preenchimento', function () { map.getCanvas().style.cursor = ''; });
   }
 
+  // Troca de idioma sem recarregar a página.
+  document.addEventListener('atlas:idioma', function () {
+    var map = estado.mapa;
+    preencherIndicadores(estado.manifesto);
+    if (estado.status) status(estado.status);
+    atualizarBadge();
+    if (map && estado.manifesto && map.getLayer && map.getLayer('unidades-preenchimento')) {
+      desenharLegenda(estado.indicador);
+      if (estado.selecionado) mostrarFicha(estado.selecionado);
+    }
+    if (map && map.isStyleLoaded && map.isStyleLoaded()) rotulosNoIdioma(map, I.idioma);
+  });
+
   async function iniciar() {
     if (!window.maplibregl) {
-      $('mapa').textContent = 'Não foi possível carregar a biblioteca cartográfica (MapLibre).';
-      status('Mapa indisponível.');
+      $('mapa').textContent = I.t('map.libError');
+      status(function () { return I.t('map.unavailable'); });
       return;
     }
     var map = new maplibregl.Map({
@@ -288,26 +362,25 @@
     var manifesto = await carregarManifesto();
     estado.manifesto = manifesto;
     preencherIndicadores(manifesto);
+    atualizarBadge();
 
     map.on('load', async function () {
+      rotulosNoIdioma(map, I.idioma);
       if (!manifesto) {
-        status(cfg.mensagemSemDados || 'Camada territorial ainda não processada. Exibindo apenas o mapa-base.');
+        status(function () { return I.t(chave('noLayer')); });
+        estado.mapa = map;
         return;
       }
       try {
         await adicionarCamada(map, manifesto);
-        var n = manifesto.quantidade_unidades;
-        var nInd = (manifesto.indicadores || []).length;
-        status((manifesto.fonte_geometria || 'Camada territorial') + ' carregada' +
-          (n ? ': ' + Number(n).toLocaleString('pt-BR') + ' ' + (manifesto.unidade_plural || 'unidades').toLowerCase() : '') +
-          '. ' + (nInd ? nInd + ' indicador(es) publicados.' : 'Sem indicadores associados ainda.'));
-        $('badge-mapa').textContent = (manifesto.unidade_plural || 'Unidades') + ' • ' + (manifesto.fonte_curta || '');
+        status(textoCarregado);
         aplicarIndicador(map, $('indicador').value);
         $('indicador').addEventListener('change', function (e) { aplicarIndicador(map, e.target.value); });
       } catch (e) {
         console.error(e);
-        status('Erro ao carregar a camada territorial. Exibindo apenas o mapa-base.');
+        status(function () { return I.t('map.layerError'); });
       }
+      estado.mapa = map;
     });
   }
 
