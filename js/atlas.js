@@ -549,11 +549,12 @@
     var html = '<h2>' + I.t('pai.title') + '</h2><p class="ineq-frase">' +
       I.t('pai.sentence', { n: d.paises_mais_pobres_mais_quentes, m: d.paises_com_rwi }) + '</p>' +
       '<table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.colTemp') + '</th><th>' + I.t('pai.colMonth') +
-      '</th><th>' + I.t('pai.colGap') + '</th></tr></thead><tbody>';
+      '</th><th>' + I.t('pai.colGap') + '</th><th>' + I.t('pai.colGapAll') + '</th></tr></thead><tbody>';
     ps.forEach(function (p) {
-      var g = Number.isFinite(p.gap_rwi) ? (p.gap_rwi > 0 ? '+' : '') + formatarValor(p.gap_rwi, '', 1) : '—';
+      var sinal = function (v) { return Number.isFinite(v) ? (v > 0 ? '+' : '') + formatarValor(v, '', 1) : '—'; };
+      var g = sinal(p.gap_rwi), gt = sinal(p.gap_rwi_total);
       html += '<tr><th scope="row">' + escapar(I.tr(p.nome) || p.iso3) + '</th><td>' + formatarValor(p.lst_pop, '°C', 1) +
-        '</td><td>' + nomeMes(p.mes_quente) + '</td><td>' + g + '</td></tr>';
+        '</td><td>' + nomeMes(p.mes_quente) + '</td><td>' + g + '</td><td>' + gt + '</td></tr>';
     });
     html += '</tbody></table><p class="status">' + I.t('pai.note') + '</p>';
     el.innerHTML = html;
