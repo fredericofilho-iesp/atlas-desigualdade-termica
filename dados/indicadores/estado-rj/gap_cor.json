@@ -6,7 +6,7 @@
     "es": "Brecha térmica: negros y pardos − blancos (en el municipio)"
   },
   "unidade": "°C",
-  "paleta": "calor",
+  "paleta": "divergente",
   "dimensao": "exposicao",
   "fonte": {
     "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
@@ -27,5 +27,5 @@
   "n_classes": 5,
   "classificacao": "manual",
   "ordem": 13,
-  "quebras_fixas": [0, 0.25, 0.5, 1]
+  "quebras_fixas": [-0.5, -0.15, 0.15, 0.5]
 }
