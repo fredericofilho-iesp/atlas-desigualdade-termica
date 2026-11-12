@@ -1,0 +1,49 @@
+{
+  "gerado_em": "2026-11-12T21:25:18+0000",
+  "paises_com_rwi": 2,
+  "paises_mais_pobres_mais_quentes": 0,
+  "paises": [
+    {
+      "iso3": "CRI",
+      "nome": {
+        "en": "Costa Rica",
+        "pt": "Costa Rica",
+        "es": "Costa Rica"
+      },
+      "pop": 5104478,
+      "lst_pop": 35.79,
+      "mes_quente": 3,
+      "blocos_rwi": 4590,
+      "gap_rwi": -5.56,
+      "ic95": [-6.3, -4.61]
+    },
+    {
+      "iso3": "PRY",
+      "nome": {
+        "en": "Paraguay",
+        "pt": "Paraguai",
+        "es": "Paraguay"
+      },
+      "pop": 6611028,
+      "lst_pop": 37.94,
+      "mes_quente": 2,
+      "blocos_rwi": 10956,
+      "gap_rwi": -2.87,
+      "ic95": [-3.24, -2.46]
+    },
+    {
+      "iso3": "URY",
+      "nome": {
+        "en": "Uruguay",
+        "pt": "Uruguai",
+        "es": "Uruguay"
+      },
+      "pop": 3395104,
+      "lst_pop": 35.49,
+      "mes_quente": 1,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null]
+    }
+  ]
+}

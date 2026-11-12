@@ -1,0 +1,123 @@
+{
+  "versao_contrato": 2,
+  "escala": "america-latina",
+  "gerado_em": "2026-11-12T21:25:18+0000",
+  "unidade": {
+    "en": "Subnational unit",
+    "pt": "Unidade subnacional",
+    "es": "Unidad subnacional"
+  },
+  "unidade_plural": {
+    "en": "Subnational units",
+    "pt": "Unidades subnacionais",
+    "es": "Unidades subnacionales"
+  },
+  "fonte_geometria": {
+    "en": "geoBoundaries ADM1 (simplified)",
+    "pt": "geoBoundaries ADM1 (simplificado)",
+    "es": "geoBoundaries ADM1 (simplificado)"
+  },
+  "fonte_curta": "geoBoundaries",
+  "quantidade_unidades": 44,
+  "geometria": {
+    "tipo": "geojson",
+    "url": "unidades.geojson",
+    "id": "id",
+    "rotulo": "rotulo"
+  },
+  "indicadores": [
+    {
+      "id": "lst_pop",
+      "rotulo": {
+        "en": "Surface temperature in the hottest season, where people live",
+        "pt": "Temperatura da superfície na época mais quente, onde as pessoas moram",
+        "es": "Temperatura de superficie en la época más cálida, donde vive la gente"
+      },
+      "unidade": "°C",
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries"
+      },
+      "periodo": {
+        "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+        "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+        "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+      },
+      "metodo": {
+        "en": "MODIS 1 km daytime surface temperature over the hottest three consecutive months of each pixel, averaged over ~1 km population cells (GHS-POP 2020) and weighted by population",
+        "pt": "Temperatura da superfície diurna MODIS (1 km) nos três meses consecutivos mais quentes de cada pixel, média das células de população (~1 km, GHS-POP 2020) ponderada pela população",
+        "es": "Temperatura de superficie diurna MODIS (1 km) en los tres meses consecutivos más cálidos de cada píxel, media de las celdas de población (~1 km, GHS-POP 2020) ponderada por población"
+      },
+      "casas_decimais": 1,
+      "classificacao": "quantis",
+      "ordem": 10,
+      "quebras": [35.75, 36.75, 37.31, 38.25],
+      "n_validos": 44
+    },
+    {
+      "id": "lst_dif_pais",
+      "rotulo": {
+        "en": "Surface temperature: difference from own country",
+        "pt": "Temperatura da superfície: diferença para o próprio país",
+        "es": "Temperatura de superficie: diferencia respecto a su país"
+      },
+      "unidade": "°C",
+      "paleta": "divergente",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries"
+      },
+      "periodo": {
+        "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+        "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+        "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+      },
+      "metodo": {
+        "en": "Unit value minus the country value (all population cells, weighted by population)",
+        "pt": "Valor da unidade menos o do país (todas as células de população, ponderadas pela população)",
+        "es": "Valor de la unidad menos el del país (todas las celdas de población, ponderadas por población)"
+      },
+      "casas_decimais": 1,
+      "classificacao": "manual",
+      "ordem": 11,
+      "quebras": [-3, -1, 1, 3],
+      "n_validos": 44
+    },
+    {
+      "id": "gap_rwi",
+      "rotulo": {
+        "en": "Heat gap: poorest − richest fifth (relative wealth, within unit)",
+        "pt": "Desigualdade térmica: 20% mais pobres − 20% mais ricos (riqueza relativa, na unidade)",
+        "es": "Brecha térmica: 20% más pobre − 20% más rico (riqueza relativa, en la unidad)"
+      },
+      "unidade": "°C",
+      "paleta": "divergente",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)",
+        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)",
+        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)"
+      },
+      "periodo": {
+        "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+        "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+        "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+      },
+      "metodo": {
+        "en": "Population-weighted surface temperature of the poorest minus the richest fifth of ~2.4 km wealth blocks (Meta RWI) in the unit; only units with at least 30 blocks. Red: the poorest live in hotter places; blue: in cooler places",
+        "pt": "Temperatura da superfície, ponderada pela população, do quinto mais pobre menos a do quinto mais rico dos blocos de riqueza de ~2,4 km (Meta RWI) da unidade; só unidades com ao menos 30 blocos. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes",
+        "es": "Temperatura de superficie, ponderada por población, del quintil más pobre menos la del más rico de los bloques de riqueza de ~2,4 km (Meta RWI) de la unidad; solo unidades con al menos 30 bloques. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos"
+      },
+      "casas_decimais": 1,
+      "classificacao": "manual",
+      "ordem": 12,
+      "quebras": [-2, -0.5, 0.5, 2],
+      "n_validos": 23
+    }
+  ]
+}
