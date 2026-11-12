@@ -1,0 +1,52 @@
+{
+  "gerado_em": "2026-11-12T13:41:25+0000",
+  "escopo": "estado do RJ, todos os setores",
+  "setores_usados": 39677,
+  "domicilios_usados": 6131918,
+  "quintos": [
+    {
+      "quinto": 1,
+      "setores": 8381,
+      "domicilios": 1226301,
+      "renda_min": 319,
+      "renda_max": 1560,
+      "lst_media": 40.07
+    },
+    {
+      "quinto": 2,
+      "setores": 7708,
+      "domicilios": 1226439,
+      "renda_min": 1560,
+      "renda_max": 1904,
+      "lst_media": 40.09
+    },
+    {
+      "quinto": 3,
+      "setores": 7777,
+      "domicilios": 1226483,
+      "renda_min": 1904,
+      "renda_max": 2450,
+      "lst_media": 40.44
+    },
+    {
+      "quinto": 4,
+      "setores": 8117,
+      "domicilios": 1226319,
+      "renda_min": 2450,
+      "renda_max": 3936,
+      "lst_media": 40.84
+    },
+    {
+      "quinto": 5,
+      "setores": 7694,
+      "domicilios": 1226376,
+      "renda_min": 3936,
+      "renda_max": 177068,
+      "lst_media": 39.29
+    }
+  ],
+  "diferenca_q1_q5": 0.78,
+  "ic95": [0.66, 0.9],
+  "bootstrap": 500,
+  "spearman_setores": -0.01
+}

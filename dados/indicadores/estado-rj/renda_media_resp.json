@@ -1,0 +1,30 @@
+{
+  "id": "renda_media_resp",
+  "rotulo": {
+    "en": "Average income of household heads",
+    "pt": "Renda média do responsável pelo domicílio",
+    "es": "Ingreso medio del responsable del hogar"
+  },
+  "unidade": "R$",
+  "paleta": "renda",
+  "dimensao": "sensibilidade",
+  "fonte": {
+    "en": "IBGE, 2022 Census (tract aggregates)",
+    "pt": "IBGE, Censo 2022 (agregados por setor)",
+    "es": "IBGE, Censo 2022 (agregados por sector)"
+  },
+  "periodo": {
+    "en": "July 2022 (nominal R$)",
+    "pt": "julho de 2022 (R$ nominais)",
+    "es": "julio de 2022 (R$ nominales)"
+  },
+  "metodo": {
+    "en": "Tract means of household heads with income, weighted by household heads. Not per capita income.",
+    "pt": "Médias dos setores (responsáveis com rendimentos) ponderadas pelos responsáveis. Não é renda per capita.",
+    "es": "Medias de los sectores (responsables con ingresos) ponderadas por responsables. No es ingreso per cápita."
+  },
+  "casas_decimais": 0,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 20
+}

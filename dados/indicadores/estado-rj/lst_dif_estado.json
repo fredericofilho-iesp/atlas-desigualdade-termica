@@ -1,0 +1,31 @@
+{
+  "id": "lst_dif_estado",
+  "rotulo": {
+    "en": "Surface temperature: difference from state",
+    "pt": "Temperatura da superfície: diferença para o estado",
+    "es": "Temperatura de superficie: diferencia respecto al estado"
+  },
+  "unidade": "°C",
+  "paleta": "divergente",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+    "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+    "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+  },
+  "periodo": {
+    "en": "Dec–Mar, summers 2022/23 to 2024/25",
+    "pt": "dez.–mar., verões 2022/23 a 2024/25",
+    "es": "dic.–mar., veranos 2022/23 a 2024/25"
+  },
+  "metodo": {
+    "en": "Municipal value minus the state value (40.2 °C)",
+    "pt": "Valor do município menos o do estado (40,2 °C)",
+    "es": "Valor del municipio menos el del estado (40,2 °C)"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 11,
+  "quebras_fixas": [-3, -1, 1, 3]
+}

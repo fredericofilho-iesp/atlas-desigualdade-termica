@@ -97,7 +97,10 @@ ESCALAS = {
                 painelCalorRenda="../dados/processados/rio/calor_renda.json",
                 painelArvores="../dados/processados/rio/arborizacao_resumo.json",
                 painelGrupos="../dados/processados/rio/exposicao_grupos.json"),
-    "estado-rj": dict(chave="rj", centro=[-42.65, -22.25], zoom=7.2, zoomMinimo=5, espessuraContorno=2.2),
+    "estado-rj": dict(chave="rj", centro=[-42.65, -22.25], zoom=7.2, zoomMinimo=5, espessuraContorno=2.2,
+                      painelCalorRenda="../dados/processados/estado-rj/calor_renda.json",
+                      painelArvores="../dados/processados/estado-rj/arborizacao_resumo.json",
+                      painelGrupos="../dados/processados/estado-rj/exposicao_grupos.json"),
     "brasil": dict(chave="br", centro=[-53.5, -14.5], zoom=3.4, zoomMinimo=2.5, espessuraContorno=1.6),
     "america-latina": dict(chave="la", centro=[-72, -14], zoom=2.4, zoomMinimo=1.5, espessuraContorno=1.6),
 }

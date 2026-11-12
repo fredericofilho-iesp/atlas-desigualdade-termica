@@ -473,11 +473,15 @@
     var por = {}; d.grupos.forEach(function (g) { por[g.grupo] = g; });
     var gs = GRUPOS_PAINEL.filter(function (k) { return por[k]; }).map(function (k) { return por[k]; });
     var ic = d.ic95 || [], pp = por.preta_parda, br = por.branca;
-    var frase = I.t('grp.sentence', {
-      d: formatarValor(d.diferenca_preta_parda_branca, '', 2),
-      lo: formatarValor(ic[0], '', 2), hi: formatarValor(ic[1], '', 2),
-      a: pp ? formatarValor(pp.arv_com_arvores, '', 0) : '', b: br ? formatarValor(br.arv_com_arvores, '', 0) : ''
+    var dif = d.diferenca_preta_parda_branca;
+    var frase = I.t(dif >= 0 ? 'grp.sentence' : 'grp.sentenceCooler', {
+      d: formatarValor(Math.abs(dif), '', 2),
+      lo: formatarValor(ic[0], '', 2), hi: formatarValor(ic[1], '', 2)
     });
+    if (pp && br && isFinite(pp.arv_com_arvores) && isFinite(br.arv_com_arvores)) {
+      frase += I.t(pp.arv_com_arvores <= br.arv_com_arvores ? 'grp.treesFewer' : 'grp.treesMore', {
+        a: formatarValor(pp.arv_com_arvores, '', 0), b: formatarValor(br.arv_com_arvores, '', 0) });
+    } else frase += '.';
     var html = '<h2>' + I.t('grp.title') + '</h2><p class="ineq-frase">' + frase + '</p>' +
       '<table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('grp.colTemp') + '</th><th>' + I.t('grp.colTrees') + '</th></tr></thead><tbody>';
     gs.forEach(function (g) {

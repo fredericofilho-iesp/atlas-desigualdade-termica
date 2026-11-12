@@ -1,0 +1,52 @@
+{
+  "gerado_em": "2026-11-12T13:41:27+0000",
+  "escopo": "estado do RJ, todos os setores",
+  "grupos": [
+    {
+      "grupo": "moradores",
+      "pessoas": 15968762,
+      "lst_media": 40.15,
+      "arv_com_arvores": 62.2
+    },
+    {
+      "grupo": "branca",
+      "pessoas": 6704072,
+      "lst_media": 39.73,
+      "arv_com_arvores": 67.5
+    },
+    {
+      "grupo": "preta",
+      "pessoas": 2577344,
+      "lst_media": 40.49,
+      "arv_com_arvores": 57
+    },
+    {
+      "grupo": "parda",
+      "pessoas": 6647948,
+      "lst_media": 40.45,
+      "arv_com_arvores": 58.9
+    },
+    {
+      "grupo": "preta_parda",
+      "pessoas": 9209830,
+      "lst_media": 40.47,
+      "arv_com_arvores": 58.4
+    },
+    {
+      "grupo": "a60",
+      "pessoas": 3004914,
+      "lst_media": 40.17,
+      "arv_com_arvores": 66.8
+    },
+    {
+      "grupo": "a0_4",
+      "pessoas": 870608,
+      "lst_media": 40.07,
+      "arv_com_arvores": 58.8
+    }
+  ],
+  "diferenca_preta_parda_branca": 0.74,
+  "ic95": [0.71, 0.77],
+  "bootstrap": 500,
+  "diferenca_arvores_pp": -9.1
+}
