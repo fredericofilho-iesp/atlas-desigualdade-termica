@@ -454,6 +454,45 @@
     el.hidden = false;
   }
 
+  // ---------- painel exposição por grupo (cor ou raça, idade) ----------
+  var GRUPOS_PAINEL = ['moradores', 'branca', 'preta', 'parda', 'a60', 'a0_4'];
+
+  async function carregarPainelGrupos() {
+    if (!cfg.painelGrupos) return;
+    try {
+      var r = await fetch(cfg.painelGrupos, { cache: 'no-cache' });
+      if (!r.ok) return;
+      estado.painelGrp = await r.json();
+      desenharPainelGrupos();
+    } catch (e) { /* opcional */ }
+  }
+
+  function desenharPainelGrupos() {
+    var el = $('painel-grupos'), d = estado.painelGrp;
+    if (!el || !d || !d.grupos) return;
+    var por = {}; d.grupos.forEach(function (g) { por[g.grupo] = g; });
+    var gs = GRUPOS_PAINEL.filter(function (k) { return por[k]; }).map(function (k) { return por[k]; });
+    var vals = gs.map(function (g) { return g.lst_media; });
+    var base = Math.floor(Math.min.apply(null, vals) - 1), topo = Math.ceil(Math.max.apply(null, vals));
+    var ic = d.ic95 || [], pp = por.preta_parda, br = por.branca;
+    var frase = I.t('grp.sentence', {
+      d: formatarValor(d.diferenca_preta_parda_branca, '', 2),
+      lo: formatarValor(ic[0], '', 2), hi: formatarValor(ic[1], '', 2),
+      a: pp ? formatarValor(pp.arv_com_arvores, '', 0) : '', b: br ? formatarValor(br.arv_com_arvores, '', 0) : ''
+    });
+    var html = '<h2>' + I.t('grp.title') + '</h2><p class="ineq-frase">' + frase + '</p>' +
+      '<table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('grp.colTemp') + '</th><th>' + I.t('grp.colTrees') + '</th></tr></thead><tbody>';
+    gs.forEach(function (g) {
+      var w = Math.max(2, 100 * (g.lst_media - base) / (topo - base));
+      html += '<tr' + (g.grupo === 'moradores' ? ' class="total"' : '') + '><th scope="row">' + I.t('grp.' + g.grupo) + '</th>' +
+        '<td><span class="mini-barra" style="width:' + (0.48 * w).toFixed(0) + 'px"></span>' + formatarValor(g.lst_media, '°C', 1) + '</td>' +
+        '<td>' + formatarValor(g.arv_com_arvores, '%', 0) + '</td></tr>';
+    });
+    html += '</tbody></table><p class="status">' + I.t('grp.note') + '</p>';
+    el.innerHTML = html;
+    el.hidden = false;
+  }
+
   // Troca de idioma sem recarregar a página.
   document.addEventListener('atlas:idioma', function () {
     var map = estado.mapa;
@@ -467,6 +506,7 @@
     if (map && map.isStyleLoaded && map.isStyleLoaded()) rotulosNoIdioma(map, I.idioma);
     desenharPainel();
     desenharPainelArvores();
+    desenharPainelGrupos();
   });
 
   async function iniciar() {
@@ -494,6 +534,7 @@
     atualizarBadge();
     carregarPainel();
     carregarPainelArvores();
+    carregarPainelGrupos();
 
     map.on('load', async function () {
       rotulosNoIdioma(map, I.idioma);

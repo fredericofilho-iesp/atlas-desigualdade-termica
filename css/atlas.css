@@ -140,3 +140,11 @@ select {
 .barra-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
 
 .barras.verde .barra { background: #31a354; }
+
+/* Tabela de exposição por grupo */
+.tabela-grupos { width: 100%; border-collapse: collapse; font-size: .85rem; margin: 8px 0; }
+.tabela-grupos th, .tabela-grupos td { padding: 5px 4px; border-bottom: 1px solid #eef2f4; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tabela-grupos th[scope="row"] { text-align: left; font-weight: 400; color: var(--tinta-suave); white-space: normal; }
+.tabela-grupos thead th { font-weight: 600; color: var(--tinta-suave); font-size: .78rem; }
+.tabela-grupos tr.total th, .tabela-grupos tr.total td { font-weight: 600; color: var(--tinta); }
+.mini-barra { display: inline-block; height: 8px; background: #e34a33; border-radius: 3px; margin-right: 6px; vertical-align: middle; max-width: 48px; }

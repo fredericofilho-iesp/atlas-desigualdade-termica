@@ -50,7 +50,12 @@
       "casas_decimais": 1,
       "classificacao": "quantis",
       "ordem": 10,
-      "quebras": [38.39, 40.94, 42.54, 43.76],
+      "quebras": [
+        38.39,
+        40.94,
+        42.54,
+        43.76
+      ],
       "n_validos": 13774
     },
     {
@@ -77,7 +82,12 @@
       "casas_decimais": 1,
       "classificacao": "manual",
       "ordem": 11,
-      "quebras": [-4, -1.5, 1.5, 4],
+      "quebras": [
+        -4,
+        -1.5,
+        1.5,
+        4
+      ],
       "n_validos": 13774
     },
     {
@@ -108,7 +118,12 @@
       "casas_decimais": 0,
       "classificacao": "quantis",
       "ordem": 20,
-      "quebras": [1625.2, 2245.7, 3325.2, 6818.4],
+      "quebras": [
+        1625.2,
+        2245.7,
+        3325.2,
+        6818.4
+      ],
       "n_validos": 13368
     },
     {
@@ -139,7 +154,12 @@
       "casas_decimais": 0,
       "classificacao": "quantis",
       "ordem": 21,
-      "quebras": [1212, 1600, 2500, 5000],
+      "quebras": [
+        1212,
+        1600,
+        2500,
+        5000
+      ],
       "n_validos": 13368
     },
     {
@@ -167,7 +187,10 @@
       "eixos": {
         "y": {
           "indicador": "lst_verao",
-          "limites": [40.5, 43],
+          "limites": [
+            40.5,
+            43
+          ],
           "unidade": "°C",
           "rotulo": {
             "en": "Surface temperature",
@@ -177,7 +200,10 @@
         },
         "x": {
           "indicador": "renda_media_resp",
-          "limites": [2000, 3900],
+          "limites": [
+            2000,
+            3900
+          ],
           "unidade": "R$",
           "rotulo": {
             "en": "Household head income",
@@ -216,7 +242,12 @@
       "casas_decimais": 0,
       "classificacao": "manual",
       "ordem": 40,
-      "quebras": [20, 40, 60, 80],
+      "quebras": [
+        20,
+        40,
+        60,
+        80
+      ],
       "n_validos": 13235
     },
     {
@@ -247,7 +278,12 @@
       "casas_decimais": 0,
       "classificacao": "manual",
       "ordem": 41,
-      "quebras": [20, 40, 60, 80],
+      "quebras": [
+        20,
+        40,
+        60,
+        80
+      ],
       "n_validos": 13235
     },
     {
@@ -278,7 +314,12 @@
       "casas_decimais": 0,
       "classificacao": "quantis",
       "ordem": 50,
-      "quebras": [12.4, 18.2, 23.9, 29.6],
+      "quebras": [
+        12.4,
+        18.2,
+        23.9,
+        29.6
+      ],
       "n_validos": 13181
     },
     {
@@ -309,15 +350,20 @@
       "casas_decimais": 1,
       "classificacao": "quantis",
       "ordem": 51,
-      "quebras": [3.1, 4.1, 5.2, 6.7],
+      "quebras": [
+        3.1,
+        4.1,
+        5.2,
+        6.7
+      ],
       "n_validos": 13108
     },
     {
       "id": "pop_preta_parda",
       "rotulo": {
-        "en": "Black and brown population (preta and parda)",
+        "en": "Black population (preta and parda)",
         "pt": "População preta e parda",
-        "es": "Población negra y parda (preta y parda)"
+        "es": "Población negra (preta y parda)"
       },
       "unidade": "%",
       "paleta": "pessoas",
@@ -340,7 +386,12 @@
       "casas_decimais": 0,
       "classificacao": "manual",
       "ordem": 52,
-      "quebras": [20, 40, 60, 80],
+      "quebras": [
+        20,
+        40,
+        60,
+        80
+      ],
       "n_validos": 13226
     }
   ]

@@ -1,9 +1,9 @@
 {
   "id": "pop_preta_parda",
   "rotulo": {
-    "en": "Black and brown population (preta and parda)",
+    "en": "Black population (preta and parda)",
     "pt": "População preta e parda",
-    "es": "Población negra y parda (preta y parda)"
+    "es": "Población negra (preta y parda)"
   },
   "unidade": "%",
   "paleta": "pessoas",
@@ -27,5 +27,10 @@
   "n_classes": 5,
   "classificacao": "manual",
   "ordem": 52,
-  "quebras_fixas": [20, 40, 60, 80]
+  "quebras_fixas": [
+    20,
+    40,
+    60,
+    80
+  ]
 }

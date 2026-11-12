@@ -95,7 +95,8 @@ def cabeca(prefixo, titulo_chave, mapa=False):
 ESCALAS = {
     "rio": dict(chave="rio", centro=[-43.45, -22.92], zoom=10, zoomMinimo=8, espessuraContorno=1,
                 painelCalorRenda="../dados/processados/rio/calor_renda.json",
-                painelArvores="../dados/processados/rio/arborizacao_resumo.json"),
+                painelArvores="../dados/processados/rio/arborizacao_resumo.json",
+                painelGrupos="../dados/processados/rio/exposicao_grupos.json"),
     "estado-rj": dict(chave="rj", centro=[-42.65, -22.25], zoom=7.2, zoomMinimo=5, espessuraContorno=2.2),
     "brasil": dict(chave="br", centro=[-53.5, -14.5], zoom=3.4, zoomMinimo=2.5, espessuraContorno=1.6),
     "america-latina": dict(chave="la", centro=[-72, -14], zoom=2.4, zoomMinimo=1.5, espessuraContorno=1.6),
@@ -118,6 +119,7 @@ def pagina_mapa(slug, c):
     <div id="ficha" class="ficha" aria-live="polite">{tx("map.clickHint", "p", ' class="status"')}</div>
     <section id="painel-desigualdade" class="desigualdade" aria-live="polite" hidden></section>
     <section id="painel-arvores" class="desigualdade" aria-live="polite" hidden></section>
+    <section id="painel-grupos" class="desigualdade" aria-live="polite" hidden></section>
     {tx(k + ".notice", "div", ' class="aviso"')}
     {tx("map.sourcesTitle", "h2")}
     <p class="status">{tx(k + ".sources")} {tx("map.detailsIn")}</p>
