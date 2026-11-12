@@ -81,7 +81,10 @@
 
   function formatarValor(v, unidade, casas) {
     if (v === null || v === undefined || v === '' || Number.isNaN(Number(v))) return I.t('map.noData');
-    var n = Number(v).toLocaleString(I.locale, {
+    var x = Number(v);
+    var f = Math.pow(10, casas == null ? 2 : casas);
+    if (Math.round(x * f) === 0) x = 0;  // evita "-0,0"
+    var n = x.toLocaleString(I.locale, {
       minimumFractionDigits: casas == null ? 0 : casas,
       maximumFractionDigits: casas == null ? 2 : casas
     });
