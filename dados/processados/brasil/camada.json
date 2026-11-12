@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "brasil",
-  "gerado_em": "2026-11-12T20:06:37+0000",
+  "gerado_em": "2026-11-12T20:48:55+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -54,8 +54,8 @@
       "casas_decimais": 1,
       "classificacao": "quantis",
       "ordem": 10,
-      "quebras": [32.56, 34.62, 35.9, 37.2],
-      "n_validos": 170
+      "quebras": [33.59, 36.4, 38.85, 40.88],
+      "n_validos": 5570
     },
     {
       "id": "lst_dif_uf",
@@ -86,7 +86,7 @@
       "classificacao": "manual",
       "ordem": 11,
       "quebras": [-3, -1, 1, 3],
-      "n_validos": 170
+      "n_validos": 5570
     },
     {
       "id": "gap_renda",
@@ -117,7 +117,7 @@
       "classificacao": "manual",
       "ordem": 12,
       "quebras": [-2, -0.5, 0.5, 2],
-      "n_validos": 148
+      "n_validos": 2819
     },
     {
       "id": "gap_cor",
@@ -148,7 +148,7 @@
       "classificacao": "manual",
       "ordem": 13,
       "quebras": [-0.5, -0.15, 0.15, 0.5],
-      "n_validos": 168
+      "n_validos": 3509
     },
     {
       "id": "renda_media_resp",

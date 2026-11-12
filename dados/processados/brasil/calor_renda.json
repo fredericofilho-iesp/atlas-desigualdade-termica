@@ -1,52 +1,52 @@
 {
-  "gerado_em": "2026-11-12T20:06:22+0000",
+  "gerado_em": "2026-11-12T20:48:20+0000",
   "escopo": "Brasil, todos os setores",
-  "setores_usados": 48011,
-  "domicilios_usados": 7549650,
+  "setores_usados": 448730,
+  "domicilios_usados": 72323049,
   "quintos": [
     {
       "quinto": 1,
-      "setores": 10206,
-      "domicilios": 1509953,
-      "renda_min": 319,
-      "renda_max": 1576,
-      "lst_media": 37.8
+      "setores": 111048,
+      "domicilios": 14464592,
+      "renda_min": 80,
+      "renda_max": 1446,
+      "lst_media": 38.13
     },
     {
       "quinto": 2,
-      "setores": 9402,
-      "domicilios": 1509767,
-      "renda_min": 1576,
-      "renda_max": 1917,
-      "lst_media": 37.44
+      "setores": 86555,
+      "domicilios": 14464481,
+      "renda_min": 1446,
+      "renda_max": 1938,
+      "lst_media": 37.6
     },
     {
       "quinto": 3,
-      "setores": 9448,
-      "domicilios": 1510024,
-      "renda_min": 1917,
-      "renda_max": 2436,
+      "setores": 83615,
+      "domicilios": 14464772,
+      "renda_min": 1938,
+      "renda_max": 2505,
       "lst_media": 37.67
     },
     {
       "quinto": 4,
-      "setores": 9676,
-      "domicilios": 1509999,
-      "renda_min": 2436,
-      "renda_max": 3759,
-      "lst_media": 37.96
+      "setores": 83435,
+      "domicilios": 14464586,
+      "renda_min": 2505,
+      "renda_max": 3610,
+      "lst_media": 37.89
     },
     {
       "quinto": 5,
-      "setores": 9279,
-      "domicilios": 1509907,
-      "renda_min": 3759,
+      "setores": 84077,
+      "domicilios": 14464618,
+      "renda_min": 3610,
       "renda_max": 177068,
-      "lst_media": 36.68
+      "lst_media": 37.97
     }
   ],
-  "diferenca_q1_q5": 1.12,
-  "ic95": [1.01, 1.23],
+  "diferenca_q1_q5": 0.16,
+  "ic95": [0.12, 0.2],
   "bootstrap": 500,
-  "spearman_setores": -0.064
+  "spearman_setores": 0.002
 }

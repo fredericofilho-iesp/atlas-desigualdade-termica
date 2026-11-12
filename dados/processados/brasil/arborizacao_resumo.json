@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T20:06:23+0000",
+  "gerado_em": "2026-11-12T20:48:21+0000",
   "escopo": "Brasil, todos os setores",
   "cidade_com_arvores": 66.2,
   "por_quinto_de_renda": [
@@ -37,38 +37,38 @@
   "por_quinto_de_arborizacao": [
     {
       "quinto": 1,
-      "moradores": 3730407,
+      "moradores": 34677084,
       "arv_5mais_min": 0,
-      "arv_5mais_max": 0,
-      "lst_media": 37.96
+      "arv_5mais_max": 0.2,
+      "lst_media": 37.31
     },
     {
       "quinto": 2,
-      "moradores": 3730574,
-      "arv_5mais_min": 0,
-      "arv_5mais_max": 7,
-      "lst_media": 38.24
+      "moradores": 34676296,
+      "arv_5mais_min": 0.1,
+      "arv_5mais_max": 14,
+      "lst_media": 37.38
     },
     {
       "quinto": 3,
-      "moradores": 3730247,
-      "arv_5mais_min": 7,
-      "arv_5mais_max": 24.8,
-      "lst_media": 37.74
+      "moradores": 34677064,
+      "arv_5mais_min": 13.9,
+      "arv_5mais_max": 33.3,
+      "lst_media": 38.04
     },
     {
       "quinto": 4,
-      "moradores": 3730394,
-      "arv_5mais_min": 24.7,
-      "arv_5mais_max": 57.4,
-      "lst_media": 37.61
+      "moradores": 34676398,
+      "arv_5mais_min": 33.3,
+      "arv_5mais_max": 62.7,
+      "lst_media": 38.67
     },
     {
       "quinto": 5,
-      "moradores": 3730107,
-      "arv_5mais_min": 57.4,
+      "moradores": 34676738,
+      "arv_5mais_min": 62.7,
       "arv_5mais_max": 100,
-      "lst_media": 37.08
+      "lst_media": 38.82
     }
   ]
 }
