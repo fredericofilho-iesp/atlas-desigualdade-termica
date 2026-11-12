@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T20:48:42+0000",
+  "gerado_em": "2026-11-12T20:58:28+0000",
   "escopo": "Brasil, todos os setores",
   "grupos": [
     {
@@ -48,5 +48,8 @@
   "diferenca_preta_parda_branca": 0.46,
   "ic95": [0.45, 0.47],
   "bootstrap": 500,
-  "diferenca_arvores_pp": -8.2
+  "diferenca_arvores_pp": -8.2,
+  "dentro_uf": {
+    "diferenca_preta_parda_branca": -0.05
+  }
 }

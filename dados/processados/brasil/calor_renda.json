@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T20:48:20+0000",
+  "gerado_em": "2026-11-12T20:58:08+0000",
   "escopo": "Brasil, todos os setores",
   "setores_usados": 448730,
   "domicilios_usados": 72323049,
@@ -48,5 +48,9 @@
   "diferenca_q1_q5": 0.16,
   "ic95": [0.12, 0.2],
   "bootstrap": 500,
-  "spearman_setores": 0.002
+  "spearman_setores": 0.002,
+  "dentro_uf": {
+    "quintos_desvio": [-0.51, -0.25, 0.07, 0.37, 0.31],
+    "diferenca_q1_q5": -0.82
+  }
 }

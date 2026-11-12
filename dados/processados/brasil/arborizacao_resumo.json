@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T20:48:21+0000",
+  "gerado_em": "2026-11-12T20:58:09+0000",
   "escopo": "Brasil, todos os setores",
   "cidade_com_arvores": 66.2,
   "por_quinto_de_renda": [
@@ -70,5 +70,9 @@
       "arv_5mais_max": 100,
       "lst_media": 38.82
     }
-  ]
+  ],
+  "dentro_uf": {
+    "quintos_desvio": [-0.73, -0.39, -0.03, 0.5, 0.65],
+    "diferenca_menos_mais": -1.39
+  }
 }
