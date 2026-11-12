@@ -19,9 +19,9 @@
     "es": "2022"
   },
   "metodo": {
-    "en": "Residents self-declared preta or parda as a share of residents with declared color or race (IBGE categories)",
-    "pt": "Moradores autodeclarados pretos ou pardos sobre os moradores com cor ou raça declarada (categorias do IBGE)",
-    "es": "Residentes autodeclarados pretos o pardos sobre los residentes con color o raza declarada (categorías del IBGE)"
+    "en": "Residents self-declared preta or parda (IBGE categories) as a share of all residents ((V01318 + V01320) / V01006)",
+    "pt": "Moradores autodeclarados pretos ou pardos sobre o total de moradores ((V01318 + V01320) / V01006)",
+    "es": "Residentes autodeclarados pretos o pardos (categorías del IBGE) sobre el total de residentes ((V01318 + V01320) / V01006)"
   },
   "casas_decimais": 0,
   "n_classes": 5,
