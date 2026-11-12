@@ -87,7 +87,7 @@
       'grp.a60': 'Aged 60+', 'grp.a0_4': 'Children 0–4',
       'grp.note': 'Values of the tract where the average person of each group lives (weighted by the group’s population per tract). 2022 Census self-declared color or race. Area-level association.',
       'ineq.q1': 'Poorest 20%', 'ineq.q5': 'Richest 20%', 'ineq.qn': 'Fifth {n}',
-      'ineq.note': 'Mean summer surface temperature by fifth of household-head income, weighted by households. Bars start at {base} °C. Area-level association, not individual exposure; see Methodology.',
+      'ineq.note': 'Mean surface temperature (period as in the map’s temperature indicator) by fifth of household-head income, weighted by households. Bars start at {base} °C. Area-level association, not individual exposure; see Methodology.',
 
       'rio.title': 'City of Rio de Janeiro',
       'rio.desc': '2022 Census tracts (IBGE).',
@@ -196,7 +196,7 @@
       'grp.a60': '60 anos ou mais', 'grp.a0_4': 'Crianças de 0 a 4',
       'grp.note': 'Valores do setor onde vive a pessoa média de cada grupo (ponderados pela população do grupo em cada setor). Cor ou raça autodeclarada, Censo 2022. Associação entre áreas.',
       'ineq.q1': '20% mais pobres', 'ineq.q5': '20% mais ricos', 'ineq.qn': '{n}º quinto',
-      'ineq.note': 'Temperatura média da superfície no verão por quinto da renda do responsável, ponderada por domicílios. As barras começam em {base} °C. Associação entre áreas, não exposição individual; veja a Metodologia.',
+      'ineq.note': 'Temperatura média da superfície (período do indicador de temperatura do mapa) por quinto da renda do responsável, ponderada por domicílios. As barras começam em {base} °C. Associação entre áreas, não exposição individual; veja a Metodologia.',
 
       'rio.title': 'Município do Rio de Janeiro',
       'rio.desc': 'Setores censitários do Censo 2022 (IBGE).',
@@ -305,7 +305,7 @@
       'grp.a60': '60 años o más', 'grp.a0_4': 'Niños de 0 a 4',
       'grp.note': 'Valores del sector donde vive la persona promedio de cada grupo (ponderados por la población del grupo en cada sector). Color o raza autodeclarada, Censo 2022. Asociación entre áreas.',
       'ineq.q1': '20% más pobre', 'ineq.q5': '20% más rico', 'ineq.qn': 'Quintil {n}',
-      'ineq.note': 'Temperatura media de superficie en verano por quintil del ingreso del responsable, ponderada por hogares. Las barras empiezan en {base} °C. Asociación entre áreas, no exposición individual; vea la Metodología.',
+      'ineq.note': 'Temperatura media de superficie (período del indicador de temperatura del mapa) por quintil del ingreso del responsable, ponderada por hogares. Las barras empiezan en {base} °C. Asociación entre áreas, no exposición individual; vea la Metodología.',
 
       'rio.title': 'Municipio de Río de Janeiro',
       'rio.desc': 'Sectores censales del Censo 2022 (IBGE).',
