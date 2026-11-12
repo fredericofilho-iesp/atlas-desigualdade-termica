@@ -1,0 +1,17 @@
+{
+  "versao_contrato": 1,
+  "escala": "rio",
+  "gerado_em": "2026-11-11T23:31:44+0000",
+  "unidade": "Setor censitário",
+  "unidade_plural": "Setores censitários",
+  "fonte_geometria": "Malha de setores censitários IBGE 2022 (definitiva)",
+  "fonte_curta": "IBGE 2022",
+  "quantidade_unidades": 13782,
+  "geometria": {
+    "tipo": "geojson",
+    "url": "unidades.geojson",
+    "id": "CD_SETOR",
+    "rotulo": "CD_SETOR"
+  },
+  "indicadores": []
+}

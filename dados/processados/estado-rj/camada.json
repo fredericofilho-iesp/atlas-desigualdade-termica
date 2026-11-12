@@ -1,0 +1,17 @@
+{
+  "versao_contrato": 1,
+  "escala": "estado-rj",
+  "gerado_em": "2026-11-11T23:31:54+0000",
+  "unidade": "Município",
+  "unidade_plural": "Municípios",
+  "fonte_geometria": "Malha municipal IBGE 2022 (via geobr)",
+  "fonte_curta": "IBGE 2022",
+  "quantidade_unidades": 92,
+  "geometria": {
+    "tipo": "geojson",
+    "url": "unidades.geojson",
+    "id": "code_muni",
+    "rotulo": "name_muni"
+  },
+  "indicadores": []
+}
