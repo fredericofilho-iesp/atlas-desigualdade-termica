@@ -36,7 +36,7 @@ NAV = [
     ("", "nav.home", False),
     ("rio/", "nav.rio", False),
     ("estado-rj/", "nav.rj", False),
-    ("brasil/", "nav.br", True),
+    ("brasil/", "nav.br", False),
     ("america-latina/", "nav.la", True),
     ("metodologia/", "nav.method", False),
 ]
@@ -101,7 +101,10 @@ ESCALAS = {
                       painelCalorRenda="../dados/processados/estado-rj/calor_renda.json",
                       painelArvores="../dados/processados/estado-rj/arborizacao_resumo.json",
                       painelGrupos="../dados/processados/estado-rj/exposicao_grupos.json"),
-    "brasil": dict(chave="br", centro=[-53.5, -14.5], zoom=3.4, zoomMinimo=2.5, espessuraContorno=1.6),
+    "brasil": dict(chave="br", centro=[-53.5, -14.5], zoom=3.6, zoomMinimo=2.5, espessuraContorno=0.4,
+                   painelCalorRenda="../dados/processados/brasil/calor_renda.json",
+                   painelArvores="../dados/processados/brasil/arborizacao_resumo.json",
+                   painelGrupos="../dados/processados/brasil/exposicao_grupos.json"),
     "america-latina": dict(chave="la", centro=[-72, -14], zoom=2.4, zoomMinimo=1.5, espessuraContorno=1.6),
 }
 
@@ -145,7 +148,7 @@ def pagina_mapa(slug, c):
 CARTOES = [
     ("rio/", "nav.rio", "home.rio.d", "status.building", ""),
     ("estado-rj/", "nav.rj", "home.rj.d", "status.building", ""),
-    ("brasil/", "nav.br", "home.br.d", "status.planned", " planejado"),
+    ("brasil/", "nav.br", "home.br.d", "status.building", ""),
     ("america-latina/", "nav.la", "home.la.d", "status.planned", " planejado"),
 ]
 
