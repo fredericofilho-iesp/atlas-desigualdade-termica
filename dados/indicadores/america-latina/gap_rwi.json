@@ -1,9 +1,9 @@
 {
   "id": "gap_rwi",
   "rotulo": {
-    "en": "Heat gap: poorest − richest fifth (relative wealth, within unit)",
-    "pt": "Desigualdade térmica: 20% mais pobres − 20% mais ricos (riqueza relativa, na unidade)",
-    "es": "Brecha térmica: 20% más pobre − 20% más rico (riqueza relativa, en la unidad)"
+    "en": "Heat gap in urban areas: poorest − richest fifth (relative wealth)",
+    "pt": "Desigualdade térmica nas áreas urbanas: 20% mais pobres − 20% mais ricos (riqueza relativa)",
+    "es": "Brecha térmica en áreas urbanas: 20% más pobre − 20% más rico (riqueza relativa)"
   },
   "unidade": "°C",
   "paleta": "divergente",
@@ -19,9 +19,9 @@
     "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
   },
   "metodo": {
-    "en": "Population-weighted surface temperature of the poorest minus the richest fifth of ~2.4 km wealth blocks (Meta RWI) in the unit; only units with at least 30 blocks. Red: the poorest live in hotter places; blue: in cooler places",
-    "pt": "Temperatura da superfície, ponderada pela população, do quinto mais pobre menos a do quinto mais rico dos blocos de riqueza de ~2,4 km (Meta RWI) da unidade; só unidades com ao menos 30 blocos. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes",
-    "es": "Temperatura de superficie, ponderada por población, del quintil más pobre menos la del más rico de los bloques de riqueza de ~2,4 km (Meta RWI) de la unidad; solo unidades con al menos 30 bloques. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos"
+    "en": "Urban cells only (at least 300 inhabitants per km²). Population-weighted surface temperature of the poorest minus the richest fifth of ~2.4 km wealth blocks (Meta RWI) in the unit; only units with at least 30 blocks. Red: the poorest live in hotter places; blue: in cooler places",
+    "pt": "Só células urbanas (ao menos 300 habitantes por km²). Temperatura da superfície, ponderada pela população, do quinto mais pobre menos a do quinto mais rico dos blocos de riqueza de ~2,4 km (Meta RWI) da unidade; só unidades com ao menos 30 blocos. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes",
+    "es": "Solo celdas urbanas (al menos 300 habitantes por km²). Temperatura de superficie, ponderada por población, del quintil más pobre menos la del más rico de los bloques de riqueza de ~2,4 km (Meta RWI) de la unidad; solo unidades con al menos 30 bloques. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos"
   },
   "casas_decimais": 1,
   "n_classes": 5,

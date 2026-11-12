@@ -1,0 +1,31 @@
+{
+  "id": "gap_rwi_total",
+  "rotulo": {
+    "en": "Heat gap, all areas (city and countryside): poorest − richest fifth",
+    "pt": "Desigualdade térmica, todas as áreas (cidade e campo): 20% mais pobres − 20% mais ricos",
+    "es": "Brecha térmica, todas las áreas (ciudad y campo): 20% más pobre − 20% más rico"
+  },
+  "unidade": "°C",
+  "paleta": "divergente",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)"
+  },
+  "periodo": {
+    "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+    "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+    "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+  },
+  "metodo": {
+    "en": "Same as the urban heat gap, but with all populated cells. At 1 km it mostly contrasts richer, hotter town centres with poorer, greener rural areas",
+    "pt": "Igual à desigualdade nas áreas urbanas, mas com todas as células populadas. Com 1 km, contrasta sobretudo os centros urbanos, mais ricos e quentes, com as áreas rurais, mais pobres e verdes",
+    "es": "Igual que la brecha en áreas urbanas, pero con todas las celdas pobladas. Con 1 km, contrasta sobre todo los centros urbanos, más ricos y cálidos, con las áreas rurales, más pobres y verdes"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 13,
+  "quebras_fixas": [-2, -0.5, 0.5, 2]
+}

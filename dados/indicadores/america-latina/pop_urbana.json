@@ -1,0 +1,31 @@
+{
+  "id": "pop_urbana",
+  "rotulo": {
+    "en": "Population in urban areas",
+    "pt": "População em áreas urbanas",
+    "es": "Población en áreas urbanas"
+  },
+  "unidade": "%",
+  "paleta": "pessoas",
+  "dimensao": "contexto",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries"
+  },
+  "periodo": {
+    "en": "2020",
+    "pt": "2020",
+    "es": "2020"
+  },
+  "metodo": {
+    "en": "Share of population in ~1 km cells with at least 300 inhabitants per km² (GHS-POP 2020)",
+    "pt": "Proporção da população em células de ~1 km com ao menos 300 habitantes por km² (GHS-POP 2020)",
+    "es": "Proporción de la población en celdas de ~1 km con al menos 300 habitantes por km² (GHS-POP 2020)"
+  },
+  "casas_decimais": 0,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 60,
+  "quebras_fixas": [40, 60, 75, 90]
+}

@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T21:25:18+0000",
+  "gerado_em": "2026-11-12T21:33:24+0000",
   "paises_com_rwi": 2,
   "paises_mais_pobres_mais_quentes": 0,
   "paises": [
@@ -13,9 +13,11 @@
       "pop": 5104478,
       "lst_pop": 35.79,
       "mes_quente": 3,
-      "blocos_rwi": 4590,
-      "gap_rwi": -5.56,
-      "ic95": [-6.3, -4.61]
+      "pop_urbana": 81,
+      "blocos_rwi": 1090,
+      "gap_rwi": -4.37,
+      "ic95": [-5.14, -3.38],
+      "gap_rwi_total": -5.56
     },
     {
       "iso3": "PRY",
@@ -27,9 +29,11 @@
       "pop": 6611028,
       "lst_pop": 37.94,
       "mes_quente": 2,
-      "blocos_rwi": 10956,
-      "gap_rwi": -2.87,
-      "ic95": [-3.24, -2.46]
+      "pop_urbana": 68.2,
+      "blocos_rwi": 1359,
+      "gap_rwi": -2.77,
+      "ic95": [-3.14, -2.18],
+      "gap_rwi_total": -2.87
     },
     {
       "iso3": "URY",
@@ -41,9 +45,11 @@
       "pop": 3395104,
       "lst_pop": 35.49,
       "mes_quente": 1,
+      "pop_urbana": 91.5,
       "blocos_rwi": 0,
       "gap_rwi": null,
-      "ic95": [null, null]
+      "ic95": [null, null],
+      "gap_rwi_total": null
     }
   ]
 }
