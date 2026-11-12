@@ -98,7 +98,7 @@
 
       'rj.title': 'Rio de Janeiro State',
       'rj.desc': 'The state’s 92 municipalities.',
-      'rj.notice': '<strong>How to read:</strong> municipal values are built from all census tracts in the state and weighted by people, so temperature is measured <em>where people live</em>, not averaged over forests and farmland. The two “heat gap” indicators show inequality <em>inside</em> each municipality. Panels below summarise all tracts in the state.',
+      'rj.notice': '<strong>How to read:</strong> municipal values are built from all census tracts in the state and weighted by people, so temperature is measured <em>where people live</em>, not averaged over forests and farmland. The two “heat gap” indicators show inequality <em>inside</em> each municipality: red means the poorer group (or Black and brown residents) lives in hotter places, blue in cooler ones. In many smaller municipalities the richer households live in the denser, hotter town centre, while poorer ones live in rural, greener areas. Panels below summarise all tracts in the state.',
       'rj.sources': 'Landsat 8–9 (USGS, via Microsoft Planetary Computer); IBGE, 2022 Census (tract boundaries, income, color or race, age, street trees); municipal boundaries via geobr (Ipea).',
       'rj.noLayer': 'Municipal layer not processed yet. Run the “Prepare atlas layers” workflow on GitHub Actions.',
       'rj.planned': ['Extreme heat days (ERA5-Land)'],
@@ -207,7 +207,7 @@
 
       'rj.title': 'Estado do Rio de Janeiro',
       'rj.desc': 'Os 92 municípios fluminenses.',
-      'rj.notice': '<strong>Como ler:</strong> os valores municipais são calculados a partir de todos os setores censitários do estado e ponderados pelas pessoas; assim, a temperatura é medida <em>onde as pessoas moram</em>, não na média de florestas e áreas rurais. Os dois indicadores de “desigualdade térmica” mostram a desigualdade <em>dentro</em> de cada município. Os painéis abaixo resumem todos os setores do estado.',
+      'rj.notice': '<strong>Como ler:</strong> os valores municipais são calculados a partir de todos os setores censitários do estado e ponderados pelas pessoas; assim, a temperatura é medida <em>onde as pessoas moram</em>, não na média de florestas e áreas rurais. Os dois indicadores de “desigualdade térmica” mostram a desigualdade <em>dentro</em> de cada município: vermelho indica que o grupo mais pobre (ou os moradores pretos e pardos) mora em lugares mais quentes; azul, em lugares menos quentes. Em muitos municípios menores, os domicílios mais ricos ficam no centro urbano, mais denso e quente, e os mais pobres em áreas rurais e mais verdes. Os painéis abaixo resumem todos os setores do estado.',
       'rj.sources': 'Landsat 8–9 (USGS, via Microsoft Planetary Computer); IBGE, Censo 2022 (malha de setores, renda, cor ou raça, idade, arborização do entorno); malha municipal via geobr (Ipea).',
       'rj.noLayer': 'Malha municipal ainda não processada. Rode o workflow “Preparar camadas do atlas” no GitHub Actions.',
       'rj.planned': ['Dias de calor extremo (ERA5-Land)'],
@@ -316,7 +316,7 @@
 
       'rj.title': 'Estado de Río de Janeiro',
       'rj.desc': 'Los 92 municipios del estado.',
-      'rj.notice': '<strong>Cómo leer:</strong> los valores municipales se calculan a partir de todos los sectores censales del estado y se ponderan por personas; así, la temperatura se mide <em>donde vive la gente</em>, no como promedio de bosques y zonas rurales. Los dos indicadores de “brecha térmica” muestran la desigualdad <em>dentro</em> de cada municipio. Los paneles de abajo resumen todos los sectores del estado.',
+      'rj.notice': '<strong>Cómo leer:</strong> los valores municipales se calculan a partir de todos los sectores censales del estado y se ponderan por personas; así, la temperatura se mide <em>donde vive la gente</em>, no como promedio de bosques y zonas rurales. Los dos indicadores de “brecha térmica” muestran la desigualdad <em>dentro</em> de cada municipio: rojo indica que el grupo más pobre (o los residentes negros y pardos) vive en lugares más cálidos; azul, en lugares menos cálidos. En muchos municipios pequeños, los hogares más ricos están en el centro urbano, más denso y cálido, y los más pobres en zonas rurales y más verdes. Los paneles de abajo resumen todos los sectores del estado.',
       'rj.sources': 'Landsat 8–9 (USGS, vía Microsoft Planetary Computer); IBGE, Censo 2022 (sectores censales, ingreso, color o raza, edad, arbolado del entorno); límites municipales vía geobr (Ipea).',
       'rj.noLayer': 'Capa municipal aún no procesada. Ejecute el workflow “Preparar capas del atlas” en GitHub Actions.',
       'rj.planned': ['Días de calor extremo (ERA5-Land)'],
