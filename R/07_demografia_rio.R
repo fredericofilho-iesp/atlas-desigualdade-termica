@@ -60,22 +60,29 @@ n <- data.frame(
   parda     = pega(cor, "V01320"),
   indigena  = pega(cor, "V01321")
 )
+# Sigilo: o IBGE suprime ("X") contagens pequenas. Mostrar quanto isso pesa.
+for (v in c("a0_4", "a60_69", "a70", "branca", "preta", "amarela", "parda", "indigena"))
+  message(sprintf("  suprimidos (%s): %d setores", v, sum(is.finite(n$moradores) & !is.finite(n[[v]]))))
+# Amarelos e indígenas são grupos muito pequenos no Rio (~0,2% juntos) e são
+# os mais suprimidos; nesses casos contamos zero para não perder o setor.
+n$amarela[!is.finite(n$amarela)] <- 0
+n$indigena[!is.finite(n$indigena)] <- 0
 n$a60 <- n$a60_69 + n$a70
 n$preta_parda <- n$preta + n$parda
-total_cor <- n$branca + n$preta + n$amarela + n$parda + n$indigena
 ok <- is.finite(n$moradores) & n$moradores >= MIN_MORADORES
-okc <- ok & is.finite(total_cor) & total_cor > 0
+okc <- ok & is.finite(n$preta_parda)   # denominador: total de moradores (V01006)
 
 saida <- data.frame(
   CD_SETOR = setores,
   pop_60mais = ifelse(ok, round(100 * n$a60 / n$moradores, 1), NA_real_),
   pop_0a4 = ifelse(ok, round(100 * n$a0_4 / n$moradores, 1), NA_real_),
-  pop_preta_parda = ifelse(okc, round(100 * n$preta_parda / total_cor, 1), NA_real_)
+  pop_preta_parda = ifelse(okc, round(100 * n$preta_parda / n$moradores, 1), NA_real_)
 )
 tot <- function(v) sum(n[[v]], na.rm = TRUE)
 message("Moradores: ", tot("moradores"), " | 60+: ", round(100 * tot("a60") / tot("moradores"), 1),
         "% | 0–4: ", round(100 * tot("a0_4") / tot("moradores"), 1),
-        "% | pretos e pardos: ", round(100 * tot("preta_parda") / sum(total_cor, na.rm = TRUE), 1), "%")
+        "% | pretos e pardos: ", round(100 * sum(n$preta_parda[okc]) / sum(n$moradores[okc]), 1),
+        "% | brancos: ", round(100 * sum(n$branca[okc], na.rm = TRUE) / sum(n$moradores[okc]), 1), "%")
 message("Setores com valor: idade ", sum(ok), " | cor ou raça ", sum(okc), " de ", length(setores))
 
 # ---- exposição por grupo ----
@@ -134,9 +141,9 @@ salvar_indicadores(saida, escala = "rio", id = "CD_SETOR", indicadores = list(
                es = "Población negra y parda (preta y parda)"),
     unidade = "%", paleta = "pessoas", dimensao = "sensibilidade", casas_decimais = 0, ordem = 52,
     quebras = c(20, 40, 60, 80), fonte = fonte, periodo = periodo,
-    metodo = c(en = "Residents self-declared preta or parda as a share of residents with declared color or race (IBGE categories)",
-               pt = "Moradores autodeclarados pretos ou pardos sobre os moradores com cor ou raça declarada (categorias do IBGE)",
-               es = "Residentes autodeclarados pretos o pardos sobre los residentes con color o raza declarada (categorías del IBGE)"))
+    metodo = c(en = "Residents self-declared preta or parda (IBGE categories) as a share of all residents ((V01318 + V01320) / V01006)",
+               pt = "Moradores autodeclarados pretos ou pardos sobre o total de moradores ((V01318 + V01320) / V01006)",
+               es = "Residentes autodeclarados pretos o pardos (categorías del IBGE) sobre el total de residentes ((V01318 + V01320) / V01006)"))
 ))
 
 source("R/10_publicar_rio.R")
