@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "rio",
-  "gerado_em": "2026-11-11T23:31:44+0000",
+  "gerado_em": "2026-11-12T09:14:39+0000",
   "unidade": {
     "en": "Census tract",
     "pt": "Setor censitário",
@@ -25,5 +25,60 @@
     "id": "CD_SETOR",
     "rotulo": "CD_SETOR"
   },
-  "indicadores": []
+  "indicadores": [
+    {
+      "id": "lst_verao",
+      "rotulo": {
+        "en": "Summer land surface temperature",
+        "pt": "Temperatura da superfície no verão",
+        "es": "Temperatura de superficie en verano"
+      },
+      "unidade": "°C",
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": "Landsat 8–9 C2 L2 (USGS) · Microsoft Planetary Computer",
+      "periodo": {
+        "en": "Dec–Mar, summers 2022/23 to 2024/25 (~10 a.m., clear-sky days)",
+        "pt": "dez.–mar., verões 2022/23 a 2024/25 (~10h, dias sem nuvens)",
+        "es": "dic.–mar., veranos 2022/23 a 2024/25 (~10 h, días despejados)"
+      },
+      "metodo": {
+        "en": "Per-pixel median of clear-sky Landsat observations; area-weighted median per tract",
+        "pt": "Mediana por pixel das observações Landsat sem nuvens; mediana ponderada pela área em cada setor",
+        "es": "Mediana por píxel de las observaciones Landsat despejadas; mediana ponderada por área en cada sector"
+      },
+      "casas_decimais": 1,
+      "classificacao": "quantis",
+      "ordem": 10,
+      "quebras": [38.39, 40.94, 42.54, 43.76],
+      "n_validos": 13774
+    },
+    {
+      "id": "lst_dif_cidade",
+      "rotulo": {
+        "en": "Surface temperature: difference from city median",
+        "pt": "Temperatura da superfície: diferença para a mediana da cidade",
+        "es": "Temperatura de superficie: diferencia respecto a la mediana de la ciudad"
+      },
+      "unidade": "°C",
+      "paleta": "divergente",
+      "dimensao": "exposicao",
+      "fonte": "Landsat 8–9 C2 L2 (USGS) · Microsoft Planetary Computer",
+      "periodo": {
+        "en": "Dec–Mar, summers 2022/23 to 2024/25 (~10 a.m., clear-sky days)",
+        "pt": "dez.–mar., verões 2022/23 a 2024/25 (~10h, dias sem nuvens)",
+        "es": "dic.–mar., veranos 2022/23 a 2024/25 (~10 h, días despejados)"
+      },
+      "metodo": {
+        "en": "Tract value minus the median of all tracts (41.8 °C)",
+        "pt": "Valor do setor menos a mediana de todos os setores (41,8 °C)",
+        "es": "Valor del sector menos la mediana de todos los sectores (41,8 °C)"
+      },
+      "casas_decimais": 1,
+      "classificacao": "manual",
+      "ordem": 11,
+      "quebras": [-4, -1.5, 1.5, 4],
+      "n_validos": 13774
+    }
+  ]
 }
