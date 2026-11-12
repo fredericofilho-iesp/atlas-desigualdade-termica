@@ -1,0 +1,25 @@
+{
+  "id": "pop_60mais",
+  "rotulo": {
+    "en": "Population aged 60+",
+    "pt": "População com 60 anos ou mais",
+    "es": "Población de 60 años o más"
+  },
+  "unidade": "%",
+  "paleta": "pessoas",
+  "dimensao": "sensibilidade",
+  "fonte": {
+    "en": "IBGE, 2022 Census (tract aggregates)",
+    "pt": "IBGE, Censo 2022 (agregados por setor)",
+    "es": "IBGE, Censo 2022 (agregados por sector)"
+  },
+  "periodo": {
+    "en": "2022",
+    "pt": "2022",
+    "es": "2022"
+  },
+  "casas_decimais": 0,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 50
+}

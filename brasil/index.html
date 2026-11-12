@@ -25,13 +25,13 @@
     </div>
   </div>
   <nav data-i18n-attr="aria-label:nav.label" aria-label="Atlas scales"><ul class="escalas">
-    <li><a href="../" data-nav="../"><span data-i18n="nav.home">Home</span></a></li><li><a href="../rio/" data-nav="../rio/"><span data-i18n="nav.rio">Rio de Janeiro (city)</span></a></li><li><a href="../estado-rj/" data-nav="../estado-rj/"><span data-i18n="nav.rj">Rio de Janeiro State</span></a></li><li><a href="../brasil/" data-nav="../brasil/" aria-current="page"><span data-i18n="nav.br">Brazil</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../america-latina/" data-nav="../america-latina/"><span data-i18n="nav.la">Latin America</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../metodologia/" data-nav="../metodologia/"><span data-i18n="nav.method">Methodology</span></a></li>
+    <li><a href="../" data-nav="../"><span data-i18n="nav.home">Home</span></a></li><li><a href="../rio/" data-nav="../rio/"><span data-i18n="nav.rio">Rio de Janeiro (city)</span></a></li><li><a href="../estado-rj/" data-nav="../estado-rj/"><span data-i18n="nav.rj">Rio de Janeiro State</span></a></li><li><a href="../brasil/" data-nav="../brasil/" aria-current="page"><span data-i18n="nav.br">Brazil</span></a></li><li><a href="../america-latina/" data-nav="../america-latina/"><span data-i18n="nav.la">Latin America</span> <span class="em-breve" data-i18n="nav.soon">coming soon</span></a></li><li><a href="../metodologia/" data-nav="../metodologia/"><span data-i18n="nav.method">Methodology</span></a></li>
   </ul></nav>
 </header>
 <main class="layout">
   <aside class="painel">
     <h1 data-i18n="br.title">Brazil</h1>
-    <p data-i18n="br.desc" class="status">Brazilian municipalities.</p>
+    <p data-i18n="br.desc" class="status">Brazil’s 5,570 municipalities.</p>
     <label for="indicador" data-i18n="map.indicator">Indicator</label>
     <select id="indicador" disabled><option>Loading…</option></select>
     <p id="status-camada" class="status" role="status">Loading boundary layer…</p>
@@ -39,9 +39,9 @@
     <section id="painel-desigualdade" class="desigualdade" aria-live="polite" hidden></section>
     <section id="painel-arvores" class="desigualdade" aria-live="polite" hidden></section>
     <section id="painel-grupos" class="desigualdade" aria-live="polite" hidden></section>
-    <div data-i18n="br.notice" class="aviso"><strong>Planned.</strong> This scale will use municipalities and, for large datasets, PMTiles layers hosted outside GitHub.</div>
+    <div data-i18n="br.notice" class="aviso"><strong>How to read:</strong> municipal values are built from Brazil’s roughly 450,000 census tracts and weighted by people, so temperature is measured <em>where people live</em>. Surface temperature comes from MODIS (1 km, early afternoon) and refers to the <em>hottest three months of each place</em>: in much of the Centre-West, North and Northeast the peak is the dry season (August–October), not the rainy summer. At 1 km the map compares municipalities and regions; the city and state maps use 30 m Landsat images for neighbourhood detail. The “heat gap” indicators show inequality <em>inside</em> each municipality (red: the poorer group, or Black and brown residents, lives in hotter places; blue: in cooler ones) and are left blank in small municipalities, where they would be unstable.</div>
     <h2 data-i18n="map.sourcesTitle">Planned sources</h2>
-    <p class="status"><span data-i18n="br.sources">IBGE, Ipea, ERA5-Land (Copernicus), MODIS, MapBiomas.</span> <span data-i18n="map.detailsIn">Details in <a href="../metodologia/">Methodology</a>.</span></p>
+    <p class="status"><span data-i18n="br.sources">MODIS/Aqua MYD11A2 v6.1 (NASA, via Microsoft Planetary Computer); IBGE, 2022 Census (tract boundaries, income, color or race, age, street trees); municipal boundaries via geobr (Ipea).</span> <span data-i18n="map.detailsIn">Details in <a href="../metodologia/">Methodology</a>.</span></p>
   </aside>
   <section class="caixa-mapa" data-i18n-attr="aria-label:map.ariaInteractive" aria-label="Interactive map">
     <div class="cabeca-mapa"><strong data-i18n="br.title">Brazil</strong><span class="badge" id="badge-mapa" data-i18n="map.badgeBasemap">Basemap</span></div>
@@ -50,7 +50,7 @@
   </section>
 </main>
 <footer class="rodape" data-i18n="footer">Academic project under development · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Code, data and documentation on GitHub</a> · Basemap © OpenStreetMap · OpenFreeMap</footer>
-<script>window.ATLAS_CONFIG = {"chave": "br", "centro": [-53.5, -14.5], "zoom": 3.4, "zoomMinimo": 2.5, "espessuraContorno": 1.6, "escala": "brasil", "manifesto": "../dados/processados/brasil/camada.json"};</script>
+<script>window.ATLAS_CONFIG = {"chave": "br", "centro": [-53.5, -14.5], "zoom": 3.6, "zoomMinimo": 2.5, "espessuraContorno": 0.4, "painelCalorRenda": "../dados/processados/brasil/calor_renda.json", "painelArvores": "../dados/processados/brasil/arborizacao_resumo.json", "painelGrupos": "../dados/processados/brasil/exposicao_grupos.json", "escala": "brasil", "manifesto": "../dados/processados/brasil/camada.json"};</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="../js/atlas.js"></script>
 </body>

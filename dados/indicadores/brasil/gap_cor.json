@@ -1,0 +1,31 @@
+{
+  "id": "gap_cor",
+  "rotulo": {
+    "en": "Heat gap: Black and brown − white residents (within municipality)",
+    "pt": "Desigualdade térmica: pretos e pardos − brancos (no município)",
+    "es": "Brecha térmica: negros y pardos − blancos (en el municipio)"
+  },
+  "unidade": "°C",
+  "paleta": "divergente",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022"
+  },
+  "periodo": {
+    "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+    "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+    "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+  },
+  "metodo": {
+    "en": "Surface temperature where the average Black and brown resident lives minus where the average white resident lives",
+    "pt": "Temperatura da superfície onde vive o morador preto ou pardo médio menos onde vive o morador branco médio",
+    "es": "Temperatura de superficie donde vive el residente negro o pardo promedio menos donde vive el residente blanco promedio"
+  },
+  "casas_decimais": 2,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 13,
+  "quebras_fixas": [-0.5, -0.15, 0.15, 0.5]
+}

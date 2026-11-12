@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios]
 permissions:
   contents: write
 concurrency:
@@ -71,6 +71,24 @@ jobs:
         run: |
           Rscript R/13_censo_estado_rj.R
           Rscript R/14_municipios_rj.R
+      - name: Brasil — teste (RJ e ES, poucos compostos MODIS)
+        if: inputs.escala == 'brasil-teste'
+        env:
+          UFS: RJ,ES
+          LIMITE_COMPOSTOS: "40"
+        run: |
+          Rscript R/20_censo_brasil.R
+          Rscript R/21_lst_modis_brasil.R
+          Rscript R/22_municipios_brasil.R
+      - name: Brasil — completo (Censo, MODIS, municípios)
+        if: inputs.escala == 'brasil-completo'
+        run: |
+          Rscript R/20_censo_brasil.R
+          Rscript R/21_lst_modis_brasil.R
+          Rscript R/22_municipios_brasil.R
+      - name: Brasil — só indicadores municipais (reaproveita Censo e MODIS salvos)
+        if: inputs.escala == 'brasil-municipios'
+        run: Rscript R/22_municipios_brasil.R
       - name: Registrar dados processados
         if: always()   # guarda o que já foi calculado mesmo se um passo posterior falhar
         run: |
