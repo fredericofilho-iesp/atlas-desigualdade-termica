@@ -130,7 +130,7 @@
       'pai.colTemp': 'Surface temp.',
       'pai.colMonth': 'Hottest season (centre)',
       'pai.colGap': 'Poorest − richest, cities (°C)', 'pai.colGapAll': 'All areas (°C)',
-      'pai.note': 'Within each country, ~2.4 km areas are ranked by Meta’s Relative Wealth Index and grouped into population-weighted fifths; the index compares areas within a country, not between countries. “Cities”: only urban cells (≥ 300 inhabitants per km²). “All areas” also includes the countryside and mostly contrasts richer, hotter town centres with poorer, greener rural areas. “—”: no wealth data. See Methodology.',
+      'pai.note': 'Within each country, ~2.4 km areas are ranked by Meta’s Relative Wealth Index and grouped into population-weighted fifths; the index compares areas within a country, not between countries. “Cities”: only dense urban cells (≥ 1,500 inhabitants per km²). “All areas” also includes the countryside and mostly contrasts richer, hotter town centres with poorer, greener rural areas. “—”: no wealth data. See Methodology.',
 
       'home.title': 'Who is most exposed to heat?',
       'home.lead': 'An open atlas to examine how exposure to extreme heat is distributed across space and how it relates to income, race, age and urban infrastructure, at four scales.',
@@ -254,7 +254,7 @@
       'pai.colTemp': 'Temp. superfície',
       'pai.colMonth': 'Época mais quente (centro)',
       'pai.colGap': 'Mais pobres − mais ricos, cidades (°C)', 'pai.colGapAll': 'Todas as áreas (°C)',
-      'pai.note': 'Dentro de cada país, áreas de ~2,4 km são ordenadas pelo Índice de Riqueza Relativa da Meta e agrupadas em quintos ponderados pela população; o índice compara áreas dentro de um país, não entre países. “Cidades”: só células urbanas (≥ 300 habitantes por km²). “Todas as áreas” inclui também o campo e contrasta sobretudo os centros urbanos, mais ricos e quentes, com as áreas rurais, mais pobres e verdes. “—”: sem dados de riqueza. Veja a Metodologia.',
+      'pai.note': 'Dentro de cada país, áreas de ~2,4 km são ordenadas pelo Índice de Riqueza Relativa da Meta e agrupadas em quintos ponderados pela população; o índice compara áreas dentro de um país, não entre países. “Cidades”: só células urbanas densas (≥ 1.500 habitantes por km²). “Todas as áreas” inclui também o campo e contrasta sobretudo os centros urbanos, mais ricos e quentes, com as áreas rurais, mais pobres e verdes. “—”: sem dados de riqueza. Veja a Metodologia.',
 
       'home.title': 'Quem está mais exposto ao calor?',
       'home.lead': 'Um atlas aberto para investigar como a exposição ao calor extremo se distribui no território e como ela se relaciona com renda, raça, idade e infraestrutura urbana, em quatro escalas.',
@@ -378,7 +378,7 @@
       'pai.colTemp': 'Temp. superficie',
       'pai.colMonth': 'Época más cálida (centro)',
       'pai.colGap': 'Más pobres − más ricos, ciudades (°C)', 'pai.colGapAll': 'Todas las áreas (°C)',
-      'pai.note': 'Dentro de cada país, áreas de ~2,4 km se ordenan por el Índice de Riqueza Relativa de Meta y se agrupan en quintiles ponderados por población; el índice compara áreas dentro de un país, no entre países. “Ciudades”: solo celdas urbanas (≥ 300 habitantes por km²). “Todas las áreas” incluye también el campo y contrasta sobre todo los centros urbanos, más ricos y cálidos, con las áreas rurales, más pobres y verdes. “—”: sin datos de riqueza. Vea la Metodología.',
+      'pai.note': 'Dentro de cada país, áreas de ~2,4 km se ordenan por el Índice de Riqueza Relativa de Meta y se agrupan en quintiles ponderados por población; el índice compara áreas dentro de un país, no entre países. “Ciudades”: solo celdas urbanas densas (≥ 1.500 habitantes por km²). “Todas las áreas” incluye también el campo y contrasta sobre todo los centros urbanos, más ricos y cálidos, con las áreas rurales, más pobres y verdes. “—”: sin datos de riqueza. Vea la Metodología.',
 
       'home.title': '¿Quién está más expuesto al calor?',
       'home.lead': 'Un atlas abierto para analizar cómo se distribuye en el territorio la exposición al calor extremo y cómo se relaciona con el ingreso, la raza, la edad y la infraestructura urbana, en cuatro escalas.',

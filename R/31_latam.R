@@ -128,11 +128,13 @@ cel <- do.call(rbind, celulas); rm(celulas); gc()
 # ---- blocos RWI (unidade da análise de desigualdade) ----
 mp <- function(v, w) { k <- is.finite(v) & is.finite(w) & w > 0; if (!any(k)) NA_real_ else sum(v[k] * w[k]) / sum(w[k]) }
 grupos_pond <- function(x, w, k) { o <- order(x); meio <- (cumsum(w[o]) - w[o] / 2) / sum(w); g <- integer(length(x)); g[o] <- pmin(k, floor(meio * k) + 1L); g }
-# Células urbanas: densidade >= 300 hab./km² (limiar de "aglomerado urbano" do GHSL).
+# Células urbanas: densidade >= 300 hab./km² (limiar de "aglomerado urbano" do GHSL);
+# densas: >= 1.500 hab./km² (limiar de "centro urbano" do GHSL).
 # Com pixels de 1 km, comparar todas as áreas mede sobretudo cidade × campo (o centro
 # urbano, mais rico, é mais quente que o entorno rural, vegetado). Só entre células
 # urbanas a comparação é entre bairros pobres e ricos das cidades: é o indicador principal.
-cel$urbano <- cel$pop / ((111.32 / 120)^2 * cos(cel$y * pi / 180)) >= 300
+cel$dens <- cel$pop / ((111.32 / 120)^2 * cos(cel$y * pi / 180))
+cel$urbano <- cel$dens >= 300
 c2 <- cel[is.finite(cel$rwi) & is.finite(cel$lst), ]
 if (!nrow(c2)) stop("Nenhuma célula com RWI: verifique os arquivos do HDX listados acima.")
 c2$lp <- c2$lst * c2$pop
@@ -145,7 +147,8 @@ blocos <- function(x) {
   b
 }
 bl <- blocos(c2)                 # todas as áreas
-blu <- blocos(c2[c2$urbano, ])   # só células urbanas
+blu <- blocos(c2[c2$dens >= 1500, ])   # só células urbanas densas (indicador principal)
+blu300 <- blocos(c2[c2$urbano, ])       # células urbanas (>= 300), só para comparação no log
 utils::write.csv(transform(bl, lst = round(lst, 2), pop = round(pop), rwi = round(rwi, 3)),
                  gzfile(file.path(DIR_IND, "blocos_rwi.csv.gz")), row.names = FALSE)
 utils::write.csv(transform(blu, lst = round(lst, 2), pop = round(pop), rwi = round(rwi, 3)),
@@ -177,7 +180,7 @@ nm <- function(iso, l) PAISES_LATAM[[l]][match(iso, PAISES_LATAM$iso3)]
 mes_modal <- function(s) { k <- is.finite(s$mes); if (!any(k)) return(NA_integer_); t <- tapply(s$pop[k], s$mes[k], sum); as.integer(names(t)[which.max(t)]) }
 paises <- lapply(sort(unique(cel$iso3)), function(iso) {
   s <- cel[cel$iso3 == iso, ]; b <- blu[blu$iso3 == iso, ]
-  g <- gap(b); ic <- c(NA, NA); gt <- gap(bl[bl$iso3 == iso, ])
+  g <- gap(b); ic <- c(NA, NA); gt <- gap(bl[bl$iso3 == iso, ]); g300 <- gap(blu300[blu300$iso3 == iso, ])
   if (is.finite(g)) {
     bs <- replicate(200, gap(b[sample.int(nrow(b), replace = TRUE), ]))
     ic <- round(stats::quantile(bs, c(.025, .975), na.rm = TRUE, names = FALSE), 2)
@@ -185,16 +188,16 @@ paises <- lapply(sort(unique(cel$iso3)), function(iso) {
   list(iso3 = iso, nome = list(en = nm(iso, "en"), pt = nm(iso, "pt"), es = nm(iso, "es")),
        pop = round(sum(s$pop)), lst_pop = round(mp(s$lst, s$pop), 2), mes_quente = mes_modal(s),
        pop_urbana = round(100 * sum(s$pop[s$urbano]) / sum(s$pop), 1),
-       blocos_rwi = nrow(b), gap_rwi = round(g, 2), ic95 = ic, gap_rwi_total = round(gt, 2))
+       blocos_rwi = nrow(b), gap_rwi = round(g, 2), ic95 = ic, gap_rwi_total = round(gt, 2), gap_rwi_300 = round(g300, 2))
 })
 gs <- vapply(paises, function(p) if (is.null(p$gap_rwi) || is.na(p$gap_rwi)) NA_real_ else p$gap_rwi, 0)
 write_json(list(gerado_em = format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z"),
                 paises_com_rwi = sum(is.finite(gs)), paises_mais_pobres_mais_quentes = sum(gs > 0, na.rm = TRUE),
                 paises = paises),
            file.path(DIR_PROC, "paises.json"), auto_unbox = TRUE, pretty = TRUE, digits = NA, na = "null")
-for (p in paises) message(sprintf("  %s  %5.1f °C  mês %s  urbano %3.0f%%  pobres−ricos: urbano %s [%s], todas as áreas %s  (%d blocos urbanos)",
+for (p in paises) message(sprintf("  %s  %5.1f °C  mês %s  urbano %3.0f%%  pobres−ricos: denso %s [%s], urbano>=300 %s, todas as áreas %s  (%d blocos densos)",
                                   p$iso3, p$lst_pop, p$mes_quente, p$pop_urbana, format(p$gap_rwi), paste(p$ic95, collapse = "–"),
-                                  format(p$gap_rwi_total), p$blocos_rwi))
+                                  format(p$gap_rwi_300), format(p$gap_rwi_total), p$blocos_rwi))
 message("Países com RWI: ", sum(is.finite(gs)), " | mais pobres em lugares mais quentes: ", sum(gs > 0, na.rm = TRUE))
 
 # ---- indicadores e publicação ----
@@ -222,9 +225,9 @@ salvar_indicadores(uni, escala = "america-latina", id = "id", indicadores = list
   indicador("gap_rwi", rotulo = c(en = "Heat gap in urban areas: poorest − richest fifth (relative wealth)", pt = "Desigualdade térmica nas áreas urbanas: 20% mais pobres − 20% mais ricos (riqueza relativa)",
                                   es = "Brecha térmica en áreas urbanas: 20% más pobre − 20% más rico (riqueza relativa)"),
     unidade = "°C", paleta = "divergente", dimensao = "exposicao", casas_decimais = 1, ordem = 12, quebras = c(-2, -0.5, 0.5, 2), fonte = fonte_rwi, periodo = per,
-    metodo = c(en = paste0("Urban cells only (at least 300 inhabitants per km²). Population-weighted surface temperature of the poorest minus the richest fifth of ~2.4 km wealth blocks (Meta RWI) in the unit; only units with at least ", MIN_BLOCOS, " blocks. Red: the poorest live in hotter places; blue: in cooler places"),
-               pt = paste0("Só células urbanas (ao menos 300 habitantes por km²). Temperatura da superfície, ponderada pela população, do quinto mais pobre menos a do quinto mais rico dos blocos de riqueza de ~2,4 km (Meta RWI) da unidade; só unidades com ao menos ", MIN_BLOCOS, " blocos. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes"),
-               es = paste0("Solo celdas urbanas (al menos 300 habitantes por km²). Temperatura de superficie, ponderada por población, del quintil más pobre menos la del más rico de los bloques de riqueza de ~2,4 km (Meta RWI) de la unidad; solo unidades con al menos ", MIN_BLOCOS, " bloques. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos")))
+    metodo = c(en = paste0("Dense urban cells only (at least 1,500 inhabitants per km², the GHSL urban-centre threshold). Population-weighted surface temperature of the poorest minus the richest fifth of ~2.4 km wealth blocks (Meta RWI) in the unit; only units with at least ", MIN_BLOCOS, " blocks. Red: the poorest live in hotter places; blue: in cooler places"),
+               pt = paste0("Só células urbanas densas (ao menos 1.500 habitantes por km², limiar de centro urbano do GHSL). Temperatura da superfície, ponderada pela população, do quinto mais pobre menos a do quinto mais rico dos blocos de riqueza de ~2,4 km (Meta RWI) da unidade; só unidades com ao menos ", MIN_BLOCOS, " blocos. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes"),
+               es = paste0("Solo celdas urbanas densas (al menos 1.500 habitantes por km², umbral de centro urbano del GHSL). Temperatura de superficie, ponderada por población, del quintil más pobre menos la del más rico de los bloques de riqueza de ~2,4 km (Meta RWI) de la unidad; solo unidades con al menos ", MIN_BLOCOS, " bloques. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos")))
 ,
   indicador("gap_rwi_total", rotulo = c(en = "Heat gap, all areas (city and countryside): poorest − richest fifth", pt = "Desigualdade térmica, todas as áreas (cidade e campo): 20% mais pobres − 20% mais ricos",
                                         es = "Brecha térmica, todas las áreas (ciudad y campo): 20% más pobre − 20% más rico"),
