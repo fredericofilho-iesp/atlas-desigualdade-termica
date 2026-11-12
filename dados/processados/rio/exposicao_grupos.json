@@ -1,0 +1,70 @@
+{
+  "gerado_em": "2026-11-12T10:40:56+0000",
+  "fonte": "IBGE, Censo 2022 (universo), demografia e cor ou raça por setor; Landsat 8–9; IBGE entorno",
+  "grupos": [
+    {
+      "grupo": "moradores",
+      "pessoas": 6183442,
+      "lst_media": 41.47,
+      "arv_com_arvores": 64.4
+    },
+    {
+      "grupo": "branca",
+      "pessoas": 2813834,
+      "lst_media": 41.03,
+      "arv_com_arvores": 73.5
+    },
+    {
+      "grupo": "preta",
+      "pessoas": 961625,
+      "lst_media": 41.93,
+      "arv_com_arvores": 55.3
+    },
+    {
+      "grupo": "parda",
+      "pessoas": 2390535,
+      "lst_media": 41.82,
+      "arv_com_arvores": 57.3
+    },
+    {
+      "grupo": "preta_parda",
+      "pessoas": 3348959,
+      "lst_media": 41.86,
+      "arv_com_arvores": 56.7
+    },
+    {
+      "grupo": "amarela",
+      "pessoas": 7135,
+      "lst_media": 40,
+      "arv_com_arvores": 83
+    },
+    {
+      "grupo": "indigena",
+      "pessoas": 2914,
+      "lst_media": 40.97,
+      "arv_com_arvores": 64.7
+    },
+    {
+      "grupo": "a60",
+      "pessoas": 1249681,
+      "lst_media": 41.42,
+      "arv_com_arvores": 72.8
+    },
+    {
+      "grupo": "a70",
+      "pessoas": 586188,
+      "lst_media": 41.3,
+      "arv_com_arvores": 75.8
+    },
+    {
+      "grupo": "a0_4",
+      "pessoas": 310011,
+      "lst_media": 41.53,
+      "arv_com_arvores": 57.7
+    }
+  ],
+  "diferenca_preta_parda_branca": 0.83,
+  "ic95": [0.78, 0.88],
+  "bootstrap": 2000,
+  "diferenca_arvores_pp": -16.8
+}

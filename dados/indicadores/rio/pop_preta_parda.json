@@ -1,0 +1,31 @@
+{
+  "id": "pop_preta_parda",
+  "rotulo": {
+    "en": "Black and brown population (preta and parda)",
+    "pt": "População preta e parda",
+    "es": "Población negra y parda (preta y parda)"
+  },
+  "unidade": "%",
+  "paleta": "pessoas",
+  "dimensao": "sensibilidade",
+  "fonte": {
+    "en": "IBGE, 2022 Census (universe)",
+    "pt": "IBGE, Censo 2022 (universo)",
+    "es": "IBGE, Censo 2022 (universo)"
+  },
+  "periodo": {
+    "en": "2022",
+    "pt": "2022",
+    "es": "2022"
+  },
+  "metodo": {
+    "en": "Residents self-declared preta or parda as a share of residents with declared color or race (IBGE categories)",
+    "pt": "Moradores autodeclarados pretos ou pardos sobre os moradores com cor ou raça declarada (categorias do IBGE)",
+    "es": "Residentes autodeclarados pretos o pardos sobre los residentes con color o raza declarada (categorías del IBGE)"
+  },
+  "casas_decimais": 0,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 52,
+  "quebras_fixas": [20, 40, 60, 80]
+}
