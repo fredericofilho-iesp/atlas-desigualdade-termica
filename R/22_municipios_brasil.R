@@ -58,6 +58,13 @@ gap_c <- function(s) {
   mp(s$lst_verao, s$preta_parda) - mp(s$lst_verao, s$branca)
 }
 
+# Comparações DENTRO DE CADA ESTADO: no país, o clima regional se mistura à
+# desigualdade (o Sul é mais rico, mais branco e mais frio; o interior do Nordeste,
+# mais pobre e mais quente). Aqui a temperatura vira desvio da média da UF e os
+# quintos são formados dentro de cada UF.
+desvio_uf <- function(x, w) { m <- vapply(split(seq_len(nrow(x)), x$UF), function(i) mp(x$lst_verao[i], x[[w]][i]), 0); x$lst_verao - m[x$UF] }
+quintos_uf <- function(x, v, w) { g <- integer(nrow(x)); for (u in unique(x$UF)) { i <- which(x$UF == u); g[i] <- grupos_pond(x[[v]][i], x[[w]][i], 5) }; g }
+
 estado_lst <- mp(d$lst_verao, d$moradores)
 mun <- do.call(rbind, lapply(split(d, d$CD_MUN), function(s) data.frame(
   code_muni = s$CD_MUN[1],
@@ -91,34 +98,47 @@ quintos <- lapply(1:5, function(q) { s <- a[a$q == q, ]; list(quinto = q, setore
 dif <- quintos[[1]]$lst_media - quintos[[5]]$lst_media
 boot <- replicate(500, { b <- a[sample.int(nrow(a), replace = TRUE), ]; b$q <- grupos_pond(b$renda_media, b$domicilios, 5)
   mp(b$lst_verao[b$q == 1], b$domicilios[b$q == 1]) - mp(b$lst_verao[b$q == 5], b$domicilios[b$q == 5]) })
+a$tu <- desvio_uf(a, "domicilios"); a$qu <- quintos_uf(a, "renda_media", "domicilios")
+du_q <- vapply(1:5, function(q) mp(a$tu[a$qu == q], a$domicilios[a$qu == q]), 0)
+du_renda <- list(quintos_desvio = round(du_q, 2), diferenca_q1_q5 = round(du_q[1] - du_q[5], 2))
+message(sprintf("Brasil, dentro das UFs — quintos de renda (desvio da UF, °C): %s", paste(round(du_q, 2), collapse = " / ")))
 gj(list(gerado_em = format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z"), escopo = "Brasil, todos os setores",
         setores_usados = nrow(a), domicilios_usados = sum(a$domicilios), quintos = quintos,
         diferenca_q1_q5 = round(dif, 2), ic95 = round(stats::quantile(boot, c(.025, .975), names = FALSE), 2),
-        bootstrap = 500, spearman_setores = round(stats::cor(a$lst_verao, a$renda_media, method = "spearman"), 3)),
+        bootstrap = 500, spearman_setores = round(stats::cor(a$lst_verao, a$renda_media, method = "spearman"), 3),
+        dentro_uf = du_renda),
    "calor_renda.json")
 message(sprintf("Brasil — quintos de renda (°C): %s | Q1−Q5 = %.2f", paste(sapply(quintos, `[[`, "lst_media"), collapse = " / "), dif))
 
 b <- d[is.finite(d$arv_obs) & d$arv_obs >= 20, ]; b$pct <- 100 * b$arv_com / b$arv_obs; b$pct5 <- 100 * b$arv_5 / b$arv_obs
 br <- b[is.finite(b$renda_media) & is.finite(b$domicilios) & b$domicilios > 0, ]; br$q <- grupos_pond(br$renda_media, br$domicilios, 5)
 bl <- b[is.finite(b$lst_verao), ]; bl$q <- grupos_pond(bl$pct5 + bl$pct / 1000, bl$arv_obs, 5)
+bl$tu <- desvio_uf(bl, "arv_obs"); bl$chave <- bl$pct5 + bl$pct / 1000; bl$qu <- quintos_uf(bl, "chave", "arv_obs")
+du_a <- vapply(1:5, function(q) mp(bl$tu[bl$qu == q], bl$arv_obs[bl$qu == q]), 0)
+message(sprintf("Brasil, dentro das UFs — quintos de arborização (desvio da UF, °C): %s", paste(round(du_a, 2), collapse = " / ")))
 gj(list(gerado_em = format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z"), escopo = "Brasil, todos os setores",
         cidade_com_arvores = round(razao(b$arv_com, b$arv_obs), 1),
         por_quinto_de_renda = lapply(1:5, function(q) { s <- br[br$q == q, ]; list(quinto = q, domicilios = sum(s$domicilios),
           arv_com_arvores = round(mp(s$pct, s$domicilios), 1), arv_5mais = round(mp(s$pct5, s$domicilios), 1)) }),
         por_quinto_de_arborizacao = lapply(1:5, function(q) { s <- bl[bl$q == q, ]; list(quinto = q, moradores = sum(s$arv_obs),
-          arv_5mais_min = round(min(s$pct5), 1), arv_5mais_max = round(max(s$pct5), 1), lst_media = round(mp(s$lst_verao, s$arv_obs), 2)) })),
+          arv_5mais_min = round(min(s$pct5), 1), arv_5mais_max = round(max(s$pct5), 1), lst_media = round(mp(s$lst_verao, s$arv_obs), 2)) }),
+        dentro_uf = list(quintos_desvio = round(du_a, 2), diferenca_menos_mais = round(du_a[1] - du_a[5], 2))),
    "arborizacao_resumo.json")
 
 d$pct_arv <- ifelse(is.finite(d$arv_obs) & d$arv_obs >= 20, 100 * d$arv_com / d$arv_obs, NA)
 gr <- c("moradores", "branca", "preta", "parda", "preta_parda", "a60", "a0_4")
 k <- which(is.finite(d$lst_verao))
+dk <- d[k, ]; dk$moradores[!is.finite(dk$moradores)] <- 0; dk$tu <- desvio_uf(dk, "moradores")
+du_c <- mp(dk$tu, dk$preta_parda) - mp(dk$tu, dk$branca)
+message(sprintf("Brasil, dentro das UFs — pretos e pardos − brancos: %.2f °C", du_c))
 dif_c <- mp(d$lst_verao, d$preta_parda) - mp(d$lst_verao, d$branca)
 bc <- replicate(500, { s <- sample(k, replace = TRUE); mp(d$lst_verao[s], d$preta_parda[s]) - mp(d$lst_verao[s], d$branca[s]) })
 gj(list(gerado_em = format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z"), escopo = "Brasil, todos os setores",
         grupos = lapply(gr, function(g) list(grupo = g, pessoas = round(sum(d[[g]][k], na.rm = TRUE)),
           lst_media = round(mp(d$lst_verao, d[[g]]), 2), arv_com_arvores = round(mp(d$pct_arv, d[[g]]), 1))),
         diferenca_preta_parda_branca = round(dif_c, 2), ic95 = round(stats::quantile(bc, c(.025, .975), names = FALSE), 2),
-        bootstrap = 500, diferenca_arvores_pp = round(mp(d$pct_arv, d$preta_parda) - mp(d$pct_arv, d$branca), 1)),
+        bootstrap = 500, diferenca_arvores_pp = round(mp(d$pct_arv, d$preta_parda) - mp(d$pct_arv, d$branca), 1),
+        dentro_uf = list(diferenca_preta_parda_branca = round(du_c, 2))),
    "exposicao_grupos.json")
 message(sprintf("Brasil — pretos e pardos − brancos: %.2f °C", dif_c))
 

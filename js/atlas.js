@@ -407,6 +407,7 @@
       var ord = I.t('ineq.ord');
       frase += ' ' + I.t('ineq.peak', { n: Array.isArray(ord) ? ord[imax] : String(imax + 1) });
     }
+    if (d.dentro_uf) frase += fraseDentroUf('ineq', d.dentro_uf.diferenca_q1_q5, 1);
     var html = '<h2>' + I.t('ineq.title') + '</h2><p class="ineq-frase">' + frase + '</p><ul class="barras">';
     qs.forEach(function (q, i) {
       var w = Math.max(2, 100 * (q.lst_media - base) / (topo - base));
@@ -432,6 +433,14 @@
     } catch (e) { /* opcional */ }
   }
 
+  // Frase "dentro do mesmo estado" (escala nacional): prefixo das chaves, diferença e limiar de "praticamente igual".
+  function fraseDentroUf(prefixo, dif, casas) {
+    if (!isFinite(dif)) return '';
+    var k = Math.abs(dif) < 0.1 ? 'Similar' : (dif > 0 ? 'Hotter' : 'Cooler');
+    var d = k === 'Similar' ? formatarValor(dif, '', casas) : formatarValor(Math.abs(dif), '', casas);
+    return ' ' + I.t(prefixo + '.uf' + k, { d: d });
+  }
+
   function desenharPainelArvores() {
     var el = $('painel-arvores'), d = estado.painelArv;
     if (!el || !d || !d.por_quinto_de_renda) return;
@@ -442,6 +451,7 @@
       var dif = pa[0].lst_media - pa[pa.length - 1].lst_media;
       if (dif > 0) frase += ' ' + I.t('arv.cooler', { d: formatarValor(dif, '', 1) });
     }
+    if (d.dentro_uf) frase += fraseDentroUf('arv', -d.dentro_uf.diferenca_menos_mais, 1);
     var html = '<h2>' + I.t('arv.title') + '</h2><p class="ineq-frase">' + frase + '</p><ul class="barras verde">';
     qs.forEach(function (q, i) {
       var rot = i === 0 ? I.t('ineq.q1') : (i === qs.length - 1 ? I.t('ineq.q5') : I.t('ineq.qn', { n: q.quinto }));
@@ -482,6 +492,7 @@
       frase += I.t(pp.arv_com_arvores <= br.arv_com_arvores ? 'grp.treesFewer' : 'grp.treesMore', {
         a: formatarValor(pp.arv_com_arvores, '', 0), b: formatarValor(br.arv_com_arvores, '', 0) });
     } else frase += '.';
+    if (d.dentro_uf) frase += fraseDentroUf('grp', d.dentro_uf.diferenca_preta_parda_branca, 2);
     var html = '<h2>' + I.t('grp.title') + '</h2><p class="ineq-frase">' + frase + '</p>' +
       '<table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('grp.colTemp') + '</th><th>' + I.t('grp.colTrees') + '</th></tr></thead><tbody>';
     gs.forEach(function (g) {
