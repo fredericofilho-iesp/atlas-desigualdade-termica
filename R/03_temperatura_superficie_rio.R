@@ -78,9 +78,12 @@ buscar <- function(periodo) {
 ler_cena <- function(f) {
   st  <- rast(paste0("/vsicurl/", f$assets$lwir11$href))
   qa  <- rast(paste0("/vsicurl/", f$assets$qa_pixel$href))
-  janela <- intersect(ext(vect(st_transform(st_buffer(area_utm, 600), crs(st)))), ext(st))
-  if (is.null(janela)) return(NULL)
-  st <- crop(st, janela); qa <- crop(qa, janela)
+  # Janela de leitura: município + 600 m, na projeção da cena (Landsat usa UTM
+  # norte com coordenadas negativas no hemisfério sul).
+  bb <- st_bbox(st_transform(st_buffer(area_utm, 600), st_crs(crs(st))))
+  janela <- ext(as.numeric(bb[c("xmin", "xmax", "ymin", "ymax")]))
+  if (!relate(janela, ext(st), "intersects")) return(NULL)
+  st <- crop(st, janela, snap = "out"); qa <- crop(qa, janela, snap = "out")
   ruim <- app(qa, function(x) bitwAnd(as.integer(x), MASCARA_BITS) > 0)
   celsius <- st * 0.00341802 + 149.0 - 273.15
   celsius <- ifel(ruim | st == 0 | celsius < 0 | celsius > 80, NA, celsius)
