@@ -86,6 +86,21 @@ carregar_indicadores <- function(x, escala, id, dir = "dados/indicadores") {
   list(x = x, indicadores = metas)
 }
 
+# Mantém só a parte poligonal de geometrias mistas (GEOMETRYCOLLECTION com
+# polígonos e linhas soltas), que surgem ao corrigir ou arredondar geometrias.
+so_poligonos <- function(x) {
+  gc <- st_geometry_type(x) == "GEOMETRYCOLLECTION"
+  if (!any(gc)) return(x)
+  g <- st_geometry(x)
+  for (k in which(gc)) {
+    p <- st_collection_extract(g[k], "POLYGON", warn = FALSE)
+    g[k] <- if (length(p)) st_union(p) else st_sfc(st_multipolygon(), crs = st_crs(g))
+  }
+  st_geometry(x) <- g
+  message("Geometrias mistas convertidas em polígonos: ", sum(gc))
+  x
+}
+
 calcular_quebras <- function(x, n = 5, metodo = "quantis") {
   x <- x[is.finite(x)]
   if (length(x) < n) return(numeric(0))
@@ -119,18 +134,7 @@ publicar_camada <- function(x, escala, id, indicadores = list(),
     x <- st_simplify(x, dTolerance = simplificar_m, preserveTopology = TRUE)
   }
   x <- st_make_valid(st_transform(x, 4326))
-  # A correção de geometrias pode gerar GEOMETRYCOLLECTION (polígono + linhas
-  # soltas); o mapa precisa só da parte poligonal.
-  gc <- st_geometry_type(x) == "GEOMETRYCOLLECTION"
-  if (any(gc)) {
-    g <- st_geometry(x)
-    for (k in which(gc)) {
-      p <- st_collection_extract(g[k], "POLYGON", warn = FALSE)
-      g[k] <- if (length(p)) st_union(p) else st_sfc(st_multipolygon(), crs = st_crs(g))
-    }
-    st_geometry(x) <- g
-    message("Geometrias mistas convertidas em polígonos: ", sum(gc))
-  }
+  x <- so_poligonos(x)
 
   # Arredonda indicadores e completa metadados de classificação.
   for (i in seq_along(indicadores)) {
@@ -150,8 +154,16 @@ publicar_camada <- function(x, escala, id, indicadores = list(),
   dir <- file.path(dir_saida, escala)
   dir.create(dir, recursive = TRUE, showWarnings = FALSE)
   arq_geo <- file.path(dir, "unidades.geojson")
-  st_write(x, arq_geo, driver = "GeoJSON", delete_dsn = TRUE, quiet = TRUE,
-           layer_options = c(paste0("COORDINATE_PRECISION=", casas_coord), "RFC7946=YES"))
+  gravar <- function(obj) st_write(obj, arq_geo, driver = "GeoJSON", delete_dsn = TRUE, quiet = TRUE,
+                                   layer_options = c(paste0("COORDINATE_PRECISION=", casas_coord), "RFC7946=YES"))
+  gravar(x)
+  # O arredondamento das coordenadas na gravação pode transformar lascas de
+  # polígono em linhas (GEOMETRYCOLLECTION). Relê, limpa e regrava se preciso.
+  relido <- st_read(arq_geo, quiet = TRUE)
+  if (any(st_geometry_type(relido) == "GEOMETRYCOLLECTION")) {
+    st_geometry(x) <- st_geometry(so_poligonos(relido))
+    gravar(x)
+  }
 
   manifesto <- list(
     versao_contrato = 2,
