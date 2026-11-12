@@ -17,26 +17,42 @@
   };
   var COR_SEM_DADO = '#d9dde0';
 
-  // Mapa-base CARTO (sem rótulos por baixo, rótulos por cima dos dados).
-  function estiloBase() {
-    var sub = ['a', 'b', 'c', 'd'];
-    function tiles(tipo) {
-      return sub.map(function (s) {
-        return 'https://' + s + '.basemaps.cartocdn.com/' + tipo + '/{z}/{x}/{y}@2x.png';
-      });
-    }
-    var atrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
+  // Mapa-base: OpenFreeMap "Positron" (vetorial, gratuito, sem chave de API).
+  // Os dados entram abaixo da primeira camada de rótulos, para que nomes de
+  // bairros e ruas fiquem legíveis por cima do mapa coroplético.
+  // Se o estilo não carregar, usa os tiles padrão do OpenStreetMap.
+  var ESTILO_BASE = 'https://tiles.openfreemap.org/styles/positron';
+
+  function estiloReserva() {
     return {
       version: 8,
       sources: {
-        base:    { type: 'raster', tiles: tiles('light_nolabels'),   tileSize: 256, attribution: atrib },
-        rotulos: { type: 'raster', tiles: tiles('light_only_labels'), tileSize: 256 }
+        osm: {
+          type: 'raster', tileSize: 256,
+          tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }
       },
-      layers: [
-        { id: 'base', type: 'raster', source: 'base' },
-        { id: 'rotulos', type: 'raster', source: 'rotulos' }
-      ]
+      layers: [{ id: 'osm', type: 'raster', source: 'osm', paint: { 'raster-saturation': -0.8, 'raster-opacity': 0.8 } }]
     };
+  }
+
+  async function estiloBase() {
+    try {
+      var ctrl = new AbortController();
+      var t = setTimeout(function () { ctrl.abort(); }, 6000);
+      var r = await fetch(ESTILO_BASE, { signal: ctrl.signal });
+      clearTimeout(t);
+      if (r.ok) return await r.json();
+    } catch (e) { /* cai no estilo de reserva */ }
+    return estiloReserva();
+  }
+
+  // Id da primeira camada de texto do mapa-base (os dados ficam abaixo dela).
+  function primeiraCamadaDeRotulo(map) {
+    var camadas = (map.getStyle() && map.getStyle().layers) || [];
+    for (var i = 0; i < camadas.length; i++) if (camadas[i].type === 'symbol') return camadas[i].id;
+    return undefined;
   }
 
   // ---------- utilidades puras (exportadas para teste) ----------
@@ -142,6 +158,10 @@
     el.hidden = false;
   }
 
+  function corContorno(cor) {
+    return ['case', ['boolean', ['feature-state', 'selecionado'], false], '#111', cor];
+  }
+
   function aplicarIndicador(map, id) {
     var ind = null;
     (estado.manifesto.indicadores || []).forEach(function (i) { if (i.id === id) ind = i; });
@@ -149,9 +169,14 @@
     if (ind) {
       map.setPaintProperty('unidades-preenchimento', 'fill-color', expressaoCor(ind.id, ind.quebras || [], coresPara(ind)));
       map.setPaintProperty('unidades-preenchimento', 'fill-opacity', 0.78);
+      map.setPaintProperty('unidades-contorno', 'line-color', corContorno('#ffffff'));
+      map.setPaintProperty('unidades-contorno', 'line-opacity', 0.7);
     } else {
-      map.setPaintProperty('unidades-preenchimento', 'fill-color', '#7fb6c5');
-      map.setPaintProperty('unidades-preenchimento', 'fill-opacity', 0.12);
+      // Só limites: preenchimento leve e contorno escuro, para os limites ficarem visíveis.
+      map.setPaintProperty('unidades-preenchimento', 'fill-color', '#2f7f95');
+      map.setPaintProperty('unidades-preenchimento', 'fill-opacity', 0.08);
+      map.setPaintProperty('unidades-contorno', 'line-color', corContorno('#1f5f72'));
+      map.setPaintProperty('unidades-contorno', 'line-opacity', 0.85);
     }
     desenharLegenda(ind);
     if (estado.selecionado) mostrarFicha(estado.selecionado);
@@ -210,19 +235,20 @@
       fonte = { type: 'geojson', data: url, promoteId: g.id };
     }
     map.addSource('unidades', fonte);
+    var antes = primeiraCamadaDeRotulo(map);
     var extra = g.tipo === 'pmtiles' ? { 'source-layer': g.camada_vetorial || 'unidades' } : {};
     map.addLayer(Object.assign({
       id: 'unidades-preenchimento', type: 'fill', source: 'unidades',
       paint: { 'fill-color': '#7fb6c5', 'fill-opacity': 0.12 }
-    }, extra), 'rotulos');
+    }, extra), antes);
     map.addLayer(Object.assign({
       id: 'unidades-contorno', type: 'line', source: 'unidades',
       paint: {
-        'line-color': ['case', ['boolean', ['feature-state', 'selecionado'], false], '#111', '#ffffff'],
-        'line-width': ['case', ['boolean', ['feature-state', 'selecionado'], false], 2.2,
-          ['interpolate', ['linear'], ['zoom'], 8, 0.15, 13, 0.6]]
+        'line-color': corContorno('#1f5f72'),
+        'line-width': ['case', ['boolean', ['feature-state', 'selecionado'], false], 2.4,
+          ['interpolate', ['linear'], ['zoom'], 6, 0.4, 10, 0.5, 14, 1.2]]
       }
-    }, extra), 'rotulos');
+    }, extra), antes);
 
     var idSel = null;
     map.on('click', 'unidades-preenchimento', function (e) {
@@ -248,7 +274,7 @@
     }
     var map = new maplibregl.Map({
       container: 'mapa',
-      style: estiloBase(),
+      style: await estiloBase(),
       center: cfg.centro || [-43.4, -22.9],
       zoom: cfg.zoom || 10,
       minZoom: cfg.zoomMinimo || 2,
