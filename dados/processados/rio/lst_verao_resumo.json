@@ -1,0 +1,252 @@
+{
+  "gerado_em": "2026-11-12T09:26:57+0000",
+  "veroes": {
+    "2022/23": "2022-12-01/2023-03-31",
+    "2023/24": "2023-12-01/2024-03-31",
+    "2024/25": "2024-12-01/2025-03-31"
+  },
+  "parametros": {
+    "max_nuvem_cena": 70,
+    "min_obs": 3,
+    "min_pixels_setor": 0.5,
+    "crs": "EPSG:32723",
+    "bits_mascarados_qa_pixel": [0, 1, 2, 3, 4, 7]
+  },
+  "cenas_usadas": 27,
+  "cenas_por_verao": {
+    "2022/23": 7,
+    "2023/24": 10,
+    "2024/25": 10
+  },
+  "setores": 13782,
+  "setores_com_valor": 13774,
+  "observacoes_por_pixel_mediana_setores": 15.0136754520865,
+  "lst_setores": {
+    "0%": 26.94,
+    "5%": 35.35,
+    "25%": 39.21,
+    "50%": 41.81,
+    "75%": 43.44,
+    "95%": 45.1,
+    "100%": 52.71
+  },
+  "mediana_cidade": 41.81,
+  "cenas": [
+    {
+      "id": "LC08_L2SP_217076_20230323_02_T1",
+      "data": "2023-03-23",
+      "verao": "2022/23",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 13.84,
+      "fracao_valida_area": 0.57
+    },
+    {
+      "id": "LC09_L2SP_217076_20230227_02_T1",
+      "data": "2023-02-27",
+      "verao": "2022/23",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 7.72,
+      "fracao_valida_area": 0.463
+    },
+    {
+      "id": "LC08_L2SP_217076_20230203_02_T1",
+      "data": "2023-02-03",
+      "verao": "2022/23",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 47.16,
+      "fracao_valida_area": 0.014
+    },
+    {
+      "id": "LC09_L2SP_217076_20230126_02_T1",
+      "data": "2023-01-26",
+      "verao": "2022/23",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 12,
+      "fracao_valida_area": 0.288
+    },
+    {
+      "id": "LC08_L2SP_217076_20230118_02_T1",
+      "data": "2023-01-18",
+      "verao": "2022/23",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 11,
+      "fracao_valida_area": 0.513
+    },
+    {
+      "id": "LC08_L2SP_217076_20230102_02_T1",
+      "data": "2023-01-02",
+      "verao": "2022/23",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 8.43,
+      "fracao_valida_area": 0.652
+    },
+    {
+      "id": "LC09_L2SP_217076_20221225_02_T1",
+      "data": "2022-12-25",
+      "verao": "2022/23",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 21.55,
+      "fracao_valida_area": 0.504
+    },
+    {
+      "id": "LC08_L2SP_217076_20240325_02_T1",
+      "data": "2024-03-25",
+      "verao": "2023/24",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 63.09,
+      "fracao_valida_area": 0.139
+    },
+    {
+      "id": "LC09_L2SP_217076_20240317_02_T1",
+      "data": "2024-03-17",
+      "verao": "2023/24",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 0.92,
+      "fracao_valida_area": 0.66
+    },
+    {
+      "id": "LC09_L2SP_217076_20240301_02_T1",
+      "data": "2024-03-01",
+      "verao": "2023/24",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 23.5,
+      "fracao_valida_area": 0.287
+    },
+    {
+      "id": "LC08_L2SP_217076_20240206_02_T1",
+      "data": "2024-02-06",
+      "verao": "2023/24",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 57.42,
+      "fracao_valida_area": 0.005
+    },
+    {
+      "id": "LC09_L2SP_217076_20240129_02_T1",
+      "data": "2024-01-29",
+      "verao": "2023/24",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 14.94,
+      "fracao_valida_area": 0.413
+    },
+    {
+      "id": "LC08_L2SP_217076_20240105_02_T1",
+      "data": "2024-01-05",
+      "verao": "2023/24",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 46.33,
+      "fracao_valida_area": 0.129
+    },
+    {
+      "id": "LC09_L2SP_217076_20231228_02_T1",
+      "data": "2023-12-28",
+      "verao": "2023/24",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 36.47,
+      "fracao_valida_area": 0.204
+    },
+    {
+      "id": "LC08_L2SP_217076_20231220_02_T1",
+      "data": "2023-12-20",
+      "verao": "2023/24",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 16.38,
+      "fracao_valida_area": 0.348
+    },
+    {
+      "id": "LC09_L2SP_217076_20231212_02_T1",
+      "data": "2023-12-12",
+      "verao": "2023/24",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 66.28,
+      "fracao_valida_area": 0.024
+    },
+    {
+      "id": "LC08_L2SP_217076_20231204_02_T1",
+      "data": "2023-12-04",
+      "verao": "2023/24",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 36.22,
+      "fracao_valida_area": 0.064
+    },
+    {
+      "id": "LC08_L2SP_217076_20250328_02_T1",
+      "data": "2025-03-28",
+      "verao": "2024/25",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 4.51,
+      "fracao_valida_area": 0.527
+    },
+    {
+      "id": "LC09_L2SP_217076_20250320_02_T2",
+      "data": "2025-03-20",
+      "verao": "2024/25",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 65.54,
+      "fracao_valida_area": 0.001
+    },
+    {
+      "id": "LC08_L2SP_217076_20250312_02_T1",
+      "data": "2025-03-12",
+      "verao": "2024/25",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 15.95,
+      "fracao_valida_area": 0.429
+    },
+    {
+      "id": "LC09_L2SP_217076_20250304_02_T1",
+      "data": "2025-03-04",
+      "verao": "2024/25",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 15.53,
+      "fracao_valida_area": 0.454
+    },
+    {
+      "id": "LC08_L2SP_217076_20250224_02_T1",
+      "data": "2025-02-24",
+      "verao": "2024/25",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 1.72,
+      "fracao_valida_area": 0.66
+    },
+    {
+      "id": "LC09_L2SP_217076_20250216_02_T1",
+      "data": "2025-02-16",
+      "verao": "2024/25",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 0.37,
+      "fracao_valida_area": 0.661
+    },
+    {
+      "id": "LC08_L2SP_217076_20250208_02_T1",
+      "data": "2025-02-08",
+      "verao": "2024/25",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 12.75,
+      "fracao_valida_area": 0.502
+    },
+    {
+      "id": "LC08_L2SP_217076_20250123_02_T1",
+      "data": "2025-01-23",
+      "verao": "2024/25",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 24.93,
+      "fracao_valida_area": 0.417
+    },
+    {
+      "id": "LC09_L2SP_217076_20241230_02_T1",
+      "data": "2024-12-30",
+      "verao": "2024/25",
+      "plataforma": "landsat-9",
+      "nuvens_cena": 59.16,
+      "fracao_valida_area": 0.099
+    },
+    {
+      "id": "LC08_L2SP_217076_20241206_02_T1",
+      "data": "2024-12-06",
+      "verao": "2024/25",
+      "plataforma": "landsat-8",
+      "nuvens_cena": 13.86,
+      "fracao_valida_area": 0.413
+    }
+  ]
+}

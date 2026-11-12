@@ -7,10 +7,10 @@ Site: https://fredericofilho-iesp.github.io/atlas-desigualdade-termica/
 ## Estado atual — v0.3
 
 - Estrutura com uma página por escala, mapas em **MapLibre GL JS** e mapa-base OpenFreeMap, gratuito e sem chave de API (rótulos acima dos dados).
-- **Rio (cidade):** pronto para exibir a malha de setores censitários IBGE 2022 assim que o workflow for executado.
-- **Estado do RJ:** pronto para exibir os 92 municípios (IBGE 2022, via `geobr`).
+- **Rio (cidade):** 13.782 setores censitários (IBGE 2022) com o primeiro indicador: temperatura da superfície no verão (Landsat 8–9, 2022/23–2024/25) e diferença para a mediana da cidade.
+- **Estado do RJ:** 92 municípios (IBGE 2022, via `geobr`), ainda sem indicadores.
 - **Brasil e América Latina:** páginas e estratégia de dados definidas; camadas ainda não produzidas.
-- **Nenhum indicador térmico ou socioeconômico foi publicado ainda.** Indicadores previstos aparecem desabilitados no seletor.
+- Indicadores previstos e ainda não calculados aparecem desabilitados no seletor.
 
 ## Estrutura
 
@@ -25,6 +25,9 @@ ferramentas/gerar_paginas.py  regenera os HTML a partir de js/i18n.js
 R/00_publicar_camada.R     ponte R → site: gera GeoJSON + camada.json
 R/01_importar_ibge.R       setores censitários 2022 do município do Rio
 R/02_importar_municipios_rj.R  municípios do estado do RJ
+R/03_temperatura_superficie_rio.R  temperatura da superfície no verão (Landsat)
+R/10_publicar_rio.R        junta malha + indicadores salvos e publica o Rio
+dados/indicadores/<escala>/  uma tabela (.csv) + metadados (.json) por indicador
 dados/processados/<escala>/    saídas publicadas (versionadas)
 dados/brutos/              downloads e intermediários (fora do Git)
 docs/CONTRATO_DE_DADOS.md  formato dos arquivos que o site lê
@@ -57,7 +60,6 @@ Settings → Pages → *Deploy from a branch* → `main` / `(root)`.
 ## Próximas etapas
 
 1. Rodar o workflow e validar a malha do Rio e dos municípios do RJ.
-2. Primeiro indicador: temperatura da superfície no verão (Landsat) agregada por setor.
 3. Renda domiciliar por setor (Censo 2022), após confirmar a disponibilidade no IBGE.
 4. Mapa bivariado (temperatura × renda) e razão de exposição entre quintis de renda.
 5. Brasil em PMTiles; América Latina com dados harmonizados (ERA5-Land, MODIS, WorldPop, GHSL, CEPALSTAT, SALURBAL).

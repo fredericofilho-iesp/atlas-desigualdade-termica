@@ -1,7 +1,8 @@
 # Atlas de Desigualdade Térmica — malha censitária oficial (IBGE 2022)
 # Executar na raiz do repositório: Rscript R/01_importar_ibge.R
 # Requer: install.packages(c("sf", "dplyr", "jsonlite"))
-# Saída: dados/processados/rio/{unidades.geojson, camada.json}
+# Saída: dados/brutos/rio_setores_2022.rds (malha completa) e, via
+#        R/10_publicar_rio.R, dados/processados/rio/{unidades.geojson, camada.json}
 # Fonte: IBGE, malha DEFINITIVA dos setores censitários de 2022.
 # Atenção: apenas geometria e identificadores; não há dados de temperatura ou renda.
 suppressPackageStartupMessages({library(sf);library(dplyr);library(jsonlite)})
@@ -54,21 +55,5 @@ rio <- st_transform(rio, 4326)
 # Guarda a malha sem simplificação: é ela que deve ser usada para extrair
 # valores de raster (temperatura, vegetação) nos próximos scripts.
 saveRDS(rio, "dados/brutos/rio_setores_2022.rds")
-# Simplificação em projeção métrica, com tolerância moderada para visualização web.
-rio <- st_transform(rio, 31983)
-rio <- st_simplify(rio, dTolerance=8, preserveTopology=TRUE)
-rio <- st_transform(rio, 4326)
-# Publica para o site: dados/processados/rio/unidades.geojson + camada.json.
-# Indicadores (temperatura, renda etc.) serão acrescentados em scripts próprios,
-# que juntam colunas a `rio` e chamam publicar_camada() de novo.
-source("R/00_publicar_camada.R")
-publicar_camada(
-  rio, escala = "rio", id = "CD_SETOR",
-  unidade = c(en = "Census tract", pt = "Setor censitário", es = "Sector censal"),
-  unidade_plural = c(en = "Census tracts", pt = "Setores censitários", es = "Sectores censales"),
-  fonte_geometria = c(en = "IBGE 2022 census tract boundaries (final)",
-                      pt = "Malha de setores censitários IBGE 2022 (definitiva)",
-                      es = "Cartografía de sectores censales IBGE 2022 (definitiva)"),
-  fonte_curta = "IBGE 2022",
-  indicadores = list()
-)
+# Publica a camada do site (malha + todos os indicadores já salvos).
+source("R/10_publicar_rio.R")

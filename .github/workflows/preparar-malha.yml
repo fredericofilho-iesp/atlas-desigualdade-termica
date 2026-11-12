@@ -1,6 +1,7 @@
 name: Preparar camadas do atlas
 # Executar manualmente: aba Actions → "Preparar camadas do atlas" → Run workflow.
-# Gera dados/processados/<escala>/{unidades.geojson, camada.json} e faz commit.
+# Gera dados/processados/<escala>/{unidades.geojson, camada.json} e
+# dados/indicadores/<escala>/ (tabelas de indicadores), e faz commit.
 on:
   workflow_dispatch:
     inputs:
@@ -8,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj]
+        options: [todas, rio, estado-rj, temperatura-rio]
 permissions:
   contents: write
 concurrency:
@@ -19,7 +20,7 @@ jobs:
     # Versão fixa: os binários de pacotes R (Posit Package Manager) existem
     # para o Ubuntu 24.04; numa versão nova tudo é compilado e passa de 45 min.
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-r@v2
@@ -30,17 +31,20 @@ jobs:
       - name: Pacotes R
         # Sem `repos=`: usa o repositório de binários configurado por setup-r
         # (use-public-rspm). Apontar para o CRAN força compilação do código-fonte.
-        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr"))'
+        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr","terra","rstac","exactextractr"))'
       - name: Setores censitários — município do Rio
         if: inputs.escala == 'todas' || inputs.escala == 'rio'
         run: Rscript R/01_importar_ibge.R
       - name: Municípios — estado do RJ
         if: inputs.escala == 'todas' || inputs.escala == 'estado-rj'
         run: Rscript R/02_importar_municipios_rj.R
+      - name: Temperatura da superfície no verão — município do Rio (Landsat)
+        if: inputs.escala == 'todas' || inputs.escala == 'temperatura-rio'
+        run: Rscript R/03_temperatura_superficie_rio.R
       - name: Registrar dados processados
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dados/processados
+          git add dados/processados dados/indicadores
           git commit -m "Atualiza camadas processadas (${{ inputs.escala }})" || echo "Sem mudanças"
           git push

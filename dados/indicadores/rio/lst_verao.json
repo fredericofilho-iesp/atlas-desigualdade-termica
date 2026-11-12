@@ -1,0 +1,26 @@
+{
+  "id": "lst_verao",
+  "rotulo": {
+    "en": "Summer land surface temperature",
+    "pt": "Temperatura da superfície no verão",
+    "es": "Temperatura de superficie en verano"
+  },
+  "unidade": "°C",
+  "paleta": "calor",
+  "dimensao": "exposicao",
+  "fonte": "Landsat 8–9 C2 L2 (USGS) · Microsoft Planetary Computer",
+  "periodo": {
+    "en": "Dec–Mar, summers 2022/23 to 2024/25 (~10 a.m., clear-sky days)",
+    "pt": "dez.–mar., verões 2022/23 a 2024/25 (~10h, dias sem nuvens)",
+    "es": "dic.–mar., veranos 2022/23 a 2024/25 (~10 h, días despejados)"
+  },
+  "metodo": {
+    "en": "Per-pixel median of clear-sky Landsat observations; area-weighted median per tract",
+    "pt": "Mediana por pixel das observações Landsat sem nuvens; mediana ponderada pela área em cada setor",
+    "es": "Mediana por píxel de las observaciones Landsat despejadas; mediana ponderada por área en cada sector"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 10
+}
