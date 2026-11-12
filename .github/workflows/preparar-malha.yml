@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo]
 permissions:
   contents: write
 concurrency:
@@ -20,7 +20,7 @@ jobs:
     # Versão fixa: os binários de pacotes R (Posit Package Manager) existem
     # para o Ubuntu 24.04; numa versão nova tudo é compilado e passa de 45 min.
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-r@v2
@@ -52,6 +52,20 @@ jobs:
       - name: Idade e cor ou raça — município do Rio
         if: inputs.escala == 'todas' || inputs.escala == 'demografia-rio'
         run: Rscript R/07_demografia_rio.R
+      - name: Estado do RJ — setores e temperatura (teste com 8 cenas)
+        if: inputs.escala == 'estado-rj-teste'
+        env:
+          LIMITE_CENAS: "8"
+        run: |
+          Rscript R/11_setores_estado_rj.R
+          Rscript R/12_lst_estado_rj.R
+      - name: Estado do RJ — setores, temperatura, Censo e municípios
+        if: inputs.escala == 'estado-rj-completo'
+        run: |
+          Rscript R/11_setores_estado_rj.R
+          Rscript R/12_lst_estado_rj.R
+          if [ -f R/13_censo_estado_rj.R ]; then Rscript R/13_censo_estado_rj.R; fi
+          if [ -f R/14_municipios_rj.R ]; then Rscript R/14_municipios_rj.R; fi
       - name: Registrar dados processados
         run: |
           git config user.name "github-actions[bot]"
