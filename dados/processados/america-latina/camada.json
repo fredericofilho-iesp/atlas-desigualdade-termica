@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "america-latina",
-  "gerado_em": "2026-11-12T22:40:37+0000",
+  "gerado_em": "2026-11-12T22:50:57+0000",
   "unidade": {
     "en": "Subnational unit",
     "pt": "Unidade subnacional",
@@ -89,19 +89,19 @@
       "n_validos": 551
     },
     {
-      "id": "gap_rwi",
+      "id": "lst_cidades",
       "rotulo": {
-        "en": "Heat gap in urban areas: poorest − richest fifth (relative wealth)",
-        "pt": "Desigualdade térmica nas áreas urbanas: 20% mais pobres − 20% mais ricos (riqueza relativa)",
-        "es": "Brecha térmica en áreas urbanas: 20% más pobre − 20% más rico (riqueza relativa)"
+        "en": "Surface temperature in cities, where people live",
+        "pt": "Temperatura da superfície nas cidades, onde as pessoas moram",
+        "es": "Temperatura de superficie en las ciudades, donde vive la gente"
       },
       "unidade": "°C",
-      "paleta": "divergente",
+      "paleta": "calor",
       "dimensao": "exposicao",
       "fonte": {
-        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)",
-        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)",
-        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)"
+        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries"
       },
       "periodo": {
         "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
@@ -109,46 +109,15 @@
         "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
       },
       "metodo": {
-        "en": "Dense urban cells only (at least 1,500 inhabitants per km², the GHSL urban-centre threshold). Population-weighted surface temperature of the poorest minus the richest fifth of ~2.4 km wealth blocks (Meta RWI) in the unit; only units with at least 30 blocks. Red: the poorest live in hotter places; blue: in cooler places",
-        "pt": "Só células urbanas densas (ao menos 1.500 habitantes por km², limiar de centro urbano do GHSL). Temperatura da superfície, ponderada pela população, do quinto mais pobre menos a do quinto mais rico dos blocos de riqueza de ~2,4 km (Meta RWI) da unidade; só unidades com ao menos 30 blocos. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes",
-        "es": "Solo celdas urbanas densas (al menos 1.500 habitantes por km², umbral de centro urbano del GHSL). Temperatura de superficie, ponderada por población, del quintil más pobre menos la del más rico de los bloques de riqueza de ~2,4 km (Meta RWI) de la unidad; solo unidades con al menos 30 bloques. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos"
+        "en": "Same as the main temperature, but only in dense urban cells (at least 1,500 inhabitants per km², the GHSL urban-centre threshold); only units with at least 50,000 people in such cells",
+        "pt": "Igual à temperatura principal, mas só nas células urbanas densas (ao menos 1.500 habitantes por km², limiar de centro urbano do GHSL); só unidades com ao menos 50 mil pessoas nessas células",
+        "es": "Igual que la temperatura principal, pero solo en las celdas urbanas densas (al menos 1.500 habitantes por km², umbral de centro urbano del GHSL); solo unidades con al menos 50.000 personas en esas celdas"
       },
       "casas_decimais": 1,
-      "classificacao": "manual",
+      "classificacao": "quantis",
       "ordem": 12,
-      "quebras": [-2, -0.5, 0.5, 2],
-      "n_validos": 194
-    },
-    {
-      "id": "gap_rwi_total",
-      "rotulo": {
-        "en": "Heat gap, all areas (city and countryside): poorest − richest fifth",
-        "pt": "Desigualdade térmica, todas as áreas (cidade e campo): 20% mais pobres − 20% mais ricos",
-        "es": "Brecha térmica, todas las áreas (ciudad y campo): 20% más pobre − 20% más rico"
-      },
-      "unidade": "°C",
-      "paleta": "divergente",
-      "dimensao": "exposicao",
-      "fonte": {
-        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)",
-        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)",
-        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries; Meta Relative Wealth Index (HDX, CC BY-NC 4.0)"
-      },
-      "periodo": {
-        "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
-        "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
-        "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
-      },
-      "metodo": {
-        "en": "Same as the urban heat gap, but with all populated cells. At 1 km it mostly contrasts richer, hotter town centres with poorer, greener rural areas",
-        "pt": "Igual à desigualdade nas áreas urbanas, mas com todas as células populadas. Com 1 km, contrasta sobretudo os centros urbanos, mais ricos e quentes, com as áreas rurais, mais pobres e verdes",
-        "es": "Igual que la brecha en áreas urbanas, pero con todas las celdas pobladas. Con 1 km, contrasta sobre todo los centros urbanos, más ricos y cálidos, con las áreas rurales, más pobres y verdes"
-      },
-      "casas_decimais": 1,
-      "classificacao": "manual",
-      "ordem": 13,
-      "quebras": [-2, -0.5, 0.5, 2],
-      "n_validos": 337
+      "quebras": [34.56, 37.35, 38.52, 40.49],
+      "n_validos": 379
     },
     {
       "id": "pop_urbana",
