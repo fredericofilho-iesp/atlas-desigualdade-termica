@@ -1,8 +1,161 @@
 {
-  "gerado_em": "2026-11-12T21:33:24+0000",
-  "paises_com_rwi": 2,
+  "gerado_em": "2026-11-12T22:40:34+0000",
+  "paises_com_rwi": 19,
   "paises_mais_pobres_mais_quentes": 0,
   "paises": [
+    {
+      "iso3": "ARG",
+      "nome": {
+        "en": "Argentina",
+        "pt": "Argentina",
+        "es": "Argentina"
+      },
+      "pop": 41435444,
+      "lst_pop": 38.81,
+      "mes_quente": 1,
+      "pop_urbana": 89.7,
+      "blocos_rwi": 3526,
+      "gap_rwi": -0.2,
+      "ic95": [-0.58, 0.17],
+      "gap_rwi_total": 0.01,
+      "gap_rwi_300": -0.08
+    },
+    {
+      "iso3": "ATG",
+      "nome": {
+        "en": "Antigua and Barbuda",
+        "pt": "Antígua e Barbuda",
+        "es": "Antigua y Barbuda"
+      },
+      "pop": 87336,
+      "lst_pop": 32.16,
+      "mes_quente": 4,
+      "pop_urbana": 82.8,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
+    },
+    {
+      "iso3": "BHS",
+      "nome": {
+        "en": "Bahamas",
+        "pt": "Bahamas",
+        "es": "Bahamas"
+      },
+      "pop": 380474,
+      "lst_pop": 34.19,
+      "mes_quente": 5,
+      "pop_urbana": 86.5,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
+    },
+    {
+      "iso3": "BLZ",
+      "nome": {
+        "en": "Belize",
+        "pt": "Belize",
+        "es": "Belice"
+      },
+      "pop": 373638,
+      "lst_pop": 35.89,
+      "mes_quente": 5,
+      "pop_urbana": 70.8,
+      "blocos_rwi": 32,
+      "gap_rwi": -0,
+      "ic95": [-4.48, 3.71],
+      "gap_rwi_total": -0.73,
+      "gap_rwi_300": -0.64
+    },
+    {
+      "iso3": "BOL",
+      "nome": {
+        "en": "Bolivia",
+        "pt": "Bolívia",
+        "es": "Bolivia"
+      },
+      "pop": 11979830,
+      "lst_pop": 36.93,
+      "mes_quente": 10,
+      "pop_urbana": 79.6,
+      "blocos_rwi": 591,
+      "gap_rwi": -1.95,
+      "ic95": [-3.06, -0.63],
+      "gap_rwi_total": -2.18,
+      "gap_rwi_300": -2.1
+    },
+    {
+      "iso3": "BRA",
+      "nome": {
+        "en": "Brazil",
+        "pt": "Brasil",
+        "es": "Brasil"
+      },
+      "pop": 208471892,
+      "lst_pop": 38.04,
+      "mes_quente": 1,
+      "pop_urbana": 85.7,
+      "blocos_rwi": 14638,
+      "gap_rwi": -1.66,
+      "ic95": [-1.84, -1.45],
+      "gap_rwi_total": -2.21,
+      "gap_rwi_300": -1.89
+    },
+    {
+      "iso3": "BRB",
+      "nome": {
+        "en": "Barbados",
+        "pt": "Barbados",
+        "es": "Barbados"
+      },
+      "pop": 271049,
+      "lst_pop": 34.43,
+      "mes_quente": 4,
+      "pop_urbana": 90.1,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
+    },
+    {
+      "iso3": "CHL",
+      "nome": {
+        "en": "Chile",
+        "pt": "Chile",
+        "es": "Chile"
+      },
+      "pop": 19173228,
+      "lst_pop": 39.18,
+      "mes_quente": 1,
+      "pop_urbana": 86.5,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
+    },
+    {
+      "iso3": "COL",
+      "nome": {
+        "en": "Colombia",
+        "pt": "Colômbia",
+        "es": "Colombia"
+      },
+      "pop": 50673655,
+      "lst_pop": 34.66,
+      "mes_quente": 3,
+      "pop_urbana": 87.3,
+      "blocos_rwi": 2104,
+      "gap_rwi": -3.55,
+      "ic95": [-4.6, -2.2],
+      "gap_rwi_total": -4.1,
+      "gap_rwi_300": -3.64
+    },
     {
       "iso3": "CRI",
       "nome": {
@@ -11,13 +164,286 @@
         "es": "Costa Rica"
       },
       "pop": 5104478,
-      "lst_pop": 35.79,
-      "mes_quente": 3,
+      "lst_pop": 36.29,
+      "mes_quente": 4,
       "pop_urbana": 81,
-      "blocos_rwi": 1090,
-      "gap_rwi": -4.37,
-      "ic95": [-5.14, -3.38],
-      "gap_rwi_total": -5.56
+      "blocos_rwi": 296,
+      "gap_rwi": -2.68,
+      "ic95": [-3.72, -1.6],
+      "gap_rwi_total": -5.84,
+      "gap_rwi_300": -4.54
+    },
+    {
+      "iso3": "CUB",
+      "nome": {
+        "en": "Cuba",
+        "pt": "Cuba",
+        "es": "Cuba"
+      },
+      "pop": 11145132,
+      "lst_pop": 37.03,
+      "mes_quente": 4,
+      "pop_urbana": 91.9,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
+    },
+    {
+      "iso3": "DMA",
+      "nome": {
+        "en": "Dominica",
+        "pt": "Dominica",
+        "es": "Dominica"
+      },
+      "pop": 63098,
+      "lst_pop": 29.17,
+      "mes_quente": 5,
+      "pop_urbana": 70.3,
+      "blocos_rwi": 5,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": -4.59,
+      "gap_rwi_300": -3.25
+    },
+    {
+      "iso3": "DOM",
+      "nome": {
+        "en": "Dominican Republic",
+        "pt": "República Dominicana",
+        "es": "República Dominicana"
+      },
+      "pop": 10788594,
+      "lst_pop": 36.71,
+      "mes_quente": 5,
+      "pop_urbana": 91.1,
+      "blocos_rwi": 619,
+      "gap_rwi": -2.92,
+      "ic95": [-3.65, -2.04],
+      "gap_rwi_total": -4.04,
+      "gap_rwi_300": -3.44
+    },
+    {
+      "iso3": "ECU",
+      "nome": {
+        "en": "Ecuador",
+        "pt": "Equador",
+        "es": "Ecuador"
+      },
+      "pop": 17318049,
+      "lst_pop": 34.28,
+      "mes_quente": 9,
+      "pop_urbana": 84.1,
+      "blocos_rwi": 862,
+      "gap_rwi": -3.9,
+      "ic95": [-5.36, -2.51],
+      "gap_rwi_total": -5.35,
+      "gap_rwi_300": -4.89
+    },
+    {
+      "iso3": "GRD",
+      "nome": {
+        "en": "Grenada",
+        "pt": "Granada",
+        "es": "Granada"
+      },
+      "pop": 114929,
+      "lst_pop": 29.96,
+      "mes_quente": 4,
+      "pop_urbana": 84.7,
+      "blocos_rwi": 9,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": -3.08,
+      "gap_rwi_300": -3.39
+    },
+    {
+      "iso3": "GTM",
+      "nome": {
+        "en": "Guatemala",
+        "pt": "Guatemala",
+        "es": "Guatemala"
+      },
+      "pop": 17290441,
+      "lst_pop": 34.41,
+      "mes_quente": 4,
+      "pop_urbana": 84,
+      "blocos_rwi": 1146,
+      "gap_rwi": -2.93,
+      "ic95": [-3.75, -2.06],
+      "gap_rwi_total": -2.76,
+      "gap_rwi_300": -3.01
+    },
+    {
+      "iso3": "GUY",
+      "nome": {
+        "en": "Guyana",
+        "pt": "Guiana",
+        "es": "Guyana"
+      },
+      "pop": 777916,
+      "lst_pop": 34.04,
+      "mes_quente": 3,
+      "pop_urbana": 83.5,
+      "blocos_rwi": 79,
+      "gap_rwi": -2.88,
+      "ic95": [-5.2, -0.41],
+      "gap_rwi_total": -2.61,
+      "gap_rwi_300": -2.78
+    },
+    {
+      "iso3": "HND",
+      "nome": {
+        "en": "Honduras",
+        "pt": "Honduras",
+        "es": "Honduras"
+      },
+      "pop": 10037615,
+      "lst_pop": 36.96,
+      "mes_quente": 4,
+      "pop_urbana": 76.2,
+      "blocos_rwi": 544,
+      "gap_rwi": -1.9,
+      "ic95": [-2.93, -0.95],
+      "gap_rwi_total": -4.11,
+      "gap_rwi_300": -3.34
+    },
+    {
+      "iso3": "HTI",
+      "nome": {
+        "en": "Haiti",
+        "pt": "Haiti",
+        "es": "Haití"
+      },
+      "pop": 11036498,
+      "lst_pop": 35.72,
+      "mes_quente": 4,
+      "pop_urbana": 87.4,
+      "blocos_rwi": 663,
+      "gap_rwi": -2.9,
+      "ic95": [-3.87, -1.79],
+      "gap_rwi_total": -2.9,
+      "gap_rwi_300": -2.98
+    },
+    {
+      "iso3": "JAM",
+      "nome": {
+        "en": "Jamaica",
+        "pt": "Jamaica",
+        "es": "Jamaica"
+      },
+      "pop": 2762135,
+      "lst_pop": 34.12,
+      "mes_quente": 4,
+      "pop_urbana": 80.4,
+      "blocos_rwi": 168,
+      "gap_rwi": -2.88,
+      "ic95": [-5.15, -1.72],
+      "gap_rwi_total": -7.55,
+      "gap_rwi_300": -6.07
+    },
+    {
+      "iso3": "KNA",
+      "nome": {
+        "en": "Saint Kitts and Nevis",
+        "pt": "São Cristóvão e Névis",
+        "es": "San Cristóbal y Nieves"
+      },
+      "pop": 43267,
+      "lst_pop": 31.81,
+      "mes_quente": 7,
+      "pop_urbana": 74.6,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
+    },
+    {
+      "iso3": "LCA",
+      "nome": {
+        "en": "Saint Lucia",
+        "pt": "Santa Lúcia",
+        "es": "Santa Lucía"
+      },
+      "pop": 169041,
+      "lst_pop": 30.27,
+      "mes_quente": 4,
+      "pop_urbana": 84.4,
+      "blocos_rwi": 16,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": -2.39,
+      "gap_rwi_300": -1.63
+    },
+    {
+      "iso3": "MEX",
+      "nome": {
+        "en": "Mexico",
+        "pt": "México",
+        "es": "México"
+      },
+      "pop": 125630410,
+      "lst_pop": 42.08,
+      "mes_quente": 5,
+      "pop_urbana": 88.9,
+      "blocos_rwi": 9231,
+      "gap_rwi": -1.26,
+      "ic95": [-1.59, -0.89],
+      "gap_rwi_total": -3.25,
+      "gap_rwi_300": -2.62
+    },
+    {
+      "iso3": "NIC",
+      "nome": {
+        "en": "Nicaragua",
+        "pt": "Nicarágua",
+        "es": "Nicaragua"
+      },
+      "pop": 6731540,
+      "lst_pop": 38.31,
+      "mes_quente": 4,
+      "pop_urbana": 74.8,
+      "blocos_rwi": 377,
+      "gap_rwi": -4.7,
+      "ic95": [-6.17, -3.08],
+      "gap_rwi_total": -5.79,
+      "gap_rwi_300": -5.06
+    },
+    {
+      "iso3": "PAN",
+      "nome": {
+        "en": "Panama",
+        "pt": "Panamá",
+        "es": "Panamá"
+      },
+      "pop": 4198510,
+      "lst_pop": 38.32,
+      "mes_quente": 4,
+      "pop_urbana": 79.7,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
+    },
+    {
+      "iso3": "PER",
+      "nome": {
+        "en": "Peru",
+        "pt": "Peru",
+        "es": "Perú"
+      },
+      "pop": 32678750,
+      "lst_pop": 38.21,
+      "mes_quente": 2,
+      "pop_urbana": 81.6,
+      "blocos_rwi": 1457,
+      "gap_rwi": -3.69,
+      "ic95": [-4.91, -2.43],
+      "gap_rwi_total": -8.48,
+      "gap_rwi_300": -6.13
     },
     {
       "iso3": "PRY",
@@ -27,13 +453,65 @@
         "es": "Paraguay"
       },
       "pop": 6611028,
-      "lst_pop": 37.94,
-      "mes_quente": 2,
+      "lst_pop": 37.73,
+      "mes_quente": 1,
       "pop_urbana": 68.2,
-      "blocos_rwi": 1359,
-      "gap_rwi": -2.77,
-      "ic95": [-3.14, -2.18],
-      "gap_rwi_total": -2.87
+      "blocos_rwi": 443,
+      "gap_rwi": -2.52,
+      "ic95": [-2.95, -2],
+      "gap_rwi_total": -3.27,
+      "gap_rwi_300": -3.02
+    },
+    {
+      "iso3": "SLV",
+      "nome": {
+        "en": "El Salvador",
+        "pt": "El Salvador",
+        "es": "El Salvador"
+      },
+      "pop": 6299141,
+      "lst_pop": 38.4,
+      "mes_quente": 3,
+      "pop_urbana": 84.8,
+      "blocos_rwi": 414,
+      "gap_rwi": -0.84,
+      "ic95": [-1.77, 0.05],
+      "gap_rwi_total": 0.21,
+      "gap_rwi_300": -0.4
+    },
+    {
+      "iso3": "SUR",
+      "nome": {
+        "en": "Suriname",
+        "pt": "Suriname",
+        "es": "Surinam"
+      },
+      "pop": 601481,
+      "lst_pop": 34.86,
+      "mes_quente": 9,
+      "pop_urbana": 80.4,
+      "blocos_rwi": 41,
+      "gap_rwi": -5.39,
+      "ic95": [-7.16, -2.38],
+      "gap_rwi_total": -6.88,
+      "gap_rwi_300": -5.95
+    },
+    {
+      "iso3": "TTO",
+      "nome": {
+        "en": "Trinidad and Tobago",
+        "pt": "Trinidad e Tobago",
+        "es": "Trinidad y Tobago"
+      },
+      "pop": 1496548,
+      "lst_pop": 35.1,
+      "mes_quente": 4,
+      "pop_urbana": 90.5,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
     },
     {
       "iso3": "URY",
@@ -43,13 +521,48 @@
         "es": "Uruguay"
       },
       "pop": 3395104,
-      "lst_pop": 35.49,
+      "lst_pop": 35.87,
       "mes_quente": 1,
       "pop_urbana": 91.5,
       "blocos_rwi": 0,
       "gap_rwi": null,
       "ic95": [null, null],
-      "gap_rwi_total": null
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
+    },
+    {
+      "iso3": "VCT",
+      "nome": {
+        "en": "Saint Vincent and the Grenadines",
+        "pt": "São Vicente e Granadinas",
+        "es": "San Vicente y las Granadinas"
+      },
+      "pop": 96009,
+      "lst_pop": 29.96,
+      "mes_quente": 4,
+      "pop_urbana": 86.7,
+      "blocos_rwi": 11,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": -1.75,
+      "gap_rwi_300": -1.44
+    },
+    {
+      "iso3": "VEN",
+      "nome": {
+        "en": "Venezuela",
+        "pt": "Venezuela",
+        "es": "Venezuela"
+      },
+      "pop": 28237421,
+      "lst_pop": 38.46,
+      "mes_quente": 3,
+      "pop_urbana": 92.9,
+      "blocos_rwi": 0,
+      "gap_rwi": null,
+      "ic95": [null, null],
+      "gap_rwi_total": null,
+      "gap_rwi_300": null
     }
   ]
 }

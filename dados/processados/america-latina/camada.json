@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "america-latina",
-  "gerado_em": "2026-11-12T21:33:24+0000",
+  "gerado_em": "2026-11-12T22:40:37+0000",
   "unidade": {
     "en": "Subnational unit",
     "pt": "Unidade subnacional",
@@ -18,7 +18,7 @@
     "es": "geoBoundaries ADM1 (simplificado)"
   },
   "fonte_curta": "geoBoundaries",
-  "quantidade_unidades": 44,
+  "quantidade_unidades": 553,
   "geometria": {
     "tipo": "geojson",
     "url": "unidades.geojson",
@@ -54,8 +54,8 @@
       "casas_decimais": 1,
       "classificacao": "quantis",
       "ordem": 10,
-      "quebras": [35.75, 36.75, 37.31, 38.25],
-      "n_validos": 44
+      "quebras": [31.08, 34.24, 36.97, 39.2],
+      "n_validos": 551
     },
     {
       "id": "lst_dif_pais",
@@ -86,7 +86,7 @@
       "classificacao": "manual",
       "ordem": 11,
       "quebras": [-3, -1, 1, 3],
-      "n_validos": 44
+      "n_validos": 551
     },
     {
       "id": "gap_rwi",
@@ -109,15 +109,15 @@
         "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
       },
       "metodo": {
-        "en": "Urban cells only (at least 300 inhabitants per km²). Population-weighted surface temperature of the poorest minus the richest fifth of ~2.4 km wealth blocks (Meta RWI) in the unit; only units with at least 30 blocks. Red: the poorest live in hotter places; blue: in cooler places",
-        "pt": "Só células urbanas (ao menos 300 habitantes por km²). Temperatura da superfície, ponderada pela população, do quinto mais pobre menos a do quinto mais rico dos blocos de riqueza de ~2,4 km (Meta RWI) da unidade; só unidades com ao menos 30 blocos. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes",
-        "es": "Solo celdas urbanas (al menos 300 habitantes por km²). Temperatura de superficie, ponderada por población, del quintil más pobre menos la del más rico de los bloques de riqueza de ~2,4 km (Meta RWI) de la unidad; solo unidades con al menos 30 bloques. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos"
+        "en": "Dense urban cells only (at least 1,500 inhabitants per km², the GHSL urban-centre threshold). Population-weighted surface temperature of the poorest minus the richest fifth of ~2.4 km wealth blocks (Meta RWI) in the unit; only units with at least 30 blocks. Red: the poorest live in hotter places; blue: in cooler places",
+        "pt": "Só células urbanas densas (ao menos 1.500 habitantes por km², limiar de centro urbano do GHSL). Temperatura da superfície, ponderada pela população, do quinto mais pobre menos a do quinto mais rico dos blocos de riqueza de ~2,4 km (Meta RWI) da unidade; só unidades com ao menos 30 blocos. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes",
+        "es": "Solo celdas urbanas densas (al menos 1.500 habitantes por km², umbral de centro urbano del GHSL). Temperatura de superficie, ponderada por población, del quintil más pobre menos la del más rico de los bloques de riqueza de ~2,4 km (Meta RWI) de la unidad; solo unidades con al menos 30 bloques. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos"
       },
       "casas_decimais": 1,
       "classificacao": "manual",
       "ordem": 12,
       "quebras": [-2, -0.5, 0.5, 2],
-      "n_validos": 19
+      "n_validos": 194
     },
     {
       "id": "gap_rwi_total",
@@ -148,7 +148,7 @@
       "classificacao": "manual",
       "ordem": 13,
       "quebras": [-2, -0.5, 0.5, 2],
-      "n_validos": 23
+      "n_validos": 337
     },
     {
       "id": "pop_urbana",
@@ -179,7 +179,7 @@
       "classificacao": "manual",
       "ordem": 60,
       "quebras": [40, 60, 75, 90],
-      "n_validos": 44
+      "n_validos": 552
     }
   ]
 }
