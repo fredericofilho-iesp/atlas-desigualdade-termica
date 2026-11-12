@@ -119,6 +119,18 @@ publicar_camada <- function(x, escala, id, indicadores = list(),
     x <- st_simplify(x, dTolerance = simplificar_m, preserveTopology = TRUE)
   }
   x <- st_make_valid(st_transform(x, 4326))
+  # A correção de geometrias pode gerar GEOMETRYCOLLECTION (polígono + linhas
+  # soltas); o mapa precisa só da parte poligonal.
+  gc <- st_geometry_type(x) == "GEOMETRYCOLLECTION"
+  if (any(gc)) {
+    g <- st_geometry(x)
+    for (k in which(gc)) {
+      p <- st_collection_extract(g[k], "POLYGON", warn = FALSE)
+      g[k] <- if (length(p)) st_union(p) else st_sfc(st_multipolygon(), crs = st_crs(g))
+    }
+    st_geometry(x) <- g
+    message("Geometrias mistas convertidas em polígonos: ", sum(gc))
+  }
 
   # Arredonda indicadores e completa metadados de classificação.
   for (i in seq_along(indicadores)) {
