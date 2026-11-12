@@ -25,6 +25,7 @@
   },
   "casas_decimais": 0,
   "n_classes": 5,
-  "classificacao": "quantis",
-  "ordem": 41
+  "classificacao": "manual",
+  "ordem": 41,
+  "quebras_fixas": [20, 40, 60, 80]
 }

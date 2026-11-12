@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "rio",
-  "gerado_em": "2026-11-12T10:19:54+0000",
+  "gerado_em": "2026-11-12T10:24:20+0000",
   "unidade": {
     "en": "Census tract",
     "pt": "Setor censitário",
@@ -214,9 +214,9 @@
         "es": "Proporción de residentes cuyo frente de manzana tiene al menos un árbol, según la observación del censista (se excluyen los frentes no observados)"
       },
       "casas_decimais": 0,
-      "classificacao": "quantis",
+      "classificacao": "manual",
       "ordem": 40,
-      "quebras": [18.1, 66.5, 96.8, 100],
+      "quebras": [20, 40, 60, 80],
       "n_validos": 13235
     },
     {
@@ -245,9 +245,9 @@
         "es": "Proporción de residentes cuyo frente de manzana tiene 5 o más árboles, según la observación del censista"
       },
       "casas_decimais": 0,
-      "classificacao": "quantis",
+      "classificacao": "manual",
       "ordem": 41,
-      "quebras": [0, 7.5, 46.4, 98],
+      "quebras": [20, 40, 60, 80],
       "n_validos": 13235
     }
   ]
