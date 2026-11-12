@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio]
 permissions:
   contents: write
 concurrency:
@@ -31,7 +31,7 @@ jobs:
       - name: Pacotes R
         # Sem `repos=`: usa o repositório de binários configurado por setup-r
         # (use-public-rspm). Apontar para o CRAN força compilação do código-fonte.
-        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr","terra","rstac","exactextractr"))'
+        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr","terra","rstac","exactextractr","readxl"))'
       - name: Setores censitários — município do Rio
         if: inputs.escala == 'todas' || inputs.escala == 'rio'
         run: Rscript R/01_importar_ibge.R
@@ -41,6 +41,11 @@ jobs:
       - name: Temperatura da superfície no verão — município do Rio (Landsat)
         if: inputs.escala == 'todas' || inputs.escala == 'temperatura-rio'
         run: Rscript R/03_temperatura_superficie_rio.R
+      - name: Renda do responsável e calor × renda — município do Rio
+        if: inputs.escala == 'todas' || inputs.escala == 'renda-rio'
+        run: |
+          Rscript R/04_renda_rio.R
+          Rscript R/05_calor_renda_rio.R
       - name: Registrar dados processados
         run: |
           git config user.name "github-actions[bot]"
