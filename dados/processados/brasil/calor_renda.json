@@ -1,0 +1,52 @@
+{
+  "gerado_em": "2026-11-12T20:06:22+0000",
+  "escopo": "Brasil, todos os setores",
+  "setores_usados": 48011,
+  "domicilios_usados": 7549650,
+  "quintos": [
+    {
+      "quinto": 1,
+      "setores": 10206,
+      "domicilios": 1509953,
+      "renda_min": 319,
+      "renda_max": 1576,
+      "lst_media": 37.8
+    },
+    {
+      "quinto": 2,
+      "setores": 9402,
+      "domicilios": 1509767,
+      "renda_min": 1576,
+      "renda_max": 1917,
+      "lst_media": 37.44
+    },
+    {
+      "quinto": 3,
+      "setores": 9448,
+      "domicilios": 1510024,
+      "renda_min": 1917,
+      "renda_max": 2436,
+      "lst_media": 37.67
+    },
+    {
+      "quinto": 4,
+      "setores": 9676,
+      "domicilios": 1509999,
+      "renda_min": 2436,
+      "renda_max": 3759,
+      "lst_media": 37.96
+    },
+    {
+      "quinto": 5,
+      "setores": 9279,
+      "domicilios": 1509907,
+      "renda_min": 3759,
+      "renda_max": 177068,
+      "lst_media": 36.68
+    }
+  ],
+  "diferenca_q1_q5": 1.12,
+  "ic95": [1.01, 1.23],
+  "bootstrap": 500,
+  "spearman_setores": -0.064
+}
