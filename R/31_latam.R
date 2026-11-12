@@ -71,8 +71,17 @@ for (p in hdx) {
   isos <- toupper(vapply(p$groups %||% list(), function(g) g$name %||% "", ""))
   csv <- Filter(function(r) grepl("csv", tolower(r$format %||% "")) || grepl("\\.csv$", tolower(r$url %||% "")), p$resources %||% list())
   if (!length(csv)) next
-  for (i in intersect(isos, PAISES_LATAM$iso3)) if (is.null(rwi_url[[i]])) rwi_url[[i]] <- csv[[1]]$url
+  for (i in intersect(isos, PAISES_LATAM$iso3)) {
+    if (!is.null(rwi_url[[i]])) next
+    # Um pacote pode trazer vários países: escolhe o arquivo pelo código ISO ou pelo nome do país.
+    alvo <- paste0("(^|[^a-z])(", tolower(i), "|", gsub(" ", "[_ -]", tolower(PAISES_LATAM$en[PAISES_LATAM$iso3 == i])), ")([^a-z]|$)")
+    txt_r <- vapply(csv, function(r) tolower(paste(r$name %||% "", basename(r$url %||% ""))), "")
+    hit <- which(grepl(alvo, txt_r))
+    if (length(hit)) rwi_url[[i]] <- csv[[hit[1]]]$url
+    else if (length(isos) == 1) rwi_url[[i]] <- csv[[1]]$url
+  }
 }
+for (i in sort(names(rwi_url))) message("  RWI ", i, ": ", basename(rwi_url[[i]]))
 message("RWI disponível para ", length(rwi_url), " de ", nrow(PAISES_LATAM), " países: ", paste(sort(names(rwi_url)), collapse = " "))
 message("Sem RWI: ", paste(setdiff(PAISES_LATAM$iso3, names(rwi_url)), collapse = " "))
 
@@ -103,6 +112,8 @@ for (iso in unique(u$iso3)) {
                    error = function(e) { message("  RWI ", iso, " falhou: ", conditionMessage(e)); FALSE })
     if (ok) {
       rw <- utils::read.csv(arq); names(rw) <- tolower(names(rw))
+      message("    RWI ", iso, ": ", nrow(rw), " blocos; colunas ", paste(names(rw), collapse = ","),
+              sprintf("; lat %.2f a %.2f", min(rw$latitude), max(rw$latitude)))
       df$rwi <- rw$rwi[match(df$bloco, chave_z14(rw$longitude, rw$latitude))]
     }
   }
@@ -118,6 +129,7 @@ cel <- do.call(rbind, celulas); rm(celulas); gc()
 mp <- function(v, w) { k <- is.finite(v) & is.finite(w) & w > 0; if (!any(k)) NA_real_ else sum(v[k] * w[k]) / sum(w[k]) }
 grupos_pond <- function(x, w, k) { o <- order(x); meio <- (cumsum(w[o]) - w[o] / 2) / sum(w); g <- integer(length(x)); g[o] <- pmin(k, floor(meio * k) + 1L); g }
 c2 <- cel[is.finite(cel$rwi) & is.finite(cel$lst), ]
+if (!nrow(c2)) stop("Nenhuma célula com RWI: verifique os arquivos do HDX listados acima.")
 c2$lp <- c2$lst * c2$pop
 bl <- stats::aggregate(cbind(pop, lp) ~ bloco + iso3 + rwi, data = c2, FUN = sum)
 bl$lst <- bl$lp / bl$pop; bl$lp <- NULL
