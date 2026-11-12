@@ -36,31 +36,8 @@ dir.create("dados/brutos/renda", recursive = TRUE, showWarnings = FALSE)
 if (!file.exists("dados/brutos/rio_setores_2022.rds")) local(source("R/01_importar_ibge.R", local = TRUE))
 malha <- readRDS("dados/brutos/rio_setores_2022.rds")
 
-# ---- localizar arquivos na pasta do IBGE (nomes trazem a data da versão) ----
-listar <- function(url) {
-  # As listagens do FTP do IBGE vêm em latin1; ler como bytes evita erro de codificação.
-  h <- paste(readLines(url, warn = FALSE), collapse = "\n")
-  h <- iconv(h, from = "latin1", to = "UTF-8", sub = "")
-  l <- regmatches(h, gregexpr('href="[^"?][^"]*"', h, useBytes = TRUE))[[1]]
-  l <- gsub('^href="|"$', "", l)
-  l <- l[!grepl("^/|^\\.\\./?$|^https?:", l)]
-  unique(paste0(url, l))
-}
-achar <- function(url, padrao, profundidade = 2) {
-  itens <- listar(url)
-  ok <- itens[grepl(padrao, basename(itens), ignore.case = TRUE)]
-  if (length(ok)) return(ok)
-  if (profundidade > 0) for (d in itens[grepl("/$", itens)]) {
-    r <- achar(d, padrao, profundidade - 1)
-    if (length(r)) return(r)
-  }
-  character(0)
-}
-baixar <- function(url) {
-  dest <- file.path("dados/brutos/renda", utils::URLdecode(basename(url)))
-  if (!file.exists(dest)) download.file(url, dest, mode = "wb", method = "libcurl")
-  dest
-}
+source("R/00_ibge_ftp.R")
+baixar <- function(url) baixar_ibge(url, "dados/brutos/renda")
 
 # Há um arquivo por recorte (setores, bairros, distritos...): pegar o de setores.
 zip_url <- achar(BASE, "^Agregados_por_setores_renda.*csv.*\\.zip$")

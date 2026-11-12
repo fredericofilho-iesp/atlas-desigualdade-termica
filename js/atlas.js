@@ -94,6 +94,7 @@
       maximumFractionDigits: casas == null ? 2 : casas
     });
     if (unidade === 'R$') return 'R$ ' + n;
+    if (unidade === '%') return n + '%';
     return unidade ? n + ' ' + unidade : n;
   }
 
@@ -420,6 +421,39 @@
     el.hidden = false;
   }
 
+  // ---------- painel árvores × renda ----------
+  async function carregarPainelArvores() {
+    if (!cfg.painelArvores) return;
+    try {
+      var r = await fetch(cfg.painelArvores, { cache: 'no-cache' });
+      if (!r.ok) return;
+      estado.painelArv = await r.json();
+      desenharPainelArvores();
+    } catch (e) { /* opcional */ }
+  }
+
+  function desenharPainelArvores() {
+    var el = $('painel-arvores'), d = estado.painelArv;
+    if (!el || !d || !d.por_quinto_de_renda) return;
+    var qs = d.por_quinto_de_renda, pa = d.por_quinto_de_arborizacao || [];
+    var f0 = function (v) { return formatarValor(v, '', 0); };
+    var frase = I.t('arv.sentence', { a: f0(qs[0].arv_com_arvores), b: f0(qs[qs.length - 1].arv_com_arvores) });
+    if (pa.length >= 2) {
+      var dif = pa[0].lst_media - pa[pa.length - 1].lst_media;
+      if (dif > 0) frase += ' ' + I.t('arv.cooler', { d: formatarValor(dif, '', 1) });
+    }
+    var html = '<h2>' + I.t('arv.title') + '</h2><p class="ineq-frase">' + frase + '</p><ul class="barras verde">';
+    qs.forEach(function (q, i) {
+      var rot = i === 0 ? I.t('ineq.q1') : (i === qs.length - 1 ? I.t('ineq.q5') : I.t('ineq.qn', { n: q.quinto }));
+      html += '<li><span class="barra-rot">' + rot + '</span>' +
+        '<span class="barra-trilho"><span class="barra" style="width:' + Math.max(1, q.arv_com_arvores).toFixed(1) + '%"></span></span>' +
+        '<span class="barra-val">' + formatarValor(q.arv_com_arvores, '%', 0) + '</span></li>';
+    });
+    html += '</ul><p class="status">' + I.t('arv.note') + '</p>';
+    el.innerHTML = html;
+    el.hidden = false;
+  }
+
   // Troca de idioma sem recarregar a página.
   document.addEventListener('atlas:idioma', function () {
     var map = estado.mapa;
@@ -432,6 +466,7 @@
     }
     if (map && map.isStyleLoaded && map.isStyleLoaded()) rotulosNoIdioma(map, I.idioma);
     desenharPainel();
+    desenharPainelArvores();
   });
 
   async function iniciar() {
@@ -458,6 +493,7 @@
     preencherIndicadores(manifesto);
     atualizarBadge();
     carregarPainel();
+    carregarPainelArvores();
 
     map.on('load', async function () {
       rotulosNoIdioma(map, I.idioma);

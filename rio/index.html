@@ -37,9 +37,10 @@
     <p id="status-camada" class="status" role="status">Loading boundary layer…</p>
     <div id="ficha" class="ficha" aria-live="polite"><p data-i18n="map.clickHint" class="status">Click an area on the map to see its values.</p></div>
     <section id="painel-desigualdade" class="desigualdade" aria-live="polite" hidden></section>
-    <div data-i18n="rio.notice" class="aviso"><strong>Published:</strong> summer land surface temperature (Landsat 8–9, summers 2022/23 to 2024/25). Surface temperature is not air temperature: it shows how hot surfaces get on clear summer mornings. Also available: household-head income (2022 Census) and a bivariate map of heat × income.</div>
+    <section id="painel-arvores" class="desigualdade" aria-live="polite" hidden></section>
+    <div data-i18n="rio.notice" class="aviso"><strong>Published:</strong> summer land surface temperature (Landsat 8–9, summers 2022/23 to 2024/25). Surface temperature is not air temperature: it shows how hot surfaces get on clear summer mornings. Also available: household-head income and street trees (2022 Census), and a bivariate map of heat × income.</div>
     <h2 data-i18n="map.sourcesTitle">Planned sources</h2>
-    <p class="status"><span data-i18n="rio.sources">IBGE (2022 Census, tract boundaries and household-head income), Landsat imagery (land surface temperature), MapBiomas (vegetation cover), Data.Rio.</span> <span data-i18n="map.detailsIn">Details in <a href="../metodologia/">Methodology</a>.</span></p>
+    <p class="status"><span data-i18n="rio.sources">IBGE (2022 Census: tract boundaries, household-head income, street trees), Landsat imagery (land surface temperature), MapBiomas (vegetation cover), Data.Rio.</span> <span data-i18n="map.detailsIn">Details in <a href="../metodologia/">Methodology</a>.</span></p>
   </aside>
   <section class="caixa-mapa" data-i18n-attr="aria-label:map.ariaInteractive" aria-label="Interactive map">
     <div class="cabeca-mapa"><strong data-i18n="rio.title">City of Rio de Janeiro</strong><span class="badge" id="badge-mapa" data-i18n="map.badgeBasemap">Basemap</span></div>
@@ -48,7 +49,7 @@
   </section>
 </main>
 <footer class="rodape" data-i18n="footer">Academic project under development · <a href="https://github.com/fredericofilho-iesp/atlas-desigualdade-termica">Code, data and documentation on GitHub</a> · Basemap © OpenStreetMap · OpenFreeMap</footer>
-<script>window.ATLAS_CONFIG = {"chave": "rio", "centro": [-43.45, -22.92], "zoom": 10, "zoomMinimo": 8, "espessuraContorno": 1, "painelCalorRenda": "../dados/processados/rio/calor_renda.json", "escala": "rio", "manifesto": "../dados/processados/rio/camada.json"};</script>
+<script>window.ATLAS_CONFIG = {"chave": "rio", "centro": [-43.45, -22.92], "zoom": 10, "zoomMinimo": 8, "espessuraContorno": 1, "painelCalorRenda": "../dados/processados/rio/calor_renda.json", "painelArvores": "../dados/processados/rio/arborizacao_resumo.json", "escala": "rio", "manifesto": "../dados/processados/rio/camada.json"};</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="../js/atlas.js"></script>
 </body>
