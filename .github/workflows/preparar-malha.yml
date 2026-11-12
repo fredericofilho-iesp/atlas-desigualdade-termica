@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio]
 permissions:
   contents: write
 concurrency:
@@ -46,6 +46,9 @@ jobs:
         run: |
           Rscript R/04_renda_rio.R
           Rscript R/05_calor_renda_rio.R
+      - name: Arborização do entorno — município do Rio
+        if: inputs.escala == 'todas' || inputs.escala == 'arborizacao-rio'
+        run: Rscript R/06_arborizacao_rio.R
       - name: Registrar dados processados
         run: |
           git config user.name "github-actions[bot]"
