@@ -1,0 +1,45 @@
+{
+  "id": "biv_lst_renda",
+  "rotulo": {
+    "en": "Surface temperature × income (bivariate)",
+    "pt": "Temperatura da superfície × renda (bivariado)",
+    "es": "Temperatura de superficie × ingreso (bivariado)"
+  },
+  "paleta": "bivariada",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+    "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+    "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+  },
+  "metodo": {
+    "en": "Household-weighted terciles of summer surface temperature and of household-head income",
+    "pt": "Tercis, ponderados por domicílios, da temperatura da superfície no verão e da renda do responsável",
+    "es": "Terciles, ponderados por hogares, de la temperatura de superficie en verano y del ingreso del responsable"
+  },
+  "casas_decimais": 0,
+  "ordem": 30,
+  "tipo": "bivariado",
+  "eixos": {
+    "y": {
+      "indicador": "lst_verao",
+      "limites": [40.5, 43],
+      "unidade": "°C",
+      "rotulo": {
+        "en": "Surface temperature",
+        "pt": "Temperatura da superfície",
+        "es": "Temperatura de superficie"
+      }
+    },
+    "x": {
+      "indicador": "renda_media_resp",
+      "limites": [2000, 3900],
+      "unidade": "R$",
+      "rotulo": {
+        "en": "Household head income",
+        "pt": "Renda do responsável",
+        "es": "Ingreso del responsable"
+      }
+    }
+  }
+}
