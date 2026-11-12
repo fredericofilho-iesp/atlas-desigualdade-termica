@@ -1,0 +1,90 @@
+{
+  "gerado_em": "2026-11-12T11:08:23+0000",
+  "veroes": {
+    "2022/23": "2022-12-01/2023-03-31",
+    "2023/24": "2023-12-01/2024-03-31",
+    "2024/25": "2024-12-01/2025-03-31"
+  },
+  "parametros": {
+    "max_nuvem_cena": 70,
+    "min_frac_limpa": 0.5,
+    "min_cenas": 3,
+    "modo_teste": true
+  },
+  "cenas_usadas": 8,
+  "setores": 41700,
+  "setores_com_valor": 440,
+  "lst_setores": {
+    "0%": 24.69,
+    "5%": 29.38,
+    "25%": 30.93,
+    "50%": 32.55,
+    "75%": 34.14,
+    "95%": 36.67,
+    "100%": 40.28
+  },
+  "comparacao_rio": {
+    "setores": 0,
+    "correlacao": "NA",
+    "diferenca_media": "NaN",
+    "diferenca_abs_mediana": "NA"
+  },
+  "cenas": [
+    {
+      "id": "LC08_L2SP_218076_20230330_02_T1",
+      "data": "2023-03-30",
+      "verao": "2022/23",
+      "nuvens_cena": 42.98,
+      "setores_limpos": 1190
+    },
+    {
+      "id": "LC09_L2SP_216076_20230204_02_T1",
+      "data": "2023-02-04",
+      "verao": "2022/23",
+      "nuvens_cena": 15.78,
+      "setores_limpos": 5217
+    },
+    {
+      "id": "LC08_L2SP_218076_20221208_02_T1",
+      "data": "2022-12-08",
+      "verao": "2022/23",
+      "nuvens_cena": 34.8,
+      "setores_limpos": 1058
+    },
+    {
+      "id": "LC09_L2SP_216075_20240207_02_T1",
+      "data": "2024-02-07",
+      "verao": "2023/24",
+      "nuvens_cena": 52.6,
+      "setores_limpos": 702
+    },
+    {
+      "id": "LC09_L2SP_216076_20231221_02_T1",
+      "data": "2023-12-21",
+      "verao": "2023/24",
+      "nuvens_cena": 11.24,
+      "setores_limpos": 3146
+    },
+    {
+      "id": "LC09_L2SP_217076_20250320_02_T2",
+      "data": "2025-03-20",
+      "verao": "2024/25",
+      "nuvens_cena": 65.54,
+      "setores_limpos": 183
+    },
+    {
+      "id": "LC08_L2SP_218075_20250215_02_T1",
+      "data": "2025-02-15",
+      "verao": "2024/25",
+      "nuvens_cena": 35.68,
+      "setores_limpos": 2124
+    },
+    {
+      "id": "LC08_L2SP_217074_20241206_02_T1",
+      "data": "2024-12-06",
+      "verao": "2024/25",
+      "nuvens_cena": 1.27,
+      "setores_limpos": 82
+    }
+  ]
+}
