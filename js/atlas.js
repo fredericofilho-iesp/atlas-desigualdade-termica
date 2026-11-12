@@ -542,21 +542,24 @@
   function desenharPainelPaises() {
     var el = $('painel-paises'), d = estado.painelPai;
     if (!el || !d || !d.paises) return;
-    var ps = d.paises.slice().sort(function (a, b) {
-      var ga = Number.isFinite(a.gap_rwi) ? a.gap_rwi : -Infinity, gb = Number.isFinite(b.gap_rwi) ? b.gap_rwi : -Infinity;
-      return gb - ga || (b.pop || 0) - (a.pop || 0);
+    var ps = d.paises.filter(function (p) { return Number.isFinite(p.lst_pop); }).sort(function (a, b) {
+      return b.lst_pop - a.lst_pop;
     });
+    if (!ps.length) return;
     var html = '<h2>' + I.t('pai.title') + '</h2><p class="ineq-frase">' +
-      I.t('pai.sentence', { n: d.paises_mais_pobres_mais_quentes, m: d.paises_com_rwi }) + '</p>' +
-      '<table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.colTemp') + '</th><th>' + I.t('pai.colMonth') +
-      '</th><th>' + I.t('pai.colGap') + '</th><th>' + I.t('pai.colGapAll') + '</th></tr></thead><tbody>';
+      I.t('pai.sentence', { quente: escapar(I.tr(ps[0].nome)), tq: formatarValor(ps[0].lst_pop, '°C', 1),
+        fresco: escapar(I.tr(ps[ps.length - 1].nome)), tf: formatarValor(ps[ps.length - 1].lst_pop, '°C', 1) }) + '</p>' +
+      '<div class="tabela-rolagem"><table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.colTemp') + '</th><th>' +
+      I.t('pai.colCities') + '</th><th>' + I.t('pai.colMonth') + '</th><th>' + I.t('pai.colUrban') + '</th><th>' +
+      I.t('pai.colHottest') + '</th></tr></thead><tbody>';
     ps.forEach(function (p) {
-      var sinal = function (v) { return Number.isFinite(v) ? (v > 0 ? '+' : '') + formatarValor(v, '', 1) : '—'; };
-      var g = sinal(p.gap_rwi), gt = sinal(p.gap_rwi_total);
+      var q = p.unidade_mais_quente;
       html += '<tr><th scope="row">' + escapar(I.tr(p.nome) || p.iso3) + '</th><td>' + formatarValor(p.lst_pop, '°C', 1) +
-        '</td><td>' + nomeMes(p.mes_quente) + '</td><td>' + g + '</td><td>' + gt + '</td></tr>';
+        '</td><td>' + (Number.isFinite(p.lst_cidades) ? formatarValor(p.lst_cidades, '°C', 1) : '—') +
+        '</td><td>' + nomeMes(p.mes_quente) + '</td><td>' + formatarValor(p.pop_urbana, '%', 0) +
+        '</td><td>' + (q && Number.isFinite(q.lst_pop) ? escapar(q.nome) + ' (' + formatarValor(q.lst_pop, '°C', 1) + ')' : '—') + '</td></tr>';
     });
-    html += '</tbody></table><p class="status">' + I.t('pai.note') + '</p>';
+    html += '</tbody></table></div><p class="status">' + I.t('pai.note') + '</p>';
     el.innerHTML = html;
     el.hidden = false;
   }
