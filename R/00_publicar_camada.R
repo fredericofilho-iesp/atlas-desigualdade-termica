@@ -36,16 +36,54 @@ txt <- function(x) {
 }
 
 #' Metadados de um indicador. `id` deve ser o nome da coluna no objeto sf.
-#' paleta: "calor", "renda", "verde" ou "pessoas".
+#' paleta: "calor", "renda", "verde", "pessoas" ou "divergente".
+#' quebras: limites fixos das classes (opcional). Sem eles, usa `classificacao`.
+#' ordem: posição no seletor do site (menor aparece primeiro).
 indicador <- function(id, rotulo, unidade = NULL, paleta = "calor",
                       dimensao = c("exposicao", "sensibilidade", "adaptacao", "contexto"),
                       fonte = NULL, periodo = NULL, metodo = NULL,
                       casas_decimais = 1, n_classes = 5,
-                      classificacao = c("quantis", "intervalos_iguais")) {
-  list(id = id, rotulo = txt(rotulo), unidade = txt(unidade), paleta = paleta,
-       dimensao = match.arg(dimensao), fonte = txt(fonte), periodo = txt(periodo),
-       metodo = txt(metodo), casas_decimais = casas_decimais,
-       n_classes = n_classes, classificacao = match.arg(classificacao))
+                      classificacao = c("quantis", "intervalos_iguais"),
+                      quebras = NULL, ordem = 50) {
+  ind <- list(id = id, rotulo = txt(rotulo), unidade = txt(unidade), paleta = paleta,
+              dimensao = match.arg(dimensao), fonte = txt(fonte), periodo = txt(periodo),
+              metodo = txt(metodo), casas_decimais = casas_decimais,
+              n_classes = n_classes, classificacao = match.arg(classificacao),
+              ordem = ordem)
+  if (!is.null(quebras)) { ind$quebras_fixas <- sort(quebras); ind$classificacao <- "manual" }
+  Filter(Negate(is.null), ind)
+}
+
+#' Guarda indicadores já calculados em dados/indicadores/<escala>/<id>.{csv,json}.
+#' tabela: data.frame com a coluna identificadora e uma coluna por indicador.
+#' Esses arquivos são pequenos e versionados; publicar a camada só os junta à malha.
+salvar_indicadores <- function(tabela, escala, id, indicadores, dir = "dados/indicadores") {
+  d <- file.path(dir, escala)
+  dir.create(d, recursive = TRUE, showWarnings = FALSE)
+  for (ind in indicadores) {
+    out <- data.frame(as.character(tabela[[id]]), as.numeric(tabela[[ind$id]]))
+    names(out) <- c(id, ind$id)
+    utils::write.csv(out, file.path(d, paste0(ind$id, ".csv")), row.names = FALSE, na = "")
+    write_json(ind, file.path(d, paste0(ind$id, ".json")),
+               auto_unbox = TRUE, pretty = TRUE, digits = NA)
+    message("Indicador salvo: ", escala, "/", ind$id, " (", sum(is.finite(out[[2]])), " valores)")
+  }
+  invisible(TRUE)
+}
+
+#' Junta a `x` todos os indicadores salvos para a escala.
+#' Retorna list(x = sf com as colunas, indicadores = lista de metadados).
+carregar_indicadores <- function(x, escala, id, dir = "dados/indicadores") {
+  arqs <- list.files(file.path(dir, escala), "\\.json$", full.names = TRUE)
+  metas <- lapply(arqs, function(a) read_json(a, simplifyVector = TRUE))
+  if (length(metas)) metas <- metas[order(vapply(metas, function(m) if (is.null(m$ordem)) 50 else m$ordem, 0),
+                                          vapply(metas, `[[`, "", "id"))]
+  for (m in metas) {
+    tab <- utils::read.csv(file.path(dir, escala, paste0(m$id, ".csv")),
+                           colClasses = stats::setNames("character", id))
+    x[[m$id]] <- as.numeric(tab[[m$id]])[match(as.character(x[[id]]), tab[[id]])]
+  }
+  list(x = x, indicadores = metas)
 }
 
 calcular_quebras <- function(x, n = 5, metodo = "quantis") {
@@ -87,8 +125,10 @@ publicar_camada <- function(x, escala, id, indicadores = list(),
     ind <- indicadores[[i]]
     v <- as.numeric(x[[ind$id]])
     x[[ind$id]] <- round(v, ind$casas_decimais + 2)
-    q <- calcular_quebras(v, ind$n_classes, ind$classificacao)
-    indicadores[[i]]$quebras <- round(q, ind$casas_decimais + 1)
+    q <- if (!is.null(ind$quebras_fixas)) ind$quebras_fixas else
+      round(calcular_quebras(v, ind$n_classes, ind$classificacao), ind$casas_decimais + 1)
+    indicadores[[i]]$quebras <- q
+    indicadores[[i]]$quebras_fixas <- NULL
     # "quantis" ou "intervalos_iguais"; o site traduz e conta as classes.
     indicadores[[i]]$classificacao <- ind$classificacao
     indicadores[[i]]$n_validos <- sum(is.finite(v))

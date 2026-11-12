@@ -13,7 +13,9 @@
     calor:  ['#fee8c8', '#fdbb84', '#fc8d59', '#e34a33', '#b30000'],
     renda:  ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'],
     verde:  ['#edf8e9', '#bae4b3', '#74c476', '#31a354', '#006d2c'],
-    pessoas:['#f2f0f7', '#cbc9e2', '#9e9ac8', '#756bb1', '#54278f']
+    pessoas:['#f2f0f7', '#cbc9e2', '#9e9ac8', '#756bb1', '#54278f'],
+    // Divergente: azul (mais frio que a referência) → branco → vermelho (mais quente).
+    divergente: ['#2166ac', '#92c5de', '#f7f7f7', '#f4a582', '#b2182b']
   };
   var COR_SEM_DADO = '#d9dde0';
 
@@ -124,6 +126,7 @@
     var n = (ind.quebras || []).length + 1;
     if (c === 'quantis') return I.t('map.quantiles') + ' (' + I.t('map.nClasses', { n: n }) + ')';
     if (c === 'intervalos_iguais') return I.t('map.equalIntervals') + ' (' + I.t('map.nClasses', { n: n }) + ')';
+    if (c === 'manual') return I.t('map.fixedIntervals');
     return String(c);
   }
 
