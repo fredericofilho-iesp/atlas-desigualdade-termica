@@ -119,3 +119,22 @@ select {
   background-color: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.35);
 }
 .idioma select option { color: var(--tinta); background: #fff; }
+
+/* Legenda bivariada 3×3 */
+.biv { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 2px 6px; margin-top: 2px; }
+.biv-y { writing-mode: vertical-rl; transform: rotate(180deg); font-size: .74rem; color: var(--tinta-suave); text-align: center; }
+.biv-grade { border-collapse: separate; border-spacing: 2px; font-size: .7rem; }
+.biv-grade td { width: 30px; height: 22px; border-radius: 2px; }
+.biv-grade th { font-weight: 400; color: var(--tinta-suave); text-align: right; padding-right: 4px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.biv-grade th.biv-x { text-align: center; padding: 2px 0 0; white-space: normal; line-height: 1.15; max-width: 36px; }
+.biv-xt { grid-column: 2; font-size: .74rem; color: var(--tinta-suave); padding-left: 52px; }
+
+/* Painel calor × renda */
+.desigualdade h2 { margin-top: 22px; }
+.ineq-frase { font-size: .95rem; }
+.barras { list-style: none; margin: 10px 0 6px; padding: 0; }
+.barras li { display: grid; grid-template-columns: 92px 1fr 62px; align-items: center; gap: 8px; margin: 5px 0; font-size: .85rem; }
+.barra-rot { color: var(--tinta-suave); }
+.barra-trilho { background: #eef2f4; border-radius: 4px; height: 14px; overflow: hidden; }
+.barra { display: block; height: 100%; background: #e34a33; border-radius: 4px; }
+.barra-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }

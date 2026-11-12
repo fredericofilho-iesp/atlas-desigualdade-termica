@@ -32,6 +32,10 @@ VARS <- c(domicilios = "V06001", media = "V06004", mediana = "V06006")
 
 dir.create("dados/brutos/renda", recursive = TRUE, showWarnings = FALSE)
 
+# Malha primeiro: R/01_importar_ibge.R cria objetos próprios (como `rio`).
+if (!file.exists("dados/brutos/rio_setores_2022.rds")) local(source("R/01_importar_ibge.R", local = TRUE))
+malha <- readRDS("dados/brutos/rio_setores_2022.rds")
+
 # ---- localizar arquivos na pasta do IBGE (nomes trazem a data da versão) ----
 listar <- function(url) {
   # As listagens do FTP do IBGE vêm em latin1; ler como bytes evita erro de codificação.
@@ -100,20 +104,20 @@ numero <- function(x) {
   suppressWarnings(as.numeric(x))
 }
 
-rio <- tab[substr(tab$CD_SETOR, 1, 7) == COD_MUN, ]
-message("Setores do município do Rio no arquivo: ", nrow(rio))
+renda_rio <- tab[substr(tab$CD_SETOR, 1, 7) == COD_MUN, ]
+rm(tab)
+message("Setores do município do Rio no arquivo: ", nrow(renda_rio))
+message("Primeiras linhas:\n", paste(utils::capture.output(print(utils::head(renda_rio, 3))), collapse = "\n"))
 
-malha <- readRDS(if (file.exists("dados/brutos/rio_setores_2022.rds")) "dados/brutos/rio_setores_2022.rds" else {
-  source("R/01_importar_ibge.R"); "dados/brutos/rio_setores_2022.rds" })
 setores <- as.character(malha$CD_SETOR)
-i <- match(setores, rio$CD_SETOR)
+i <- match(setores, renda_rio$CD_SETOR)
 message("Setores da malha com linha no arquivo de renda: ", sum(!is.na(i)), "/", length(setores))
 
 saida <- data.frame(
   CD_SETOR = setores,
-  domicilios = numero(rio[[VARS[["domicilios"]]]])[i],
-  renda_media_resp = round(numero(rio[[VARS[["media"]]]])[i], 2),
-  renda_mediana_resp = if (VARS[["mediana"]] %in% names(rio)) round(numero(rio[[VARS[["mediana"]]]])[i], 2) else NA_real_
+  domicilios = numero(renda_rio[[VARS[["domicilios"]]]])[i],
+  renda_media_resp = round(numero(renda_rio[[VARS[["media"]]]])[i], 2),
+  renda_mediana_resp = if (VARS[["mediana"]] %in% names(renda_rio)) round(numero(renda_rio[[VARS[["mediana"]]]])[i], 2) else NA_real_
 )
 saida$renda_media_resp[!is.na(saida$domicilios) & saida$domicilios == 0] <- NA
 qs <- function(v) paste(names(q <- round(stats::quantile(v, c(0, .1, .5, .9, 1), na.rm = TRUE))), q, collapse = "  ")

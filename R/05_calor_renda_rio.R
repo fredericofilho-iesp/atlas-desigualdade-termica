@@ -97,7 +97,7 @@ salvar_indicadores(d, escala = "rio", id = "CD_SETOR", indicadores = list(
     rotulo = c(en = "Surface temperature × income (bivariate)",
                pt = "Temperatura da superfície × renda (bivariado)",
                es = "Temperatura de superficie × ingreso (bivariado)"),
-    paleta = "bivariada", dimensao = "exposicao", casas_decimais = 0, ordem = 5,
+    paleta = "bivariada", dimensao = "exposicao", casas_decimais = 0, ordem = 30,
     tipo = "bivariado",
     eixos = list(
       y = list(indicador = "lst_verao", limites = lim_temp, unidade = "°C",

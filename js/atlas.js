@@ -15,7 +15,12 @@
     verde:  ['#edf8e9', '#bae4b3', '#74c476', '#31a354', '#006d2c'],
     pessoas:['#f2f0f7', '#cbc9e2', '#9e9ac8', '#756bb1', '#54278f'],
     // Divergente: azul (mais frio que a referência) → branco → vermelho (mais quente).
-    divergente: ['#2166ac', '#92c5de', '#f7f7f7', '#f4a582', '#b2182b']
+    divergente: ['#2166ac', '#92c5de', '#f7f7f7', '#f4a582', '#b2182b'],
+    // Bivariada 3×3 (J. Stevens), índice = código − 1. Linhas: temperatura
+    // baixa→alta; colunas: renda baixa→alta. Quente e mais pobre = magenta.
+    bivariada: ['#e8e8e8', '#ace4e4', '#5ac8c8',
+                '#dfb0d6', '#a5add3', '#5698b9',
+                '#be64ac', '#8c62aa', '#3b4994']
   };
   var COR_SEM_DADO = '#d9dde0';
 
@@ -88,6 +93,7 @@
       minimumFractionDigits: casas == null ? 0 : casas,
       maximumFractionDigits: casas == null ? 2 : casas
     });
+    if (unidade === 'R$') return 'R$ ' + n;
     return unidade ? n + ' ' + unidade : n;
   }
 
@@ -185,9 +191,44 @@
     else if (publicados.length) sel.value = publicados[0].id;
   }
 
+  // Rótulos dos tercis de um eixo bivariado: "< a", "a – b", "≥ b".
+  function rotulosTercis(eixo) {
+    var l = eixo.limites || [], u = eixo.unidade || '';
+    var f = function (v) { return formatarValor(v, u === 'R$' ? 'R$' : '', u === 'R$' ? 0 : 1); };
+    return ['< ' + f(l[0]), f(l[0]) + ' – ' + f(l[1]), '≥ ' + f(l[1])];
+  }
+
+  function categoriaBivariada(cod) {
+    cod = Number(cod);
+    if (!(cod >= 1 && cod <= 9)) return I.t('map.noData');
+    var t = Math.floor((cod - 1) / 3) + 1, r = ((cod - 1) % 3) + 1;
+    return I.t('biv.t' + t) + ' · ' + I.t('biv.r' + r);
+  }
+
+  function legendaBivariada(ind) {
+    var p = PALETAS.bivariada, ex = ind.eixos || {}, x = ex.x || {}, y = ex.y || {};
+    var rx = rotulosTercis(x), ry = rotulosTercis(y);
+    var html = '<p class="legenda-titulo">' + escapar(I.tr(ind.rotulo)) + '</p>';
+    html += '<div class="biv"><div class="biv-y">' + escapar(I.tr(y.rotulo)) + (y.unidade ? ' (' + y.unidade + ')' : '') + ' →</div>';
+    html += '<table class="biv-grade" role="presentation"><tbody>';
+    for (var t = 3; t >= 1; t--) {
+      html += '<tr><th scope="row">' + ry[t - 1] + '</th>';
+      for (var r = 1; r <= 3; r++) {
+        var cod = (t - 1) * 3 + r;
+        html += '<td title="' + escapar(categoriaBivariada(cod)) + '" style="background:' + p[cod - 1] + '"></td>';
+      }
+      html += '</tr>';
+    }
+    html += '<tr><th></th>' + rx.map(function (v) { return '<th class="biv-x">' + v + '</th>'; }).join('') + '</tr>';
+    html += '</tbody></table><div class="biv-xt">' + escapar(I.tr(x.rotulo)) + (x.unidade ? ' (' + x.unidade + ')' : '') + ' →</div></div>';
+    html += '<p class="legenda-meta">' + I.t('biv.note') + '</p>';
+    return html;
+  }
+
   function desenharLegenda(ind) {
     var el = $('legenda');
     if (!ind) { el.hidden = true; el.innerHTML = ''; return; }
+    if (ind.tipo === 'bivariado') { el.innerHTML = legendaBivariada(ind); el.hidden = false; return; }
     var cores = coresPara(ind);
     var rot = rotulosLegenda(ind);
     var u = I.tr(ind.unidade);
@@ -215,7 +256,12 @@
     (estado.manifesto.indicadores || []).forEach(function (i) { if (i.id === id) ind = i; });
     estado.indicador = ind;
     if (ind) {
-      map.setPaintProperty('unidades-preenchimento', 'fill-color', expressaoCor(ind.id, ind.quebras || [], coresPara(ind)));
+      var cor = ind.tipo === 'bivariado'
+        ? ['match', ['to-number', ['get', ind.id], 0], 1, PALETAS.bivariada[0], 2, PALETAS.bivariada[1], 3, PALETAS.bivariada[2],
+           4, PALETAS.bivariada[3], 5, PALETAS.bivariada[4], 6, PALETAS.bivariada[5],
+           7, PALETAS.bivariada[6], 8, PALETAS.bivariada[7], 9, PALETAS.bivariada[8], COR_SEM_DADO]
+        : expressaoCor(ind.id, ind.quebras || [], coresPara(ind));
+      map.setPaintProperty('unidades-preenchimento', 'fill-color', cor);
       map.setPaintProperty('unidades-preenchimento', 'fill-opacity', 0.78);
       map.setPaintProperty('unidades-contorno', 'line-color', corContorno('#ffffff'));
       map.setPaintProperty('unidades-contorno', 'line-opacity', 0.7);
@@ -244,7 +290,8 @@
       inds.forEach(function (ind) {
         var ativo = estado.indicador && estado.indicador.id === ind.id;
         html += '<div' + (ativo ? ' class="ativo"' : '') + '><dt>' + escapar(I.tr(ind.rotulo)) + '</dt><dd>' +
-          formatarValor(props[ind.id], I.tr(ind.unidade), ind.casas_decimais) + '</dd></div>';
+          (ind.tipo === 'bivariado' ? escapar(categoriaBivariada(props[ind.id]))
+            : formatarValor(props[ind.id], I.tr(ind.unidade), ind.casas_decimais)) + '</dd></div>';
       });
       html += '</dl>';
     }
@@ -333,6 +380,40 @@
     map.on('mouseleave', 'unidades-preenchimento', function () { map.getCanvas().style.cursor = ''; });
   }
 
+  // ---------- painel calor × renda (quintos) ----------
+  async function carregarPainel() {
+    if (!cfg.painelCalorRenda) return;
+    try {
+      var r = await fetch(cfg.painelCalorRenda, { cache: 'no-cache' });
+      if (!r.ok) return;
+      estado.painel = await r.json();
+      desenharPainel();
+    } catch (e) { /* painel é opcional */ }
+  }
+
+  function desenharPainel() {
+    var el = $('painel-desigualdade'), d = estado.painel;
+    if (!el || !d || !d.quintos) return;
+    var qs = d.quintos, vals = qs.map(function (q) { return q.lst_media; });
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    var base = Math.floor(min - 1), topo = Math.ceil(max);
+    var dif = d.diferenca_q1_q5, ic = d.ic95 || [];
+    var f1 = function (v) { return formatarValor(Math.abs(v), '', 1); };
+    var frase = I.t(dif >= 0 ? 'ineq.hotter' : 'ineq.cooler', { d: f1(dif), lo: formatarValor(ic[0], '', 1), hi: formatarValor(ic[1], '', 1) });
+    var html = '<h2>' + I.t('ineq.title') + '</h2><p class="ineq-frase">' + frase + '</p><ul class="barras">';
+    qs.forEach(function (q, i) {
+      var w = Math.max(2, 100 * (q.lst_media - base) / (topo - base));
+      var rot = i === 0 ? I.t('ineq.q1') : (i === qs.length - 1 ? I.t('ineq.q5') : I.t('ineq.qn', { n: q.quinto }));
+      var faixa = formatarValor(q.renda_min, 'R$', 0) + ' – ' + formatarValor(q.renda_max, 'R$', 0);
+      html += '<li title="' + escapar(faixa) + '"><span class="barra-rot">' + rot + '</span>' +
+        '<span class="barra-trilho"><span class="barra" style="width:' + w.toFixed(1) + '%"></span></span>' +
+        '<span class="barra-val">' + formatarValor(q.lst_media, '°C', 1) + '</span></li>';
+    });
+    html += '</ul><p class="status">' + I.t('ineq.note', { base: base }) + '</p>';
+    el.innerHTML = html;
+    el.hidden = false;
+  }
+
   // Troca de idioma sem recarregar a página.
   document.addEventListener('atlas:idioma', function () {
     var map = estado.mapa;
@@ -344,6 +425,7 @@
       if (estado.selecionado) mostrarFicha(estado.selecionado);
     }
     if (map && map.isStyleLoaded && map.isStyleLoaded()) rotulosNoIdioma(map, I.idioma);
+    desenharPainel();
   });
 
   async function iniciar() {
@@ -369,6 +451,7 @@
     estado.manifesto = manifesto;
     preencherIndicadores(manifesto);
     atualizarBadge();
+    carregarPainel();
 
     map.on('load', async function () {
       rotulosNoIdioma(map, I.idioma);

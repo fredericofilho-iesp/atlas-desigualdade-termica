@@ -50,7 +50,7 @@ Sys.setenv(GDAL_DISABLE_READDIR_ON_OPEN = "EMPTY_DIR", GDAL_HTTP_MAX_RETRY = "5"
 terraOptions(progress = 0)
 
 # ---- malha ----
-if (!file.exists("dados/brutos/rio_setores_2022.rds")) source("R/01_importar_ibge.R")
+if (!file.exists("dados/brutos/rio_setores_2022.rds")) local(source("R/01_importar_ibge.R", local = TRUE))
 setores <- readRDS("dados/brutos/rio_setores_2022.rds")
 setores_utm <- st_transform(setores, CRS_SAIDA)
 caixa_ll <- st_bbox(st_buffer(st_transform(st_as_sfc(st_bbox(setores_utm)), 4326), 0))
