@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "rio",
-  "gerado_em": "2026-11-12T10:24:20+0000",
+  "gerado_em": "2026-11-12T10:50:49+0000",
   "unidade": {
     "en": "Census tract",
     "pt": "Setor censitário",
@@ -50,7 +50,12 @@
       "casas_decimais": 1,
       "classificacao": "quantis",
       "ordem": 10,
-      "quebras": [38.39, 40.94, 42.54, 43.76],
+      "quebras": [
+        38.39,
+        40.94,
+        42.54,
+        43.76
+      ],
       "n_validos": 13774
     },
     {
@@ -77,7 +82,12 @@
       "casas_decimais": 1,
       "classificacao": "manual",
       "ordem": 11,
-      "quebras": [-4, -1.5, 1.5, 4],
+      "quebras": [
+        -4,
+        -1.5,
+        1.5,
+        4
+      ],
       "n_validos": 13774
     },
     {
@@ -108,7 +118,12 @@
       "casas_decimais": 0,
       "classificacao": "quantis",
       "ordem": 20,
-      "quebras": [1625.2, 2245.7, 3325.2, 6818.4],
+      "quebras": [
+        1625.2,
+        2245.7,
+        3325.2,
+        6818.4
+      ],
       "n_validos": 13368
     },
     {
@@ -139,7 +154,12 @@
       "casas_decimais": 0,
       "classificacao": "quantis",
       "ordem": 21,
-      "quebras": [1212, 1600, 2500, 5000],
+      "quebras": [
+        1212,
+        1600,
+        2500,
+        5000
+      ],
       "n_validos": 13368
     },
     {
@@ -167,7 +187,10 @@
       "eixos": {
         "y": {
           "indicador": "lst_verao",
-          "limites": [40.5, 43],
+          "limites": [
+            40.5,
+            43
+          ],
           "unidade": "°C",
           "rotulo": {
             "en": "Surface temperature",
@@ -177,7 +200,10 @@
         },
         "x": {
           "indicador": "renda_media_resp",
-          "limites": [2000, 3900],
+          "limites": [
+            2000,
+            3900
+          ],
           "unidade": "R$",
           "rotulo": {
             "en": "Household head income",
@@ -216,7 +242,12 @@
       "casas_decimais": 0,
       "classificacao": "manual",
       "ordem": 40,
-      "quebras": [20, 40, 60, 80],
+      "quebras": [
+        20,
+        40,
+        60,
+        80
+      ],
       "n_validos": 13235
     },
     {
@@ -247,8 +278,121 @@
       "casas_decimais": 0,
       "classificacao": "manual",
       "ordem": 41,
-      "quebras": [20, 40, 60, 80],
+      "quebras": [
+        20,
+        40,
+        60,
+        80
+      ],
       "n_validos": 13235
+    },
+    {
+      "id": "pop_60mais",
+      "rotulo": {
+        "en": "Population aged 60+",
+        "pt": "População com 60 anos ou mais",
+        "es": "Población de 60 años o más"
+      },
+      "unidade": "%",
+      "paleta": "pessoas",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE, 2022 Census (universe)",
+        "pt": "IBGE, Censo 2022 (universo)",
+        "es": "IBGE, Censo 2022 (universo)"
+      },
+      "periodo": {
+        "en": "2022",
+        "pt": "2022",
+        "es": "2022"
+      },
+      "metodo": {
+        "en": "Residents aged 60 or older as a share of all residents (V01040 + V01041) / V01006",
+        "pt": "Moradores com 60 anos ou mais sobre o total de moradores (V01040 + V01041) / V01006",
+        "es": "Residentes de 60 años o más sobre el total de residentes (V01040 + V01041) / V01006"
+      },
+      "casas_decimais": 0,
+      "classificacao": "quantis",
+      "ordem": 50,
+      "quebras": [
+        12.4,
+        18.2,
+        23.9,
+        29.6
+      ],
+      "n_validos": 13181
+    },
+    {
+      "id": "pop_0a4",
+      "rotulo": {
+        "en": "Children aged 0–4",
+        "pt": "Crianças de 0 a 4 anos",
+        "es": "Niños de 0 a 4 años"
+      },
+      "unidade": "%",
+      "paleta": "pessoas",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE, 2022 Census (universe)",
+        "pt": "IBGE, Censo 2022 (universo)",
+        "es": "IBGE, Censo 2022 (universo)"
+      },
+      "periodo": {
+        "en": "2022",
+        "pt": "2022",
+        "es": "2022"
+      },
+      "metodo": {
+        "en": "Residents aged 0–4 as a share of all residents (V01031 / V01006)",
+        "pt": "Moradores de 0 a 4 anos sobre o total de moradores (V01031 / V01006)",
+        "es": "Residentes de 0 a 4 años sobre el total de residentes (V01031 / V01006)"
+      },
+      "casas_decimais": 1,
+      "classificacao": "quantis",
+      "ordem": 51,
+      "quebras": [
+        3.1,
+        4.1,
+        5.2,
+        6.7
+      ],
+      "n_validos": 13108
+    },
+    {
+      "id": "pop_preta_parda",
+      "rotulo": {
+        "en": "Black population (preta and parda)",
+        "pt": "População preta e parda",
+        "es": "Población negra (preta y parda)"
+      },
+      "unidade": "%",
+      "paleta": "pessoas",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE, 2022 Census (universe)",
+        "pt": "IBGE, Censo 2022 (universo)",
+        "es": "IBGE, Censo 2022 (universo)"
+      },
+      "periodo": {
+        "en": "2022",
+        "pt": "2022",
+        "es": "2022"
+      },
+      "metodo": {
+        "en": "Residents self-declared preta or parda (IBGE categories) as a share of all residents ((V01318 + V01320) / V01006)",
+        "pt": "Moradores autodeclarados pretos ou pardos sobre o total de moradores ((V01318 + V01320) / V01006)",
+        "es": "Residentes autodeclarados pretos o pardos (categorías del IBGE) sobre el total de residentes ((V01318 + V01320) / V01006)"
+      },
+      "casas_decimais": 0,
+      "classificacao": "manual",
+      "ordem": 52,
+      "quebras": [
+        20,
+        40,
+        60,
+        80
+      ],
+      "n_validos": 13226
     }
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "id": "pop_60mais",
+  "rotulo": {
+    "en": "Population aged 60+",
+    "pt": "População com 60 anos ou mais",
+    "es": "Población de 60 años o más"
+  },
+  "unidade": "%",
+  "paleta": "pessoas",
+  "dimensao": "sensibilidade",
+  "fonte": {
+    "en": "IBGE, 2022 Census (universe)",
+    "pt": "IBGE, Censo 2022 (universo)",
+    "es": "IBGE, Censo 2022 (universo)"
+  },
+  "periodo": {
+    "en": "2022",
+    "pt": "2022",
+    "es": "2022"
+  },
+  "metodo": {
+    "en": "Residents aged 60 or older as a share of all residents (V01040 + V01041) / V01006",
+    "pt": "Moradores com 60 anos ou mais sobre o total de moradores (V01040 + V01041) / V01006",
+    "es": "Residentes de 60 años o más sobre el total de residentes (V01040 + V01041) / V01006"
+  },
+  "casas_decimais": 0,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 50
+}

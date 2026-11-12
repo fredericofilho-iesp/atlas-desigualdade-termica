@@ -31,3 +31,32 @@ baixar_ibge <- function(url, pasta) {
   if (!file.exists(dest)) download.file(url, dest, mode = "wb", method = "libcurl")
   dest
 }
+
+# Lê um CSV de agregados do IBGE (";", aspas, latin1) e devolve só as linhas
+# cujo código (1ª coluna) começa com `prefixo` (ex.: código do município).
+# A 1ª coluna é renomeada para CD_SETOR; demais colunas ficam como texto.
+ler_csv_ibge <- function(arquivo, prefixo = NULL) {
+  tab <- utils::read.table(arquivo, sep = ";", quote = '"', header = TRUE, colClasses = "character",
+                           fileEncoding = "latin1", check.names = FALSE, comment.char = "")
+  names(tab) <- toupper(trimws(names(tab)))
+  names(tab)[1] <- "CD_SETOR"
+  tab$CD_SETOR <- trimws(tab$CD_SETOR)
+  if (!is.null(prefixo)) tab <- tab[startsWith(tab$CD_SETOR, prefixo), , drop = FALSE]
+  tab
+}
+
+# Converte texto do IBGE em número: "X" (sigilo), "-", "." e vazio viram NA;
+# aceita vírgula decimal.
+numero_ibge <- function(x) {
+  x <- trimws(x)
+  x[x %in% c("", "X", "x", "-", ".", "..", "...")] <- NA
+  suppressWarnings(as.numeric(sub(",", ".", x, fixed = TRUE)))
+}
+
+# Extrai o primeiro .csv de um zip do IBGE (nomes podem vir em latin1).
+extrair_csv <- function(zip, pasta) {
+  n <- utils::unzip(zip, list = TRUE)$Name
+  n <- n[grepl("\\.csv$", n, ignore.case = TRUE, useBytes = TRUE)][1]
+  utils::unzip(zip, files = n, exdir = pasta, overwrite = TRUE)
+  file.path(pasta, n)
+}

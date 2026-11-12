@@ -7,7 +7,7 @@ Site: https://fredericofilho-iesp.github.io/atlas-desigualdade-termica/
 ## Estado atual — v0.3
 
 - Estrutura com uma página por escala, mapas em **MapLibre GL JS** e mapa-base OpenFreeMap, gratuito e sem chave de API (rótulos acima dos dados).
-- **Rio (cidade):** 13.782 setores censitários (IBGE 2022) com o primeiro indicador: temperatura da superfície no verão (Landsat 8–9, 2022/23–2024/25) e diferença para a mediana da cidade; renda média e mediana do responsável (Censo 2022); mapa bivariado calor × renda e painel com a temperatura por quinto de renda (Q1 − Q5 = 3,0 °C); arborização do entorno (moradores em faces com árvores: 26% no quinto mais pobre, 95% no mais rico).
+- **Rio (cidade):** 13.782 setores censitários (IBGE 2022) com o primeiro indicador: temperatura da superfície no verão (Landsat 8–9, 2022/23–2024/25) e diferença para a mediana da cidade; renda média e mediana do responsável (Censo 2022); mapa bivariado calor × renda e painel com a temperatura por quinto de renda (Q1 − Q5 = 3,0 °C); arborização do entorno (moradores em faces com árvores: 26% no quinto mais pobre, 95% no mais rico); idade (60+, 0–4) e cor ou raça, com exposição por grupo (pretos e pardos − brancos = 0,83 °C).
 - **Estado do RJ:** 92 municípios (IBGE 2022, via `geobr`), ainda sem indicadores.
 - **Brasil e América Latina:** páginas e estratégia de dados definidas; camadas ainda não produzidas.
 - Indicadores previstos e ainda não calculados aparecem desabilitados no seletor.
@@ -29,6 +29,7 @@ R/03_temperatura_superficie_rio.R  temperatura da superfície no verão (Landsat
 R/04_renda_rio.R           renda do responsável por setor (IBGE)
 R/05_calor_renda_rio.R     quintos de renda, diferença Q1−Q5, classes bivariadas
 R/06_arborizacao_rio.R     arborização do entorno (IBGE) e cruzamentos
+R/07_demografia_rio.R      idade e cor ou raça (IBGE) e exposição por grupo
 R/00_ibge_ftp.R            funções para localizar e baixar arquivos do FTP do IBGE
 R/10_publicar_rio.R        junta malha + indicadores salvos e publica o Rio
 dados/indicadores/<escala>/  uma tabela (.csv) + metadados (.json) por indicador
@@ -64,7 +65,7 @@ Settings → Pages → *Deploy from a branch* → `main` / `(root)`.
 ## Próximas etapas
 
 1. Rodar o workflow e validar a malha do Rio e dos municípios do RJ.
-3. Cobertura vegetal (copa, MapBiomas/Sentinel); população idosa e preta e parda.
+3. Cobertura de copa por satélite; replicar a metodologia para os 92 municípios do estado.
 5. Brasil em PMTiles; América Latina com dados harmonizados (ERA5-Land, MODIS, WorldPop, GHSL, CEPALSTAT, SALURBAL).
 
 ## Princípios metodológicos
