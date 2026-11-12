@@ -19,9 +19,9 @@
     "es": "dic.–mar., veranos 2022/23 a 2024/25"
   },
   "metodo": {
-    "en": "Municipal value minus the state value (33 °C)",
-    "pt": "Valor do município menos o do estado (33 °C)",
-    "es": "Valor del municipio menos el del estado (33 °C)"
+    "en": "Municipal value minus the state value (40.2 °C)",
+    "pt": "Valor do município menos o do estado (40,2 °C)",
+    "es": "Valor del municipio menos el del estado (40,2 °C)"
   },
   "casas_decimais": 1,
   "n_classes": 5,

@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T12:28:32+0000",
+  "gerado_em": "2026-11-12T13:36:43+0000",
   "escopo": "estado do RJ, todos os setores",
   "cidade_com_arvores": 62.3,
   "por_quinto_de_renda": [
@@ -37,38 +37,38 @@
   "por_quinto_de_arborizacao": [
     {
       "quinto": 1,
-      "moradores": 28795,
+      "moradores": 3085967,
       "arv_5mais_min": 0,
       "arv_5mais_max": 0,
-      "lst_media": 32.89
+      "lst_media": 40.81
     },
     {
       "quinto": 2,
-      "moradores": 28516,
+      "moradores": 3085732,
       "arv_5mais_min": 0,
-      "arv_5mais_max": 5.6,
-      "lst_media": 32.93
+      "arv_5mais_max": 7.4,
+      "lst_media": 40.95
     },
     {
       "quinto": 3,
-      "moradores": 28989,
-      "arv_5mais_min": 5.6,
-      "arv_5mais_max": 18,
-      "lst_media": 32.97
+      "moradores": 3085703,
+      "arv_5mais_min": 7.4,
+      "arv_5mais_max": 27.2,
+      "lst_media": 40.41
     },
     {
       "quinto": 4,
-      "moradores": 28868,
-      "arv_5mais_min": 18.2,
-      "arv_5mais_max": 37.1,
-      "lst_media": 33.33
+      "moradores": 3086222,
+      "arv_5mais_min": 27.1,
+      "arv_5mais_max": 62.6,
+      "lst_media": 40.07
     },
     {
       "quinto": 5,
-      "moradores": 28545,
-      "arv_5mais_min": 39.3,
+      "moradores": 3085613,
+      "arv_5mais_min": 62.6,
       "arv_5mais_max": 100,
-      "lst_media": 33.02
+      "lst_media": 39.4
     }
   ]
 }
