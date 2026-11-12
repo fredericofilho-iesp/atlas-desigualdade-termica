@@ -6,7 +6,7 @@ Site: https://fredericofilho-iesp.github.io/atlas-desigualdade-termica/
 
 ## Estado atual — v0.3
 
-- Estrutura com uma página por escala, mapas em **MapLibre GL JS** e mapa-base CARTO (rótulos acima dos dados).
+- Estrutura com uma página por escala, mapas em **MapLibre GL JS** e mapa-base OpenFreeMap, gratuito e sem chave de API (rótulos acima dos dados).
 - **Rio (cidade):** pronto para exibir a malha de setores censitários IBGE 2022 assim que o workflow for executado.
 - **Estado do RJ:** pronto para exibir os 92 municípios (IBGE 2022, via `geobr`).
 - **Brasil e América Latina:** páginas e estratégia de dados definidas; camadas ainda não produzidas.
