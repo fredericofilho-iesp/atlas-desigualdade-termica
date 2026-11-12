@@ -135,6 +135,7 @@ salvar_indicadores(saida, escala = "rio", id = "CD_SETOR", indicadores = list(
                pt = "Moradores em faces de quadra com árvores",
                es = "Residentes en frentes de manzana con árboles"),
     unidade = "%", paleta = "verde", dimensao = "adaptacao", casas_decimais = 0,
+    quebras = c(20, 40, 60, 80),  # muitos setores com 0% ou 100%: quantis colapsam
     fonte = fonte, periodo = periodo, ordem = 40,
     metodo = c(en = "Share of residents whose block face has at least one tree, as observed by census enumerators (faces not observed are excluded)",
                pt = "Proporção de moradores cuja face de quadra tem ao menos uma árvore, segundo observação do recenseador (faces não observadas ficam fora)",
@@ -144,6 +145,7 @@ salvar_indicadores(saida, escala = "rio", id = "CD_SETOR", indicadores = list(
                pt = "Moradores em faces de quadra com 5 ou mais árvores",
                es = "Residentes en frentes de manzana con 5 o más árboles"),
     unidade = "%", paleta = "verde", dimensao = "adaptacao", casas_decimais = 0,
+    quebras = c(20, 40, 60, 80),  # muitos setores com 0% ou 100%: quantis colapsam
     fonte = fonte, periodo = periodo, ordem = 41,
     metodo = c(en = "Share of residents whose block face has 5 or more trees, as observed by census enumerators",
                pt = "Proporção de moradores cuja face de quadra tem 5 ou mais árvores, segundo observação do recenseador",

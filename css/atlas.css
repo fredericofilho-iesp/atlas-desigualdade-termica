@@ -138,3 +138,5 @@ select {
 .barra-trilho { background: #eef2f4; border-radius: 4px; height: 14px; overflow: hidden; }
 .barra { display: block; height: 100%; background: #e34a33; border-radius: 4px; }
 .barra-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.barras.verde .barra { background: #31a354; }
