@@ -121,7 +121,7 @@ if ("brasil" %in% ESC) {
   d$pp <- ler("brasil", "pop_preta_parda", "code_muni")[d$code_muni]
   d$w <- ifelse(is.finite(w[d$code_muni]), 1, NA)   # terços de municípios, como no estado
   # % indígena por município (SIDRA 9605: população residente por cor ou raça, Censo 2022)
-  sid <- tryCatch(fromJSON("https://apisidra.ibge.gov.br/values/t/9605/n6/all/v/93/p/all/c86/all?formato=json"), error = function(e) NULL)
+  sid <- tryCatch(fromJSON("https://apisidra.ibge.gov.br/values/t/9605/n6/all/v/93/p/2022/c86/all?formato=json"), error = function(e) NULL)
   d$ind <- NA_real_
   if (!is.null(sid)) {
     cab <- unlist(sid[1, ]); sid <- sid[-1, ]
@@ -130,9 +130,6 @@ if ("brasil" %in% ESC) {
     outras <- setdiff(names(cab)[grepl("^D[0-9]+N$", names(cab))], c(sub("C$", "N", cm), sub("C$", "N", cc)))
     outras <- outras[!cab[outras] %in% c("Município", "Variável", "Ano", "Unidade de Medida")]
     for (o in outras) if (any(sid[[o]] == "Total")) { message("  SIDRA: fixa ", cab[[o]], " = Total"); sid <- sid[sid[[o]] == "Total", ] }
-    message("  SIDRA cabeçalho: ", paste(names(cab), cab, sep = "=", collapse = " | "))
-    message("  SIDRA categorias: ", paste(names(table(sid[[cc]])), table(sid[[cc]]), sep = ":", collapse = " "))
-    print(utils::head(sid[sid[[cm]] == "3304557", ], 12))
     val <- suppressWarnings(as.numeric(sid$V))
     tot <- tapply(val[sid[[cc]] == "Total"], sid[[cm]][sid[[cc]] == "Total"], sum)
     ind <- tapply(val[sid[[cc]] == "Indígena"], sid[[cm]][sid[[cc]] == "Indígena"], sum)
