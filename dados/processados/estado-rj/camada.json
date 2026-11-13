@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "estado-rj",
-  "gerado_em": "2026-11-13T17:40:19+0000",
+  "gerado_em": "2026-11-13T18:44:37+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -281,9 +281,9 @@
     {
       "id": "gini_setores",
       "rotulo": {
-        "en": "Income inequality between tracts (Gini)",
-        "pt": "Desigualdade de renda entre setores (Gini)",
-        "es": "Desigualdad de ingreso entre sectores (Gini)"
+        "en": "Income Gini between tracts",
+        "pt": "Gini da renda entre setores",
+        "es": "Gini del ingreso entre sectores"
       },
       "paleta": "pessoas",
       "dimensao": "sensibilidade",
@@ -541,9 +541,9 @@
             "es": "20% más pobre − 20% más rico"
           },
           "classes": {
-            "en": ["Poorest cooler or equal", "Small gap", "Poorest hotter"],
-            "pt": ["Mais pobres menos ou igualmente quentes", "Diferença pequena", "Mais pobres mais quentes"],
-            "es": ["Más pobres menos o igual de cálidos", "Diferencia pequeña", "Más pobres más cálidos"]
+            "en": ["Lower difference", "Intermediate difference", "Higher difference"],
+            "pt": ["Diferença mais baixa", "Diferença intermediária", "Diferença mais alta"],
+            "es": ["Diferencia más baja", "Diferencia intermedia", "Diferencia más alta"]
           },
           "unidade": "°C",
           "casas": 1,

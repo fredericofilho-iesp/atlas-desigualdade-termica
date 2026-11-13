@@ -1,9 +1,9 @@
 {
   "id": "gini_setores",
   "rotulo": {
-    "en": "Income inequality between tracts (Gini)",
-    "pt": "Desigualdade de renda entre setores (Gini)",
-    "es": "Desigualdad de ingreso entre sectores (Gini)"
+    "en": "Income Gini between tracts",
+    "pt": "Gini da renda entre setores",
+    "es": "Gini del ingreso entre sectores"
   },
   "paleta": "pessoas",
   "dimensao": "sensibilidade",

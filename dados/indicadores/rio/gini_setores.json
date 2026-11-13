@@ -1,9 +1,9 @@
 {
   "id": "gini_setores",
   "rotulo": {
-    "en": "Income inequality between tracts (Gini) (by neighbourhood)",
-    "pt": "Desigualdade de renda entre setores (Gini) (por bairro)",
-    "es": "Desigualdad de ingreso entre sectores (Gini) (por barrio)"
+    "en": "Income Gini between tracts (by neighbourhood)",
+    "pt": "Gini da renda entre setores (por bairro)",
+    "es": "Gini del ingreso entre sectores (por barrio)"
   },
   "paleta": "pessoas",
   "dimensao": "sensibilidade",

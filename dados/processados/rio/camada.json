@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "rio",
-  "gerado_em": "2026-11-13T17:40:11+0000",
+  "gerado_em": "2026-11-13T18:44:28+0000",
   "unidade": {
     "en": "Census tract",
     "pt": "Setor censitário",
@@ -176,9 +176,9 @@
     {
       "id": "gini_setores",
       "rotulo": {
-        "en": "Income inequality between tracts (Gini) (by neighbourhood)",
-        "pt": "Desigualdade de renda entre setores (Gini) (por bairro)",
-        "es": "Desigualdad de ingreso entre sectores (Gini) (por barrio)"
+        "en": "Income Gini between tracts (by neighbourhood)",
+        "pt": "Gini da renda entre setores (por bairro)",
+        "es": "Gini del ingreso entre sectores (por barrio)"
       },
       "paleta": "pessoas",
       "dimensao": "sensibilidade",
@@ -449,9 +449,9 @@
             "es": "20% más pobre − 20% más rico"
           },
           "classes": {
-            "en": ["Poorest cooler or equal", "Small gap", "Poorest hotter"],
-            "pt": ["Mais pobres menos ou igualmente quentes", "Diferença pequena", "Mais pobres mais quentes"],
-            "es": ["Más pobres menos o igual de cálidos", "Diferencia pequeña", "Más pobres más cálidos"]
+            "en": ["Lower difference", "Intermediate difference", "Higher difference"],
+            "pt": ["Diferença mais baixa", "Diferença intermediária", "Diferença mais alta"],
+            "es": ["Diferencia más baja", "Diferencia intermedia", "Diferencia más alta"]
           },
           "unidade": "°C",
           "casas": 1,
