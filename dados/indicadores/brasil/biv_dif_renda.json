@@ -24,9 +24,9 @@
     "y": {
       "indicador": "lst_dif_uf",
       "rotulo": {
-        "en": "Surface temperature vs. own state",
-        "pt": "Temperatura da superfície vs. o próprio estado",
-        "es": "Temperatura de superficie vs. su estado"
+        "en": "Temp. vs. state average",
+        "pt": "Temp. vs. média do estado",
+        "es": "Temp. vs. media del estado"
       },
       "classes": {
         "en": ["Cooler", "Intermediate temp.", "Hotter"],
