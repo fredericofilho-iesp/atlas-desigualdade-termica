@@ -95,11 +95,11 @@ def cabeca(prefixo, titulo_chave, mapa=False):
 
 
 ESCALAS = {
-    "rio": dict(chave="rio", centro=[-43.45, -22.92], zoom=10, zoomMinimo=8, espessuraContorno=1, opacidadeContorno=0.35,
+    "rio": dict(chave="rio", centro=[-43.45, -22.92], zoom=10, zoomMinimo=8, larguraContorno=[[9, 0.25], [11, 0.45], [13, 0.9], [15, 1.6]], opacidadeContorno=0.7,
                 painelCalorRenda="../dados/processados/rio/calor_renda.json",
                 painelArvores="../dados/processados/rio/arborizacao_resumo.json",
                 painelGrupos="../dados/processados/rio/exposicao_grupos.json"),
-    "estado-rj": dict(chave="rj", centro=[-42.65, -22.25], zoom=7.2, zoomMinimo=5, espessuraContorno=2.2,
+    "estado-rj": dict(chave="rj", centro=[-42.65, -22.25], zoom=7.2, zoomMinimo=5, larguraContorno=[[5, 1.0], [7, 1.4], [9, 2.0], [12, 2.8]], opacidadeContorno=0.9,
                       painelCalorRenda="../dados/processados/estado-rj/calor_renda.json",
                       painelArvores="../dados/processados/estado-rj/arborizacao_resumo.json",
                       painelGrupos="../dados/processados/estado-rj/exposicao_grupos.json"),

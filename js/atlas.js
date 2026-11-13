@@ -372,7 +372,10 @@
       paint: {
         'line-color': corContorno('#1f5f72'),
         'line-width': ['case', ['boolean', ['feature-state', 'selecionado'], false], 2.4,
-          ['interpolate', ['linear'], ['zoom'], 6, 0.4 * k, 10, 0.5 * k, 14, 1.2 * k]]
+          // cfg.larguraContorno: pares [zoom, largura] próprios da escala; senão, 0,4–1,2 px × espessuraContorno
+          ['interpolate', ['linear'], ['zoom']].concat(cfg.larguraContorno
+            ? [].concat.apply([], cfg.larguraContorno)
+            : [6, 0.4 * k, 10, 0.5 * k, 14, 1.2 * k])]
       }
     }, extra), antes);
     // Limites de nível superior (estados no Brasil, países na América Latina), mais grossos.
