@@ -10,6 +10,7 @@ Site: https://fredericofilho-iesp.github.io/atlas-desigualdade-termica/
 - **Rio (cidade):** 13.782 setores censitários (IBGE 2022) com o primeiro indicador: temperatura da superfície no verão (Landsat 8–9, 2022/23–2024/25) e diferença para a mediana da cidade; renda média e mediana do responsável (Censo 2022); mapa bivariado calor × renda e painel com a temperatura por quinto de renda (Q1 − Q5 = 3,0 °C); arborização do entorno (moradores em faces com árvores: 26% no quinto mais pobre, 95% no mais rico); idade (60+, 0–4) e cor ou raça, com exposição por grupo (pretos e pardos − brancos = 0,83 °C).
 - **Estado do RJ:** 92 municípios, com todos os valores calculados a partir dos 41.700 setores de 2022 e ponderados pelos moradores (temperatura medida onde as pessoas moram). Temperatura da superfície cena a cena (229 cenas Landsat; nos setores da capital, r = 0,994 com o método pixel a pixel do Rio); diferença para o estado; desigualdade interna por renda (Q1 − Q5) e por cor ou raça em cada município; renda, arborização, 60+ e população preta e parda. No estado como um todo: Q1 − Q5 = 0,78 °C (IC 0,66–0,90) e pretos e pardos − brancos = 0,74 °C; na maioria dos municípios menores, porém, os mais pobres moram em áreas mais frescas.
 - **Calor extremo (estado do RJ):** temperatura do ar do ERA5-Land (0,1°, 2016–2025), lida do espelho público do Open-Meteo no AWS Open Data, sem conta do Copernicus: dias por ano com máxima ≥ 35 °C e máxima média do verão, por município, ponderadas pelos moradores. A Baixada Fluminense aparece como a região mais quente.
+- **Calor extremo (Brasil e América Latina):** o mesmo ERA5-Land, resumido célula a célula (dias com máxima ≥ 35 °C e máxima média dos três meses mais quentes de cada lugar), por município no Brasil e por unidade de primeiro nível na América Latina, ponderado pela população do GHS-POP; o painel de países mostra os dias ≥ 35 °C de cada país.
 - **Brasil:** 5.570 municípios a partir dos 458.772 setores de 2022, com os mesmos indicadores do estado. Temperatura da superfície MODIS/Aqua (1 km, 2022–2024) nos **três meses mais quentes de cada lugar** (no Norte e no Centro-Oeste, o pico é em set.–out., na seca). No país, pretos e pardos moram em lugares 0,46 °C mais quentes que brancos, mas dentro de cada estado a diferença praticamente some (−0,05 °C): a diferença nacional reflete sobretudo a geografia (Nordeste quente, Sul frio). Os painéis nacionais mostram as duas comparações.
 - **América Latina:** 553 unidades subnacionais (ADM1, geoBoundaries) em 33 países, a partir de células de população de ~1 km (GHSL GHS-POP 2020) com a temperatura MODIS do trimestre mais quente de cada lugar: temperatura onde as pessoas moram, diferença para o próprio país, temperatura nas cidades (células ≥ 1.500 hab./km²) e população urbana, mais um painel país por país. A desigualdade por renda ainda não aparece nesta escala: o Índice de Riqueza Relativa da Meta foi testado e descartado (no Rio, correlação de 0,16 com a renda do Censo e sinal invertido em relação ao Landsat); ver a Metodologia. **Desigualdade por renda dentro das cidades** (R/33) com os dados do censo de cada país: Brasil (renda do responsável por setor, 2022), México (índice de marginação urbana por AGEB, CONAPO 2020, malha do INEGI) e Colômbia (pobreza multidimensional por quarteirão, DANE 2018). Validação no município do Rio: +3,3 °C (Landsat: +3,0 °C). O padrão varia de cidade para cidade: os mais pobres moram em lugares mais quentes no Rio, em Brasília, Barranquilla e Cali, e em lugares mais frescos em São Paulo, Medellín, Bogotá e Ecatepec.
 - **Mapas bivariados** (R/40): temperatura × renda e × população preta e parda no Rio, no estado e no Brasil, e × população indígena no Brasil (SIDRA 9605). Nos mapas nacionais, a temperatura é a diferença para a média do estado.
@@ -35,6 +36,8 @@ R/14_municipios_rj.R       indicadores municipais e painéis do estado
 R/15_publicar_estado_rj.R  junta malha municipal + indicadores e publica o estado
 R/16_calor_extremo_rj.R    dias de calor extremo e máxima do verão (ERA5-Land, temperatura do ar)
 ferramentas/baixar_openmeteo.py  máximas diárias do ERA5-Land a partir do espelho público do Open-Meteo (AWS, sem conta)
+ferramentas/calor_grade_openmeteo.py  métricas de calor do ERA5-Land para áreas grandes (Brasil e América Latina), sem guardar os dias
+R/50_calor_extremo_brasil_latam.R  calor extremo por município (Brasil) e por unidade (América Latina), ponderado pela população
 R/20_censo_brasil.R        Censo 2022 por setor, país inteiro
 R/21_lst_modis_brasil.R    temperatura MODIS (trimestre mais quente) por setor
 R/22_municipios_brasil.R   indicadores municipais e painéis nacionais (com comparação dentro das UFs)
@@ -88,7 +91,7 @@ Settings → Pages → *Deploy from a branch* → `main` / `(root)`.
 
 2. Cobertura de copa por satélite.
 3. Brasil em PMTiles (hoje GeoJSON de 8 MB).
-4. América Latina: incluir mais países na desigualdade por renda (Chile, Peru, Argentina…); dias de calor extremo (ERA5-Land).
+4. América Latina: incluir mais países na desigualdade por renda (Chile, Peru, Argentina…).
 
 ## Princípios metodológicos
 

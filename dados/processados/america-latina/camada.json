@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "america-latina",
-  "gerado_em": "2026-11-13T10:24:10+0000",
+  "gerado_em": "2026-11-13T15:47:04+0000",
   "unidade": {
     "en": "Subnational unit",
     "pt": "Unidade subnacional",
@@ -149,6 +149,72 @@
       "ordem": 13,
       "quebras": [-2, -0.5, 0.5, 2],
       "n_validos": 92
+    },
+    {
+      "id": "dias_35",
+      "rotulo": {
+        "en": "Extreme heat days: maximum air temperature ≥ 35 °C",
+        "pt": "Dias de calor extremo: máxima do ar ≥ 35 °C",
+        "es": "Días de calor extremo: máxima del aire ≥ 35 °C"
+      },
+      "unidade": {
+        "en": "days/year",
+        "pt": "dias/ano",
+        "es": "días/año"
+      },
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "ERA5-Land (ECMWF/Copernicus C3S), hourly, via Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "pt": "ERA5-Land (ECMWF/Copernicus C3S), horário, via Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "es": "ERA5-Land (ECMWF/Copernicus C3S), horario, vía Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries"
+      },
+      "periodo": {
+        "en": "2016–2025",
+        "pt": "2016–2025",
+        "es": "2016–2025"
+      },
+      "metodo": {
+        "en": "Mean number of days per year with daily maximum 2 m air temperature ≥ 35 °C (civil day in UTC−3). Air temperature from a ~11 km reanalysis grid, taken at each ~1 km population cell and weighted by population. Too coarse for neighbourhood heat islands; tends to underestimate maxima in dense urban areas",
+        "pt": "Número médio de dias por ano com máxima diária da temperatura do ar a 2 m ≥ 35 °C (dia civil em UTC−3). Temperatura do ar de uma reanálise em grade de ~11 km, tomada em cada célula de população de ~1 km e ponderada pela população. Grossa demais para ilhas de calor de bairro; tende a subestimar a máxima em áreas muito urbanizadas",
+        "es": "Número medio de días por año con máxima diaria de la temperatura del aire a 2 m ≥ 35 °C (día civil en UTC−3). Temperatura del aire de un reanálisis en grilla de ~11 km, tomada en cada celda de población de ~1 km y ponderada por población. Demasiado gruesa para islas de calor de barrio; tiende a subestimar la máxima en áreas muy urbanizadas"
+      },
+      "casas_decimais": 0,
+      "classificacao": "manual",
+      "ordem": 14,
+      "quebras": [3, 10, 30, 60],
+      "n_validos": 543
+    },
+    {
+      "id": "tmax_quente",
+      "rotulo": {
+        "en": "Average maximum air temperature in the hottest season",
+        "pt": "Máxima média do ar na época mais quente",
+        "es": "Máxima media del aire en la época más cálida"
+      },
+      "unidade": "°C",
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "ERA5-Land (ECMWF/Copernicus C3S), hourly, via Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "pt": "ERA5-Land (ECMWF/Copernicus C3S), horário, via Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+        "es": "ERA5-Land (ECMWF/Copernicus C3S), horario, vía Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries"
+      },
+      "periodo": {
+        "en": "Hottest three months of each place, 2016–2025",
+        "pt": "Três meses mais quentes de cada lugar, 2016–2025",
+        "es": "Tres meses más cálidos de cada lugar, 2016–2025"
+      },
+      "metodo": {
+        "en": "Mean daily maximum 2 m air temperature over the three consecutive months that are hottest at each grid cell. Air temperature from a ~11 km reanalysis grid, taken at each ~1 km population cell and weighted by population. Too coarse for neighbourhood heat islands; tends to underestimate maxima in dense urban areas",
+        "pt": "Média das máximas diárias da temperatura do ar a 2 m nos três meses consecutivos mais quentes de cada célula da grade. Temperatura do ar de uma reanálise em grade de ~11 km, tomada em cada célula de população de ~1 km e ponderada pela população. Grossa demais para ilhas de calor de bairro; tende a subestimar a máxima em áreas muito urbanizadas",
+        "es": "Media de las máximas diarias de la temperatura del aire a 2 m en los tres meses consecutivos más cálidos de cada celda de la grilla. Temperatura del aire de un reanálisis en grilla de ~11 km, tomada en cada celda de población de ~1 km y ponderada por población. Demasiado gruesa para islas de calor de barrio; tiende a subestimar la máxima en áreas muy urbanizadas"
+      },
+      "casas_decimais": 1,
+      "classificacao": "quantis",
+      "ordem": 15,
+      "quebras": [27.31, 29.01, 30.25, 31.62],
+      "n_validos": 543
     },
     {
       "id": "pop_urbana",
