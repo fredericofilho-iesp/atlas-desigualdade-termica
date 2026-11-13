@@ -2,10 +2,9 @@
 # processadas em paralelo (cada uma em sua máquina). Junta as faixas num só GeoTIFF e o
 # guarda no cache que o passo "calor-brasil-latam" de preparar-malha.yml reaproveita.
 name: Grade de calor (ERA5-Land, em faixas)
+# Rodar em Actions → "Grade de calor" (uns 50 min); depois, preparar-malha com a opção
+# calor-brasil-latam, que encontra o GeoTIFF no cache e só calcula os indicadores.
 on:
-  push:
-    branches: [calor-brasil-latam]
-    paths: [.github/workflows/calor-grade.yml]
   workflow_dispatch:
 jobs:
   faixa:
