@@ -4,8 +4,9 @@
 # Usa só indicadores já salvos em dados/indicadores/ e os pesos (moradores, domicílios)
 # das tabelas por setor; republica as três camadas brasileiras.
 #
-# Classes 3 × 3: terços ponderados pela população (cada terço reúne ~1/3 dos moradores;
-# no eixo de renda do Rio, ~1/3 dos domicílios, como no mapa original de R/05).
+# Classes 3 × 3: nos setores do Rio, terços ponderados pelos moradores; nos mapas de
+# municípios, terços de municípios (ponderar pela população faria a capital do RJ, com
+# ~40% dos moradores do estado, ocupar quase um terço sozinha).
 # Nos eixos de grupos (% preta e parda, % indígena) o eixo x é invertido, para que o canto
 # magenta marque sempre a combinação mais desfavorável: mais quente e mais pobre, ou mais
 # quente e com maior presença do grupo.
@@ -54,6 +55,9 @@ relato <- function(nome, b) message(sprintf("%s: %s | limites y %s | x %s", nome
 MET_PP <- c(en = "Population-weighted terciles of surface temperature and of the Black (preta and parda) share of residents; the group axis runs from more to fewer Black residents",
             pt = "Tercis, ponderados pela população, da temperatura da superfície e da proporção de moradores pretos e pardos; o eixo do grupo vai de mais para menos pretos e pardos",
             es = "Terciles, ponderados por población, de la temperatura de superficie y de la proporción de residentes negros (pretos y pardos); el eje del grupo va de más a menos población negra")
+MUN <- function(m) c(en = sub("Population-weighted terciles", "Terciles (of municipalities)", m[["en"]]),
+                     pt = sub("Tercis, ponderados pela população,", "Tercis (de municípios)", m[["pt"]]),
+                     es = sub("Terciles, ponderados por población,", "Terciles (de municipios)", m[["es"]]))
 MET_RENDA <- c(en = "Population-weighted terciles of surface temperature and of household-head income",
                pt = "Tercis, ponderados pela população, da temperatura da superfície e da renda do responsável",
                es = "Terciles, ponderados por población, de la temperatura de superficie y del ingreso del responsable")
@@ -86,23 +90,24 @@ if ("estado-rj" %in% ESC) {
   lst <- ler("estado-rj", "lst_pop", "code_muni")
   d <- data.frame(code_muni = names(lst), lst = lst)
   d$renda <- ler("estado-rj", "renda_media_resp", "code_muni")[d$code_muni]
-  d$pp <- ler("estado-rj", "pop_preta_parda", "code_muni")[d$code_muni]; d$w <- w[d$code_muni]
+  d$pp <- ler("estado-rj", "pop_preta_parda", "code_muni")[d$code_muni]
+  d$w <- ifelse(is.finite(w[d$code_muni]), 1, NA)   # terços de municípios (a capital pesaria ~40%)
   b1 <- classe_bivariada(d$lst, d$renda, d$w); relato("RJ, temperatura × renda", b1)
   b2 <- classe_bivariada(d$lst, d$pp, d$w, inverso_x = TRUE); relato("RJ, temperatura × pretos e pardos", b2)
   d$biv_lst_renda <- b1$classe; d$biv_lst_pretaparda <- b2$classe
   fonte <- c(en = "Landsat 8–9 (USGS); IBGE 2022 Census", pt = "Landsat 8–9 (USGS); IBGE, Censo 2022", es = "Landsat 8–9 (USGS); IBGE, Censo 2022")
   onde <- list(en = "municipalities", pt = "municípios", es = "municipios")
-  quem <- list(en = "state’s residents", pt = "dos moradores do estado", es = "de los residentes del estado")
+  quem <- list(en = "state’s municipalities", pt = "dos municípios do estado", es = "de los municipios del estado")
   salvar_indicadores(d, escala = "estado-rj", id = "code_muni", indicadores = list(
     indicador_bivariado("biv_lst_renda",
       rotulo = c(en = "Surface temperature × income (bivariate)", pt = "Temperatura da superfície × renda (bivariado)", es = "Temperatura de superficie × ingreso (bivariado)"),
       b = b1, y = ex("lst_pop", TXT$temp, TXT$ct, "°C", 1), x = ex("renda_media_resp", TXT$renda, TXT$cr, "R$", -1),
-      nota = nota(onde, quem, list(en = "lower income", pt = "renda mais baixa", es = "menor ingreso")), ordem = 30, fonte = fonte, metodo = MET_RENDA),
+      nota = nota(onde, quem, list(en = "lower income", pt = "renda mais baixa", es = "menor ingreso")), ordem = 30, fonte = fonte, metodo = MUN(MET_RENDA)),
     indicador_bivariado("biv_lst_pretaparda",
       rotulo = c(en = "Surface temperature × Black population (bivariate)", pt = "Temperatura da superfície × população preta e parda (bivariado)",
                  es = "Temperatura de superficie × población negra (bivariado)"),
       b = b2, y = ex("lst_pop", TXT$temp, TXT$ct, "°C", 1), x = ex("pop_preta_parda", TXT$pp, TXT$cpp, "%", 0),
-      nota = nota(onde, quem, list(en = "more Black residents", pt = "mais pretos e pardos", es = "más población negra")), ordem = 31, fonte = fonte, metodo = MET_PP)))
+      nota = nota(onde, quem, list(en = "more Black residents", pt = "mais pretos e pardos", es = "más población negra")), ordem = 31, fonte = fonte, metodo = MUN(MET_PP))))
   source("R/15_publicar_estado_rj.R", local = new.env())
 }
 
@@ -113,13 +118,18 @@ if ("brasil" %in% ESC) {
   dif <- ler("brasil", "lst_dif_uf", "code_muni")
   d <- data.frame(code_muni = names(dif), dif = dif)
   d$renda <- ler("brasil", "renda_media_resp", "code_muni")[d$code_muni]
-  d$pp <- ler("brasil", "pop_preta_parda", "code_muni")[d$code_muni]; d$w <- w[d$code_muni]
+  d$pp <- ler("brasil", "pop_preta_parda", "code_muni")[d$code_muni]
+  d$w <- ifelse(is.finite(w[d$code_muni]), 1, NA)   # terços de municípios, como no estado
   # % indígena por município (SIDRA 9605: população residente por cor ou raça, Censo 2022)
   sid <- tryCatch(fromJSON("https://apisidra.ibge.gov.br/values/t/9605/n6/all/v/93/p/all/c86/all?formato=json"), error = function(e) NULL)
   d$ind <- NA_real_
   if (!is.null(sid)) {
     cab <- unlist(sid[1, ]); sid <- sid[-1, ]
     cm <- names(cab)[cab == "Município (Código)"][1]; cc <- names(cab)[cab == "Cor ou raça"][1]
+    # outras classificações da tabela (ex.: idade, sexo): fica só a linha "Total" de cada uma
+    outras <- setdiff(names(cab)[grepl("^D[0-9]+N$", names(cab))], c(sub("C$", "N", cm), sub("C$", "N", cc)))
+    outras <- outras[!cab[outras] %in% c("Município", "Variável", "Ano", "Unidade de Medida")]
+    for (o in outras) if (any(sid[[o]] == "Total")) { message("  SIDRA: fixa ", cab[[o]], " = Total"); sid <- sid[sid[[o]] == "Total", ] }
     val <- suppressWarnings(as.numeric(sid$V))
     tot <- tapply(val[sid[[cc]] == "Total"], sid[[cm]][sid[[cc]] == "Total"], sum)
     ind <- tapply(val[sid[[cc]] == "Indígena"], sid[[cm]][sid[[cc]] == "Indígena"], sum)
@@ -133,7 +143,7 @@ if ("brasil" %in% ESC) {
   fonte <- c(en = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census", pt = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
              es = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022")
   onde <- list(en = "municipalities (relative to their state)", pt = "municípios (em relação ao seu estado)", es = "municipios (respecto a su estado)")
-  quem <- list(en = "country’s residents", pt = "dos moradores do país", es = "de los residentes del país")
+  quem <- list(en = "country’s municipalities", pt = "dos municípios do país", es = "de los municipios del país")
   nota_uf <- c(en = " Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
                pt = " Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
                es = " Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad.")
@@ -147,12 +157,12 @@ if ("brasil" %in% ESC) {
       rotulo = c(en = "Surface temperature × income (bivariate, within states)", pt = "Temperatura da superfície × renda (bivariado, dentro dos estados)",
                  es = "Temperatura de superficie × ingreso (bivariado, dentro de los estados)"),
       b = b1, y = ey, x = ex("renda_media_resp", TXT$renda, TXT$cr, "R$", -1),
-      nota = com_uf(nota(onde, quem, list(en = "lower income", pt = "renda mais baixa", es = "menor ingreso"))), ordem = 30, fonte = fonte, metodo = met_uf(MET_RENDA)),
+      nota = com_uf(nota(onde, quem, list(en = "lower income", pt = "renda mais baixa", es = "menor ingreso"))), ordem = 30, fonte = fonte, metodo = met_uf(MUN(MET_RENDA))),
     indicador_bivariado("biv_dif_pretaparda",
       rotulo = c(en = "Surface temperature × Black population (bivariate, within states)", pt = "Temperatura da superfície × população preta e parda (bivariado, dentro dos estados)",
                  es = "Temperatura de superficie × población negra (bivariado, dentro de los estados)"),
       b = b2, y = ey, x = ex("pop_preta_parda", TXT$pp, TXT$cpp, "%", 0),
-      nota = com_uf(nota(onde, quem, list(en = "more Black residents", pt = "mais pretos e pardos", es = "más población negra"))), ordem = 31, fonte = fonte, metodo = met_uf(MET_PP)))
+      nota = com_uf(nota(onde, quem, list(en = "more Black residents", pt = "mais pretos e pardos", es = "más población negra"))), ordem = 31, fonte = fonte, metodo = met_uf(MUN(MET_PP))))
   if (any(is.finite(d$ind))) {
     b3 <- classe_bivariada(d$dif, d$ind, d$w, quebras_x = c(1, 10), inverso_x = TRUE); relato("Brasil, temperatura (vs. UF) × indígenas", b3)
     d$biv_dif_indigena <- b3$classe; d$pop_indigena <- d$ind
@@ -168,14 +178,14 @@ if ("brasil" %in% ESC) {
         rotulo = c(en = "Surface temperature × Indigenous population (bivariate, within states)", pt = "Temperatura da superfície × população indígena (bivariado, dentro dos estados)",
                    es = "Temperatura de superficie × población indígena (bivariado, dentro de los estados)"),
         b = b3, y = ey, x = ex("pop_indigena", TXT$ind, TXT$cind, "%", 0),
-        nota = list(en = paste0("Temperature: population-weighted thirds. Indigenous share: fixed classes (under 1%, 1–10%, 10% or more). Magenta: hotter municipalities with 10% or more Indigenous residents.", nota_uf[["en"]]),
-                    pt = paste0("Temperatura: terços ponderados pela população. Proporção indígena: classes fixas (menos de 1%, 1–10%, 10% ou mais). Magenta: municípios mais quentes e com 10% ou mais de indígenas.", nota_uf[["pt"]]),
-                    es = paste0("Temperatura: tercios ponderados por población. Proporción indígena: clases fijas (menos de 1%, 1–10%, 10% o más). Magenta: municipios más cálidos y con 10% o más de indígenas.", nota_uf[["es"]])),
+        nota = list(en = paste0("Temperature: thirds of municipalities. Indigenous share: fixed classes (under 1%, 1–10%, 10% or more). Magenta: hotter municipalities with 10% or more Indigenous residents.", nota_uf[["en"]]),
+                    pt = paste0("Temperatura: terços dos municípios. Proporção indígena: classes fixas (menos de 1%, 1–10%, 10% ou mais). Magenta: municípios mais quentes e com 10% ou mais de indígenas.", nota_uf[["pt"]]),
+                    es = paste0("Temperatura: tercios de los municipios. Proporción indígena: clases fijas (menos de 1%, 1–10%, 10% o más). Magenta: municipios más cálidos y con 10% o más de indígenas.", nota_uf[["es"]])),
         ordem = 32, fonte = c(en = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census (SIDRA 9605)", pt = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022 (SIDRA 9605)",
                               es = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022 (SIDRA 9605)"),
-        metodo = c(en = "Population-weighted terciles of the temperature difference from the state average; fixed classes of the Indigenous share of residents",
-                   pt = "Tercis, ponderados pela população, da diferença de temperatura para a média do estado; classes fixas da proporção de moradores indígenas",
-                   es = "Terciles, ponderados por población, de la diferencia de temperatura respecto a la media del estado; clases fijas de la proporción de residentes indígenas"))))
+        metodo = c(en = "Terciles (of municipalities) of the temperature difference from the state average; fixed classes of the Indigenous share of residents",
+                   pt = "Tercis (de municípios) da diferença de temperatura para a média do estado; classes fixas da proporção de moradores indígenas",
+                   es = "Terciles (de municipios) de la diferencia de temperatura respecto a la media del estado; clases fijas de la proporción de residentes indígenas"))))
   }
   salvar_indicadores(d, escala = "brasil", id = "code_muni", indicadores = inds)
   source("R/23_publicar_brasil.R", local = new.env())
