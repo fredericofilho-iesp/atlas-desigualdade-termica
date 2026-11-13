@@ -82,7 +82,7 @@ if ("MEX" %in% lim) {
   imu <- as.data.frame(readxl::read_excel("dados/brutos/mex/IMU_2020.xls", sheet = "IMU_2020"))
   zipm <- "dados/brutos/mex/mg_2020_integrado.zip"
   lista <- unzip(zipm, list = TRUE)$Name
-  shp <- grep("(^|/)00a\\.(shp|shx|dbf|prj|cpg)$", lista, value = TRUE)
+  shp <- grep("(^|/)00a\\.(shp|shx|dbf|prj|cpg)$", lista, value = TRUE, useBytes = TRUE)
   unzip(zipm, files = shp, exdir = "dados/brutos/mex", junkpaths = TRUE)
   g <- st_read("dados/brutos/mex/00a.shp", quiet = TRUE)
   g <- g[g$CVEGEO %in% imu$CVE_AGEB, ]
@@ -90,6 +90,9 @@ if ("MEX" %in% lim) {
   r <- modis_vrt("MEX")[[1]]
   g$lst <- exact_extract(r, st_transform(g, crs(r)), "mean", progress = FALSE)
   m <- imu[match(g$CVEGEO, imu$CVE_AGEB), ]
+  nm <- unique(data.frame(k = paste("MEX", substr(imu$CVE_AGEB, 1, 5)),
+                          n = ifelse(sprintf("%02d", as.integer(imu$ENT)) == "09", paste0(imu$NOM_MUN, " (CDMX)"), imu$NOM_MUN)))
+  nomes_mex <- setNames(nm$n, nm$k)
   areas$MEX <- data.frame(iso3 = "MEX", area = g$CVEGEO, mun = substr(g$CVEGEO, 1, 5), id = adm1_de(st_geometry(g), "MEX"),
                           pop = as.numeric(m$POB_TOTAL), ses = as.numeric(m$IM_2020),   # maior = menos marginalizado
                           lst = g$lst)
@@ -139,14 +142,25 @@ gap_nacional <- function(s) {
   o <- order(s$ses); cum <- cumsum(s$pop[o]) / sum(s$pop); q <- integer(nrow(s)); q[o] <- pmin(5L, pmax(1L, as.integer(ceiling(cum * 5 - 1e-9))))
   mp(s$lst[q == 1], s$pop[q == 1]) - mp(s$lst[q == 5], s$pop[q == 5])
 }
-cidade <- function(iso, mun, nome) {
-  s <- a[a$iso3 == iso & a$mun == mun, ]
-  if (nrow(s)) message(sprintf("  %-18s %s: %+.2f °C (%d áreas)", nome, iso, gap_de(s), nrow(s)))
-}
-message("Validação e exemplos (dentro do município):")
-cidade("BRA", "3304557", "Rio de Janeiro"); cidade("BRA", "3550308", "São Paulo"); cidade("BRA", "5300108", "Brasília")
-cidade("MEX", "14039", "Guadalajara"); cidade("MEX", "19039", "Monterrey"); cidade("MEX", "09007", "Iztapalapa (CDMX)")
-cidade("COL", "11001", "Bogotá"); cidade("COL", "05001", "Medellín"); cidade("COL", "76001", "Cali"); cidade("COL", "08001", "Barranquilla")
+# As maiores cidades de cada país (pela população das áreas analisadas), com nome
+NOMES_MUN <- c(
+  "BRA 3550308" = "São Paulo", "BRA 3304557" = "Rio de Janeiro", "BRA 5300108" = "Brasília", "BRA 2304400" = "Fortaleza",
+  "BRA 2927408" = "Salvador", "BRA 3106200" = "Belo Horizonte", "BRA 1302603" = "Manaus", "BRA 4106902" = "Curitiba",
+  "BRA 2611606" = "Recife", "BRA 5208707" = "Goiânia", "BRA 1501402" = "Belém", "BRA 4314902" = "Porto Alegre",
+  "COL 11001" = "Bogotá", "COL 05001" = "Medellín", "COL 76001" = "Cali", "COL 08001" = "Barranquilla",
+  "COL 13001" = "Cartagena", "COL 54001" = "Cúcuta", "COL 25754" = "Soacha", "COL 68001" = "Bucaramanga",
+  "COL 08758" = "Soledad", "COL 05088" = "Bello", "COL 50001" = "Villavicencio", "COL 73001" = "Ibagué")
+if (exists("nomes_mex")) NOMES_MUN <- c(NOMES_MUN, nomes_mex)
+chave_mun <- paste(a$iso3, a$mun)
+pop_mun <- tapply(a$pop, chave_mun, sum)
+cidades <- lapply(split(names(pop_mun), sub(" .*", "", names(pop_mun))), function(ch) {
+  ch <- ch[ch %in% names(NOMES_MUN)]
+  ch <- head(ch[order(-pop_mun[ch])], 6)
+  lapply(ch, function(k) { s <- a[chave_mun == k, ]
+    list(nome = unname(NOMES_MUN[k]), gap = round(gap_de(s), 2), pop = round(sum(s$pop)), areas = nrow(s)) })
+})
+message("Maiores cidades (dentro do município; validação: Rio de Janeiro ~ +3 °C):")
+for (iso in names(cidades)) for (c in cidades[[iso]]) message(sprintf("  %s %-26s %+.2f °C (%d áreas, %.1f mi)", iso, c$nome, c$gap, c$areas, c$pop / 1e6))
 
 uni <- do.call(rbind, lapply(split(a, a$id), function(s) data.frame(id = s$id[1], gap_renda_cidade = round(gap_de(s), 2),
                                                                       areas = nrow(s))))
@@ -170,7 +184,7 @@ renda <- lapply(split(a, a$iso3), function(s) {
   bs <- replicate(500, gp(pm[sample(nrow(pm), replace = TRUE), , drop = FALSE]))
   list(gap = round(gp(pm), 2), ic95 = round(unname(quantile(bs, c(0.025, 0.975), na.rm = TRUE)), 2),
        gap_nacional = round(gap_nacional(s), 2), areas = nrow(s), municipios = nrow(pm),
-       pop = round(sum(s$pop)), medida = medida[[s$iso3[1]]])
+       pop = round(sum(s$pop)), medida = medida[[s$iso3[1]]], cidades = cidades[[s$iso3[1]]])
 })
 for (iso in names(renda)) with(renda[[iso]], message(sprintf("%s: dentro das cidades %+.2f °C (IC95 %+.2f a %+.2f) | sem controle %+.2f | %d áreas, %d municípios, %.1f mi pessoas",
                                                             iso, gap, ic95[1], ic95[2], gap_nacional, areas, municipios, pop / 1e6)))
