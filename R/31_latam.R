@@ -87,6 +87,10 @@ cel$dens <- cel$pop / ((111.32 / 120)^2 * cos(cel$y * pi / 180))
 cel$urbano <- cel$dens >= 300
 cel$denso <- cel$dens >= 1500
 mp <- function(v, w) { k <- is.finite(v) & is.finite(w) & w > 0; if (!any(k)) NA_real_ else sum(v[k] * w[k]) / sum(w[k]) }
+# Quantil ponderado (para a amplitude térmica entre as células habitadas de cada unidade)
+qp <- function(v, w, p) { k <- is.finite(v) & is.finite(w) & w > 0; v <- v[k]; w <- w[k]; o <- order(v); v <- v[o]; w <- w[o]
+  stats::approx((cumsum(w) - w / 2) / sum(w), v, xout = p, rule = 2, ties = "ordered")$y }
+amp <- function(s) { k <- is.finite(s$lst) & s$pop > 0; if (sum(k) < 30) NA_real_ else qp(s$lst[k], s$pop[k], 0.9) - qp(s$lst[k], s$pop[k], 0.1) }
 mes_modal <- function(s) { k <- is.finite(s$mes); if (!any(k)) return(NA_integer_); t <- tapply(s$pop[k], s$mes[k], sum); as.integer(names(t)[which.max(t)]) }
 message(sprintf("População urbana (>= 300/km²): %.0f%% | em cidades (>= 1.500/km²): %.0f%%",
                 100 * sum(cel$pop[cel$urbano]) / sum(cel$pop), 100 * sum(cel$pop[cel$denso]) / sum(cel$pop)))
@@ -95,7 +99,7 @@ message(sprintf("População urbana (>= 300/km²): %.0f%% | em cidades (>= 1.500
 uni <- do.call(rbind, lapply(split(cel, cel$k), function(s) data.frame(
   k = s$k[1], pop = sum(s$pop), lst_pop = mp(s$lst, s$pop),
   lst_cidades = if (sum(s$pop[s$denso]) >= 50000) mp(s$lst[s$denso], s$pop[s$denso]) else NA_real_,
-  pop_urbana = 100 * sum(s$pop[s$urbano]) / sum(s$pop))))
+  pop_urbana = 100 * sum(s$pop[s$urbano]) / sum(s$pop), amp_lst = amp(s))))
 uni <- merge(data.frame(k = u$k, id = u$id, iso3 = u$iso3, nome = u$nome), uni, by = "k", all.x = TRUE)
 pais_lst <- vapply(split(cel, cel$iso3), function(s) mp(s$lst, s$pop), 0)
 uni$lst_dif_pais <- uni$lst_pop - pais_lst[uni$iso3]
@@ -111,10 +115,24 @@ paises <- lapply(sort(unique(cel$iso3)), function(iso) {
   list(iso3 = iso, nome = list(en = nm(iso, "en"), pt = nm(iso, "pt"), es = nm(iso, "es")),
        pop = round(sum(s$pop)), lst_pop = round(mp(s$lst, s$pop), 2), mes_quente = mes_modal(s),
        lst_cidades = if (sum(s$pop[s$denso]) >= 50000) round(mp(s$lst[s$denso], s$pop[s$denso]), 2) else NA_real_,
-       pop_urbana = round(100 * sum(s$pop[s$urbano]) / sum(s$pop), 1),
+       pop_urbana = round(100 * sum(s$pop[s$urbano]) / sum(s$pop), 1), amp_lst = round(amp(s), 2),
        unidade_mais_quente = if (is.null(q)) NULL else list(nome = q$nome, lst_pop = q$lst_pop))
 })
 names(paises) <- NULL
+# Gini nacional da renda ou do consumo (Banco Mundial, SI.POV.GINI, a partir das pesquisas
+# domiciliares de cada país): o ano mais recente desde 2015. Não há Gini subnacional
+# comparável entre os países; por isso ele fica só no painel.
+gini_bm <- tryCatch({
+  g <- fromJSON(paste0("https://api.worldbank.org/v2/country/", paste(sort(unique(cel$iso3)), collapse = ";"),
+                       "/indicator/SI.POV.GINI?format=json&per_page=2000&date=2015:2025"))[[2]]
+  g <- g[is.finite(g$value), ]; g <- g[order(g$countryiso3code, -as.integer(g$date)), ]
+  g[!duplicated(g$countryiso3code), c("countryiso3code", "date", "value")]
+}, error = function(e) { message("Banco Mundial indisponível: ", conditionMessage(e)); NULL })
+if (!is.null(gini_bm)) {
+  paises <- lapply(paises, function(p) { i <- match(p$iso3, gini_bm$countryiso3code)
+    if (!is.na(i)) p$gini <- list(valor = gini_bm$value[i] / 100, ano = as.integer(gini_bm$date[i])); p })
+  message("Gini (Banco Mundial): ", nrow(gini_bm), " países")
+}
 # desigualdade por renda (R/33), quando já calculada
 rj <- file.path(DIR_PROC, "renda_paises.json")
 if (file.exists(rj)) { renda <- read_json(rj); paises <- lapply(paises, function(p) { p$renda <- renda[[p$iso3]]; p }) }
@@ -134,6 +152,12 @@ fonte <- c(en = "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBou
 per <- c(en = "Hottest three months of each place, 2022–2024 (early afternoon)", pt = "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
          es = "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)")
 salvar_indicadores(uni, escala = "america-latina", id = "id", indicadores = list(
+  indicador("amp_lst", rotulo = c(en = "Heat inequality: hottest vs. coolest tenth of residents", pt = "Desigualdade térmica: 10% mais quentes vs. 10% mais amenos",
+                                  es = "Desigualdad térmica: 10% más cálido vs. 10% más templado"),
+    unidade = "°C", paleta = "calor", dimensao = "exposicao", casas_decimais = 1, ordem = 16, fonte = fonte, periodo = per,
+    metodo = c(en = "Within each unit: surface temperature at the 90th percentile of residents minus the 10th percentile, over populated ~1 km cells (GHS-POP) weighted by population; units with at least 30 populated cells",
+               pt = "Dentro de cada unidade: temperatura da superfície no percentil 90 dos moradores menos no percentil 10, nas células habitadas de ~1 km (GHS-POP) ponderadas pela população; unidades com pelo menos 30 células habitadas",
+               es = "Dentro de cada unidad: temperatura de superficie en el percentil 90 de los residentes menos en el percentil 10, en celdas habitadas de ~1 km (GHS-POP) ponderadas por población; unidades con al menos 30 celdas habitadas")),
   indicador("lst_pop", rotulo = c(en = "Surface temperature in the hottest season, where people live", pt = "Temperatura da superfície na época mais quente, onde as pessoas moram",
                                   es = "Temperatura de superficie en la época más cálida, donde vive la gente"),
     unidade = "°C", paleta = "calor", dimensao = "exposicao", casas_decimais = 1, ordem = 10, fonte = fonte, periodo = per,

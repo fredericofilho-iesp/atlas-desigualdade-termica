@@ -574,13 +574,14 @@
         fresco: escapar(I.tr(ps[ps.length - 1].nome)), tf: formatarValor(ps[ps.length - 1].lst_pop, '°C', 1) }) + '</p>' +
       '<div class="tabela-rolagem"><table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.colTemp') + '</th><th>' +
       I.t('pai.colCities') + '</th><th>' + I.t('pai.colMonth') + '</th><th>' + I.t('pai.colHeatDays') + '</th><th>' + I.t('pai.colUrban') + '</th><th>' +
-      I.t('pai.colHottest') + '</th></tr></thead><tbody>';
+      I.t('pai.colGini') + '</th><th>' + I.t('pai.colHottest') + '</th></tr></thead><tbody>';
     ps.forEach(function (p) {
       var q = p.unidade_mais_quente;
       html += '<tr><th scope="row">' + escapar(I.tr(p.nome) || p.iso3) + '</th><td>' + formatarValor(p.lst_pop, '°C', 1) +
         '</td><td>' + (Number.isFinite(p.lst_cidades) ? formatarValor(p.lst_cidades, '°C', 1) : '—') +
         '</td><td>' + nomeMes(p.mes_quente) + '</td><td>' + (p.calor_ar && Number.isFinite(p.calor_ar.dias_35) ? formatarValor(p.calor_ar.dias_35, '', 0) : '—') +
         '</td><td>' + formatarValor(p.pop_urbana, '%', 0) +
+        '</td><td>' + (p.gini && Number.isFinite(p.gini.valor) ? formatarValor(p.gini.valor, '', 2) + ' <small>(' + p.gini.ano + ')</small>' : '—') +
         '</td><td>' + (q && Number.isFinite(q.lst_pop) ? escapar(q.nome) + ' (' + formatarValor(q.lst_pop, '°C', 1) + ')' : '—') + '</td></tr>';
     });
     html += '</tbody></table></div><p class="status">' + I.t('pai.note') + '</p>';
