@@ -16,6 +16,11 @@
       "unidade_mais_quente": {
         "nome": "San Juan",
         "lst_pop": 44.64
+      },
+      "calor_ar": {
+        "dias_35": 10.8,
+        "tmax_quente": 29,
+        "txx": 37.1
       }
     },
     {
@@ -33,6 +38,11 @@
       "unidade_mais_quente": {
         "nome": "Barbuda",
         "lst_pop": 33.03
+      },
+      "calor_ar": {
+        "dias_35": 0,
+        "tmax_quente": 28.9,
+        "txx": 30
       }
     },
     {
@@ -50,6 +60,11 @@
       "unidade_mais_quente": {
         "nome": "Inagua",
         "lst_pop": 35.78
+      },
+      "calor_ar": {
+        "dias_35": -0,
+        "tmax_quente": 29.7,
+        "txx": 31.3
       }
     },
     {
@@ -67,6 +82,11 @@
       "unidade_mais_quente": {
         "nome": "Cayo",
         "lst_pop": 38.88
+      },
+      "calor_ar": {
+        "dias_35": 8.6,
+        "tmax_quente": 31.3,
+        "txx": 35.6
       }
     },
     {
@@ -84,6 +104,11 @@
       "unidade_mais_quente": {
         "nome": "Santa Cruz",
         "lst_pop": 39.09
+      },
+      "calor_ar": {
+        "dias_35": 6.5,
+        "tmax_quente": 22.9,
+        "txx": 28.3
       }
     },
     {
@@ -104,7 +129,10 @@
       },
       "renda": {
         "gap": -0.46,
-        "ic95": [-0.69, -0.14],
+        "ic95": [
+          -0.69,
+          -0.14
+        ],
         "gap_nacional": -0.03,
         "areas": 309128,
         "municipios": 2120,
@@ -152,6 +180,11 @@
             "areas": 5101
           }
         ]
+      },
+      "calor_ar": {
+        "dias_35": 12.1,
+        "tmax_quente": 30,
+        "txx": 35.2
       }
     },
     {
@@ -169,6 +202,11 @@
       "unidade_mais_quente": {
         "nome": "Saint Michael",
         "lst_pop": 35.74
+      },
+      "calor_ar": {
+        "dias_35": 0,
+        "tmax_quente": 28.4,
+        "txx": 29.6
       }
     },
     {
@@ -186,6 +224,11 @@
       "unidade_mais_quente": {
         "nome": "Tarapacá",
         "lst_pop": 44.43
+      },
+      "calor_ar": {
+        "dias_35": 0.2,
+        "tmax_quente": 25.4,
+        "txx": 31.2
       }
     },
     {
@@ -206,7 +249,10 @@
       },
       "renda": {
         "gap": 0.15,
-        "ic95": [-0.19, 0.57],
+        "ic95": [
+          -0.19,
+          0.57
+        ],
         "gap_nacional": 2.07,
         "areas": 401173,
         "municipios": 1052,
@@ -254,6 +300,11 @@
             "areas": 3695
           }
         ]
+      },
+      "calor_ar": {
+        "dias_35": 5.7,
+        "tmax_quente": 25.2,
+        "txx": 28.4
       }
     },
     {
@@ -271,6 +322,11 @@
       "unidade_mais_quente": {
         "nome": "Guanacaste",
         "lst_pop": 39
+      },
+      "calor_ar": {
+        "dias_35": 0.9,
+        "tmax_quente": 26.6,
+        "txx": 29.5
       }
     },
     {
@@ -288,6 +344,11 @@
       "unidade_mais_quente": {
         "nome": "Las Tunas",
         "lst_pop": 38.43
+      },
+      "calor_ar": {
+        "dias_35": 6.8,
+        "tmax_quente": 32.2,
+        "txx": 35.2
       }
     },
     {
@@ -305,6 +366,11 @@
       "unidade_mais_quente": {
         "nome": "Saint George",
         "lst_pop": 30.77
+      },
+      "calor_ar": {
+        "dias_35": 0,
+        "tmax_quente": 27.2,
+        "txx": 28.2
       }
     },
     {
@@ -322,6 +388,11 @@
       "unidade_mais_quente": {
         "nome": "Valverde",
         "lst_pop": 39.34
+      },
+      "calor_ar": {
+        "dias_35": 1.9,
+        "tmax_quente": 30.8,
+        "txx": 33.3
       }
     },
     {
@@ -339,6 +410,11 @@
       "unidade_mais_quente": {
         "nome": "Guayas",
         "lst_pop": 39.1
+      },
+      "calor_ar": {
+        "dias_35": 0,
+        "tmax_quente": 23.8,
+        "txx": 26.9
       }
     },
     {
@@ -356,6 +432,11 @@
       "unidade_mais_quente": {
         "nome": "Saint George",
         "lst_pop": 32.02
+      },
+      "calor_ar": {
+        "dias_35": -0,
+        "tmax_quente": 28,
+        "txx": 29.2
       }
     },
     {
@@ -373,6 +454,11 @@
       "unidade_mais_quente": {
         "nome": "El Progreso",
         "lst_pop": 41.64
+      },
+      "calor_ar": {
+        "dias_35": 3.6,
+        "tmax_quente": 26.9,
+        "txx": 30.8
       }
     },
     {
@@ -390,6 +476,11 @@
       "unidade_mais_quente": {
         "nome": "Upper Takutu-Upper Essequibo",
         "lst_pop": 40.58
+      },
+      "calor_ar": {
+        "dias_35": 1.1,
+        "tmax_quente": 29.9,
+        "txx": 31.9
       }
     },
     {
@@ -407,6 +498,11 @@
       "unidade_mais_quente": {
         "nome": "Valle",
         "lst_pop": 42.42
+      },
+      "calor_ar": {
+        "dias_35": 9.1,
+        "tmax_quente": 30.1,
+        "txx": 34.5
       }
     },
     {
@@ -424,6 +520,11 @@
       "unidade_mais_quente": {
         "nome": "Centre",
         "lst_pop": 38.54
+      },
+      "calor_ar": {
+        "dias_35": 2.1,
+        "tmax_quente": 30.6,
+        "txx": 32.9
       }
     },
     {
@@ -441,6 +542,11 @@
       "unidade_mais_quente": {
         "nome": "Kingston",
         "lst_pop": 38.58
+      },
+      "calor_ar": {
+        "dias_35": 0.2,
+        "tmax_quente": 30.7,
+        "txx": 33
       }
     },
     {
@@ -458,6 +564,11 @@
       "unidade_mais_quente": {
         "nome": "Saint George Basseterre",
         "lst_pop": 34.38
+      },
+      "calor_ar": {
+        "dias_35": 0,
+        "tmax_quente": 28.5,
+        "txx": 29.4
       }
     },
     {
@@ -475,6 +586,11 @@
       "unidade_mais_quente": {
         "nome": "Vieux Fort",
         "lst_pop": 32.52
+      },
+      "calor_ar": {
+        "dias_35": 0,
+        "tmax_quente": 29.4,
+        "txx": 31.3
       }
     },
     {
@@ -495,7 +611,10 @@
       },
       "renda": {
         "gap": -0.31,
-        "ic95": [-0.48, -0.15],
+        "ic95": [
+          -0.48,
+          -0.15
+        ],
         "gap_nacional": -2.2,
         "areas": 40076,
         "municipios": 483,
@@ -543,6 +662,11 @@
             "areas": 579
           }
         ]
+      },
+      "calor_ar": {
+        "dias_35": 17.4,
+        "tmax_quente": 29.5,
+        "txx": 34.4
       }
     },
     {
@@ -560,6 +684,11 @@
       "unidade_mais_quente": {
         "nome": "León",
         "lst_pop": 43.19
+      },
+      "calor_ar": {
+        "dias_35": 10.6,
+        "tmax_quente": 31.4,
+        "txx": 34.5
       }
     },
     {
@@ -577,6 +706,11 @@
       "unidade_mais_quente": {
         "nome": "Los Santos",
         "lst_pop": 41.57
+      },
+      "calor_ar": {
+        "dias_35": 0.5,
+        "tmax_quente": 30.2,
+        "txx": 32.8
       }
     },
     {
@@ -594,6 +728,11 @@
       "unidade_mais_quente": {
         "nome": "Ica",
         "lst_pop": 44.56
+      },
+      "calor_ar": {
+        "dias_35": 1.1,
+        "tmax_quente": 23.5,
+        "txx": 26.3
       }
     },
     {
@@ -611,6 +750,11 @@
       "unidade_mais_quente": {
         "nome": "Boquerón",
         "lst_pop": 43.36
+      },
+      "calor_ar": {
+        "dias_35": 28.2,
+        "tmax_quente": 31.9,
+        "txx": 37.9
       }
     },
     {
@@ -628,6 +772,11 @@
       "unidade_mais_quente": {
         "nome": "San Miguel",
         "lst_pop": 41.39
+      },
+      "calor_ar": {
+        "dias_35": 13.6,
+        "tmax_quente": 32.1,
+        "txx": 35.8
       }
     },
     {
@@ -645,6 +794,11 @@
       "unidade_mais_quente": {
         "nome": "Paramaribo",
         "lst_pop": 37.84
+      },
+      "calor_ar": {
+        "dias_35": 2.5,
+        "tmax_quente": 31.3,
+        "txx": 34
       }
     },
     {
@@ -662,6 +816,11 @@
       "unidade_mais_quente": {
         "nome": "Chaguanas",
         "lst_pop": 39.03
+      },
+      "calor_ar": {
+        "dias_35": 0,
+        "tmax_quente": 29.5,
+        "txx": 31.5
       }
     },
     {
@@ -679,6 +838,11 @@
       "unidade_mais_quente": {
         "nome": "Artigas",
         "lst_pop": 39.84
+      },
+      "calor_ar": {
+        "dias_35": 2.6,
+        "tmax_quente": 27.3,
+        "txx": 35
       }
     },
     {
@@ -696,6 +860,11 @@
       "unidade_mais_quente": {
         "nome": "Saint Andrew",
         "lst_pop": 31.52
+      },
+      "calor_ar": {
+        "dias_35": 0,
+        "tmax_quente": 27.9,
+        "txx": 29.1
       }
     },
     {
@@ -713,6 +882,11 @@
       "unidade_mais_quente": {
         "nome": "Guárico",
         "lst_pop": 43.26
+      },
+      "calor_ar": {
+        "dias_35": 12,
+        "tmax_quente": 30.3,
+        "txx": 33.5
       }
     }
   ]

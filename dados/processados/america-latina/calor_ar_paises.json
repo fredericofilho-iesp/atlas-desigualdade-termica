@@ -1,0 +1,167 @@
+{
+  "ARG": {
+    "dias_35": 10.8,
+    "tmax_quente": 29,
+    "txx": 37.1
+  },
+  "BOL": {
+    "dias_35": 6.5,
+    "tmax_quente": 22.9,
+    "txx": 28.3
+  },
+  "BRA": {
+    "dias_35": 12.1,
+    "tmax_quente": 30,
+    "txx": 35.2
+  },
+  "CHL": {
+    "dias_35": 0.2,
+    "tmax_quente": 25.4,
+    "txx": 31.2
+  },
+  "COL": {
+    "dias_35": 5.7,
+    "tmax_quente": 25.2,
+    "txx": 28.4
+  },
+  "CRI": {
+    "dias_35": 0.9,
+    "tmax_quente": 26.6,
+    "txx": 29.5
+  },
+  "CUB": {
+    "dias_35": 6.8,
+    "tmax_quente": 32.2,
+    "txx": 35.2
+  },
+  "DOM": {
+    "dias_35": 1.9,
+    "tmax_quente": 30.8,
+    "txx": 33.3
+  },
+  "ECU": {
+    "dias_35": 0,
+    "tmax_quente": 23.8,
+    "txx": 26.9
+  },
+  "SLV": {
+    "dias_35": 13.6,
+    "tmax_quente": 32.1,
+    "txx": 35.8
+  },
+  "GTM": {
+    "dias_35": 3.6,
+    "tmax_quente": 26.9,
+    "txx": 30.8
+  },
+  "HTI": {
+    "dias_35": 2.1,
+    "tmax_quente": 30.6,
+    "txx": 32.9
+  },
+  "HND": {
+    "dias_35": 9.1,
+    "tmax_quente": 30.1,
+    "txx": 34.5
+  },
+  "MEX": {
+    "dias_35": 17.4,
+    "tmax_quente": 29.5,
+    "txx": 34.4
+  },
+  "NIC": {
+    "dias_35": 10.6,
+    "tmax_quente": 31.4,
+    "txx": 34.5
+  },
+  "PAN": {
+    "dias_35": 0.5,
+    "tmax_quente": 30.2,
+    "txx": 32.8
+  },
+  "PRY": {
+    "dias_35": 28.2,
+    "tmax_quente": 31.9,
+    "txx": 37.9
+  },
+  "PER": {
+    "dias_35": 1.1,
+    "tmax_quente": 23.5,
+    "txx": 26.3
+  },
+  "URY": {
+    "dias_35": 2.6,
+    "tmax_quente": 27.3,
+    "txx": 35
+  },
+  "VEN": {
+    "dias_35": 12,
+    "tmax_quente": 30.3,
+    "txx": 33.5
+  },
+  "BLZ": {
+    "dias_35": 8.6,
+    "tmax_quente": 31.3,
+    "txx": 35.6
+  },
+  "GUY": {
+    "dias_35": 1.1,
+    "tmax_quente": 29.9,
+    "txx": 31.9
+  },
+  "SUR": {
+    "dias_35": 2.5,
+    "tmax_quente": 31.3,
+    "txx": 34
+  },
+  "JAM": {
+    "dias_35": 0.2,
+    "tmax_quente": 30.7,
+    "txx": 33
+  },
+  "TTO": {
+    "dias_35": 0,
+    "tmax_quente": 29.5,
+    "txx": 31.5
+  },
+  "BHS": {
+    "dias_35": -0,
+    "tmax_quente": 29.7,
+    "txx": 31.3
+  },
+  "BRB": {
+    "dias_35": 0,
+    "tmax_quente": 28.4,
+    "txx": 29.6
+  },
+  "ATG": {
+    "dias_35": 0,
+    "tmax_quente": 28.9,
+    "txx": 30
+  },
+  "DMA": {
+    "dias_35": 0,
+    "tmax_quente": 27.2,
+    "txx": 28.2
+  },
+  "GRD": {
+    "dias_35": -0,
+    "tmax_quente": 28,
+    "txx": 29.2
+  },
+  "KNA": {
+    "dias_35": 0,
+    "tmax_quente": 28.5,
+    "txx": 29.4
+  },
+  "LCA": {
+    "dias_35": 0,
+    "tmax_quente": 29.4,
+    "txx": 31.3
+  },
+  "VCT": {
+    "dias_35": 0,
+    "tmax_quente": 27.9,
+    "txx": 29.1
+  }
+}
