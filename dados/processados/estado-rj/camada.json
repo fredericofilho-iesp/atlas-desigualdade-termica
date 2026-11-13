@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "estado-rj",
-  "gerado_em": "2026-11-13T10:57:39+0000",
+  "gerado_em": "2026-11-13T11:29:16+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -148,6 +148,72 @@
       "classificacao": "manual",
       "ordem": 13,
       "quebras": [-0.5, -0.15, 0.15, 0.5],
+      "n_validos": 92
+    },
+    {
+      "id": "dias_35",
+      "rotulo": {
+        "en": "Extreme heat days: maximum air temperature ≥ 35 °C",
+        "pt": "Dias de calor extremo: máxima do ar ≥ 35 °C",
+        "es": "Días de calor extremo: máxima del aire ≥ 35 °C"
+      },
+      "unidade": {
+        "en": "days/year",
+        "pt": "dias/ano",
+        "es": "días/año"
+      },
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "ERA5-Land (ECMWF/Copernicus C3S), hourly, via Open-Meteo (AWS Open Data); IBGE 2022 Census",
+        "pt": "ERA5-Land (ECMWF/Copernicus C3S), horário, via Open-Meteo (AWS Open Data); IBGE, Censo 2022",
+        "es": "ERA5-Land (ECMWF/Copernicus C3S), horario, vía Open-Meteo (AWS Open Data); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "2016–2025",
+        "pt": "2016–2025",
+        "es": "2016–2025"
+      },
+      "metodo": {
+        "en": "Mean number of days per year with daily maximum 2 m air temperature ≥ 35 °C. Air temperature from a ~11 km reanalysis grid; each census tract takes its grid cell and municipal values are weighted by residents. Too coarse for neighbourhood heat islands, and likely to underestimate maxima in dense urban areas",
+        "pt": "Número médio de dias por ano com máxima diária da temperatura do ar a 2 m ≥ 35 °C. Temperatura do ar de uma reanálise em grade de ~11 km; cada setor censitário recebe a sua célula e o valor municipal é ponderado pelos moradores. Grossa demais para ilhas de calor de bairro e tende a subestimar a máxima em áreas muito urbanizadas",
+        "es": "Número medio de días por año con máxima diaria de la temperatura del aire a 2 m ≥ 35 °C. Temperatura del aire de un reanálisis en grilla de ~11 km; cada sector censal toma su celda y el valor municipal se pondera por residentes. Demasiado gruesa para islas de calor de barrio y tiende a subestimar la máxima en áreas muy urbanizadas"
+      },
+      "casas_decimais": 0,
+      "classificacao": "quantis",
+      "ordem": 14,
+      "quebras": [0.5, 1.4, 2.6, 9.2],
+      "n_validos": 92
+    },
+    {
+      "id": "tmax_verao",
+      "rotulo": {
+        "en": "Average summer maximum air temperature",
+        "pt": "Máxima média do ar no verão",
+        "es": "Máxima media del aire en verano"
+      },
+      "unidade": "°C",
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "ERA5-Land (ECMWF/Copernicus C3S), hourly, via Open-Meteo (AWS Open Data); IBGE 2022 Census",
+        "pt": "ERA5-Land (ECMWF/Copernicus C3S), horário, via Open-Meteo (AWS Open Data); IBGE, Censo 2022",
+        "es": "ERA5-Land (ECMWF/Copernicus C3S), horario, vía Open-Meteo (AWS Open Data); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "Dec–Mar, summers 2016/17 to 2024/25",
+        "pt": "dez.–mar., verões 2016/17 a 2024/25",
+        "es": "dic.–mar., veranos 2016/17 a 2024/25"
+      },
+      "metodo": {
+        "en": "Mean of daily maximum 2 m air temperature, December to March. Air temperature from a ~11 km reanalysis grid; each census tract takes its grid cell and municipal values are weighted by residents. Too coarse for neighbourhood heat islands, and likely to underestimate maxima in dense urban areas",
+        "pt": "Média das máximas diárias da temperatura do ar a 2 m, de dezembro a março. Temperatura do ar de uma reanálise em grade de ~11 km; cada setor censitário recebe a sua célula e o valor municipal é ponderado pelos moradores. Grossa demais para ilhas de calor de bairro e tende a subestimar a máxima em áreas muito urbanizadas",
+        "es": "Media de las máximas diarias de la temperatura del aire a 2 m, de diciembre a marzo. Temperatura del aire de un reanálisis en grilla de ~11 km; cada sector censal toma su celda y el valor municipal se pondera por residentes. Demasiado gruesa para islas de calor de barrio y tiende a subestimar la máxima en áreas muy urbanizadas"
+      },
+      "casas_decimais": 1,
+      "classificacao": "quantis",
+      "ordem": 15,
+      "quebras": [27.57, 28.34, 29.15, 30.12],
       "n_validos": 92
     },
     {

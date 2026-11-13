@@ -1,0 +1,17 @@
+{
+  "gerado_em": "2026-11-13T11:29:04+0000",
+  "periodo": [2016, 2025],
+  "dias": 3653,
+  "celulas": 400,
+  "setores_realocados": 7748,
+  "estado": {
+    "tmax_verao": 29.59,
+    "txx": 36.86,
+    "dias_30": 99.97,
+    "dias_32": 52.9,
+    "dias_34": 19.53,
+    "dias_35": 9.93,
+    "dias_36": 4.4,
+    "dias_38": 0.69
+  }
+}
