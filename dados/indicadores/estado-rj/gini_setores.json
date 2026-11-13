@@ -1,0 +1,29 @@
+{
+  "id": "gini_setores",
+  "rotulo": {
+    "en": "Income inequality between tracts (Gini)",
+    "pt": "Desigualdade de renda entre setores (Gini)",
+    "es": "Desigualdad de ingreso entre sectores (Gini)"
+  },
+  "paleta": "pessoas",
+  "dimensao": "sensibilidade",
+  "fonte": {
+    "en": "IBGE 2022 Census, household-head income by census tract",
+    "pt": "IBGE, Censo 2022, rendimento do responsável por setor",
+    "es": "IBGE, Censo 2022, ingreso del responsable por sector"
+  },
+  "periodo": {
+    "en": "2022",
+    "pt": "2022",
+    "es": "2022"
+  },
+  "metodo": {
+    "en": "Gini index of mean household-head income across census tracts, weighted by household heads (inequality between tracts, not between people: it is lower than the person-level Gini); only areas with at least 30 tracts with data",
+    "pt": "Índice de Gini da renda média do responsável entre os setores censitários, ponderados pelo número de responsáveis (desigualdade entre setores, não entre pessoas: fica abaixo do Gini entre pessoas); só áreas com pelo menos 30 setores com dado",
+    "es": "Índice de Gini del ingreso medio del responsable entre sectores censales, ponderados por el número de responsables (desigualdad entre sectores, no entre personas: es menor que el Gini entre personas); solo áreas con al menos 30 sectores con dato"
+  },
+  "casas_decimais": 2,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 21
+}
