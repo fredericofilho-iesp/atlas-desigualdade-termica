@@ -8,19 +8,14 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - run: |
-          curl -s "https://servicodados.ibge.gov.br/api/v3/agregados" > ag.json
-          python3 - <<'PY'
-          import json, urllib.request
-          d=json.load(open("ag.json"))
-          for p in d:
-              for a in p["agregados"]:
-                  if "gini" in a["nome"].lower() or ("Censo" in p["nome"] and "2022" in p["nome"] and "rendimento" in a["nome"].lower()):
-                      print(p["id"], p["nome"], "|", a["id"], a["nome"])
-          PY
-      - run: |
-          for t in $(python3 -c "
-          import json;d=json.load(open('ag.json'))
-          print(' '.join(str(a['id']) for p in d for a in p['agregados'] if 'gini' in a['nome'].lower()))"); do
-            echo "== $t"; curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/$t/metadados" | python3 -c "
-          import json,sys; m=json.load(sys.stdin); print(m.get('nome')); print('niveis', m['nivelTerritorial']); print('periodos', m['periodicidade']); print([v['nome'] for v in m['variaveis']][:6])"
+          set +e
+          B=https://sidra.ibge.gov.br/pesquisa/censo-demografico/demografico-2022
+          curl -sL -m 60 $B > raiz.html; echo "raiz $(wc -c < raiz.html) bytes"
+          grep -o 'demografico-2022/[a-z0-9-]*' raiz.html | sort -u | tee subs.txt
+          for s in $(cat subs.txt); do
+            curl -sL -m 60 "https://sidra.ibge.gov.br/pesquisa/censo-demografico/$s" > p.html
+            if grep -qi gini p.html; then echo "### GINI em $s"; grep -io '<a[^>]*tabela/[0-9]*[^<]*</a>\|Tabela [0-9]* - [^<]*' p.html | grep -i -B0 -A0 "gini\|rendimento" | head -20; fi
+          done
+          for t in 10295 10296 10297 10298 10299 10300 10301 10302 10303 10304 10305; do
+            curl -s -m 30 "https://apisidra.ibge.gov.br/desctabapi.aspx?c=$t" | grep -o '<span id="lblNomeTabela"[^<]*' | sed "s/^/$t /"
           done
