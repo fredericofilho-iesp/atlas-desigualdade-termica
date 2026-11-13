@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo]
 permissions:
   contents: write
 concurrency:
@@ -89,6 +89,31 @@ jobs:
       - name: Brasil — só indicadores municipais (reaproveita Censo e MODIS salvos)
         if: inputs.escala == 'brasil-municipios'
         run: Rscript R/22_municipios_brasil.R
+      - name: América Latina — teste (Uruguai, Paraguai, Costa Rica; poucos compostos MODIS)
+        if: inputs.escala == 'latam-teste'
+        env:
+          PAISES: URY,PRY,CRI
+          LIMITE_COMPOSTOS: "40"
+        run: |
+          Rscript R/30_unidades_latam.R
+          Rscript R/31_latam.R
+      - uses: actions/cache/restore@v4
+        # tiles MODIS já processados (só da rodada completa; o teste usa menos compostos)
+        if: inputs.escala == 'latam-completo'
+        with:
+          path: dados/brutos/modis-latam
+          key: modis-latam-2022-2024
+          restore-keys: modis-latam-2022-2024-
+      - name: América Latina — completo
+        if: inputs.escala == 'latam-completo'
+        run: |
+          Rscript R/30_unidades_latam.R
+          Rscript R/31_latam.R
+      - uses: actions/cache/save@v4
+        if: always() && inputs.escala == 'latam-completo' && hashFiles('dados/brutos/modis-latam/*.tif') != ''
+        with:
+          path: dados/brutos/modis-latam
+          key: modis-latam-2022-2024-${{ github.run_id }}
       - name: Registrar dados processados
         if: always()   # guarda o que já foi calculado mesmo se um passo posterior falhar
         run: |

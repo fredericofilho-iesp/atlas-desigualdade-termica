@@ -1,0 +1,30 @@
+{
+  "id": "lst_cidades",
+  "rotulo": {
+    "en": "Surface temperature in cities, where people live",
+    "pt": "Temperatura da superfície nas cidades, onde as pessoas moram",
+    "es": "Temperatura de superficie en las ciudades, donde vive la gente"
+  },
+  "unidade": "°C",
+  "paleta": "calor",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries"
+  },
+  "periodo": {
+    "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+    "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+    "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+  },
+  "metodo": {
+    "en": "Same as the main temperature, but only in dense urban cells (at least 1,500 inhabitants per km², the GHSL urban-centre threshold); only units with at least 50,000 people in such cells",
+    "pt": "Igual à temperatura principal, mas só nas células urbanas densas (ao menos 1.500 habitantes por km², limiar de centro urbano do GHSL); só unidades com ao menos 50 mil pessoas nessas células",
+    "es": "Igual que la temperatura principal, pero solo en las celdas urbanas densas (al menos 1.500 habitantes por km², umbral de centro urbano del GHSL); solo unidades con al menos 50.000 personas en esas celdas"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 12
+}
