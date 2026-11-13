@@ -41,7 +41,7 @@ modis_vrt <- function(isos) {
   tl <- modis_tiles(area)
   pasta <- "dados/brutos/modis-latam"; dir.create(pasta, recursive = TRUE, showWarnings = FALSE)
   arqs <- unlist(lapply(names(tl$tiles), function(n) modis_processar(n, tl$tiles[[n]], tl$doc, pasta)))
-  vrt(arqs, file.path(pasta, paste0("renda_", paste(isos, collapse = "_"), ".vrt")))
+  vrt(arqs, file.path(pasta, paste0("renda_", paste(isos, collapse = "_"), ".vrt")), overwrite = TRUE)
 }
 # ADM1 por ponto (ponto interno de cada pequena área)
 adm1_de <- function(geom, iso) {
