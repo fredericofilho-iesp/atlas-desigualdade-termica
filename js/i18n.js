@@ -22,6 +22,7 @@
     en: {
       'site.title': 'Heat Inequality Atlas',
       'site.subtitle': 'Heat exposure, social vulnerability and climate justice',
+      'site.author': 'Author:',
       'nav.label': 'Atlas scales',
       'nav.home': 'Home',
       'nav.rio': 'Rio de Janeiro (city)',
@@ -154,6 +155,7 @@
     pt: {
       'site.title': 'Atlas Interativo de Desigualdade Térmica',
       'site.subtitle': 'Exposição ao calor, vulnerabilidade social e justiça climática',
+      'site.author': 'Autor:',
       'nav.label': 'Escalas do atlas',
       'nav.home': 'Início',
       'nav.rio': 'Rio de Janeiro (cidade)',
@@ -286,6 +288,7 @@
     es: {
       'site.title': 'Atlas Interactivo de Desigualdad Térmica',
       'site.subtitle': 'Exposición al calor, vulnerabilidad social y justicia climática',
+      'site.author': 'Autor:',
       'nav.label': 'Escalas del atlas',
       'nav.home': 'Inicio',
       'nav.rio': 'Río de Janeiro (ciudad)',

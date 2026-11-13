@@ -58,6 +58,8 @@ def topo(prefixo, atual):
     <div>
       <p class="marca"><a href="{inicio}" data-nav="{inicio}" data-i18n="site.title">{EN["site.title"]}</a></p>
       <p class="sub" data-i18n="site.subtitle">{EN["site.subtitle"]}</p>
+      <p class="autoria"><span data-i18n="site.author">{EN["site.author"]}</span> Frederico Augusto A. de Gomes Filho (Instituto de Estudos Sociais e Políticos, Universidade do Estado do Rio de Janeiro)</p>
+      <p class="autoria-links"><a href="https://orcid.org/0009-0004-2217-8077" target="_blank" rel="noopener">ORCID</a> · <a href="https://lattes.cnpq.br/4153021224044822" target="_blank" rel="noopener">Lattes</a> · <a href="https://www.linkedin.com/in/frederico-augusto-auad-de-gomes-filho-a6b328185/" target="_blank" rel="noopener">LinkedIn</a></p>
     </div>
     <div class="idioma">
       <label for="idioma" data-i18n="lang.label">{EN["lang.label"]}</label>
