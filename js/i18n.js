@@ -100,7 +100,7 @@
 
       'rio.title': 'City of Rio de Janeiro',
       'rio.desc': '2022 Census tracts (IBGE).',
-      'rio.notice': '<strong>Published:</strong> summer land surface temperature (Landsat 8–9, summers 2022/23 to 2024/25). Surface temperature is not air temperature: it shows how hot surfaces get on clear summer mornings. Also available: income, street trees, age and color or race (2022 Census), and a bivariate map of heat × income.',
+      'rio.notice': '<strong>Published:</strong> summer land surface temperature (Landsat 8–9, summers 2022/23 to 2024/25). Surface temperature is not air temperature: it shows how hot surfaces get on clear summer mornings. Also available: income, street trees, age and color or race (2022 Census), and bivariate maps of heat × income and heat × color or race.',
       'rio.sources': 'IBGE (2022 Census: tract boundaries, household-head income, street trees), Landsat imagery (land surface temperature), MapBiomas (vegetation cover), Data.Rio.',
       'rio.noLayer': 'Census tract layer not processed yet. Run the “Prepare atlas layers” workflow on GitHub Actions.',
       'rio.planned': ['Tree canopy cover (satellite)'],
@@ -232,7 +232,7 @@
 
       'rio.title': 'Município do Rio de Janeiro',
       'rio.desc': 'Setores censitários do Censo 2022 (IBGE).',
-      'rio.notice': '<strong>Publicado:</strong> temperatura da superfície no verão (Landsat 8–9, verões 2022/23 a 2024/25). Temperatura da superfície não é temperatura do ar: ela mostra o quanto as superfícies esquentam em manhãs de verão sem nuvens. Também disponíveis: renda, arborização do entorno, idade e cor ou raça (Censo 2022), e o mapa bivariado calor × renda.',
+      'rio.notice': '<strong>Publicado:</strong> temperatura da superfície no verão (Landsat 8–9, verões 2022/23 a 2024/25). Temperatura da superfície não é temperatura do ar: ela mostra o quanto as superfícies esquentam em manhãs de verão sem nuvens. Também disponíveis: renda, arborização do entorno, idade e cor ou raça (Censo 2022), e o mapas bivariados calor × renda e calor × cor ou raça.',
       'rio.sources': 'IBGE (Censo 2022: malha de setores, renda do responsável, arborização do entorno), imagens Landsat (temperatura da superfície), MapBiomas (cobertura vegetal), Data.Rio.',
       'rio.noLayer': 'Malha censitária ainda não processada. Rode o workflow “Preparar camadas do atlas” no GitHub Actions.',
       'rio.planned': ['Cobertura de copa (satélite)'],
@@ -364,7 +364,7 @@
 
       'rio.title': 'Municipio de Río de Janeiro',
       'rio.desc': 'Sectores censales del Censo 2022 (IBGE).',
-      'rio.notice': '<strong>Publicado:</strong> temperatura de superficie en verano (Landsat 8–9, veranos 2022/23 a 2024/25). La temperatura de superficie no es la temperatura del aire: muestra cuánto se calientan las superficies en mañanas de verano despejadas. También disponibles: ingreso, arbolado del entorno, edad y color o raza (Censo 2022), y el mapa bivariado calor × ingreso.',
+      'rio.notice': '<strong>Publicado:</strong> temperatura de superficie en verano (Landsat 8–9, veranos 2022/23 a 2024/25). La temperatura de superficie no es la temperatura del aire: muestra cuánto se calientan las superficies en mañanas de verano despejadas. También disponibles: ingreso, arbolado del entorno, edad y color o raza (Censo 2022), y el mapas bivariados calor × ingreso y calor × color o raza.',
       'rio.sources': 'IBGE (Censo 2022: sectores censales, ingreso del responsable, arbolado del entorno), imágenes Landsat (temperatura de superficie), MapBiomas (cobertura vegetal), Data.Rio.',
       'rio.noLayer': 'Capa de sectores censales aún no procesada. Ejecute el workflow “Preparar capas del atlas” en GitHub Actions.',
       'rio.planned': ['Cobertura de copa (satélite)'],
