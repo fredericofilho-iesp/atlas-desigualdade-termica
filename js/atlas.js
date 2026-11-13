@@ -225,7 +225,9 @@
       html += '</tr>';
     }
     html += '<tr><th></th>' + rx.map(function (v) { return '<th class="biv-x">' + v + '</th>'; }).join('') + '</tr>';
-    html += '</tbody></table><div class="biv-xt">' + escapar(I.tr(x.rotulo)) + (x.unidade ? ' (' + x.unidade + ')' : '') + ' →</div></div>';
+    var tx = escapar(I.tr(x.rotulo)) + (x.unidade ? ' (' + x.unidade + ')' : '');
+    // eixo invertido: o valor cresce para a esquerda
+    html += '</tbody></table><div class="biv-xt">' + (x.inverso ? '← ' + tx : tx + ' →') + '</div></div>';
     html += '<p class="legenda-meta">' + (ex.nota ? escapar(I.tr(ex.nota)) : I.t('biv.note')) + '</p>';
     return html;
   }

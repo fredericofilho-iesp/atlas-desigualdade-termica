@@ -142,7 +142,7 @@ if ("brasil" %in% ESC) {
   d$biv_dif_renda <- b1$classe; d$biv_dif_pretaparda <- b2$classe
   fonte <- c(en = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census", pt = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
              es = "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022")
-  onde <- list(en = "municipalities (relative to their state)", pt = "municípios (em relação ao seu estado)", es = "municipios (respecto a su estado)")
+  onde <- list(en = "municipalities", pt = "municípios", es = "municipios")
   quem <- list(en = "country’s municipalities", pt = "dos municípios do país", es = "de los municipios del país")
   nota_uf <- c(en = " Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
                pt = " Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
