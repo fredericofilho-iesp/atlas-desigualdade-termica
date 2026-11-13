@@ -31,7 +31,7 @@ ler <- function(escala, id, chave) {
 soma_mun <- function(tab, v) tapply(tab[[v]], tab$CD_MUN, sum, na.rm = TRUE)
 TXT <- list(
   temp = list(en = "Surface temperature", pt = "Temperatura da superfície", es = "Temperatura de superficie"),
-  temp_uf = list(en = "Surface temperature vs. own state", pt = "Temperatura da superfície vs. o próprio estado", es = "Temperatura de superficie vs. su estado"),
+  temp_uf = list(en = "Temp. vs. state average", pt = "Temp. vs. média do estado", es = "Temp. vs. media del estado"),
   ct = list(en = c("Cooler", "Intermediate temp.", "Hotter"), pt = c("Menos quente", "Temp. intermediária", "Mais quente"),
             es = c("Menos cálido", "Temp. intermedia", "Más cálido")),
   renda = list(en = "Household head income", pt = "Renda do responsável", es = "Ingreso del responsable"),

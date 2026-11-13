@@ -352,7 +352,10 @@
       maplibregl.addProtocol('pmtiles', proto.tile);
       fonte = { type: 'vector', url: 'pmtiles://' + url, promoteId: g.id };
     } else {
-      fonte = { type: 'geojson', data: url, promoteId: g.id };
+      // ?v=<data de geração>: o navegador não reaproveita uma malha antiga do cache
+      // quando a camada é republicada (o camada.json novo chega, o GeoJSON velho não).
+      var v = manifesto.gerado_em ? (url.indexOf('?') < 0 ? '?' : '&') + 'v=' + encodeURIComponent(manifesto.gerado_em) : '';
+      fonte = { type: 'geojson', data: url + v, promoteId: g.id };
     }
     map.addSource('unidades', fonte);
     var antes = primeiraCamadaDeRotulo(map);
