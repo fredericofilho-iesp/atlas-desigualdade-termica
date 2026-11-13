@@ -13,9 +13,9 @@
     "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
   },
   "metodo": {
-    "en": "Population-weighted terciles of surface temperature and of household-head income",
-    "pt": "Tercis, ponderados pela população, da temperatura da superfície e da renda do responsável",
-    "es": "Terciles, ponderados por población, de la temperatura de superficie y del ingreso del responsable"
+    "en": "Terciles (of municipalities) of surface temperature and of household-head income",
+    "pt": "Tercis (de municípios) da temperatura da superfície e da renda do responsável",
+    "es": "Terciles (de municipios) de la temperatura de superficie y del ingreso del responsable"
   },
   "casas_decimais": 0,
   "ordem": 30,
@@ -35,7 +35,7 @@
       },
       "unidade": "°C",
       "casas": 1,
-      "limites": [40.3, 41.5]
+      "limites": [35.4, 38.6]
     },
     "x": {
       "indicador": "renda_media_resp",
@@ -51,13 +51,13 @@
       },
       "unidade": "R$",
       "casas": -1,
-      "limites": [2310, 4090],
+      "limites": [2130, 2490],
       "inverso": false
     },
     "nota": {
-      "en": "Each third groups about one third of the state’s residents. Magenta: hotter municipalities with lower income.",
-      "pt": "Cada terço reúne cerca de um terço dos moradores do estado. Magenta: municípios mais quentes e com renda mais baixa.",
-      "es": "Cada tercio agrupa alrededor de un tercio de los residentes del estado. Magenta: municipios más cálidos y con menor ingreso."
+      "en": "Each third groups about one third of the state’s municipalities. Magenta: hotter municipalities with lower income.",
+      "pt": "Cada terço reúne cerca de um terço dos municípios do estado. Magenta: municípios mais quentes e com renda mais baixa.",
+      "es": "Cada tercio agrupa alrededor de un tercio de los municipios del estado. Magenta: municipios más cálidos y con menor ingreso."
     }
   }
 }

@@ -13,9 +13,9 @@
     "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
   },
   "metodo": {
-    "en": "Population-weighted terciles of surface temperature and of the Black (preta and parda) share of residents; the group axis runs from more to fewer Black residents",
-    "pt": "Tercis, ponderados pela população, da temperatura da superfície e da proporção de moradores pretos e pardos; o eixo do grupo vai de mais para menos pretos e pardos",
-    "es": "Terciles, ponderados por población, de la temperatura de superficie y de la proporción de residentes negros (pretos y pardos); el eje del grupo va de más a menos población negra"
+    "en": "Terciles (of municipalities) of surface temperature and of the Black (preta and parda) share of residents; the group axis runs from more to fewer Black residents",
+    "pt": "Tercis (de municípios) da temperatura da superfície e da proporção de moradores pretos e pardos; o eixo do grupo vai de mais para menos pretos e pardos",
+    "es": "Terciles (de municipios) de la temperatura de superficie y de la proporción de residentes negros (pretos y pardos); el eje del grupo va de más a menos población negra"
   },
   "casas_decimais": 0,
   "ordem": 31,
@@ -35,7 +35,7 @@
       },
       "unidade": "°C",
       "casas": 1,
-      "limites": [40.3, 41.5]
+      "limites": [35.4, 38.6]
     },
     "x": {
       "indicador": "pop_preta_parda",
@@ -51,13 +51,13 @@
       },
       "unidade": "%",
       "casas": 0,
-      "limites": [54, 61],
+      "limites": [54, 60],
       "inverso": true
     },
     "nota": {
-      "en": "Each third groups about one third of the state’s residents. Magenta: hotter municipalities with more Black residents.",
-      "pt": "Cada terço reúne cerca de um terço dos moradores do estado. Magenta: municípios mais quentes e com mais pretos e pardos.",
-      "es": "Cada tercio agrupa alrededor de un tercio de los residentes del estado. Magenta: municipios más cálidos y con más población negra."
+      "en": "Each third groups about one third of the state’s municipalities. Magenta: hotter municipalities with more Black residents.",
+      "pt": "Cada terço reúne cerca de um terço dos municípios do estado. Magenta: municípios mais quentes e com mais pretos e pardos.",
+      "es": "Cada tercio agrupa alrededor de un tercio de los municipios del estado. Magenta: municipios más cálidos y con más población negra."
     }
   }
 }

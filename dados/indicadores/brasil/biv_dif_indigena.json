@@ -13,9 +13,9 @@
     "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022 (SIDRA 9605)"
   },
   "metodo": {
-    "en": "Population-weighted terciles of the temperature difference from the state average; fixed classes of the Indigenous share of residents",
-    "pt": "Tercis, ponderados pela população, da diferença de temperatura para a média do estado; classes fixas da proporção de moradores indígenas",
-    "es": "Terciles, ponderados por población, de la diferencia de temperatura respecto a la media del estado; clases fijas de la proporción de residentes indígenas"
+    "en": "Terciles (of municipalities) of the temperature difference from the state average; fixed classes of the Indigenous share of residents",
+    "pt": "Tercis (de municípios) da diferença de temperatura para a média do estado; classes fixas da proporção de moradores indígenas",
+    "es": "Terciles (de municipios) de la diferencia de temperatura respecto a la media del estado; clases fijas de la proporción de residentes indígenas"
   },
   "casas_decimais": 0,
   "ordem": 32,
@@ -35,7 +35,7 @@
       },
       "unidade": "°C",
       "casas": 1,
-      "limites": [-0.8, 1.2]
+      "limites": [-1.9, 0.9]
     },
     "x": {
       "indicador": "pop_indigena",
@@ -55,9 +55,9 @@
       "inverso": true
     },
     "nota": {
-      "en": "Temperature: population-weighted thirds. Indigenous share: fixed classes (under 1%, 1–10%, 10% or more). Magenta: hotter municipalities with 10% or more Indigenous residents. Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
-      "pt": "Temperatura: terços ponderados pela população. Proporção indígena: classes fixas (menos de 1%, 1–10%, 10% ou mais). Magenta: municípios mais quentes e com 10% ou mais de indígenas. Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
-      "es": "Temperatura: tercios ponderados por población. Proporción indígena: clases fijas (menos de 1%, 1–10%, 10% o más). Magenta: municipios más cálidos y con 10% o más de indígenas. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
+      "en": "Temperature: thirds of municipalities. Indigenous share: fixed classes (under 1%, 1–10%, 10% or more). Magenta: hotter municipalities with 10% or more Indigenous residents. Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
+      "pt": "Temperatura: terços dos municípios. Proporção indígena: classes fixas (menos de 1%, 1–10%, 10% ou mais). Magenta: municípios mais quentes e com 10% ou mais de indígenas. Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
+      "es": "Temperatura: tercios de los municipios. Proporción indígena: clases fijas (menos de 1%, 1–10%, 10% o más). Magenta: municipios más cálidos y con 10% o más de indígenas. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
     }
   }
 }
