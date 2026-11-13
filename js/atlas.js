@@ -560,8 +560,33 @@
         '</td><td>' + (q && Number.isFinite(q.lst_pop) ? escapar(q.nome) + ' (' + formatarValor(q.lst_pop, '°C', 1) + ')' : '—') + '</td></tr>';
     });
     html += '</tbody></table></div><p class="status">' + I.t('pai.note') + '</p>';
+    html += painelRendaPaises(d.paises);
     el.innerHTML = html;
     el.hidden = false;
+  }
+
+  // Desigualdade por renda dentro das cidades (só países com dados censais por pequena área)
+  function painelRendaPaises(paises) {
+    var rs = paises.filter(function (p) { return p.renda && Number.isFinite(p.renda.gap); });
+    if (!rs.length) return '';
+    var sinal = function (v) { return Number.isFinite(v) ? (v > 0 ? '+' : '') + formatarValor(v, '°C', 1) : '—'; };
+    rs.sort(function (a, b) { return b.renda.gap - a.renda.gap; });
+    var html = '<h3>' + I.t('pai.rendaTitle') + '</h3><p>' + I.t('pai.rendaSentence') + '</p>' +
+      '<div class="tabela-rolagem"><table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.rendaGap') + '</th><th>' +
+      I.t('pai.rendaCI') + '</th><th>' + I.t('pai.rendaNoControl') + '</th><th>' + I.t('pai.rendaMeasure') + '</th></tr></thead><tbody>';
+    rs.forEach(function (p) {
+      var r = p.renda, ic = r.ic95 || [];
+      html += '<tr><th scope="row">' + escapar(I.tr(p.nome)) + '</th><td>' + sinal(r.gap) + '</td><td>' + sinal(ic[0]) + ' – ' + sinal(ic[1]) +
+        '</td><td>' + sinal(r.gap_nacional) + '</td><td>' + escapar(I.tr(r.medida)) + '</td></tr>';
+    });
+    html += '</tbody></table></div><h3>' + I.t('pai.rendaCities') + '</h3>' +
+      '<div class="tabela-rolagem"><table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.rendaGap') + '</th></tr></thead><tbody>';
+    rs.forEach(function (p) {
+      (p.renda.cidades || []).forEach(function (c) {
+        html += '<tr><th scope="row">' + escapar(c.nome) + ' <span class="status">(' + escapar(I.tr(p.nome)) + ')</span></th><td>' + sinal(c.gap) + '</td></tr>';
+      });
+    });
+    return html + '</tbody></table></div><p class="status">' + I.t('pai.rendaNote') + '</p>';
   }
 
   async function iniciar() {
