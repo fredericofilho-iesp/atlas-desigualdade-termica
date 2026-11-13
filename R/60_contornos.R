@@ -10,8 +10,17 @@ gravar <- function(g, campo, arq, tol_m, crs_m) {
   geo <- st_make_valid(st_geometry(g))
   grupos <- sort(unique(as.character(g[[campo]])))
   partes <- lapply(grupos, function(k) st_union(geo[as.character(g[[campo]]) == k]))
-  u <- st_sf(grupo = grupos, geometry = do.call(c, partes), crs = st_crs(g))
-  u <- st_transform(st_simplify(st_transform(u, crs_m), preserveTopology = TRUE, dTolerance = tol_m), 4326)
+  u <- st_transform(st_sf(grupo = grupos, geometry = do.call(c, partes), crs = st_crs(g)), crs_m)
+  # A união de municípios vizinhos deixa frestas e furinhos ao longo das divisas internas,
+  # que virariam milhares de linhas: fica só o anel externo de cada polígono com 1 km² ou
+  # mais (um enclave, como o DF dentro de Goiás, continua desenhado pelo próprio contorno).
+  limpar <- function(x) {
+    pol <- st_cast(st_sfc(x, crs = crs_m), "POLYGON")
+    pol <- pol[as.numeric(st_area(pol)) >= 1e6]
+    st_union(st_sfc(lapply(pol, function(p) st_polygon(list(unclass(p)[[1]]))), crs = crs_m))
+  }
+  u <- st_sf(grupo = u$grupo, geometry = do.call(c, lapply(st_geometry(u), limpar)), crs = crs_m)
+  u <- st_transform(st_simplify(u, preserveTopology = TRUE, dTolerance = tol_m), 4326)
   u <- st_cast(st_boundary(u), "MULTILINESTRING", warn = FALSE)        # só as linhas
   if (file.exists(arq)) file.remove(arq)
   st_write(u, arq, driver = "GeoJSON", quiet = TRUE, layer_options = c("COORDINATE_PRECISION=4", "RFC7946=YES"))
