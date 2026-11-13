@@ -10,7 +10,45 @@
       "en": "household-head income (2022 Census, urban tracts)",
       "pt": "renda do responsável (Censo 2022, setores urbanos)",
       "es": "ingreso del responsable del hogar (Censo 2022, sectores urbanos)"
-    }
+    },
+    "cidades": [
+      {
+        "nome": "São Paulo",
+        "gap": -0.71,
+        "pop": 11362747,
+        "areas": 26254
+      },
+      {
+        "nome": "Rio de Janeiro",
+        "gap": 3.32,
+        "pop": 6091814,
+        "areas": 13137
+      },
+      {
+        "nome": "Brasília",
+        "gap": 1.29,
+        "pop": 2686739,
+        "areas": 4843
+      },
+      {
+        "nome": "Fortaleza",
+        "gap": 0.41,
+        "pop": 2417559,
+        "areas": 4252
+      },
+      {
+        "nome": "Salvador",
+        "gap": -0.43,
+        "pop": 2348384,
+        "areas": 4337
+      },
+      {
+        "nome": "Belo Horizonte",
+        "gap": 0.09,
+        "pop": 2311755,
+        "areas": 5101
+      }
+    ]
   },
   "COL": {
     "gap": 0.15,
@@ -23,7 +61,45 @@
       "en": "multidimensional poverty (DANE, 2018 Census, urban blocks)",
       "pt": "pobreza multidimensional (DANE, Censo 2018, quarteirões urbanos)",
       "es": "pobreza multidimensional (DANE, Censo 2018, manzanas urbanas)"
-    }
+    },
+    "cidades": [
+      {
+        "nome": "Bogotá",
+        "gap": -0.6,
+        "pop": 7136912,
+        "areas": 38457
+      },
+      {
+        "nome": "Medellín",
+        "gap": -1.72,
+        "pop": 2340237,
+        "areas": 12395
+      },
+      {
+        "nome": "Cali",
+        "gap": 0.88,
+        "pop": 1802659,
+        "areas": 13617
+      },
+      {
+        "nome": "Barranquilla",
+        "gap": 1.85,
+        "pop": 1112091,
+        "areas": 7792
+      },
+      {
+        "nome": "Cartagena",
+        "gap": 0.52,
+        "pop": 856663,
+        "areas": 8428
+      },
+      {
+        "nome": "Soacha",
+        "gap": -0.49,
+        "pop": 641613,
+        "areas": 3695
+      }
+    ]
   },
   "MEX": {
     "gap": -0.31,
@@ -36,6 +112,44 @@
       "en": "urban marginalisation index (CONAPO 2020, urban AGEB)",
       "pt": "índice de marginação urbana (CONAPO 2020, AGEB urbanas)",
       "es": "índice de marginación urbana (CONAPO 2020, AGEB urbanas)"
-    }
+    },
+    "cidades": [
+      {
+        "nome": "Tijuana",
+        "gap": 0.14,
+        "pop": 1892836,
+        "areas": 668
+      },
+      {
+        "nome": "Iztapalapa (CDMX)",
+        "gap": 0.06,
+        "pop": 1835240,
+        "areas": 452
+      },
+      {
+        "nome": "Ecatepec de Morelos",
+        "gap": -1.45,
+        "pop": 1643547,
+        "areas": 391
+      },
+      {
+        "nome": "Puebla",
+        "gap": -0.35,
+        "pop": 1641051,
+        "areas": 490
+      },
+      {
+        "nome": "León",
+        "gap": 0.22,
+        "pop": 1625970,
+        "areas": 603
+      },
+      {
+        "nome": "Juárez",
+        "gap": -0.1,
+        "pop": 1502235,
+        "areas": 579
+      }
+    ]
   }
 }
