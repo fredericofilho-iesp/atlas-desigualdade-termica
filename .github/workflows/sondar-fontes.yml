@@ -1,0 +1,13 @@
+name: Sondar fontes (temporário)
+on:
+  workflow_dispatch:
+  push:
+    branches: [latam-renda]
+    paths: [ferramentas/sondar_fontes.sh]
+jobs:
+  sondar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash ferramentas/sondar_fontes.sh
