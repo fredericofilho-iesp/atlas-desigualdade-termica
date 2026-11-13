@@ -1,0 +1,31 @@
+{
+  "id": "arv_com_arvores",
+  "rotulo": {
+    "en": "Residents on blocks with street trees",
+    "pt": "Moradores em faces de quadra com árvores",
+    "es": "Residentes en frentes de manzana con árboles"
+  },
+  "unidade": "%",
+  "paleta": "verde",
+  "dimensao": "adaptacao",
+  "fonte": {
+    "en": "IBGE, 2022 Census (tract aggregates)",
+    "pt": "IBGE, Censo 2022 (agregados por setor)",
+    "es": "IBGE, Censo 2022 (agregados por sector)"
+  },
+  "periodo": {
+    "en": "2022",
+    "pt": "2022",
+    "es": "2022"
+  },
+  "metodo": {
+    "en": "Residents on block faces with at least one tree / residents observed in the surroundings survey",
+    "pt": "Moradores em faces com ao menos uma árvore / moradores observados na pesquisa do entorno",
+    "es": "Residentes en frentes con al menos un árbol / residentes observados en la encuesta del entorno"
+  },
+  "casas_decimais": 0,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 40,
+  "quebras_fixas": [20, 40, 60, 80]
+}

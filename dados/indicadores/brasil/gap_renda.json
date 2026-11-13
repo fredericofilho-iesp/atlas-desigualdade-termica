@@ -1,0 +1,31 @@
+{
+  "id": "gap_renda",
+  "rotulo": {
+    "en": "Heat gap: poorest − richest fifth (within municipality)",
+    "pt": "Desigualdade térmica: 20% mais pobres − 20% mais ricos (no município)",
+    "es": "Brecha térmica: 20% más pobre − 20% más rico (en el municipio)"
+  },
+  "unidade": "°C",
+  "paleta": "divergente",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022"
+  },
+  "periodo": {
+    "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+    "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+    "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+  },
+  "metodo": {
+    "en": "Household-weighted surface temperature of the poorest minus the richest income fifth of the municipality's tracts; only municipalities with at least 30 tracts with data. Red: the poorest live in hotter places; blue: in cooler places",
+    "pt": "Temperatura da superfície, ponderada por domicílios, do quinto mais pobre menos a do quinto mais rico dos setores do município; só municípios com ao menos 30 setores com dado. Vermelho: os mais pobres moram em lugares mais quentes; azul: em lugares menos quentes",
+    "es": "Temperatura de superficie, ponderada por hogares, del quintil más pobre menos la del más rico de los sectores del municipio; solo municipios con al menos 30 sectores con dato. Rojo: los más pobres viven en lugares más cálidos; azul: en lugares menos cálidos"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 12,
+  "quebras_fixas": [-2, -0.5, 0.5, 2]
+}

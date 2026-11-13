@@ -1,0 +1,31 @@
+{
+  "id": "lst_dif_uf",
+  "rotulo": {
+    "en": "Surface temperature: difference from own state",
+    "pt": "Temperatura da superfície: diferença para o próprio estado",
+    "es": "Temperatura de superficie: diferencia respecto a su estado"
+  },
+  "unidade": "°C",
+  "paleta": "divergente",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022"
+  },
+  "periodo": {
+    "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+    "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+    "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+  },
+  "metodo": {
+    "en": "Municipal value minus the value of its state (all tracts of the state, weighted by residents)",
+    "pt": "Valor do município menos o do seu estado (todos os setores da UF, ponderados pelos moradores)",
+    "es": "Valor del municipio menos el de su estado (todos los sectores de la UF, ponderados por residentes)"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 11,
+  "quebras_fixas": [-3, -1, 1, 3]
+}

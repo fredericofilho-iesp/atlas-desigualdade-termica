@@ -1,0 +1,55 @@
+{
+  "gerado_em": "2026-11-12T20:58:28+0000",
+  "escopo": "Brasil, todos os setores",
+  "grupos": [
+    {
+      "grupo": "moradores",
+      "pessoas": 202296208,
+      "lst_media": 37.82,
+      "arv_com_arvores": 66.2
+    },
+    {
+      "grupo": "branca",
+      "pessoas": 87962377,
+      "lst_media": 37.58,
+      "arv_com_arvores": 70.6
+    },
+    {
+      "grupo": "preta",
+      "pessoas": 20522570,
+      "lst_media": 37.91,
+      "arv_com_arvores": 59.8
+    },
+    {
+      "grupo": "parda",
+      "pessoas": 91722147,
+      "lst_media": 38.06,
+      "arv_com_arvores": 63
+    },
+    {
+      "grupo": "preta_parda",
+      "pessoas": 111294190,
+      "lst_media": 38.04,
+      "arv_com_arvores": 62.4
+    },
+    {
+      "grupo": "a60",
+      "pessoas": 31885271,
+      "lst_media": 37.87,
+      "arv_com_arvores": 68.9
+    },
+    {
+      "grupo": "a0_4",
+      "pessoas": 12663022,
+      "lst_media": 37.74,
+      "arv_com_arvores": 64.5
+    }
+  ],
+  "diferenca_preta_parda_branca": 0.46,
+  "ic95": [0.45, 0.47],
+  "bootstrap": 500,
+  "diferenca_arvores_pp": -8.2,
+  "dentro_uf": {
+    "diferenca_preta_parda_branca": -0.05
+  }
+}

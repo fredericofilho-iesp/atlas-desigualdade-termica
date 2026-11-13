@@ -58,6 +58,35 @@ indicador <- function(id, rotulo, unidade = NULL, paleta = "calor",
   Filter(Negate(is.null), ind)
 }
 
+#' Classes bivariadas 3 × 3 (1–9): (classe de y − 1) × 3 + classe de x.
+#' Tercis ponderados por `w` (cada terço reúne ~1/3 do peso); `quebras_x` fixa os
+#' limites do eixo x; `inverso_x` inverte o eixo x (ex.: % de um grupo, para que a
+#' cor de destaque — canto magenta — marque "mais quente e com mais pessoas do grupo").
+classe_bivariada <- function(y, x, w, quebras_x = NULL, inverso_x = FALSE) {
+  ok <- is.finite(y) & is.finite(x) & is.finite(w) & w > 0
+  terc <- function(v, p) { o <- order(v); meio <- (cumsum(p[o]) - p[o] / 2) / sum(p)
+    g <- integer(length(v)); g[o] <- pmin(3L, floor(meio * 3) + 1L); g }
+  lim <- function(v, g) vapply(1:2, function(j) (max(v[g == j]) + min(v[g == j + 1])) / 2, 0)
+  ty <- terc(y[ok], w[ok])
+  tx <- if (is.null(quebras_x)) terc(x[ok], w[ok]) else findInterval(x[ok], quebras_x) + 1L
+  lx <- if (is.null(quebras_x)) lim(x[ok], tx) else quebras_x
+  ly <- lim(y[ok], ty)
+  if (inverso_x) tx <- 4L - tx
+  cl <- rep(NA_real_, length(y)); cl[ok] <- (ty - 1) * 3 + tx
+  list(classe = cl, lim_y = ly, lim_x = lx, inverso_x = inverso_x)
+}
+
+#' Metadados de um indicador bivariado a partir de classe_bivariada().
+#' y, x: listas com indicador, unidade, rotulo {en,pt,es}, classes {en,pt,es: 3 rótulos
+#' na ordem das colunas/linhas da legenda}, casas (decimais dos limites).
+indicador_bivariado <- function(id, rotulo, b, y, x, nota, ordem, fonte, metodo, periodo = NULL) {
+  y$limites <- round(b$lim_y, y$casas %||% 1); x$limites <- round(b$lim_x, x$casas %||% 1)
+  x$inverso <- isTRUE(b$inverso_x)
+  indicador(id, rotulo = rotulo, paleta = "bivariada", dimensao = "exposicao", casas_decimais = 0, ordem = ordem,
+            tipo = "bivariado", eixos = list(y = y, x = x, nota = nota), fonte = fonte, metodo = metodo, periodo = periodo)
+}
+if (!exists("%||%")) `%||%` <- function(a, b) if (is.null(a) || !length(a)) b else a
+
 #' Guarda indicadores já calculados em dados/indicadores/<escala>/<id>.{csv,json}.
 #' tabela: data.frame com a coluna identificadora e uma coluna por indicador.
 #' Esses arquivos são pequenos e versionados; publicar a camada só os junta à malha.

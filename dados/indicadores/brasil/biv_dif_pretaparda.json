@@ -1,0 +1,63 @@
+{
+  "id": "biv_dif_pretaparda",
+  "rotulo": {
+    "en": "Surface temperature × Black population (bivariate, within states)",
+    "pt": "Temperatura da superfície × população preta e parda (bivariado, dentro dos estados)",
+    "es": "Temperatura de superficie × población negra (bivariado, dentro de los estados)"
+  },
+  "paleta": "bivariada",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022"
+  },
+  "metodo": {
+    "en": "Terciles (of municipalities) of surface temperature and of the Black (preta and parda) share of residents; the group axis runs from more to fewer Black residents; temperature as difference from the state average",
+    "pt": "Tercis (de municípios) da temperatura da superfície e da proporção de moradores pretos e pardos; o eixo do grupo vai de mais para menos pretos e pardos; temperatura como diferença para a média do estado",
+    "es": "Terciles (de municipios) de la temperatura de superficie y de la proporción de residentes negros (pretos y pardos); el eje del grupo va de más a menos población negra; temperatura como diferencia respecto a la media del estado"
+  },
+  "casas_decimais": 0,
+  "ordem": 31,
+  "tipo": "bivariado",
+  "eixos": {
+    "y": {
+      "indicador": "lst_dif_uf",
+      "rotulo": {
+        "en": "Surface temperature vs. own state",
+        "pt": "Temperatura da superfície vs. o próprio estado",
+        "es": "Temperatura de superficie vs. su estado"
+      },
+      "classes": {
+        "en": ["Cooler", "Intermediate temp.", "Hotter"],
+        "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+        "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+      },
+      "unidade": "°C",
+      "casas": 1,
+      "limites": [-1.8, 1]
+    },
+    "x": {
+      "indicador": "pop_preta_parda",
+      "rotulo": {
+        "en": "Black population (preta and parda)",
+        "pt": "População preta e parda",
+        "es": "Población negra (preta y parda)"
+      },
+      "classes": {
+        "en": ["more Black residents", "intermediate share", "fewer Black residents"],
+        "pt": ["mais pretos e pardos", "proporção intermediária", "menos pretos e pardos"],
+        "es": ["más población negra", "proporción intermedia", "menos población negra"]
+      },
+      "unidade": "%",
+      "casas": 0,
+      "limites": [46, 71],
+      "inverso": true
+    },
+    "nota": {
+      "en": "Each third groups about one third of the country’s municipalities. Magenta: hotter municipalities with more Black residents. Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
+      "pt": "Cada terço reúne cerca de um terço dos municípios do país. Magenta: municípios mais quentes e com mais pretos e pardos. Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
+      "es": "Cada tercio agrupa alrededor de un tercio de los municipios del país. Magenta: municipios más cálidos y con más población negra. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
+    }
+  }
+}

@@ -196,15 +196,18 @@
   function rotulosTercis(eixo) {
     var l = eixo.limites || [], u = eixo.unidade || '';
     // A unidade já aparece no título do eixo; aqui só os números.
-    var f = function (v) { return formatarValor(v, '', u === 'R$' ? 0 : 1); };
-    return ['< ' + f(l[0]), f(l[0]) + ' – ' + f(l[1]), '≥ ' + f(l[1])];
+    var casas = eixo.casas !== undefined ? Math.max(0, eixo.casas) : (u === 'R$' ? 0 : 1);
+    var f = function (v) { return formatarValor(v, '', casas); };
+    var r = ['< ' + f(l[0]), f(l[0]) + ' – ' + f(l[1]), '≥ ' + f(l[1])];
+    return eixo.inverso ? r.reverse() : r;   // eixo invertido: colunas de "mais" para "menos"
   }
 
-  function categoriaBivariada(cod) {
+  function categoriaBivariada(cod, ind) {
     cod = Number(cod);
     if (!(cod >= 1 && cod <= 9)) return I.t('map.noData');
     var t = Math.floor((cod - 1) / 3) + 1, r = ((cod - 1) % 3) + 1;
-    return I.t('biv.t' + t) + ' · ' + I.t('biv.r' + r);
+    var ex = (ind && ind.eixos) || {}, cy = ex.y && ex.y.classes ? I.tr(ex.y.classes) : null, cx = ex.x && ex.x.classes ? I.tr(ex.x.classes) : null;
+    return (cy ? cy[t - 1] : I.t('biv.t' + t)) + ' · ' + (cx ? cx[r - 1] : I.t('biv.r' + r));
   }
 
   function legendaBivariada(ind) {
@@ -217,13 +220,15 @@
       html += '<tr><th scope="row">' + ry[t - 1] + '</th>';
       for (var r = 1; r <= 3; r++) {
         var cod = (t - 1) * 3 + r;
-        html += '<td title="' + escapar(categoriaBivariada(cod)) + '" style="background:' + p[cod - 1] + '"></td>';
+        html += '<td title="' + escapar(categoriaBivariada(cod, ind)) + '" style="background:' + p[cod - 1] + '"></td>';
       }
       html += '</tr>';
     }
     html += '<tr><th></th>' + rx.map(function (v) { return '<th class="biv-x">' + v + '</th>'; }).join('') + '</tr>';
-    html += '</tbody></table><div class="biv-xt">' + escapar(I.tr(x.rotulo)) + (x.unidade ? ' (' + x.unidade + ')' : '') + ' →</div></div>';
-    html += '<p class="legenda-meta">' + I.t('biv.note') + '</p>';
+    var tx = escapar(I.tr(x.rotulo)) + (x.unidade ? ' (' + x.unidade + ')' : '');
+    // eixo invertido: o valor cresce para a esquerda
+    html += '</tbody></table><div class="biv-xt">' + (x.inverso ? '← ' + tx : tx + ' →') + '</div></div>';
+    html += '<p class="legenda-meta">' + (ex.nota ? escapar(I.tr(ex.nota)) : I.t('biv.note')) + '</p>';
     return html;
   }
 
@@ -292,7 +297,7 @@
       inds.forEach(function (ind) {
         var ativo = estado.indicador && estado.indicador.id === ind.id;
         html += '<div' + (ativo ? ' class="ativo"' : '') + '><dt>' + escapar(I.tr(ind.rotulo)) + '</dt><dd>' +
-          (ind.tipo === 'bivariado' ? escapar(categoriaBivariada(props[ind.id]))
+          (ind.tipo === 'bivariado' ? escapar(categoriaBivariada(props[ind.id], ind))
             : formatarValor(props[ind.id], I.tr(ind.unidade), ind.casas_decimais)) + '</dd></div>';
       });
       html += '</dl>';
@@ -407,6 +412,7 @@
       var ord = I.t('ineq.ord');
       frase += ' ' + I.t('ineq.peak', { n: Array.isArray(ord) ? ord[imax] : String(imax + 1) });
     }
+    if (d.dentro_uf) frase += fraseDentroUf('ineq', d.dentro_uf.diferenca_q1_q5, 1);
     var html = '<h2>' + I.t('ineq.title') + '</h2><p class="ineq-frase">' + frase + '</p><ul class="barras">';
     qs.forEach(function (q, i) {
       var w = Math.max(2, 100 * (q.lst_media - base) / (topo - base));
@@ -432,6 +438,14 @@
     } catch (e) { /* opcional */ }
   }
 
+  // Frase "dentro do mesmo estado" (escala nacional): prefixo das chaves, diferença e limiar de "praticamente igual".
+  function fraseDentroUf(prefixo, dif, casas) {
+    if (!isFinite(dif)) return '';
+    var k = Math.abs(dif) < 0.1 ? 'Similar' : (dif > 0 ? 'Hotter' : 'Cooler');
+    var d = k === 'Similar' ? formatarValor(dif, '', casas) : formatarValor(Math.abs(dif), '', casas);
+    return ' ' + I.t(prefixo + '.uf' + k, { d: d });
+  }
+
   function desenharPainelArvores() {
     var el = $('painel-arvores'), d = estado.painelArv;
     if (!el || !d || !d.por_quinto_de_renda) return;
@@ -442,6 +456,7 @@
       var dif = pa[0].lst_media - pa[pa.length - 1].lst_media;
       if (dif > 0) frase += ' ' + I.t('arv.cooler', { d: formatarValor(dif, '', 1) });
     }
+    if (d.dentro_uf) frase += fraseDentroUf('arv', -d.dentro_uf.diferenca_menos_mais, 1);
     var html = '<h2>' + I.t('arv.title') + '</h2><p class="ineq-frase">' + frase + '</p><ul class="barras verde">';
     qs.forEach(function (q, i) {
       var rot = i === 0 ? I.t('ineq.q1') : (i === qs.length - 1 ? I.t('ineq.q5') : I.t('ineq.qn', { n: q.quinto }));
@@ -482,6 +497,7 @@
       frase += I.t(pp.arv_com_arvores <= br.arv_com_arvores ? 'grp.treesFewer' : 'grp.treesMore', {
         a: formatarValor(pp.arv_com_arvores, '', 0), b: formatarValor(br.arv_com_arvores, '', 0) });
     } else frase += '.';
+    if (d.dentro_uf) frase += fraseDentroUf('grp', d.dentro_uf.diferenca_preta_parda_branca, 2);
     var html = '<h2>' + I.t('grp.title') + '</h2><p class="ineq-frase">' + frase + '</p>' +
       '<table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('grp.colTemp') + '</th><th>' + I.t('grp.colTrees') + '</th></tr></thead><tbody>';
     gs.forEach(function (g) {
@@ -508,7 +524,75 @@
     desenharPainel();
     desenharPainelArvores();
     desenharPainelGrupos();
+    desenharPainelPaises();
   });
+
+  // ---------- painel por país (América Latina) ----------
+  async function carregarPainelPaises() {
+    if (!cfg.painelPaises) return;
+    try {
+      var r = await fetch(cfg.painelPaises, { cache: 'no-cache' });
+      if (!r.ok) return;
+      estado.painelPai = await r.json();
+      desenharPainelPaises();
+    } catch (e) { /* painel opcional */ }
+  }
+
+  function nomeMes(m) {
+    if (!Number.isFinite(m)) return '—';
+    try { return new Intl.DateTimeFormat(I.idioma, { month: 'short' }).format(new Date(2023, m - 1, 15)).replace('.', ''); }
+    catch (e) { return String(m); }
+  }
+
+  function desenharPainelPaises() {
+    var el = $('painel-paises'), d = estado.painelPai;
+    if (!el || !d || !d.paises) return;
+    var ps = d.paises.filter(function (p) { return Number.isFinite(p.lst_pop); }).sort(function (a, b) {
+      return b.lst_pop - a.lst_pop;
+    });
+    if (!ps.length) return;
+    var html = '<h2>' + I.t('pai.title') + '</h2><p class="ineq-frase">' +
+      I.t('pai.sentence', { quente: escapar(I.tr(ps[0].nome)), tq: formatarValor(ps[0].lst_pop, '°C', 1),
+        fresco: escapar(I.tr(ps[ps.length - 1].nome)), tf: formatarValor(ps[ps.length - 1].lst_pop, '°C', 1) }) + '</p>' +
+      '<div class="tabela-rolagem"><table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.colTemp') + '</th><th>' +
+      I.t('pai.colCities') + '</th><th>' + I.t('pai.colMonth') + '</th><th>' + I.t('pai.colUrban') + '</th><th>' +
+      I.t('pai.colHottest') + '</th></tr></thead><tbody>';
+    ps.forEach(function (p) {
+      var q = p.unidade_mais_quente;
+      html += '<tr><th scope="row">' + escapar(I.tr(p.nome) || p.iso3) + '</th><td>' + formatarValor(p.lst_pop, '°C', 1) +
+        '</td><td>' + (Number.isFinite(p.lst_cidades) ? formatarValor(p.lst_cidades, '°C', 1) : '—') +
+        '</td><td>' + nomeMes(p.mes_quente) + '</td><td>' + formatarValor(p.pop_urbana, '%', 0) +
+        '</td><td>' + (q && Number.isFinite(q.lst_pop) ? escapar(q.nome) + ' (' + formatarValor(q.lst_pop, '°C', 1) + ')' : '—') + '</td></tr>';
+    });
+    html += '</tbody></table></div><p class="status">' + I.t('pai.note') + '</p>';
+    html += painelRendaPaises(d.paises);
+    el.innerHTML = html;
+    el.hidden = false;
+  }
+
+  // Desigualdade por renda dentro das cidades (só países com dados censais por pequena área)
+  function painelRendaPaises(paises) {
+    var rs = paises.filter(function (p) { return p.renda && Number.isFinite(p.renda.gap); });
+    if (!rs.length) return '';
+    var sinal = function (v) { return Number.isFinite(v) ? (v > 0 ? '+' : '') + formatarValor(v, '°C', 1) : '—'; };
+    rs.sort(function (a, b) { return b.renda.gap - a.renda.gap; });
+    var html = '<h3>' + I.t('pai.rendaTitle') + '</h3><p>' + I.t('pai.rendaSentence') + '</p>' +
+      '<div class="tabela-rolagem"><table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.rendaGap') + '</th><th>' +
+      I.t('pai.rendaCI') + '</th><th>' + I.t('pai.rendaNoControl') + '</th><th>' + I.t('pai.rendaMeasure') + '</th></tr></thead><tbody>';
+    rs.forEach(function (p) {
+      var r = p.renda, ic = r.ic95 || [];
+      html += '<tr><th scope="row">' + escapar(I.tr(p.nome)) + '</th><td>' + sinal(r.gap) + '</td><td>' + sinal(ic[0]) + ' – ' + sinal(ic[1]) +
+        '</td><td>' + sinal(r.gap_nacional) + '</td><td>' + escapar(I.tr(r.medida)) + '</td></tr>';
+    });
+    html += '</tbody></table></div><h3>' + I.t('pai.rendaCities') + '</h3>' +
+      '<div class="tabela-rolagem"><table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.rendaGap') + '</th></tr></thead><tbody>';
+    rs.forEach(function (p) {
+      (p.renda.cidades || []).forEach(function (c) {
+        html += '<tr><th scope="row">' + escapar(c.nome) + ' <span class="status">(' + escapar(I.tr(p.nome)) + ')</span></th><td>' + sinal(c.gap) + '</td></tr>';
+      });
+    });
+    return html + '</tbody></table></div><p class="status">' + I.t('pai.rendaNote') + '</p>';
+  }
 
   async function iniciar() {
     if (!window.maplibregl) {
@@ -536,6 +620,7 @@
     carregarPainel();
     carregarPainelArvores();
     carregarPainelGrupos();
+    carregarPainelPaises();
 
     map.on('load', async function () {
       rotulosNoIdioma(map, I.idioma);

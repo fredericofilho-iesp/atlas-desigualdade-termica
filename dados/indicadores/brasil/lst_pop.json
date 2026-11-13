@@ -1,0 +1,30 @@
+{
+  "id": "lst_pop",
+  "rotulo": {
+    "en": "Surface temperature in the hottest season, where people live",
+    "pt": "Temperatura da superfície na época mais quente, onde as pessoas moram",
+    "es": "Temperatura de superficie en la época más cálida, donde vive la gente"
+  },
+  "unidade": "°C",
+  "paleta": "calor",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022"
+  },
+  "periodo": {
+    "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+    "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+    "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+  },
+  "metodo": {
+    "en": "MODIS 1 km daytime land surface temperature averaged over the hottest three consecutive months of each pixel; mean of census-tract values weighted by residents",
+    "pt": "Temperatura da superfície diurna MODIS (1 km) média dos três meses consecutivos mais quentes de cada pixel; média dos setores censitários ponderada pelos moradores",
+    "es": "Temperatura de superficie diurna MODIS (1 km) promedio de los tres meses consecutivos más cálidos de cada píxel; media de los sectores censales ponderada por residentes"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 10
+}

@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "estado-rj",
-  "gerado_em": "2026-11-12T13:41:41+0000",
+  "gerado_em": "2026-11-13T10:57:39+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -179,6 +179,134 @@
       "classificacao": "quantis",
       "ordem": 20,
       "quebras": [1941.1, 2187.3, 2416, 2810],
+      "n_validos": 92
+    },
+    {
+      "id": "biv_lst_renda",
+      "rotulo": {
+        "en": "Surface temperature × income (bivariate)",
+        "pt": "Temperatura da superfície × renda (bivariado)",
+        "es": "Temperatura de superficie × ingreso (bivariado)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "metodo": {
+        "en": "Terciles (of municipalities) of surface temperature and of household-head income",
+        "pt": "Tercis (de municípios) da temperatura da superfície e da renda do responsável",
+        "es": "Terciles (de municipios) de la temperatura de superficie y del ingreso del responsable"
+      },
+      "casas_decimais": 0,
+      "ordem": 30,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "lst_pop",
+          "rotulo": {
+            "en": "Surface temperature",
+            "pt": "Temperatura da superfície",
+            "es": "Temperatura de superficie"
+          },
+          "classes": {
+            "en": ["Cooler", "Intermediate temp.", "Hotter"],
+            "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+            "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+          },
+          "unidade": "°C",
+          "casas": 1,
+          "limites": [35.4, 38.6]
+        },
+        "x": {
+          "indicador": "renda_media_resp",
+          "rotulo": {
+            "en": "Household head income",
+            "pt": "Renda do responsável",
+            "es": "Ingreso del responsable"
+          },
+          "classes": {
+            "en": ["lower income", "middle income", "higher income"],
+            "pt": ["renda mais baixa", "renda média", "renda mais alta"],
+            "es": ["ingreso más bajo", "ingreso medio", "ingreso más alto"]
+          },
+          "unidade": "R$",
+          "casas": -1,
+          "limites": [2130, 2490],
+          "inverso": false
+        },
+        "nota": {
+          "en": "Each third groups about one third of the state’s municipalities. Magenta: hotter municipalities with lower income.",
+          "pt": "Cada terço reúne cerca de um terço dos municípios do estado. Magenta: municípios mais quentes e com renda mais baixa.",
+          "es": "Cada tercio agrupa alrededor de un tercio de los municipios del estado. Magenta: municipios más cálidos y con menor ingreso."
+        }
+      },
+      "n_validos": 92
+    },
+    {
+      "id": "biv_lst_pretaparda",
+      "rotulo": {
+        "en": "Surface temperature × Black population (bivariate)",
+        "pt": "Temperatura da superfície × população preta e parda (bivariado)",
+        "es": "Temperatura de superficie × población negra (bivariado)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "metodo": {
+        "en": "Terciles (of municipalities) of surface temperature and of the Black (preta and parda) share of residents; the group axis runs from more to fewer Black residents",
+        "pt": "Tercis (de municípios) da temperatura da superfície e da proporção de moradores pretos e pardos; o eixo do grupo vai de mais para menos pretos e pardos",
+        "es": "Terciles (de municipios) de la temperatura de superficie y de la proporción de residentes negros (pretos y pardos); el eje del grupo va de más a menos población negra"
+      },
+      "casas_decimais": 0,
+      "ordem": 31,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "lst_pop",
+          "rotulo": {
+            "en": "Surface temperature",
+            "pt": "Temperatura da superfície",
+            "es": "Temperatura de superficie"
+          },
+          "classes": {
+            "en": ["Cooler", "Intermediate temp.", "Hotter"],
+            "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+            "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+          },
+          "unidade": "°C",
+          "casas": 1,
+          "limites": [35.4, 38.6]
+        },
+        "x": {
+          "indicador": "pop_preta_parda",
+          "rotulo": {
+            "en": "Black population (preta and parda)",
+            "pt": "População preta e parda",
+            "es": "Población negra (preta y parda)"
+          },
+          "classes": {
+            "en": ["more Black residents", "intermediate share", "fewer Black residents"],
+            "pt": ["mais pretos e pardos", "proporção intermediária", "menos pretos e pardos"],
+            "es": ["más población negra", "proporción intermedia", "menos población negra"]
+          },
+          "unidade": "%",
+          "casas": 0,
+          "limites": [54, 60],
+          "inverso": true
+        },
+        "nota": {
+          "en": "Each third groups about one third of the state’s municipalities. Magenta: hotter municipalities with more Black residents.",
+          "pt": "Cada terço reúne cerca de um terço dos municípios do estado. Magenta: municípios mais quentes e com mais pretos e pardos.",
+          "es": "Cada tercio agrupa alrededor de un tercio de los municipios del estado. Magenta: municipios más cálidos y con más población negra."
+        }
+      },
       "n_validos": 92
     },
     {

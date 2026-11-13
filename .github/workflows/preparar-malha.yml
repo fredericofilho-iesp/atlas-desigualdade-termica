@@ -9,7 +9,11 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
+<<<<<<< HEAD
         options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, estado-rj-calor-extremo]
+=======
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda, bivariados]
+>>>>>>> origin/main
 permissions:
   contents: write
 concurrency:
@@ -31,7 +35,7 @@ jobs:
       - name: Pacotes R
         # Sem `repos=`: usa o repositório de binários configurado por setup-r
         # (use-public-rspm). Apontar para o CRAN força compilação do código-fonte.
-        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr","terra","rstac","exactextractr","readxl"))'
+        run: Rscript -e 'install.packages(c("sf","dplyr","jsonlite","geobr","terra","rstac","exactextractr","readxl","foreign"))'
       - name: Setores censitários — município do Rio
         if: inputs.escala == 'todas' || inputs.escala == 'rio'
         run: Rscript R/01_importar_ibge.R
@@ -71,6 +75,7 @@ jobs:
         run: |
           Rscript R/13_censo_estado_rj.R
           Rscript R/14_municipios_rj.R
+<<<<<<< HEAD
       - uses: actions/setup-python@v5
         if: inputs.escala == 'estado-rj-calor-extremo'
         with:
@@ -96,6 +101,76 @@ jobs:
         with:
           path: dados/brutos/era5land
           key: era5land-rj-2016-2025-${{ github.run_id }}
+=======
+      - name: Brasil — teste (RJ e ES, poucos compostos MODIS)
+        if: inputs.escala == 'brasil-teste'
+        env:
+          UFS: RJ,ES
+          LIMITE_COMPOSTOS: "40"
+        run: |
+          Rscript R/20_censo_brasil.R
+          Rscript R/21_lst_modis_brasil.R
+          Rscript R/22_municipios_brasil.R
+      - name: Brasil — completo (Censo, MODIS, municípios)
+        if: inputs.escala == 'brasil-completo'
+        run: |
+          Rscript R/20_censo_brasil.R
+          Rscript R/21_lst_modis_brasil.R
+          Rscript R/22_municipios_brasil.R
+      - name: Brasil — só indicadores municipais (reaproveita Censo e MODIS salvos)
+        if: inputs.escala == 'brasil-municipios'
+        run: Rscript R/22_municipios_brasil.R
+      - name: América Latina — teste (Uruguai, Paraguai, Costa Rica; poucos compostos MODIS)
+        if: inputs.escala == 'latam-teste'
+        env:
+          PAISES: URY,PRY,CRI
+          LIMITE_COMPOSTOS: "40"
+        run: |
+          Rscript R/30_unidades_latam.R
+          Rscript R/31_latam.R
+      - name: Mapas bivariados (Rio, estado do RJ, Brasil)
+        if: inputs.escala == 'bivariados'
+        env:
+          ESCALAS: ${{ vars.ESCALAS_BIVARIADOS || 'rio,estado-rj,brasil' }}
+        run: |
+          Rscript R/01_importar_ibge.R
+          Rscript R/40_bivariados.R
+      - uses: actions/cache/restore@v4
+        # tiles MODIS já processados (só da rodada completa; o teste usa menos compostos)
+        if: inputs.escala == 'latam-completo' || inputs.escala == 'latam-renda'
+        with:
+          path: dados/brutos/modis-latam
+          key: modis-latam-2022-2024
+          restore-keys: modis-latam-2022-2024-
+      - name: América Latina — completo
+        if: inputs.escala == 'latam-completo'
+        run: |
+          Rscript R/30_unidades_latam.R
+          Rscript R/31_latam.R
+      - uses: actions/setup-python@v5
+        if: inputs.escala == 'latam-renda'
+        with:
+          python-version: "3.12"
+      - name: América Latina — downloads dos censos (México e Colômbia)
+        if: inputs.escala == 'latam-renda'
+        run: |
+          mkdir -p dados/brutos/mex dados/brutos/col
+          curl -sSfL --retry 3 -o dados/brutos/mex/IMU_2020.zip https://conapo.segob.gob.mx/work/models/CONAPO/Datos_Abiertos/Marginacion/IMU_2020.zip
+          unzip -o -q dados/brutos/mex/IMU_2020.zip -d dados/brutos/mex
+          curl -sSfL --retry 3 -o dados/brutos/col/SHP_VULNRB_IPMxMZ.zip https://www.dane.gov.co/files/geoportal-provisional/SHP_VULNRB_IPMxMZ.zip
+          curl -sSfL --retry 3 -o dados/brutos/col/SHP_MGN2018_INTGRD_MANZ.zip https://www.dane.gov.co/files/geoportal-provisional/SHP_MGN2018_INTGRD_MANZ.zip
+          pip install -q playwright && python -m playwright install --with-deps chromium > /dev/null
+          python ferramentas/baixar_inegi.py dados/brutos/mex
+          ls -la dados/brutos/mex dados/brutos/col
+      - name: América Latina — desigualdade por renda dentro das cidades
+        if: inputs.escala == 'latam-renda'
+        run: Rscript R/33_renda_latam.R
+      - uses: actions/cache/save@v4
+        if: always() && (inputs.escala == 'latam-completo' || inputs.escala == 'latam-renda') && hashFiles('dados/brutos/modis-latam/*.tif') != ''
+        with:
+          path: dados/brutos/modis-latam
+          key: modis-latam-2022-2024-${{ github.run_id }}
+>>>>>>> origin/main
       - name: Registrar dados processados
         if: always()   # guarda o que já foi calculado mesmo se um passo posterior falhar
         run: |

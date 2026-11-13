@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "rio",
-  "gerado_em": "2026-11-12T10:50:49+0000",
+  "gerado_em": "2026-11-13T10:57:32+0000",
   "unidade": {
     "en": "Census tract",
     "pt": "Setor censitário",
@@ -50,12 +50,7 @@
       "casas_decimais": 1,
       "classificacao": "quantis",
       "ordem": 10,
-      "quebras": [
-        38.39,
-        40.94,
-        42.54,
-        43.76
-      ],
+      "quebras": [38.39, 40.94, 42.54, 43.76],
       "n_validos": 13774
     },
     {
@@ -82,12 +77,7 @@
       "casas_decimais": 1,
       "classificacao": "manual",
       "ordem": 11,
-      "quebras": [
-        -4,
-        -1.5,
-        1.5,
-        4
-      ],
+      "quebras": [-4, -1.5, 1.5, 4],
       "n_validos": 13774
     },
     {
@@ -118,12 +108,7 @@
       "casas_decimais": 0,
       "classificacao": "quantis",
       "ordem": 20,
-      "quebras": [
-        1625.2,
-        2245.7,
-        3325.2,
-        6818.4
-      ],
+      "quebras": [1625.2, 2245.7, 3325.2, 6818.4],
       "n_validos": 13368
     },
     {
@@ -154,12 +139,7 @@
       "casas_decimais": 0,
       "classificacao": "quantis",
       "ordem": 21,
-      "quebras": [
-        1212,
-        1600,
-        2500,
-        5000
-      ],
+      "quebras": [1212, 1600, 2500, 5000],
       "n_validos": 13368
     },
     {
@@ -187,10 +167,7 @@
       "eixos": {
         "y": {
           "indicador": "lst_verao",
-          "limites": [
-            40.5,
-            43
-          ],
+          "limites": [40.5, 43],
           "unidade": "°C",
           "rotulo": {
             "en": "Surface temperature",
@@ -200,10 +177,7 @@
         },
         "x": {
           "indicador": "renda_media_resp",
-          "limites": [
-            2000,
-            3900
-          ],
+          "limites": [2000, 3900],
           "unidade": "R$",
           "rotulo": {
             "en": "Household head income",
@@ -213,6 +187,70 @@
         }
       },
       "n_validos": 13362
+    },
+    {
+      "id": "biv_lst_pretaparda",
+      "rotulo": {
+        "en": "Surface temperature × Black population (bivariate)",
+        "pt": "Temperatura da superfície × população preta e parda (bivariado)",
+        "es": "Temperatura de superficie × población negra (bivariado)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "metodo": {
+        "en": "Population-weighted terciles of surface temperature and of the Black (preta and parda) share of residents; the group axis runs from more to fewer Black residents",
+        "pt": "Tercis, ponderados pela população, da temperatura da superfície e da proporção de moradores pretos e pardos; o eixo do grupo vai de mais para menos pretos e pardos",
+        "es": "Terciles, ponderados por población, de la temperatura de superficie y de la proporción de residentes negros (pretos y pardos); el eje del grupo va de más a menos población negra"
+      },
+      "casas_decimais": 0,
+      "ordem": 31,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "lst_verao",
+          "rotulo": {
+            "en": "Surface temperature",
+            "pt": "Temperatura da superfície",
+            "es": "Temperatura de superficie"
+          },
+          "classes": {
+            "en": ["Cooler", "Intermediate temp.", "Hotter"],
+            "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+            "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+          },
+          "unidade": "°C",
+          "casas": 1,
+          "limites": [40.7, 43.1]
+        },
+        "x": {
+          "indicador": "pop_preta_parda",
+          "rotulo": {
+            "en": "Black population (preta and parda)",
+            "pt": "População preta e parda",
+            "es": "Población negra (preta y parda)"
+          },
+          "classes": {
+            "en": ["more Black residents", "intermediate share", "fewer Black residents"],
+            "pt": ["mais pretos e pardos", "proporção intermediária", "menos pretos e pardos"],
+            "es": ["más población negra", "proporción intermedia", "menos población negra"]
+          },
+          "unidade": "%",
+          "casas": 0,
+          "limites": [49, 66],
+          "inverso": true
+        },
+        "nota": {
+          "en": "Each third groups about one third of the city’s residents. Magenta: hotter tracts with more Black residents.",
+          "pt": "Cada terço reúne cerca de um terço dos moradores da cidade. Magenta: setores mais quentes e com mais pretos e pardos.",
+          "es": "Cada tercio agrupa alrededor de un tercio de los residentes de la ciudad. Magenta: sectores más cálidos y con más población negra."
+        }
+      },
+      "n_validos": 13220
     },
     {
       "id": "arv_com_arvores",
@@ -242,12 +280,7 @@
       "casas_decimais": 0,
       "classificacao": "manual",
       "ordem": 40,
-      "quebras": [
-        20,
-        40,
-        60,
-        80
-      ],
+      "quebras": [20, 40, 60, 80],
       "n_validos": 13235
     },
     {
@@ -278,12 +311,7 @@
       "casas_decimais": 0,
       "classificacao": "manual",
       "ordem": 41,
-      "quebras": [
-        20,
-        40,
-        60,
-        80
-      ],
+      "quebras": [20, 40, 60, 80],
       "n_validos": 13235
     },
     {
@@ -314,12 +342,7 @@
       "casas_decimais": 0,
       "classificacao": "quantis",
       "ordem": 50,
-      "quebras": [
-        12.4,
-        18.2,
-        23.9,
-        29.6
-      ],
+      "quebras": [12.4, 18.2, 23.9, 29.6],
       "n_validos": 13181
     },
     {
@@ -350,12 +373,7 @@
       "casas_decimais": 1,
       "classificacao": "quantis",
       "ordem": 51,
-      "quebras": [
-        3.1,
-        4.1,
-        5.2,
-        6.7
-      ],
+      "quebras": [3.1, 4.1, 5.2, 6.7],
       "n_validos": 13108
     },
     {
@@ -386,12 +404,7 @@
       "casas_decimais": 0,
       "classificacao": "manual",
       "ordem": 52,
-      "quebras": [
-        20,
-        40,
-        60,
-        80
-      ],
+      "quebras": [20, 40, 60, 80],
       "n_validos": 13226
     }
   ]
