@@ -101,6 +101,19 @@
       "unidade_mais_quente": {
         "nome": "Piauí",
         "lst_pop": 42.19
+      },
+      "renda": {
+        "gap": -0.46,
+        "ic95": [-0.69, -0.14],
+        "gap_nacional": -0.03,
+        "areas": 309128,
+        "municipios": 2120,
+        "pop": 159323009,
+        "medida": {
+          "en": "household-head income (2022 Census, urban tracts)",
+          "pt": "renda do responsável (Censo 2022, setores urbanos)",
+          "es": "ingreso del responsable del hogar (Censo 2022, sectores urbanos)"
+        }
       }
     },
     {
@@ -152,6 +165,19 @@
       "unidade_mais_quente": {
         "nome": "Cesar",
         "lst_pop": 40.99
+      },
+      "renda": {
+        "gap": 0.15,
+        "ic95": [-0.19, 0.57],
+        "gap_nacional": 2.07,
+        "areas": 401173,
+        "municipios": 1052,
+        "pop": 36833725,
+        "medida": {
+          "en": "multidimensional poverty (DANE, 2018 Census, urban blocks)",
+          "pt": "pobreza multidimensional (DANE, Censo 2018, quarteirões urbanos)",
+          "es": "pobreza multidimensional (DANE, Censo 2018, manzanas urbanas)"
+        }
       }
     },
     {
@@ -390,6 +416,19 @@
       "unidade_mais_quente": {
         "nome": "Sonora",
         "lst_pop": 49.05
+      },
+      "renda": {
+        "gap": -0.31,
+        "ic95": [-0.48, -0.15],
+        "gap_nacional": -2.2,
+        "areas": 40076,
+        "municipios": 483,
+        "pop": 85931720,
+        "medida": {
+          "en": "urban marginalisation index (CONAPO 2020, urban AGEB)",
+          "pt": "índice de marginação urbana (CONAPO 2020, AGEB urbanas)",
+          "es": "índice de marginación urbana (CONAPO 2020, AGEB urbanas)"
+        }
       }
     },
     {
