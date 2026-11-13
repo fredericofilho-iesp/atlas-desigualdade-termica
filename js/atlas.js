@@ -371,11 +371,13 @@
       id: 'unidades-contorno', type: 'line', source: 'unidades',
       paint: {
         'line-color': corContorno('#1f5f72'),
-        'line-width': ['case', ['boolean', ['feature-state', 'selecionado'], false], 2.4,
-          // cfg.larguraContorno: pares [zoom, largura] próprios da escala; senão, 0,4–1,2 px × espessuraContorno
-          ['interpolate', ['linear'], ['zoom']].concat(cfg.larguraContorno
-            ? [].concat.apply([], cfg.larguraContorno)
-            : [6, 0.4 * k, 10, 0.5 * k, 14, 1.2 * k])]
+        // cfg.larguraContorno: pares [zoom, largura] próprios da escala; senão, 0,4–1,2 px × espessuraContorno.
+        // O zoom só pode entrar no topo da expressão: o destaque da unidade selecionada vai
+        // dentro de cada degrau (mais grosso que a linha normal naquele zoom).
+        'line-width': ['interpolate', ['linear'], ['zoom']].concat([].concat.apply([],
+          (cfg.larguraContorno || [[6, 0.4 * k], [10, 0.5 * k], [14, 1.2 * k]]).map(function (d) {
+            return [d[0], ['case', ['boolean', ['feature-state', 'selecionado'], false], Math.max(2.4, d[1] + 1.2), d[1]]];
+          })))
       }
     }, extra), antes);
     // Limites de nível superior (bairros no Rio, estados no Brasil, países na América Latina), mais grossos.
