@@ -1,0 +1,26 @@
+name: Sonda (temporária)
+on:
+  push:
+    branches: [amplitude-gini]
+    paths: [.github/workflows/sonda.yml]
+jobs:
+  sonda:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          curl -s "https://servicodados.ibge.gov.br/api/v3/agregados" > ag.json
+          python3 - <<'PY'
+          import json, urllib.request
+          d=json.load(open("ag.json"))
+          for p in d:
+              for a in p["agregados"]:
+                  if "gini" in a["nome"].lower() or ("Censo" in p["nome"] and "2022" in p["nome"] and "rendimento" in a["nome"].lower()):
+                      print(p["id"], p["nome"], "|", a["id"], a["nome"])
+          PY
+      - run: |
+          for t in $(python3 -c "
+          import json;d=json.load(open('ag.json'))
+          print(' '.join(str(a['id']) for p in d for a in p['agregados'] if 'gini' in a['nome'].lower()))"); do
+            echo "== $t"; curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/$t/metadados" | python3 -c "
+          import json,sys; m=json.load(sys.stdin); print(m.get('nome')); print('niveis', m['nivelTerritorial']); print('periodos', m['periodicidade']); print([v['nome'] for v in m['variaveis']][:6])"
+          done
