@@ -1,0 +1,63 @@
+{
+  "id": "biv_dif_renda",
+  "rotulo": {
+    "en": "Surface temperature × income (bivariate, within states)",
+    "pt": "Temperatura da superfície × renda (bivariado, dentro dos estados)",
+    "es": "Temperatura de superficie × ingreso (bivariado, dentro de los estados)"
+  },
+  "paleta": "bivariada",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022"
+  },
+  "metodo": {
+    "en": "Population-weighted terciles of surface temperature and of household-head income; temperature as difference from the state average",
+    "pt": "Tercis, ponderados pela população, da temperatura da superfície e da renda do responsável; temperatura como diferença para a média do estado",
+    "es": "Terciles, ponderados por población, de la temperatura de superficie y del ingreso del responsable; temperatura como diferencia respecto a la media del estado"
+  },
+  "casas_decimais": 0,
+  "ordem": 30,
+  "tipo": "bivariado",
+  "eixos": {
+    "y": {
+      "indicador": "lst_dif_uf",
+      "rotulo": {
+        "en": "Surface temperature vs. own state",
+        "pt": "Temperatura da superfície vs. o próprio estado",
+        "es": "Temperatura de superficie vs. su estado"
+      },
+      "classes": {
+        "en": ["Cooler", "Intermediate temp.", "Hotter"],
+        "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+        "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+      },
+      "unidade": "°C",
+      "casas": 1,
+      "limites": [-0.9, 1.2]
+    },
+    "x": {
+      "indicador": "renda_media_resp",
+      "rotulo": {
+        "en": "Household head income",
+        "pt": "Renda do responsável",
+        "es": "Ingreso del responsable"
+      },
+      "classes": {
+        "en": ["lower income", "middle income", "higher income"],
+        "pt": ["renda mais baixa", "renda média", "renda mais alta"],
+        "es": ["ingreso más bajo", "ingreso medio", "ingreso más alto"]
+      },
+      "unidade": "R$",
+      "casas": -1,
+      "limites": [2250, 3240],
+      "inverso": false
+    },
+    "nota": {
+      "en": "Each third groups about one third of the country’s residents. Magenta: hotter municipalities (relative to their state) with lower income. Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
+      "pt": "Cada terço reúne cerca de um terço dos moradores do país. Magenta: municípios (em relação ao seu estado) mais quentes e com renda mais baixa. Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
+      "es": "Cada tercio agrupa alrededor de un tercio de los residentes del país. Magenta: municipios (respecto a su estado) más cálidos y con menor ingreso. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "pop_indigena",
+  "rotulo": {
+    "en": "Indigenous population",
+    "pt": "População indígena",
+    "es": "Población indígena"
+  },
+  "unidade": "%",
+  "paleta": "pessoas",
+  "dimensao": "sensibilidade",
+  "fonte": {
+    "en": "IBGE 2022 Census (SIDRA table 9605)",
+    "pt": "IBGE, Censo 2022 (SIDRA, tabela 9605)",
+    "es": "IBGE, Censo 2022 (SIDRA, tabla 9605)"
+  },
+  "periodo": {
+    "en": "2022",
+    "pt": "2022",
+    "es": "2022"
+  },
+  "metodo": {
+    "en": "Residents who declared Indigenous color or race, as a share of all residents",
+    "pt": "Moradores que declararam cor ou raça indígena, sobre o total de moradores",
+    "es": "Residentes que declararon color o raza indígena, sobre el total de residentes"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 63,
+  "quebras_fixas": [0.5, 1, 5, 10]
+}
