@@ -1,0 +1,65 @@
+# Métricas de calor do ERA5-Land para Brasil e América Latina, em 12 faixas de latitude
+# processadas em paralelo (cada uma em sua máquina). Junta as faixas num só GeoTIFF e o
+# guarda no cache que o passo "calor-brasil-latam" de preparar-malha.yml reaproveita.
+name: Grade de calor (ERA5-Land, em faixas)
+on:
+  push:
+    branches: [calor-brasil-latam]
+    paths: [.github/workflows/calor-grade.yml]
+  workflow_dispatch:
+jobs:
+  faixa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        # norte sul (graus); bordas repetidas: a linha de fronteira entra nas duas faixas
+        faixa: ["33 25.6", "25.6 18.2", "18.2 10.8", "10.8 3.4", "3.4 -4", "-4 -11.4",
+                "-11.4 -18.8", "-18.8 -26.2", "-26.2 -33.6", "-33.6 -41", "-41 -48.4", "-48.4 -56"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install --quiet omfiles fsspec s3fs numpy rasterio
+      - name: Faixa ${{ matrix.faixa }}
+        run: |
+          set -- ${{ matrix.faixa }}
+          python ferramentas/calor_grade_openmeteo.py --saida faixa/f_${1}_${2}.tif --anos 2016-2025 \
+            --area $1 -118 $2 -34 --linhas 4 --processos 8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: faixa-${{ strategy.job-index }}
+          path: faixa/*.tif
+  juntar:
+    needs: faixa
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install --quiet numpy rasterio
+      - uses: actions/download-artifact@v4
+        with: { path: faixas, pattern: faixa-*, merge-multiple: true }
+      - name: Juntar
+        run: |
+          mkdir -p dados/brutos/era5land
+          python - <<'PY'
+          import glob, numpy as np, rasterio
+          from rasterio.merge import merge
+          arqs = sorted(glob.glob("faixas/*.tif")); print(len(arqs), "faixas")
+          srcs = [rasterio.open(a) for a in arqs]
+          mosaico, transf = merge(srcs, nodata=np.nan)
+          perfil = srcs[0].profile; perfil.update(height=mosaico.shape[1], width=mosaico.shape[2], transform=transf)
+          with rasterio.open("dados/brutos/era5land/latam_metricas.tif", "w", **perfil) as d:
+              d.write(mosaico)
+              for b in range(1, mosaico.shape[0] + 1):
+                  d.set_band_description(b, srcs[0].descriptions[b - 1])
+          v = mosaico[5]; print("grade", mosaico.shape, "terra", np.isfinite(v).sum(), "tmax_quente mediana", np.nanmedian(v),
+                                "dias_35 mediana", np.nanmedian(mosaico[2]))
+          PY
+      - uses: actions/cache/save@v4
+        with:
+          path: dados/brutos/era5land/latam_metricas.tif
+          key: era5land-latam-2016-2025
+      - uses: actions/upload-artifact@v4
+        with: { name: latam_metricas, path: dados/brutos/era5land/latam_metricas.tif }
