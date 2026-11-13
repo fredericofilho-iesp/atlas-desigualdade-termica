@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "brasil",
-  "gerado_em": "2026-11-13T10:53:14+0000",
+  "gerado_em": "2026-11-13T10:57:51+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -371,7 +371,7 @@
           "es": "Temperatura: tercios de los municipios. Proporción indígena: clases fijas (menos de 1%, 1–10%, 10% o más). Magenta: municipios más cálidos y con 10% o más de indígenas. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
         }
       },
-      "n_validos": 4129
+      "n_validos": 4825
     },
     {
       "id": "arv_com_arvores",
@@ -485,7 +485,7 @@
       "classificacao": "manual",
       "ordem": 63,
       "quebras": [0.5, 1, 5, 10],
-      "n_validos": 4129
+      "n_validos": 4825
     }
   ]
 }
