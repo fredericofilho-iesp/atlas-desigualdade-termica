@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda, bivariados, estado-rj-calor-extremo, calor-brasil-latam, contornos]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda, bivariados, estado-rj-calor-extremo, calor-brasil-latam, contornos, amplitude-gini]
 permissions:
   contents: write
 concurrency:
@@ -133,6 +133,11 @@ jobs:
       - name: Limites de estados e países (linhas por cima das unidades)
         if: inputs.escala == 'contornos'
         run: Rscript R/60_contornos.R
+      - name: Desigualdade térmica interna e Gini entre setores (Rio por bairro, estado do RJ, Brasil)
+        if: inputs.escala == 'amplitude-gini'
+        run: |
+          Rscript R/01_importar_ibge.R
+          Rscript R/42_amplitude_gini.R
       - name: Mapas bivariados (Rio, estado do RJ, Brasil)
         if: inputs.escala == 'bivariados'
         env:

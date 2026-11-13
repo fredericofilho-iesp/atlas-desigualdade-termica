@@ -378,13 +378,14 @@
             : [6, 0.4 * k, 10, 0.5 * k, 14, 1.2 * k])]
       }
     }, extra), antes);
-    // Limites de nível superior (estados no Brasil, países na América Latina), mais grossos.
+    // Limites de nível superior (bairros no Rio, estados no Brasil, países na América Latina), mais grossos.
     if (cfg.contornos) {
       map.addSource('grupos', { type: 'geojson', data: cfg.contornos + (manifesto.gerado_em ? '?v=' + encodeURIComponent(manifesto.gerado_em) : '') });
       map.addLayer({
         id: 'grupos-contorno', type: 'line', source: 'grupos',
         paint: { 'line-color': '#111c22', 'line-opacity': 0.85,
-          'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.9, 5, 1.4, 9, 2.2] }
+          'line-width': ['interpolate', ['linear'], ['zoom']].concat(cfg.larguraGrupos
+            ? [].concat.apply([], cfg.larguraGrupos) : [2, 0.9, 5, 1.4, 9, 2.2]) }
       }, antes);
     }
 
@@ -573,13 +574,14 @@
         fresco: escapar(I.tr(ps[ps.length - 1].nome)), tf: formatarValor(ps[ps.length - 1].lst_pop, '°C', 1) }) + '</p>' +
       '<div class="tabela-rolagem"><table class="tabela-grupos"><thead><tr><th></th><th>' + I.t('pai.colTemp') + '</th><th>' +
       I.t('pai.colCities') + '</th><th>' + I.t('pai.colMonth') + '</th><th>' + I.t('pai.colHeatDays') + '</th><th>' + I.t('pai.colUrban') + '</th><th>' +
-      I.t('pai.colHottest') + '</th></tr></thead><tbody>';
+      I.t('pai.colGini') + '</th><th>' + I.t('pai.colHottest') + '</th></tr></thead><tbody>';
     ps.forEach(function (p) {
       var q = p.unidade_mais_quente;
       html += '<tr><th scope="row">' + escapar(I.tr(p.nome) || p.iso3) + '</th><td>' + formatarValor(p.lst_pop, '°C', 1) +
         '</td><td>' + (Number.isFinite(p.lst_cidades) ? formatarValor(p.lst_cidades, '°C', 1) : '—') +
         '</td><td>' + nomeMes(p.mes_quente) + '</td><td>' + (p.calor_ar && Number.isFinite(p.calor_ar.dias_35) ? formatarValor(p.calor_ar.dias_35, '', 0) : '—') +
         '</td><td>' + formatarValor(p.pop_urbana, '%', 0) +
+        '</td><td>' + (p.gini && Number.isFinite(p.gini.valor) ? formatarValor(p.gini.valor, '', 2) + ' <small>(' + p.gini.ano + ')</small>' : '—') +
         '</td><td>' + (q && Number.isFinite(q.lst_pop) ? escapar(q.nome) + ' (' + formatarValor(q.lst_pop, '°C', 1) + ')' : '—') + '</td></tr>';
     });
     html += '</tbody></table></div><p class="status">' + I.t('pai.note') + '</p>';

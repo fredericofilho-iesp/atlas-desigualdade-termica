@@ -1,0 +1,30 @@
+{
+  "id": "amp_lst",
+  "rotulo": {
+    "en": "Heat inequality: hottest vs. coolest tenth of residents",
+    "pt": "Desigualdade térmica: 10% mais quentes vs. 10% mais amenos",
+    "es": "Desigualdad térmica: 10% más cálido vs. 10% más templado"
+  },
+  "unidade": "°C",
+  "paleta": "calor",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); GHSL GHS-POP 2020 (JRC); geoBoundaries"
+  },
+  "periodo": {
+    "en": "Hottest three months of each place, 2022–2024 (early afternoon)",
+    "pt": "Três meses mais quentes de cada lugar, 2022–2024 (início da tarde)",
+    "es": "Tres meses más cálidos de cada lugar, 2022–2024 (primera hora de la tarde)"
+  },
+  "metodo": {
+    "en": "Within each unit: surface temperature at the 90th percentile of residents minus the 10th percentile, over populated ~1 km cells (GHS-POP) weighted by population; units with at least 30 populated cells",
+    "pt": "Dentro de cada unidade: temperatura da superfície no percentil 90 dos moradores menos no percentil 10, nas células habitadas de ~1 km (GHS-POP) ponderadas pela população; unidades com pelo menos 30 células habitadas",
+    "es": "Dentro de cada unidad: temperatura de superficie en el percentil 90 de los residentes menos en el percentil 10, en celdas habitadas de ~1 km (GHS-POP) ponderadas por población; unidades con al menos 30 celdas habitadas"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 16
+}

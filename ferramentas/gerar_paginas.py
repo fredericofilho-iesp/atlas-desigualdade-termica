@@ -96,6 +96,7 @@ def cabeca(prefixo, titulo_chave, mapa=False):
 
 ESCALAS = {
     "rio": dict(chave="rio", centro=[-43.45, -22.92], zoom=10, zoomMinimo=8, larguraContorno=[[9, 0.25], [11, 0.45], [13, 0.9], [15, 1.6]], opacidadeContorno=0.7,
+                contornos="../dados/processados/rio/contornos.geojson", larguraGrupos=[[9, 0.8], [12, 1.6], [15, 2.6]],
                 painelCalorRenda="../dados/processados/rio/calor_renda.json",
                 painelArvores="../dados/processados/rio/arborizacao_resumo.json",
                 painelGrupos="../dados/processados/rio/exposicao_grupos.json"),

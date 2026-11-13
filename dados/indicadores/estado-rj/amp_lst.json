@@ -1,0 +1,30 @@
+{
+  "id": "amp_lst",
+  "rotulo": {
+    "en": "Heat inequality: hottest vs. coolest tenth of residents",
+    "pt": "Desigualdade térmica: 10% mais quentes vs. 10% mais amenos",
+    "es": "Desigualdad térmica: 10% más cálido vs. 10% más templado"
+  },
+  "unidade": "°C",
+  "paleta": "calor",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+    "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+    "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+  },
+  "periodo": {
+    "en": "Summers 2022/23–2024/25; 2022 Census",
+    "pt": "Verões 2022/23–2024/25; Censo 2022",
+    "es": "Veranos 2022/23–2024/25; Censo 2022"
+  },
+  "metodo": {
+    "en": "Within each area: surface temperature at the 90th percentile of residents minus the 10th percentile (census tracts weighted by residents); only areas with at least 30 tracts with data",
+    "pt": "Dentro de cada área: temperatura da superfície no percentil 90 dos moradores menos no percentil 10 (setores censitários ponderados pelos moradores); só áreas com pelo menos 30 setores com dado",
+    "es": "Dentro de cada área: temperatura de superficie en el percentil 90 de los residentes menos en el percentil 10 (sectores censales ponderados por residentes); solo áreas con al menos 30 sectores con dato"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 16
+}

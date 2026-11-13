@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T22:50:53+0000",
+  "gerado_em": "2026-11-13T18:39:58+0000",
   "paises": [
     {
       "iso3": "ARG",
@@ -13,9 +13,14 @@
       "mes_quente": 1,
       "lst_cidades": 38.83,
       "pop_urbana": 89.7,
+      "amp_lst": 6.85,
       "unidade_mais_quente": {
         "nome": "San Juan",
         "lst_pop": 44.64
+      },
+      "gini": {
+        "valor": 0.424,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 10.8,
@@ -35,6 +40,7 @@
       "mes_quente": 4,
       "lst_cidades": null,
       "pop_urbana": 82.8,
+      "amp_lst": 3.32,
       "unidade_mais_quente": {
         "nome": "Barbuda",
         "lst_pop": 33.03
@@ -57,12 +63,13 @@
       "mes_quente": 5,
       "lst_cidades": 35.2,
       "pop_urbana": 86.5,
+      "amp_lst": 7.27,
       "unidade_mais_quente": {
         "nome": "Inagua",
         "lst_pop": 35.78
       },
       "calor_ar": {
-        "dias_35": -0,
+        "dias_35": 0,
         "tmax_quente": 29.7,
         "txx": 31.3
       }
@@ -79,9 +86,14 @@
       "mes_quente": 5,
       "lst_cidades": 35.84,
       "pop_urbana": 70.8,
+      "amp_lst": 8.22,
       "unidade_mais_quente": {
         "nome": "Cayo",
         "lst_pop": 38.88
+      },
+      "gini": {
+        "valor": 0.399,
+        "ano": 2018
       },
       "calor_ar": {
         "dias_35": 8.6,
@@ -101,9 +113,14 @@
       "mes_quente": 10,
       "lst_cidades": 37.31,
       "pop_urbana": 79.6,
+      "amp_lst": 8.88,
       "unidade_mais_quente": {
         "nome": "Santa Cruz",
         "lst_pop": 39.09
+      },
+      "gini": {
+        "valor": 0.409,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 6.5,
@@ -123,9 +140,14 @@
       "mes_quente": 1,
       "lst_cidades": 38.51,
       "pop_urbana": 85.7,
+      "amp_lst": 9.36,
       "unidade_mais_quente": {
         "nome": "Piauí",
         "lst_pop": 42.19
+      },
+      "gini": {
+        "valor": 0.503,
+        "ano": 2024
       },
       "renda": {
         "gap": -0.46,
@@ -199,9 +221,14 @@
       "mes_quente": 4,
       "lst_cidades": 35.48,
       "pop_urbana": 90.1,
+      "amp_lst": 4.98,
       "unidade_mais_quente": {
         "nome": "Saint Michael",
         "lst_pop": 35.74
+      },
+      "gini": {
+        "valor": 0.341,
+        "ano": 2016
       },
       "calor_ar": {
         "dias_35": 0,
@@ -221,9 +248,14 @@
       "mes_quente": 1,
       "lst_cidades": 40.15,
       "pop_urbana": 86.5,
+      "amp_lst": 15.61,
       "unidade_mais_quente": {
         "nome": "Tarapacá",
         "lst_pop": 44.43
+      },
+      "gini": {
+        "valor": 0.43,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 0.2,
@@ -243,9 +275,14 @@
       "mes_quente": 3,
       "lst_cidades": 35.28,
       "pop_urbana": 87.3,
+      "amp_lst": 13.24,
       "unidade_mais_quente": {
         "nome": "Cesar",
         "lst_pop": 40.99
+      },
+      "gini": {
+        "valor": 0.544,
+        "ano": 2024
       },
       "renda": {
         "gap": 0.15,
@@ -319,9 +356,14 @@
       "mes_quente": 4,
       "lst_cidades": 37.97,
       "pop_urbana": 81,
+      "amp_lst": 9.97,
       "unidade_mais_quente": {
         "nome": "Guanacaste",
         "lst_pop": 39
+      },
+      "gini": {
+        "valor": 0.455,
+        "ano": 2025
       },
       "calor_ar": {
         "dias_35": 0.9,
@@ -341,6 +383,7 @@
       "mes_quente": 4,
       "lst_cidades": 37.35,
       "pop_urbana": 91.9,
+      "amp_lst": 6.43,
       "unidade_mais_quente": {
         "nome": "Las Tunas",
         "lst_pop": 38.43
@@ -363,6 +406,7 @@
       "mes_quente": 5,
       "lst_cidades": null,
       "pop_urbana": 70.3,
+      "amp_lst": 5.74,
       "unidade_mais_quente": {
         "nome": "Saint George",
         "lst_pop": 30.77
@@ -385,9 +429,14 @@
       "mes_quente": 5,
       "lst_cidades": 37.4,
       "pop_urbana": 91.1,
+      "amp_lst": 7.66,
       "unidade_mais_quente": {
         "nome": "Valverde",
         "lst_pop": 39.34
+      },
+      "gini": {
+        "valor": 0.39,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 1.9,
@@ -407,9 +456,14 @@
       "mes_quente": 9,
       "lst_cidades": 35.38,
       "pop_urbana": 84.1,
+      "amp_lst": 12.24,
       "unidade_mais_quente": {
         "nome": "Guayas",
         "lst_pop": 39.1
+      },
+      "gini": {
+        "valor": 0.459,
+        "ano": 2025
       },
       "calor_ar": {
         "dias_35": 0,
@@ -429,12 +483,17 @@
       "mes_quente": 4,
       "lst_cidades": null,
       "pop_urbana": 84.7,
+      "amp_lst": 6.5,
       "unidade_mais_quente": {
         "nome": "Saint George",
         "lst_pop": 32.02
       },
+      "gini": {
+        "valor": 0.438,
+        "ano": 2018
+      },
       "calor_ar": {
-        "dias_35": -0,
+        "dias_35": 0,
         "tmax_quente": 28,
         "txx": 29.2
       }
@@ -451,9 +510,14 @@
       "mes_quente": 4,
       "lst_cidades": 35.02,
       "pop_urbana": 84,
+      "amp_lst": 11.35,
       "unidade_mais_quente": {
         "nome": "El Progreso",
         "lst_pop": 41.64
+      },
+      "gini": {
+        "valor": 0.452,
+        "ano": 2023
       },
       "calor_ar": {
         "dias_35": 3.6,
@@ -473,6 +537,7 @@
       "mes_quente": 3,
       "lst_cidades": 34.58,
       "pop_urbana": 83.5,
+      "amp_lst": 7.07,
       "unidade_mais_quente": {
         "nome": "Upper Takutu-Upper Essequibo",
         "lst_pop": 40.58
@@ -495,9 +560,14 @@
       "mes_quente": 4,
       "lst_cidades": 38.33,
       "pop_urbana": 76.2,
+      "amp_lst": 10.11,
       "unidade_mais_quente": {
         "nome": "Valle",
         "lst_pop": 42.42
+      },
+      "gini": {
+        "valor": 0.457,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 9.1,
@@ -517,6 +587,7 @@
       "mes_quente": 4,
       "lst_cidades": 36.41,
       "pop_urbana": 87.4,
+      "amp_lst": 9.07,
       "unidade_mais_quente": {
         "nome": "Centre",
         "lst_pop": 38.54
@@ -539,9 +610,14 @@
       "mes_quente": 4,
       "lst_cidades": 36.34,
       "pop_urbana": 80.4,
+      "amp_lst": 10.63,
       "unidade_mais_quente": {
         "nome": "Kingston",
         "lst_pop": 38.58
+      },
+      "gini": {
+        "valor": 0.399,
+        "ano": 2021
       },
       "calor_ar": {
         "dias_35": 0.2,
@@ -561,6 +637,7 @@
       "mes_quente": 7,
       "lst_cidades": null,
       "pop_urbana": 74.6,
+      "amp_lst": 5.98,
       "unidade_mais_quente": {
         "nome": "Saint George Basseterre",
         "lst_pop": 34.38
@@ -583,9 +660,14 @@
       "mes_quente": 4,
       "lst_cidades": 31.04,
       "pop_urbana": 84.4,
+      "amp_lst": 4.59,
       "unidade_mais_quente": {
         "nome": "Vieux Fort",
         "lst_pop": 32.52
+      },
+      "gini": {
+        "valor": 0.437,
+        "ano": 2015
       },
       "calor_ar": {
         "dias_35": 0,
@@ -605,9 +687,14 @@
       "mes_quente": 5,
       "lst_cidades": 42.68,
       "pop_urbana": 88.9,
+      "amp_lst": 11.97,
       "unidade_mais_quente": {
         "nome": "Sonora",
         "lst_pop": 49.05
+      },
+      "gini": {
+        "valor": 0.426,
+        "ano": 2024
       },
       "renda": {
         "gap": -0.31,
@@ -681,6 +768,7 @@
       "mes_quente": 4,
       "lst_cidades": 39.52,
       "pop_urbana": 74.8,
+      "amp_lst": 10.73,
       "unidade_mais_quente": {
         "nome": "León",
         "lst_pop": 43.19
@@ -703,9 +791,14 @@
       "mes_quente": 4,
       "lst_cidades": 40.17,
       "pop_urbana": 79.7,
+      "amp_lst": 11.88,
       "unidade_mais_quente": {
         "nome": "Los Santos",
         "lst_pop": 41.57
+      },
+      "gini": {
+        "valor": 0.497,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 0.5,
@@ -725,9 +818,14 @@
       "mes_quente": 2,
       "lst_cidades": 40.11,
       "pop_urbana": 81.6,
+      "amp_lst": 15.05,
       "unidade_mais_quente": {
         "nome": "Ica",
         "lst_pop": 44.56
+      },
+      "gini": {
+        "valor": 0.401,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 1.1,
@@ -747,9 +845,14 @@
       "mes_quente": 1,
       "lst_cidades": 38.55,
       "pop_urbana": 68.2,
+      "amp_lst": 5,
       "unidade_mais_quente": {
         "nome": "Boquerón",
         "lst_pop": 43.36
+      },
+      "gini": {
+        "valor": 0.442,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 28.2,
@@ -769,9 +872,14 @@
       "mes_quente": 3,
       "lst_cidades": 38.29,
       "pop_urbana": 84.8,
+      "amp_lst": 8.23,
       "unidade_mais_quente": {
         "nome": "San Miguel",
         "lst_pop": 41.39
+      },
+      "gini": {
+        "valor": 0.398,
+        "ano": 2023
       },
       "calor_ar": {
         "dias_35": 13.6,
@@ -791,9 +899,14 @@
       "mes_quente": 9,
       "lst_cidades": 37.08,
       "pop_urbana": 80.4,
+      "amp_lst": 9.55,
       "unidade_mais_quente": {
         "nome": "Paramaribo",
         "lst_pop": 37.84
+      },
+      "gini": {
+        "valor": 0.392,
+        "ano": 2022
       },
       "calor_ar": {
         "dias_35": 2.5,
@@ -813,6 +926,7 @@
       "mes_quente": 4,
       "lst_cidades": 35.98,
       "pop_urbana": 90.5,
+      "amp_lst": 8.78,
       "unidade_mais_quente": {
         "nome": "Chaguanas",
         "lst_pop": 39.03
@@ -835,9 +949,14 @@
       "mes_quente": 1,
       "lst_cidades": 35.92,
       "pop_urbana": 91.5,
+      "amp_lst": 5.33,
       "unidade_mais_quente": {
         "nome": "Artigas",
         "lst_pop": 39.84
+      },
+      "gini": {
+        "valor": 0.4,
+        "ano": 2024
       },
       "calor_ar": {
         "dias_35": 2.6,
@@ -857,6 +976,7 @@
       "mes_quente": 4,
       "lst_cidades": null,
       "pop_urbana": 86.7,
+      "amp_lst": 5.15,
       "unidade_mais_quente": {
         "nome": "Saint Andrew",
         "lst_pop": 31.52
@@ -879,6 +999,7 @@
       "mes_quente": 3,
       "lst_cidades": 38.71,
       "pop_urbana": 92.9,
+      "amp_lst": 9.97,
       "unidade_mais_quente": {
         "nome": "Guárico",
         "lst_pop": 43.26

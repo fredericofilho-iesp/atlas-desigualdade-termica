@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "estado-rj",
-  "gerado_em": "2026-11-13T11:43:53+0000",
+  "gerado_em": "2026-11-13T18:44:37+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -217,6 +217,37 @@
       "n_validos": 92
     },
     {
+      "id": "amp_lst",
+      "rotulo": {
+        "en": "Heat inequality: hottest vs. coolest tenth of residents",
+        "pt": "Desigualdade térmica: 10% mais quentes vs. 10% mais amenos",
+        "es": "Desigualdad térmica: 10% más cálido vs. 10% más templado"
+      },
+      "unidade": "°C",
+      "paleta": "calor",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "Summers 2022/23–2024/25; 2022 Census",
+        "pt": "Verões 2022/23–2024/25; Censo 2022",
+        "es": "Veranos 2022/23–2024/25; Censo 2022"
+      },
+      "metodo": {
+        "en": "Within each area: surface temperature at the 90th percentile of residents minus the 10th percentile (census tracts weighted by residents); only areas with at least 30 tracts with data",
+        "pt": "Dentro de cada área: temperatura da superfície no percentil 90 dos moradores menos no percentil 10 (setores censitários ponderados pelos moradores); só áreas com pelo menos 30 setores com dado",
+        "es": "Dentro de cada área: temperatura de superficie en el percentil 90 de los residentes menos en el percentil 10 (sectores censales ponderados por residentes); solo áreas con al menos 30 sectores con dato"
+      },
+      "casas_decimais": 1,
+      "classificacao": "quantis",
+      "ordem": 16,
+      "quebras": [4.49, 5.19, 5.84, 6.78],
+      "n_validos": 89
+    },
+    {
       "id": "renda_media_resp",
       "rotulo": {
         "en": "Average income of household heads",
@@ -246,6 +277,36 @@
       "ordem": 20,
       "quebras": [1941.1, 2187.3, 2416, 2810],
       "n_validos": 92
+    },
+    {
+      "id": "gini_setores",
+      "rotulo": {
+        "en": "Income Gini between tracts",
+        "pt": "Gini da renda entre setores",
+        "es": "Gini del ingreso entre sectores"
+      },
+      "paleta": "pessoas",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE 2022 Census, household-head income by census tract",
+        "pt": "IBGE, Censo 2022, rendimento do responsável por setor",
+        "es": "IBGE, Censo 2022, ingreso del responsable por sector"
+      },
+      "periodo": {
+        "en": "2022",
+        "pt": "2022",
+        "es": "2022"
+      },
+      "metodo": {
+        "en": "Gini index of mean household-head income across census tracts, weighted by household heads (inequality between tracts, not between people: it is lower than the person-level Gini); only areas with at least 30 tracts with data",
+        "pt": "Índice de Gini da renda média do responsável entre os setores censitários, ponderados pelo número de responsáveis (desigualdade entre setores, não entre pessoas: fica abaixo do Gini entre pessoas); só áreas com pelo menos 30 setores com dado",
+        "es": "Índice de Gini del ingreso medio del responsable entre sectores censales, ponderados por el número de responsables (desigualdad entre sectores, no entre personas: es menor que el Gini entre personas); solo áreas con al menos 30 sectores con dato"
+      },
+      "casas_decimais": 2,
+      "classificacao": "quantis",
+      "ordem": 21,
+      "quebras": [0.16, 0.198, 0.221, 0.268],
+      "n_validos": 89
     },
     {
       "id": "biv_lst_renda",
@@ -374,6 +435,144 @@
         }
       },
       "n_validos": 92
+    },
+    {
+      "id": "biv_amp_gini",
+      "rotulo": {
+        "en": "Heat inequality × income inequality (bivariate)",
+        "pt": "Desigualdade térmica × desigualdade de renda (bivariado)",
+        "es": "Desigualdad térmica × desigualdad de ingreso (bivariado)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "Summers 2022/23–2024/25; 2022 Census",
+        "pt": "Verões 2022/23–2024/25; Censo 2022",
+        "es": "Veranos 2022/23–2024/25; Censo 2022"
+      },
+      "metodo": {
+        "en": "Terciles (of municipalities, unweighted) of each measure; the Gini axis runs from more to less unequal, so magenta marks municipalities with both larger heat inequality and larger income inequality",
+        "pt": "Tercis (de municípios, sem ponderação) de cada medida; o eixo do Gini vai do mais ao menos desigual, de modo que o magenta marca municípios com maior desigualdade térmica e maior desigualdade de renda",
+        "es": "Terciles (de municipios, sin ponderar) de cada medida; el eje del Gini va de más a menos desigual, de modo que el magenta marca municipios con mayor desigualdad térmica y mayor desigualdad de ingreso"
+      },
+      "casas_decimais": 0,
+      "ordem": 33,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "amp_lst",
+          "rotulo": {
+            "en": "Temperature range",
+            "pt": "Amplitude térmica",
+            "es": "Amplitud térmica"
+          },
+          "classes": {
+            "en": ["Smaller range", "Intermediate range", "Larger range"],
+            "pt": ["Amplitude menor", "Amplitude intermediária", "Amplitude maior"],
+            "es": ["Amplitud menor", "Amplitud intermedia", "Amplitud mayor"]
+          },
+          "unidade": "°C",
+          "casas": 1,
+          "limites": [4.9, 6.2]
+        },
+        "x": {
+          "indicador": "gini_setores",
+          "rotulo": {
+            "en": "Income Gini between tracts",
+            "pt": "Gini da renda entre setores",
+            "es": "Gini del ingreso entre sectores"
+          },
+          "classes": {
+            "en": ["more unequal", "intermediate inequality", "less unequal"],
+            "pt": ["mais desigual", "desigualdade intermediária", "menos desigual"],
+            "es": ["más desigual", "desigualdad intermedia", "menos desigual"]
+          },
+          "unidade": "",
+          "casas": 2,
+          "limites": [0.19, 0.24],
+          "inverso": true
+        },
+        "nota": {
+          "en": "Each third groups about one third of the municipalities. Magenta: larger heat inequality and more unequal income. Rank correlation with the Gini: 0.27.",
+          "pt": "Cada terço reúne cerca de um terço dos municípios. Magenta: maior desigualdade térmica e renda mais desigual. Correlação (Spearman) com o Gini: 0,27.",
+          "es": "Cada tercio agrupa alrededor de un tercio de los municipios. Magenta: mayor desigualdad térmica e ingreso más desigual. Correlación (Spearman) con el Gini: 0,27."
+        }
+      },
+      "n_validos": 89
+    },
+    {
+      "id": "biv_gap_gini",
+      "rotulo": {
+        "en": "Poorest − richest heat gap × income inequality (bivariate)",
+        "pt": "Diferença térmica pobres − ricos × desigualdade de renda (bivariado)",
+        "es": "Diferencia térmica pobres − ricos × desigualdad de ingreso (bivariado)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "Landsat 8–9 (USGS); IBGE 2022 Census",
+        "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022",
+        "es": "Landsat 8–9 (USGS); IBGE, Censo 2022"
+      },
+      "periodo": {
+        "en": "Summers 2022/23–2024/25; 2022 Census",
+        "pt": "Verões 2022/23–2024/25; Censo 2022",
+        "es": "Veranos 2022/23–2024/25; Censo 2022"
+      },
+      "metodo": {
+        "en": "Terciles (of municipalities, unweighted) of each measure; the Gini axis runs from more to less unequal, so magenta marks municipalities with both larger heat inequality and larger income inequality",
+        "pt": "Tercis (de municípios, sem ponderação) de cada medida; o eixo do Gini vai do mais ao menos desigual, de modo que o magenta marca municípios com maior desigualdade térmica e maior desigualdade de renda",
+        "es": "Terciles (de municipios, sin ponderar) de cada medida; el eje del Gini va de más a menos desigual, de modo que el magenta marca municipios con mayor desigualdad térmica y mayor desigualdad de ingreso"
+      },
+      "casas_decimais": 0,
+      "ordem": 34,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "gap_renda",
+          "rotulo": {
+            "en": "Poorest − richest fifth",
+            "pt": "20% mais pobres − 20% mais ricos",
+            "es": "20% más pobre − 20% más rico"
+          },
+          "classes": {
+            "en": ["Lower difference", "Intermediate difference", "Higher difference"],
+            "pt": ["Diferença mais baixa", "Diferença intermediária", "Diferença mais alta"],
+            "es": ["Diferencia más baja", "Diferencia intermedia", "Diferencia más alta"]
+          },
+          "unidade": "°C",
+          "casas": 1,
+          "limites": [-1.8, -0.8]
+        },
+        "x": {
+          "indicador": "gini_setores",
+          "rotulo": {
+            "en": "Income Gini between tracts",
+            "pt": "Gini da renda entre setores",
+            "es": "Gini del ingreso entre sectores"
+          },
+          "classes": {
+            "en": ["more unequal", "intermediate inequality", "less unequal"],
+            "pt": ["mais desigual", "desigualdade intermediária", "menos desigual"],
+            "es": ["más desigual", "desigualdad intermedia", "menos desigual"]
+          },
+          "unidade": "",
+          "casas": 2,
+          "limites": [0.19, 0.24],
+          "inverso": true
+        },
+        "nota": {
+          "en": "Each third groups about one third of the municipalities. Magenta: larger heat inequality and more unequal income. Rank correlation with the Gini: 0.18.",
+          "pt": "Cada terço reúne cerca de um terço dos municípios. Magenta: maior desigualdade térmica e renda mais desigual. Correlação (Spearman) com o Gini: 0,18.",
+          "es": "Cada tercio agrupa alrededor de un tercio de los municipios. Magenta: mayor desigualdad térmica e ingreso más desigual. Correlación (Spearman) con el Gini: 0,18."
+        }
+      },
+      "n_validos": 89
     },
     {
       "id": "arv_com_arvores",

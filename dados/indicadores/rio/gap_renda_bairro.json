@@ -1,0 +1,31 @@
+{
+  "id": "gap_renda_bairro",
+  "rotulo": {
+    "en": "Heat gap: poorest − richest fifth (by neighbourhood)",
+    "pt": "Desigualdade térmica: 20% mais pobres − 20% mais ricos (por bairro)",
+    "es": "Brecha térmica: 20% más pobre − 20% más rico (por barrio)"
+  },
+  "unidade": "°C",
+  "paleta": "divergente",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "Landsat 8–9 (USGS); IBGE 2022 Census (tracts and neighbourhoods)",
+    "pt": "Landsat 8–9 (USGS); IBGE, Censo 2022 (setores e bairros)",
+    "es": "Landsat 8–9 (USGS); IBGE, Censo 2022 (sectores y barrios)"
+  },
+  "periodo": {
+    "en": "Summers 2022/23–2024/25; 2022 Census",
+    "pt": "Verões 2022/23–2024/25; Censo 2022",
+    "es": "Veranos 2022/23–2024/25; Censo 2022"
+  },
+  "metodo": {
+    "en": "Household-weighted mean surface temperature of the poorest fifth of households minus the richest fifth, with fifths formed from the area's own tracts; only areas with at least 20 tracts with data",
+    "pt": "Temperatura média da superfície (ponderada por domicílios) dos 20% de domicílios mais pobres menos a dos 20% mais ricos, com os quintos formados pelos setores da própria área; só áreas com pelo menos 20 setores com dado",
+    "es": "Temperatura media de superficie (ponderada por hogares) del 20% de hogares más pobre menos la del 20% más rico, con quintiles formados por los sectores de la propia área; solo áreas con al menos 20 sectores con dato"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "manual",
+  "ordem": 15,
+  "quebras_fixas": [-2, -0.5, 0.5, 2]
+}
