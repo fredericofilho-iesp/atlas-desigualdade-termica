@@ -7,8 +7,10 @@
 suppressPackageStartupMessages({ library(sf) })
 sf_use_s2(FALSE)
 gravar <- function(g, campo, arq, tol_m, crs_m) {
-  u <- aggregate(st_geometry(g), by = list(grupo = g[[campo]]), FUN = function(x) st_union(st_make_valid(x)))
-  u <- st_sf(grupo = u$grupo, geometry = st_geometry(u))
+  geo <- st_make_valid(st_geometry(g))
+  grupos <- sort(unique(as.character(g[[campo]])))
+  partes <- lapply(grupos, function(k) st_union(geo[as.character(g[[campo]]) == k]))
+  u <- st_sf(grupo = grupos, geometry = do.call(c, partes), crs = st_crs(g))
   u <- st_transform(st_simplify(st_transform(u, crs_m), preserveTopology = TRUE, dTolerance = tol_m), 4326)
   u <- st_cast(st_boundary(u), "MULTILINESTRING", warn = FALSE)        # só as linhas
   if (file.exists(arq)) file.remove(arq)
