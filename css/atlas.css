@@ -22,7 +22,11 @@ a { color: var(--link); }
 .topo { background: var(--marca); color: #fff; padding: 18px clamp(16px, 4vw, 48px) 0; }
 .topo a { color: inherit; text-decoration: none; }
 .topo .marca { font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-weight: 700; margin: 0; }
-.topo .sub { margin: 2px 0 12px; color: var(--marca-clara); font-size: .95rem; }
+.topo .sub { margin: 2px 0 6px; color: var(--marca-clara); font-size: .95rem; }
+.topo .autoria { margin: 0; color: var(--marca-clara); font-size: .82rem; opacity: .9; }
+.topo .autoria-links { margin: 2px 0 12px; font-size: .82rem; }
+.topo .autoria-links a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.topo .autoria-links a:hover, .topo .autoria-links a:focus-visible { color: var(--marca-clara); }
 .escalas { display: flex; gap: 4px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
 .escalas a {
   display: block; padding: 9px 14px; border-radius: 8px 8px 0 0;
