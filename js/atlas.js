@@ -196,15 +196,18 @@
   function rotulosTercis(eixo) {
     var l = eixo.limites || [], u = eixo.unidade || '';
     // A unidade já aparece no título do eixo; aqui só os números.
-    var f = function (v) { return formatarValor(v, '', u === 'R$' ? 0 : 1); };
-    return ['< ' + f(l[0]), f(l[0]) + ' – ' + f(l[1]), '≥ ' + f(l[1])];
+    var casas = eixo.casas !== undefined ? Math.max(0, eixo.casas) : (u === 'R$' ? 0 : 1);
+    var f = function (v) { return formatarValor(v, '', casas); };
+    var r = ['< ' + f(l[0]), f(l[0]) + ' – ' + f(l[1]), '≥ ' + f(l[1])];
+    return eixo.inverso ? r.reverse() : r;   // eixo invertido: colunas de "mais" para "menos"
   }
 
-  function categoriaBivariada(cod) {
+  function categoriaBivariada(cod, ind) {
     cod = Number(cod);
     if (!(cod >= 1 && cod <= 9)) return I.t('map.noData');
     var t = Math.floor((cod - 1) / 3) + 1, r = ((cod - 1) % 3) + 1;
-    return I.t('biv.t' + t) + ' · ' + I.t('biv.r' + r);
+    var ex = (ind && ind.eixos) || {}, cy = ex.y && ex.y.classes ? I.tr(ex.y.classes) : null, cx = ex.x && ex.x.classes ? I.tr(ex.x.classes) : null;
+    return (cy ? cy[t - 1] : I.t('biv.t' + t)) + ' · ' + (cx ? cx[r - 1] : I.t('biv.r' + r));
   }
 
   function legendaBivariada(ind) {
@@ -217,13 +220,13 @@
       html += '<tr><th scope="row">' + ry[t - 1] + '</th>';
       for (var r = 1; r <= 3; r++) {
         var cod = (t - 1) * 3 + r;
-        html += '<td title="' + escapar(categoriaBivariada(cod)) + '" style="background:' + p[cod - 1] + '"></td>';
+        html += '<td title="' + escapar(categoriaBivariada(cod, ind)) + '" style="background:' + p[cod - 1] + '"></td>';
       }
       html += '</tr>';
     }
     html += '<tr><th></th>' + rx.map(function (v) { return '<th class="biv-x">' + v + '</th>'; }).join('') + '</tr>';
     html += '</tbody></table><div class="biv-xt">' + escapar(I.tr(x.rotulo)) + (x.unidade ? ' (' + x.unidade + ')' : '') + ' →</div></div>';
-    html += '<p class="legenda-meta">' + I.t('biv.note') + '</p>';
+    html += '<p class="legenda-meta">' + (ex.nota ? escapar(I.tr(ex.nota)) : I.t('biv.note')) + '</p>';
     return html;
   }
 
@@ -292,7 +295,7 @@
       inds.forEach(function (ind) {
         var ativo = estado.indicador && estado.indicador.id === ind.id;
         html += '<div' + (ativo ? ' class="ativo"' : '') + '><dt>' + escapar(I.tr(ind.rotulo)) + '</dt><dd>' +
-          (ind.tipo === 'bivariado' ? escapar(categoriaBivariada(props[ind.id]))
+          (ind.tipo === 'bivariado' ? escapar(categoriaBivariada(props[ind.id], ind))
             : formatarValor(props[ind.id], I.tr(ind.unidade), ind.casas_decimais)) + '</dd></div>';
       });
       html += '</dl>';

@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda, bivariados]
 permissions:
   contents: write
 concurrency:
@@ -97,6 +97,11 @@ jobs:
         run: |
           Rscript R/30_unidades_latam.R
           Rscript R/31_latam.R
+      - name: Mapas bivariados (Rio, estado do RJ, Brasil)
+        if: inputs.escala == 'bivariados'
+        run: |
+          Rscript R/01_importar_ibge.R
+          Rscript R/40_bivariados.R
       - uses: actions/cache/restore@v4
         # tiles MODIS já processados (só da rodada completa; o teste usa menos compostos)
         if: inputs.escala == 'latam-completo' || inputs.escala == 'latam-renda'
