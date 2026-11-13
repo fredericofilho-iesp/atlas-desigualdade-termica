@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda, bivariados, estado-rj-calor-extremo, calor-brasil-latam]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda, bivariados, estado-rj-calor-extremo, calor-brasil-latam, contornos]
 permissions:
   contents: write
 concurrency:
@@ -130,6 +130,9 @@ jobs:
       - name: Brasil e América Latina — indicadores de calor extremo
         if: inputs.escala == 'calor-brasil-latam'
         run: Rscript R/50_calor_extremo_brasil_latam.R
+      - name: Limites de estados e países (linhas por cima das unidades)
+        if: inputs.escala == 'contornos'
+        run: Rscript R/60_contornos.R
       - name: Mapas bivariados (Rio, estado do RJ, Brasil)
         if: inputs.escala == 'bivariados'
         env:

@@ -58,7 +58,7 @@ def topo(prefixo, atual):
     <div>
       <p class="marca"><a href="{inicio}" data-nav="{inicio}" data-i18n="site.title">{EN["site.title"]}</a></p>
       <p class="sub" data-i18n="site.subtitle">{EN["site.subtitle"]}</p>
-      <p class="autoria"><span data-i18n="site.author">{EN["site.author"]}</span> Frederico Augusto A. de Gomes Filho (Instituto de Estudos Sociais e Políticos, Universidade do Estado do Rio de Janeiro)</p>
+      <p class="autoria"><span data-i18n="site.author">{EN["site.author"]}</span> Frederico Augusto A. de Gomes Filho (<span data-i18n="site.affiliation">{EN["site.affiliation"]}</span>)</p>
       <p class="autoria-links"><a href="https://orcid.org/0009-0004-2217-8077" target="_blank" rel="noopener">ORCID</a> · <a href="https://lattes.cnpq.br/4153021224044822" target="_blank" rel="noopener">Lattes</a> · <a href="https://www.linkedin.com/in/frederico-augusto-auad-de-gomes-filho-a6b328185/" target="_blank" rel="noopener">LinkedIn</a></p>
     </div>
     <div class="idioma">
@@ -95,7 +95,7 @@ def cabeca(prefixo, titulo_chave, mapa=False):
 
 
 ESCALAS = {
-    "rio": dict(chave="rio", centro=[-43.45, -22.92], zoom=10, zoomMinimo=8, espessuraContorno=1,
+    "rio": dict(chave="rio", centro=[-43.45, -22.92], zoom=10, zoomMinimo=8, espessuraContorno=1, opacidadeContorno=0.35,
                 painelCalorRenda="../dados/processados/rio/calor_renda.json",
                 painelArvores="../dados/processados/rio/arborizacao_resumo.json",
                 painelGrupos="../dados/processados/rio/exposicao_grupos.json"),
@@ -103,11 +103,11 @@ ESCALAS = {
                       painelCalorRenda="../dados/processados/estado-rj/calor_renda.json",
                       painelArvores="../dados/processados/estado-rj/arborizacao_resumo.json",
                       painelGrupos="../dados/processados/estado-rj/exposicao_grupos.json"),
-    "brasil": dict(chave="br", centro=[-53.5, -14.5], zoom=3.6, zoomMinimo=2.5, espessuraContorno=0.4,
+    "brasil": dict(chave="br", centro=[-53.5, -14.5], zoom=3.6, zoomMinimo=2.5, espessuraContorno=0.9, contornos="../dados/processados/brasil/contornos.geojson",
                    painelCalorRenda="../dados/processados/brasil/calor_renda.json",
                    painelArvores="../dados/processados/brasil/arborizacao_resumo.json",
                    painelGrupos="../dados/processados/brasil/exposicao_grupos.json"),
-    "america-latina": dict(chave="la", centro=[-72, -12], zoom=2.6, zoomMinimo=1.5, espessuraContorno=0.6,
+    "america-latina": dict(chave="la", centro=[-72, -12], zoom=2.6, zoomMinimo=1.5, espessuraContorno=1.2, contornos="../dados/processados/america-latina/contornos.geojson",
                            painelPaises="../dados/processados/america-latina/paises.json"),
 }
 
