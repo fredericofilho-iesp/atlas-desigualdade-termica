@@ -93,8 +93,8 @@ MET_GINI <- c(en = "Gini index of mean household-head income across census tract
               pt = "Índice de Gini da renda média do responsável entre os setores censitários, ponderados pelo número de responsáveis (desigualdade entre setores, não entre pessoas: fica abaixo do Gini entre pessoas); só áreas com pelo menos %d setores com dado",
               es = "Índice de Gini del ingreso medio del responsable entre sectores censales, ponderados por el número de responsables (desigualdad entre sectores, no entre personas: es menor que el Gini entre personas); solo áreas con al menos %d sectores con dato")
 MET_GAP <- c(en = "Household-weighted mean surface temperature of the poorest fifth of households minus the richest fifth, with fifths formed from the area's own tracts; only areas with at least %d tracts with data",
-             pt = "Temperatura média da superfície (ponderada por domicílios) dos 20% de domicílios mais pobres menos a dos 20% mais ricos, com os quintos formados pelos setores da própria área; só áreas com pelo menos %d setores com dado",
-             es = "Temperatura media de superficie (ponderada por hogares) del 20% de hogares más pobre menos la del 20% más rico, con quintiles formados por los sectores de la propia área; solo áreas con al menos %d sectores con dato")
+             pt = "Temperatura média da superfície (ponderada por domicílios) dos 20%% de domicílios mais pobres menos a dos 20%% mais ricos, com os quintos formados pelos setores da própria área; só áreas com pelo menos %d setores com dado",
+             es = "Temperatura media de superficie (ponderada por hogares) del 20%% de hogares más pobre menos la del 20%% más rico, con quintiles formados por los sectores de la propia área; solo áreas con al menos %d sectores con dato")
 fmt <- function(m, n) setNames(lapply(names(m), function(k) sprintf(m[[k]], n)), names(m))
 MET_BIV <- function(onde) c(
   en = sprintf("Terciles (of %s, unweighted) of each measure; the Gini axis runs from more to less unequal, so magenta marks %s with both larger heat inequality and larger income inequality", onde$en, onde$en),
