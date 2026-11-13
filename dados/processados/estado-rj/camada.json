@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "estado-rj",
-  "gerado_em": "2026-11-13T11:29:16+0000",
+  "gerado_em": "2026-11-13T11:43:53+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -180,9 +180,9 @@
         "es": "Número medio de días por año con máxima diaria de la temperatura del aire a 2 m ≥ 35 °C. Temperatura del aire de un reanálisis en grilla de ~11 km; cada sector censal toma su celda y el valor municipal se pondera por residentes. Demasiado gruesa para islas de calor de barrio y tiende a subestimar la máxima en áreas muy urbanizadas"
       },
       "casas_decimais": 0,
-      "classificacao": "quantis",
+      "classificacao": "manual",
       "ordem": 14,
-      "quebras": [0.5, 1.4, 2.6, 9.2],
+      "quebras": [1, 3, 7, 14],
       "n_validos": 92
     },
     {
