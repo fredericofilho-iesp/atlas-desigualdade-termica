@@ -122,7 +122,7 @@ salvar_indicadores(mun, escala = "estado-rj", id = "code_muni", indicadores = li
   indicador("dias_35", rotulo = c(en = "Extreme heat days: maximum air temperature ≥ 35 °C", pt = "Dias de calor extremo: máxima do ar ≥ 35 °C",
                                   es = "Días de calor extremo: máxima del aire ≥ 35 °C"),
     unidade = c(en = "days/year", pt = "dias/ano", es = "días/año"), paleta = "calor", dimensao = "exposicao",
-    casas_decimais = 0, ordem = 14, fonte = fonte, periodo = per,
+    casas_decimais = 0, ordem = 14, quebras = c(1, 3, 7, 14), fonte = fonte, periodo = per,
     metodo = c(en = paste0("Mean number of days per year with daily maximum 2 m air temperature ≥ 35 °C. ", nota["en"]),
                pt = paste0("Número médio de dias por ano com máxima diária da temperatura do ar a 2 m ≥ 35 °C. ", nota["pt"]),
                es = paste0("Número medio de días por año con máxima diaria de la temperatura del aire a 2 m ≥ 35 °C. ", nota["es"]))),
