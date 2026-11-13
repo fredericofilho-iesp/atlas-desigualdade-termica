@@ -91,7 +91,7 @@ if ("MEX" %in% lim) {
   g$lst <- exact_extract(r, st_transform(g, crs(r)), "mean", progress = FALSE)
   m <- imu[match(g$CVEGEO, imu$CVE_AGEB), ]
   nm <- unique(data.frame(k = paste("MEX", substr(imu$CVE_AGEB, 1, 5)),
-                          n = ifelse(sprintf("%02d", as.integer(imu$ENT)) == "09", paste0(imu$NOM_MUN, " (CDMX)"), imu$NOM_MUN)))
+                          n = ifelse(sprintf("%02d", as.integer(imu$ENT)) == "09", paste0(imu$NOM_MUN, ", CDMX"), imu$NOM_MUN)))
   nomes_mex <- setNames(nm$n, nm$k)
   areas$MEX <- data.frame(iso3 = "MEX", area = g$CVEGEO, mun = substr(g$CVEGEO, 1, 5), id = adm1_de(st_geometry(g), "MEX"),
                           pop = as.numeric(m$POB_TOTAL), ses = as.numeric(m$IM_2020),   # maior = menos marginalizado
