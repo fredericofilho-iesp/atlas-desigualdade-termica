@@ -270,8 +270,10 @@
         : expressaoCor(ind.id, ind.quebras || [], coresPara(ind));
       map.setPaintProperty('unidades-preenchimento', 'fill-color', cor);
       map.setPaintProperty('unidades-preenchimento', 'fill-opacity', 0.78);
-      map.setPaintProperty('unidades-contorno', 'line-color', corContorno('#ffffff'));
-      map.setPaintProperty('unidades-contorno', 'line-opacity', 0.7);
+      // Limites escuros e finos por cima das cores, para distinguir unidades vizinhas
+      // da mesma classe (ex.: dois municípios vizinhos igualmente quentes).
+      map.setPaintProperty('unidades-contorno', 'line-color', corContorno('#24343c'));
+      map.setPaintProperty('unidades-contorno', 'line-opacity', cfg.opacidadeContorno || 0.55);
     } else {
       // Só limites: preenchimento leve e contorno escuro, para os limites ficarem visíveis.
       map.setPaintProperty('unidades-preenchimento', 'fill-color', '#2f7f95');
@@ -373,6 +375,15 @@
           ['interpolate', ['linear'], ['zoom'], 6, 0.4 * k, 10, 0.5 * k, 14, 1.2 * k]]
       }
     }, extra), antes);
+    // Limites de nível superior (estados no Brasil, países na América Latina), mais grossos.
+    if (cfg.contornos) {
+      map.addSource('grupos', { type: 'geojson', data: cfg.contornos + (manifesto.gerado_em ? '?v=' + encodeURIComponent(manifesto.gerado_em) : '') });
+      map.addLayer({
+        id: 'grupos-contorno', type: 'line', source: 'grupos',
+        paint: { 'line-color': '#111c22', 'line-opacity': 0.85,
+          'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.9, 5, 1.4, 9, 2.2] }
+      }, antes);
+    }
 
     var idSel = null;
     map.on('click', 'unidades-preenchimento', function (e) {

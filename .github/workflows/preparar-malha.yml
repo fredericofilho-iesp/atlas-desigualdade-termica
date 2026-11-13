@@ -9,7 +9,7 @@ on:
         description: "Qual camada gerar"
         type: choice
         default: todas
-        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda, bivariados, estado-rj-calor-extremo]
+        options: [todas, rio, estado-rj, temperatura-rio, renda-rio, arborizacao-rio, demografia-rio, estado-rj-teste, estado-rj-completo, estado-rj-municipios, brasil-teste, brasil-completo, brasil-municipios, latam-teste, latam-completo, latam-renda, bivariados, estado-rj-calor-extremo, contornos]
 permissions:
   contents: write
 concurrency:
@@ -108,6 +108,9 @@ jobs:
           python ferramentas/baixar_openmeteo.py --saida dados/brutos/era5land/rj --anos 2016-2025 --area -20.6 -45.0 -23.5 -40.8
           Rscript R/11_setores_estado_rj.R
           Rscript R/16_calor_extremo_rj.R
+      - name: Limites de estados e países (linhas por cima das unidades)
+        if: inputs.escala == 'contornos'
+        run: Rscript R/60_contornos.R
       - name: Mapas bivariados (Rio, estado do RJ, Brasil)
         if: inputs.escala == 'bivariados'
         env:
