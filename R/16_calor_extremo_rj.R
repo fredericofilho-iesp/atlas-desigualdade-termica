@@ -1,11 +1,13 @@
 # Atlas de Desigualdade Térmica — dias de calor extremo (ERA5-Land), estado do RJ
 # Executar na raiz do repositório: Rscript R/16_calor_extremo_rj.R
 # Requer: install.packages(c("sf", "terra", "jsonlite"))
-# Depende de: ferramentas/baixar_era5land.py (máximas diárias em dados/brutos/era5land/rj/),
+# Depende de: ferramentas/baixar_openmeteo.py (máximas diárias em dados/brutos/era5land/rj/),
 #             R/11 (setores) e R/13 (moradores por setor).
 #
 # TEMPERATURA DO AR, não da superfície: ERA5-Land (ECMWF/Copernicus), reanálise
 # em grade de 0,1° (~11 km), temperatura máxima diária a 2 m, dia civil em UTC−3.
+# Lida do espelho público do Open-Meteo no AWS Open Data (sem conta; CC BY 4.0):
+# as máximas diárias são calculadas a partir dos dados horários.
 # Cada setor censitário recebe a célula da grade em que está (ou a célula de terra
 # mais próxima, no litoral); o valor municipal é a média dos setores ponderada
 # pelos moradores — o calor "onde as pessoas moram", como nos demais indicadores.
@@ -30,7 +32,7 @@ sf_use_s2(FALSE)
 
 # ---- grade diária ----
 arqs <- sort(list.files(PASTA, "\\.nc$", full.names = TRUE))
-if (!length(arqs)) stop("Nenhum arquivo em ", PASTA, ": rode antes ferramentas/baixar_era5land.py")
+if (!length(arqs)) stop("Nenhum arquivo em ", PASTA, ": rode antes ferramentas/baixar_openmeteo.py")
 r <- rast(arqs)
 datas <- as.Date(time(r))
 if (anyNA(datas)) stop("Arquivos sem datas reconhecíveis: ", paste(basename(arqs), collapse = ", "))
@@ -106,9 +108,9 @@ if (file.exists(lst)) {
                   stats::cor(v, mun$tmax_verao, use = "complete"), stats::cor(v, mun$dias_35, use = "complete")))
 }
 
-fonte <- c(en = "ERA5-Land (ECMWF/Copernicus C3S), daily statistics; IBGE 2022 Census",
-           pt = "ERA5-Land (ECMWF/Copernicus C3S), estatísticas diárias; IBGE, Censo 2022",
-           es = "ERA5-Land (ECMWF/Copernicus C3S), estadísticas diarias; IBGE, Censo 2022")
+fonte <- c(en = "ERA5-Land (ECMWF/Copernicus C3S), hourly, via Open-Meteo (AWS Open Data); IBGE 2022 Census",
+           pt = "ERA5-Land (ECMWF/Copernicus C3S), horário, via Open-Meteo (AWS Open Data); IBGE, Censo 2022",
+           es = "ERA5-Land (ECMWF/Copernicus C3S), horario, vía Open-Meteo (AWS Open Data); IBGE, Censo 2022")
 per <- c(en = paste0(ANO_INI, "–", ANO_FIM), pt = paste0(ANO_INI, "–", ANO_FIM), es = paste0(ANO_INI, "–", ANO_FIM))
 per_v <- c(en = paste0("Dec–Mar, summers ", ANO_INI, "/", substr(ANO_INI + 1, 3, 4), " to ", ANO_FIM - 1, "/", substr(ANO_FIM, 3, 4)),
            pt = paste0("dez.–mar., verões ", ANO_INI, "/", substr(ANO_INI + 1, 3, 4), " a ", ANO_FIM - 1, "/", substr(ANO_FIM, 3, 4)),
