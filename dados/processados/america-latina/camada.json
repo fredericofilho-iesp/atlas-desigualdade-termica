@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "america-latina",
-  "gerado_em": "2026-11-12T22:50:57+0000",
+  "gerado_em": "2026-11-13T10:24:10+0000",
   "unidade": {
     "en": "Subnational unit",
     "pt": "Unidade subnacional",
@@ -118,6 +118,37 @@
       "ordem": 12,
       "quebras": [34.56, 37.35, 38.52, 40.49],
       "n_validos": 379
+    },
+    {
+      "id": "gap_renda_cidade",
+      "rotulo": {
+        "en": "Heat inequality within cities: poorest fifth minus richest fifth",
+        "pt": "Desigualdade térmica dentro das cidades: quinto mais pobre menos o mais rico",
+        "es": "Desigualdad térmica dentro de las ciudades: quintil más pobre menos el más rico"
+      },
+      "unidade": "°C",
+      "paleta": "divergente",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "IBGE 2022 Census; CONAPO/INEGI 2020; DANE 2018 Census; MODIS/Aqua MYD11A2 v6.1 (NASA)",
+        "pt": "IBGE Censo 2022; CONAPO/INEGI 2020; DANE Censo 2018; MODIS/Aqua MYD11A2 v6.1 (NASA)",
+        "es": "IBGE Censo 2022; CONAPO/INEGI 2020; DANE Censo 2018; MODIS/Aqua MYD11A2 v6.1 (NASA)"
+      },
+      "periodo": {
+        "en": "Hottest three months of each place, 2022–2024; censuses 2018–2022",
+        "pt": "Três meses mais quentes de cada lugar, 2022–2024; censos de 2018 a 2022",
+        "es": "Tres meses más cálidos de cada lugar, 2022–2024; censos de 2018 a 2022"
+      },
+      "metodo": {
+        "en": "Small urban areas ranked into fifths within their own municipality by the best official socioeconomic measure of each country (Brazil: household-head income; Mexico: urban marginalisation index; Colombia: multidimensional poverty). Difference in MODIS surface temperature (deviation from the municipal mean) between the poorest and richest fifth, weighted by population. Only Brazil, Mexico and Colombia so far",
+        "pt": "Pequenas áreas urbanas ordenadas em quintos dentro do próprio município pela melhor medida socioeconômica oficial de cada país (Brasil: renda do responsável; México: índice de marginação urbana; Colômbia: pobreza multidimensional). Diferença de temperatura da superfície MODIS (desvio em relação à média do município) entre o quinto mais pobre e o mais rico, ponderada pela população. Por enquanto só Brasil, México e Colômbia",
+        "es": "Pequeñas áreas urbanas ordenadas en quintiles dentro de su propio municipio según la mejor medida socioeconómica oficial de cada país (Brasil: ingreso del responsable; México: índice de marginación urbana; Colombia: pobreza multidimensional). Diferencia de temperatura de superficie MODIS (desvío respecto a la media municipal) entre el quintil más pobre y el más rico, ponderada por población. Por ahora solo Brasil, México y Colombia"
+      },
+      "casas_decimais": 1,
+      "classificacao": "manual",
+      "ordem": 13,
+      "quebras": [-2, -0.5, 0.5, 2],
+      "n_validos": 92
     },
     {
       "id": "pop_urbana",
