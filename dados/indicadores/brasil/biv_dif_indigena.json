@@ -1,0 +1,63 @@
+{
+  "id": "biv_dif_indigena",
+  "rotulo": {
+    "en": "Surface temperature × Indigenous population (bivariate, within states)",
+    "pt": "Temperatura da superfície × população indígena (bivariado, dentro dos estados)",
+    "es": "Temperatura de superficie × población indígena (bivariado, dentro de los estados)"
+  },
+  "paleta": "bivariada",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census (SIDRA 9605)",
+    "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022 (SIDRA 9605)",
+    "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022 (SIDRA 9605)"
+  },
+  "metodo": {
+    "en": "Terciles (of municipalities) of the temperature difference from the state average; fixed classes of the Indigenous share of residents",
+    "pt": "Tercis (de municípios) da diferença de temperatura para a média do estado; classes fixas da proporção de moradores indígenas",
+    "es": "Terciles (de municipios) de la diferencia de temperatura respecto a la media del estado; clases fijas de la proporción de residentes indígenas"
+  },
+  "casas_decimais": 0,
+  "ordem": 32,
+  "tipo": "bivariado",
+  "eixos": {
+    "y": {
+      "indicador": "lst_dif_uf",
+      "rotulo": {
+        "en": "Surface temperature vs. own state",
+        "pt": "Temperatura da superfície vs. o próprio estado",
+        "es": "Temperatura de superficie vs. su estado"
+      },
+      "classes": {
+        "en": ["Cooler", "Intermediate temp.", "Hotter"],
+        "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+        "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+      },
+      "unidade": "°C",
+      "casas": 1,
+      "limites": [-1.9, 0.9]
+    },
+    "x": {
+      "indicador": "pop_indigena",
+      "rotulo": {
+        "en": "Indigenous population",
+        "pt": "População indígena",
+        "es": "Población indígena"
+      },
+      "classes": {
+        "en": ["10% or more Indigenous", "1–10% Indigenous", "under 1% Indigenous"],
+        "pt": ["10% ou mais indígenas", "1–10% indígenas", "menos de 1% indígenas"],
+        "es": ["10% o más indígenas", "1–10% indígenas", "menos de 1% indígenas"]
+      },
+      "unidade": "%",
+      "casas": 0,
+      "limites": [1, 10],
+      "inverso": true
+    },
+    "nota": {
+      "en": "Temperature: thirds of municipalities. Indigenous share: fixed classes (under 1%, 1–10%, 10% or more). Magenta: hotter municipalities with 10% or more Indigenous residents. Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
+      "pt": "Temperatura: terços dos municípios. Proporção indígena: classes fixas (menos de 1%, 1–10%, 10% ou mais). Magenta: municípios mais quentes e com 10% ou mais de indígenas. Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
+      "es": "Temperatura: tercios de los municipios. Proporción indígena: clases fijas (menos de 1%, 1–10%, 10% o más). Magenta: municipios más cálidos y con 10% o más de indígenas. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
+    }
+  }
+}

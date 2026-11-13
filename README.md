@@ -4,13 +4,14 @@ Plataforma acadêmica aberta para explorar exposição ao calor e desigualdades 
 
 Site: https://fredericofilho-iesp.github.io/atlas-desigualdade-termica/
 
-## Estado atual — v0.6
+## Estado atual — v0.7
 
 - Estrutura com uma página por escala, mapas em **MapLibre GL JS** e mapa-base OpenFreeMap, gratuito e sem chave de API (rótulos acima dos dados).
 - **Rio (cidade):** 13.782 setores censitários (IBGE 2022) com o primeiro indicador: temperatura da superfície no verão (Landsat 8–9, 2022/23–2024/25) e diferença para a mediana da cidade; renda média e mediana do responsável (Censo 2022); mapa bivariado calor × renda e painel com a temperatura por quinto de renda (Q1 − Q5 = 3,0 °C); arborização do entorno (moradores em faces com árvores: 26% no quinto mais pobre, 95% no mais rico); idade (60+, 0–4) e cor ou raça, com exposição por grupo (pretos e pardos − brancos = 0,83 °C).
 - **Estado do RJ:** 92 municípios, com todos os valores calculados a partir dos 41.700 setores de 2022 e ponderados pelos moradores (temperatura medida onde as pessoas moram). Temperatura da superfície cena a cena (229 cenas Landsat; nos setores da capital, r = 0,994 com o método pixel a pixel do Rio); diferença para o estado; desigualdade interna por renda (Q1 − Q5) e por cor ou raça em cada município; renda, arborização, 60+ e população preta e parda. No estado como um todo: Q1 − Q5 = 0,78 °C (IC 0,66–0,90) e pretos e pardos − brancos = 0,74 °C; na maioria dos municípios menores, porém, os mais pobres moram em áreas mais frescas.
 - **Brasil:** 5.570 municípios a partir dos 458.772 setores de 2022, com os mesmos indicadores do estado. Temperatura da superfície MODIS/Aqua (1 km, 2022–2024) nos **três meses mais quentes de cada lugar** (no Norte e no Centro-Oeste, o pico é em set.–out., na seca). No país, pretos e pardos moram em lugares 0,46 °C mais quentes que brancos, mas dentro de cada estado a diferença praticamente some (−0,05 °C): a diferença nacional reflete sobretudo a geografia (Nordeste quente, Sul frio). Os painéis nacionais mostram as duas comparações.
 - **América Latina:** 553 unidades subnacionais (ADM1, geoBoundaries) em 33 países, a partir de células de população de ~1 km (GHSL GHS-POP 2020) com a temperatura MODIS do trimestre mais quente de cada lugar: temperatura onde as pessoas moram, diferença para o próprio país, temperatura nas cidades (células ≥ 1.500 hab./km²) e população urbana, mais um painel país por país. A desigualdade por renda ainda não aparece nesta escala: o Índice de Riqueza Relativa da Meta foi testado e descartado (no Rio, correlação de 0,16 com a renda do Censo e sinal invertido em relação ao Landsat); ver a Metodologia. **Desigualdade por renda dentro das cidades** (R/33) com os dados do censo de cada país: Brasil (renda do responsável por setor, 2022), México (índice de marginação urbana por AGEB, CONAPO 2020, malha do INEGI) e Colômbia (pobreza multidimensional por quarteirão, DANE 2018). Validação no município do Rio: +3,3 °C (Landsat: +3,0 °C). O padrão varia de cidade para cidade: os mais pobres moram em lugares mais quentes no Rio, em Brasília, Barranquilla e Cali, e em lugares mais frescos em São Paulo, Medellín, Bogotá e Ecatepec.
+- **Mapas bivariados** (R/40): temperatura × renda e × população preta e parda no Rio, no estado e no Brasil, e × população indígena no Brasil (SIDRA 9605). Nos mapas nacionais, a temperatura é a diferença para a média do estado.
 - Indicadores previstos e ainda não calculados aparecem desabilitados no seletor.
 
 ## Estrutura
@@ -41,6 +42,7 @@ R/00_paises_latam.R        os 33 países da CELAC, com nomes em três línguas
 R/30_unidades_latam.R      unidades ADM1 do geoBoundaries (com correção de nomes)
 R/31_latam.R               população GHSL × temperatura MODIS; indicadores e painel por país
 R/32_publicar_latam.R      publica as 553 unidades
+R/40_bivariados.R          mapas bivariados das três escalas brasileiras
 R/33_renda_latam.R         desigualdade por renda dentro das cidades (Brasil, México, Colômbia)
 ferramentas/baixar_inegi.py  baixa a malha do INEGI com um navegador (o site bloqueia downloads automáticos)
 R/03_temperatura_superficie_rio.R  temperatura da superfície no verão (Landsat)

@@ -1,7 +1,7 @@
 {
   "versao_contrato": 2,
   "escala": "brasil",
-  "gerado_em": "2026-11-12T20:58:38+0000",
+  "gerado_em": "2026-11-13T10:57:51+0000",
   "unidade": {
     "en": "Municipality",
     "pt": "Município",
@@ -182,6 +182,198 @@
       "n_validos": 5570
     },
     {
+      "id": "biv_dif_renda",
+      "rotulo": {
+        "en": "Surface temperature × income (bivariate, within states)",
+        "pt": "Temperatura da superfície × renda (bivariado, dentro dos estados)",
+        "es": "Temperatura de superficie × ingreso (bivariado, dentro de los estados)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census",
+        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
+        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022"
+      },
+      "metodo": {
+        "en": "Terciles (of municipalities) of surface temperature and of household-head income; temperature as difference from the state average",
+        "pt": "Tercis (de municípios) da temperatura da superfície e da renda do responsável; temperatura como diferença para a média do estado",
+        "es": "Terciles (de municipios) de la temperatura de superficie y del ingreso del responsable; temperatura como diferencia respecto a la media del estado"
+      },
+      "casas_decimais": 0,
+      "ordem": 30,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "lst_dif_uf",
+          "rotulo": {
+            "en": "Surface temperature vs. own state",
+            "pt": "Temperatura da superfície vs. o próprio estado",
+            "es": "Temperatura de superficie vs. su estado"
+          },
+          "classes": {
+            "en": ["Cooler", "Intermediate temp.", "Hotter"],
+            "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+            "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+          },
+          "unidade": "°C",
+          "casas": 1,
+          "limites": [-1.8, 1]
+        },
+        "x": {
+          "indicador": "renda_media_resp",
+          "rotulo": {
+            "en": "Household head income",
+            "pt": "Renda do responsável",
+            "es": "Ingreso del responsable"
+          },
+          "classes": {
+            "en": ["lower income", "middle income", "higher income"],
+            "pt": ["renda mais baixa", "renda média", "renda mais alta"],
+            "es": ["ingreso más bajo", "ingreso medio", "ingreso más alto"]
+          },
+          "unidade": "R$",
+          "casas": -1,
+          "limites": [1550, 2360],
+          "inverso": false
+        },
+        "nota": {
+          "en": "Each third groups about one third of the country’s municipalities. Magenta: hotter municipalities with lower income. Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
+          "pt": "Cada terço reúne cerca de um terço dos municípios do país. Magenta: municípios mais quentes e com renda mais baixa. Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
+          "es": "Cada tercio agrupa alrededor de un tercio de los municipios del país. Magenta: municipios más cálidos y con menor ingreso. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
+        }
+      },
+      "n_validos": 5570
+    },
+    {
+      "id": "biv_dif_pretaparda",
+      "rotulo": {
+        "en": "Surface temperature × Black population (bivariate, within states)",
+        "pt": "Temperatura da superfície × população preta e parda (bivariado, dentro dos estados)",
+        "es": "Temperatura de superficie × población negra (bivariado, dentro de los estados)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census",
+        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022",
+        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022"
+      },
+      "metodo": {
+        "en": "Terciles (of municipalities) of surface temperature and of the Black (preta and parda) share of residents; the group axis runs from more to fewer Black residents; temperature as difference from the state average",
+        "pt": "Tercis (de municípios) da temperatura da superfície e da proporção de moradores pretos e pardos; o eixo do grupo vai de mais para menos pretos e pardos; temperatura como diferença para a média do estado",
+        "es": "Terciles (de municipios) de la temperatura de superficie y de la proporción de residentes negros (pretos y pardos); el eje del grupo va de más a menos población negra; temperatura como diferencia respecto a la media del estado"
+      },
+      "casas_decimais": 0,
+      "ordem": 31,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "lst_dif_uf",
+          "rotulo": {
+            "en": "Surface temperature vs. own state",
+            "pt": "Temperatura da superfície vs. o próprio estado",
+            "es": "Temperatura de superficie vs. su estado"
+          },
+          "classes": {
+            "en": ["Cooler", "Intermediate temp.", "Hotter"],
+            "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+            "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+          },
+          "unidade": "°C",
+          "casas": 1,
+          "limites": [-1.8, 1]
+        },
+        "x": {
+          "indicador": "pop_preta_parda",
+          "rotulo": {
+            "en": "Black population (preta and parda)",
+            "pt": "População preta e parda",
+            "es": "Población negra (preta y parda)"
+          },
+          "classes": {
+            "en": ["more Black residents", "intermediate share", "fewer Black residents"],
+            "pt": ["mais pretos e pardos", "proporção intermediária", "menos pretos e pardos"],
+            "es": ["más población negra", "proporción intermedia", "menos población negra"]
+          },
+          "unidade": "%",
+          "casas": 0,
+          "limites": [46, 71],
+          "inverso": true
+        },
+        "nota": {
+          "en": "Each third groups about one third of the country’s municipalities. Magenta: hotter municipalities with more Black residents. Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
+          "pt": "Cada terço reúne cerca de um terço dos municípios do país. Magenta: municípios mais quentes e com mais pretos e pardos. Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
+          "es": "Cada tercio agrupa alrededor de un tercio de los municipios del país. Magenta: municipios más cálidos y con más población negra. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
+        }
+      },
+      "n_validos": 5570
+    },
+    {
+      "id": "biv_dif_indigena",
+      "rotulo": {
+        "en": "Surface temperature × Indigenous population (bivariate, within states)",
+        "pt": "Temperatura da superfície × população indígena (bivariado, dentro dos estados)",
+        "es": "Temperatura de superficie × población indígena (bivariado, dentro de los estados)"
+      },
+      "paleta": "bivariada",
+      "dimensao": "exposicao",
+      "fonte": {
+        "en": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE 2022 Census (SIDRA 9605)",
+        "pt": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022 (SIDRA 9605)",
+        "es": "MODIS/Aqua MYD11A2 v6.1 (NASA); IBGE, Censo 2022 (SIDRA 9605)"
+      },
+      "metodo": {
+        "en": "Terciles (of municipalities) of the temperature difference from the state average; fixed classes of the Indigenous share of residents",
+        "pt": "Tercis (de municípios) da diferença de temperatura para a média do estado; classes fixas da proporção de moradores indígenas",
+        "es": "Terciles (de municipios) de la diferencia de temperatura respecto a la media del estado; clases fijas de la proporción de residentes indígenas"
+      },
+      "casas_decimais": 0,
+      "ordem": 32,
+      "tipo": "bivariado",
+      "eixos": {
+        "y": {
+          "indicador": "lst_dif_uf",
+          "rotulo": {
+            "en": "Surface temperature vs. own state",
+            "pt": "Temperatura da superfície vs. o próprio estado",
+            "es": "Temperatura de superficie vs. su estado"
+          },
+          "classes": {
+            "en": ["Cooler", "Intermediate temp.", "Hotter"],
+            "pt": ["Menos quente", "Temp. intermediária", "Mais quente"],
+            "es": ["Menos cálido", "Temp. intermedia", "Más cálido"]
+          },
+          "unidade": "°C",
+          "casas": 1,
+          "limites": [-1.9, 0.9]
+        },
+        "x": {
+          "indicador": "pop_indigena",
+          "rotulo": {
+            "en": "Indigenous population",
+            "pt": "População indígena",
+            "es": "Población indígena"
+          },
+          "classes": {
+            "en": ["10% or more Indigenous", "1–10% Indigenous", "under 1% Indigenous"],
+            "pt": ["10% ou mais indígenas", "1–10% indígenas", "menos de 1% indígenas"],
+            "es": ["10% o más indígenas", "1–10% indígenas", "menos de 1% indígenas"]
+          },
+          "unidade": "%",
+          "casas": 0,
+          "limites": [1, 10],
+          "inverso": true
+        },
+        "nota": {
+          "en": "Temperature: thirds of municipalities. Indigenous share: fixed classes (under 1%, 1–10%, 10% or more). Magenta: hotter municipalities with 10% or more Indigenous residents. Temperature axis: difference from the state average, so that regional climate does not mix with inequality.",
+          "pt": "Temperatura: terços dos municípios. Proporção indígena: classes fixas (menos de 1%, 1–10%, 10% ou mais). Magenta: municípios mais quentes e com 10% ou mais de indígenas. Eixo da temperatura: diferença para a média do estado, para que o clima regional não se misture à desigualdade.",
+          "es": "Temperatura: tercios de los municipios. Proporción indígena: clases fijas (menos de 1%, 1–10%, 10% o más). Magenta: municipios más cálidos y con 10% o más de indígenas. Eje de la temperatura: diferencia respecto a la media del estado, para que el clima regional no se mezcle con la desigualdad."
+        }
+      },
+      "n_validos": 4825
+    },
+    {
       "id": "arv_com_arvores",
       "rotulo": {
         "en": "Residents on blocks with street trees",
@@ -263,6 +455,37 @@
       "ordem": 52,
       "quebras": [20, 40, 60, 80],
       "n_validos": 5570
+    },
+    {
+      "id": "pop_indigena",
+      "rotulo": {
+        "en": "Indigenous population",
+        "pt": "População indígena",
+        "es": "Población indígena"
+      },
+      "unidade": "%",
+      "paleta": "pessoas",
+      "dimensao": "sensibilidade",
+      "fonte": {
+        "en": "IBGE 2022 Census (SIDRA table 9605)",
+        "pt": "IBGE, Censo 2022 (SIDRA, tabela 9605)",
+        "es": "IBGE, Censo 2022 (SIDRA, tabla 9605)"
+      },
+      "periodo": {
+        "en": "2022",
+        "pt": "2022",
+        "es": "2022"
+      },
+      "metodo": {
+        "en": "Residents who declared Indigenous color or race, as a share of all residents",
+        "pt": "Moradores que declararam cor ou raça indígena, sobre o total de moradores",
+        "es": "Residentes que declararon color o raza indígena, sobre el total de residentes"
+      },
+      "casas_decimais": 1,
+      "classificacao": "manual",
+      "ordem": 63,
+      "quebras": [0.5, 1, 5, 10],
+      "n_validos": 4825
     }
   ]
 }
