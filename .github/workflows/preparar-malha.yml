@@ -99,6 +99,8 @@ jobs:
           Rscript R/31_latam.R
       - name: Mapas bivariados (Rio, estado do RJ, Brasil)
         if: inputs.escala == 'bivariados'
+        env:
+          ESCALAS: ${{ vars.ESCALAS_BIVARIADOS || 'rio,estado-rj,brasil' }}
         run: |
           Rscript R/01_importar_ibge.R
           Rscript R/40_bivariados.R

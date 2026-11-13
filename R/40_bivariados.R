@@ -130,6 +130,9 @@ if ("brasil" %in% ESC) {
     outras <- setdiff(names(cab)[grepl("^D[0-9]+N$", names(cab))], c(sub("C$", "N", cm), sub("C$", "N", cc)))
     outras <- outras[!cab[outras] %in% c("Município", "Variável", "Ano", "Unidade de Medida")]
     for (o in outras) if (any(sid[[o]] == "Total")) { message("  SIDRA: fixa ", cab[[o]], " = Total"); sid <- sid[sid[[o]] == "Total", ] }
+    message("  SIDRA cabeçalho: ", paste(names(cab), cab, sep = "=", collapse = " | "))
+    message("  SIDRA categorias: ", paste(names(table(sid[[cc]])), table(sid[[cc]]), sep = ":", collapse = " "))
+    print(utils::head(sid[sid[[cm]] == "3304557", ], 12))
     val <- suppressWarnings(as.numeric(sid$V))
     tot <- tapply(val[sid[[cc]] == "Total"], sid[[cm]][sid[[cc]] == "Total"], sum)
     ind <- tapply(val[sid[[cc]] == "Indígena"], sid[[cm]][sid[[cc]] == "Indígena"], sum)
