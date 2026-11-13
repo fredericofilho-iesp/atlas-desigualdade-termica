@@ -378,13 +378,14 @@
             : [6, 0.4 * k, 10, 0.5 * k, 14, 1.2 * k])]
       }
     }, extra), antes);
-    // Limites de nível superior (estados no Brasil, países na América Latina), mais grossos.
+    // Limites de nível superior (bairros no Rio, estados no Brasil, países na América Latina), mais grossos.
     if (cfg.contornos) {
       map.addSource('grupos', { type: 'geojson', data: cfg.contornos + (manifesto.gerado_em ? '?v=' + encodeURIComponent(manifesto.gerado_em) : '') });
       map.addLayer({
         id: 'grupos-contorno', type: 'line', source: 'grupos',
         paint: { 'line-color': '#111c22', 'line-opacity': 0.85,
-          'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.9, 5, 1.4, 9, 2.2] }
+          'line-width': ['interpolate', ['linear'], ['zoom']].concat(cfg.larguraGrupos
+            ? [].concat.apply([], cfg.larguraGrupos) : [2, 0.9, 5, 1.4, 9, 2.2]) }
       }, antes);
     }
 
