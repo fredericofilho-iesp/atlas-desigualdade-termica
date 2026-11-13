@@ -1,0 +1,30 @@
+{
+  "id": "tmax_quente",
+  "rotulo": {
+    "en": "Average maximum air temperature in the hottest season",
+    "pt": "Máxima média do ar na época mais quente",
+    "es": "Máxima media del aire en la época más cálida"
+  },
+  "unidade": "°C",
+  "paleta": "calor",
+  "dimensao": "exposicao",
+  "fonte": {
+    "en": "ERA5-Land (ECMWF/Copernicus C3S), hourly, via Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+    "pt": "ERA5-Land (ECMWF/Copernicus C3S), horário, via Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries",
+    "es": "ERA5-Land (ECMWF/Copernicus C3S), horario, vía Open-Meteo (AWS Open Data); GHSL GHS-POP 2020 (JRC); geoBoundaries"
+  },
+  "periodo": {
+    "en": "Hottest three months of each place, 2016–2025",
+    "pt": "Três meses mais quentes de cada lugar, 2016–2025",
+    "es": "Tres meses más cálidos de cada lugar, 2016–2025"
+  },
+  "metodo": {
+    "en": "Mean daily maximum 2 m air temperature over the three consecutive months that are hottest at each grid cell. Air temperature from a ~11 km reanalysis grid, taken at each ~1 km population cell and weighted by population. Too coarse for neighbourhood heat islands; tends to underestimate maxima in dense urban areas",
+    "pt": "Média das máximas diárias da temperatura do ar a 2 m nos três meses consecutivos mais quentes de cada célula da grade. Temperatura do ar de uma reanálise em grade de ~11 km, tomada em cada célula de população de ~1 km e ponderada pela população. Grossa demais para ilhas de calor de bairro; tende a subestimar a máxima em áreas muito urbanizadas",
+    "es": "Media de las máximas diarias de la temperatura del aire a 2 m en los tres meses consecutivos más cálidos de cada celda de la grilla. Temperatura del aire de un reanálisis en grilla de ~11 km, tomada en cada celda de población de ~1 km y ponderada por población. Demasiado gruesa para islas de calor de barrio; tiende a subestimar la máxima en áreas muy urbanizadas"
+  },
+  "casas_decimais": 1,
+  "n_classes": 5,
+  "classificacao": "quantis",
+  "ordem": 15
+}

@@ -118,6 +118,9 @@ names(paises) <- NULL
 # desigualdade por renda (R/33), quando já calculada
 rj <- file.path(DIR_PROC, "renda_paises.json")
 if (file.exists(rj)) { renda <- read_json(rj); paises <- lapply(paises, function(p) { p$renda <- renda[[p$iso3]]; p }) }
+# calor extremo do ar (R/50), quando já calculado
+cj <- file.path(DIR_PROC, "calor_ar_paises.json")
+if (file.exists(cj)) { ca <- read_json(cj); paises <- lapply(paises, function(p) { p$calor_ar <- ca[[p$iso3]]; p }) }
 write_json(list(gerado_em = format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z"), paises = paises),
            file.path(DIR_PROC, "paises.json"), auto_unbox = TRUE, pretty = TRUE, digits = NA, na = "null", null = "null")
 for (p in paises) message(sprintf("  %s  %5.1f °C  cidades %s  mês %s  urbano %3.0f%%  mais quente: %s", p$iso3, p$lst_pop,
