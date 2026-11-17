@@ -39,6 +39,7 @@ NAV = [
     ("brasil/", "nav.br", False),
     ("america-latina/", "nav.la", False),
     ("metodologia/", "nav.method", False),
+    ("apoio/", "nav.support", False),
 ]
 
 
@@ -196,6 +197,21 @@ def pagina_metodologia():
 """
 
 
+def pagina_apoio():
+    return f"""{cabeca("../", "support.title")}
+<body data-i18n-titulo="support.title">
+{topo("../", "apoio/")}
+<main class="conteudo texto">
+  {tx("support.title", "h1")}
+  {tx("support.lead", "p", ' class="lead"')}
+  {tx("support.body", "div")}
+</main>
+{rodape()}
+</body>
+</html>
+"""
+
+
 def gravar(caminho, html):
     caminho = os.path.join(RAIZ, caminho)
     os.makedirs(os.path.dirname(caminho), exist_ok=True)
@@ -207,4 +223,5 @@ for slug, c in ESCALAS.items():
     gravar(f"{slug}/index.html", pagina_mapa(slug, c))
 gravar("index.html", pagina_inicio())
 gravar("metodologia/index.html", pagina_metodologia())
+gravar("apoio/index.html", pagina_apoio())
 print("Páginas geradas.")
